@@ -1,0 +1,12 @@
+travelLinker\utils\HibernateUtils.class
+travelLinker\beans\CustomerBean.class
+travelLinker\beans\SuperAdmin.class
+travelLinker\beans\PartnerBean_.class
+travelLinker\beans\AccountBean.class
+travelLinker\beans\AccountBean_.class
+travelLinker\beans\PartnerBean.class
+travelLinker\beans\TravelPlanner.class
+travelLinker\beans\TravelPlanner_.class
+travelLinker\main\Main.class
+travelLinker\beans\CustomerBean_.class
+travelLinker\controllerBean\AccountControllerBean.class
