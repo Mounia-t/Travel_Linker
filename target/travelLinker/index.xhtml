@@ -5,12 +5,18 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<title>First JSF App :: Index</title>
+	<title>Login: Index</title>
 </h:head>
 <h:body>
-	<h2>Première page JSF (XHTML)</h2>
-	
-	<hr/>
-	<h3></h3>
+	<h2>Compte</h2>
+	<h:form>
+        <h:outputLabel value="Email" />
+        <h:inputText value="#{accountBean.email}" required="true" /> 
+
+        <h:outputLabel value="Mot de passe" />
+        <h:inputSecret value="#{accountBean.password}" required="true" />
+
+        <h:commandButton value="Se connecter" action="" />
+    </h:form>
 </h:body>
 </html>
