@@ -19,6 +19,7 @@ public class HibernateUtils {
     public static void closeEntityManagerFactory() {
         entityManagerFactory.close();
     }
+    
 
 }
 

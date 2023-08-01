@@ -22,4 +22,10 @@
     xsi:schemaLocation="
         http://xmlns.jcp.org/xml/ns/javaee
         http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+<managed-bean>
+    <managed-bean-name>AccountControllerBean</managed-bean-name>
+    <managed-bean-class>control.AccountControllerBean</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+</managed-bean>
+
 </faces-config>

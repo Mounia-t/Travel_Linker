@@ -14,6 +14,17 @@ public class AccountBean {
 	private String email;
 	private String password;
 	
+	public AccountBean(String email, String password) {
+		this.email = email;
+		this.password = password;
+	}
+	public AccountBean() {
+	}
+	public AccountBean(Long id, String email, String password) {
+		this.id = id;
+		this.email = email;
+		this.password = password;
+	}
 	public Long getId() {
 		return id;
 	}
