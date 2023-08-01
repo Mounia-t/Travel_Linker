@@ -1,2 +1,4 @@
 /.metadata/
 /target/
+*.class
+/persistence.xml/

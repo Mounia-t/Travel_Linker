@@ -1,3 +1,4 @@
+travelLinker\viewModel\AccountViewModel.class
 travelLinker\utils\HibernateUtils.class
 travelLinker\beans\CustomerBean.class
 travelLinker\beans\PartnerBean_.class
@@ -8,5 +9,6 @@ travelLinker\beans\PartnerBean.class
 travelLinker\beans\SuperAdminBean.class
 travelLinker\main\Main.class
 travelLinker\beans\TravelPlannerBean.class
+travelLinker\dao\AccountDao.class
 travelLinker\beans\CustomerBean_.class
 travelLinker\controllerBean\AccountControllerBean.class

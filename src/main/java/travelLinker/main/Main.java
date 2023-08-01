@@ -12,14 +12,13 @@ public class Main {
 	try {
         EntityManager em = HibernateUtils.createEntityManager();
 
-        // On ferme l'entity manager 
-        // pour nettoyer les ressources
+     
         em.close();
 
         // on ferme aussi la fabrique 
         // d'entity manager
         HibernateUtils.closeEntityManagerFactory();
-
+        
     } catch (Exception e) {
         e.printStackTrace();
     } finally {
