@@ -8,6 +8,7 @@ public class HibernateUtils {
 	private static EntityManagerFactory entityManagerFactory;
 	private HibernateUtils() {
 	}
+	 private static final String JPA_UNIT_NAME = "travelLinker";
  static {
         entityManagerFactory = Persistence.createEntityManagerFactory("travelLinker");
     }
@@ -19,6 +20,12 @@ public class HibernateUtils {
     public static void closeEntityManagerFactory() {
         entityManagerFactory.close();
     }
+
+	public static String getJpaUnitName() {
+		return JPA_UNIT_NAME;
+	}
+
+	
     
 
 }
