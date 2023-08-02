@@ -18,9 +18,10 @@ import javax.servlet.http.HttpSession;
 import travelLinker.dao.LoginDao;
 import travelLinker.entity.AccountBean;
 import travelLinker.utils.SessionUtils;
+import travelLinker.viewModel.AccountViewModel;
 
 @ManagedBean
-@RequestScoped
+
 //Serializable : les instances de cette classe peuvent être sérialisées 
 //(converties en un flux d'octets) pour être stockées dans un flux, tel qu'une session HTTP.
 public class LoginControllerBean implements Serializable {
@@ -30,7 +31,7 @@ public class LoginControllerBean implements Serializable {
 	//je déclare un entityManger pour interagir avec la BDD
 	
 	private EntityManager entityManager;
-	private AccountBean accountbean = new AccountBean();
+	private AccountViewModel accountVM=new AccountViewModel();
 	private List<AccountBean> accounts = new ArrayList<>();
 	 @Inject
 	    private LoginDao loginDao;
@@ -38,23 +39,23 @@ public class LoginControllerBean implements Serializable {
 	    public LoginControllerBean() {
 	    }
 
-	    // Méthode d'initialisation, appelée après l'injection des dépendances
+/*	    // Méthode d'initialisation, appelée après l'injection des dépendances
 	    @PostConstruct
 	    public void init() {
 	        loginDao.setEntityManager(entityManager);
 	    }
-	
+	*/
 	// private AccountViewModel accountVM=new AccountViewModel();
 	
 	    public String validateUsernamePassword() {
 	        // Vérifier si le nom d'utilisateur et le mot de passe saisis sont valides
-	        boolean valid = loginDao.validate(accountbean.getEmail(), accountbean.getPassword());
+	        boolean valid = loginDao.validate(accountVM.getEmail(), accountVM.getPassword());
 
 	        // Si les informations de connexion sont valides
 	        if (valid) {
 	            // Obtenir une session HTTP
 	            HttpSession session = SessionUtils.getSession();
-	            session.setAttribute("email", accountbean);
+	            session.setAttribute("email", accountVM);
 	            return "index"; // Rediriger
 	        } else {
 	            FacesContext.getCurrentInstance().addMessage(
@@ -82,13 +83,6 @@ public class LoginControllerBean implements Serializable {
 		this.entityManager = entityManager;
 	}
 
-	public AccountBean getAccountbean() {
-		return accountbean;
-	}
-
-	public void setAccountbean(AccountBean accountbean) {
-		this.accountbean = accountbean;
-	}
 
 	public List<AccountBean> getAccounts() {
 		return accounts;

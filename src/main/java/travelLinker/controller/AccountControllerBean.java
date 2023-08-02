@@ -20,7 +20,7 @@ public class AccountControllerBean implements Serializable {
 	
 	
 	private AccountViewModel accountVM=new AccountViewModel();
-    private List<AccountBean> accounts = new ArrayList<>();
+ 
     @Inject
     private AccountDao accountDao;
 
@@ -44,15 +44,6 @@ public class AccountControllerBean implements Serializable {
 
 	public void setAccountVM(AccountViewModel accountVM) {
 		this.accountVM = accountVM;
-	}
-    
-
-	public List<AccountBean> getAccounts() {
-		return accounts;
-	}
-
-	public void setAccounts(List<AccountBean> accounts) {
-		this.accounts = accounts;
 	}
 
 	public AccountDao getAccountDao() {

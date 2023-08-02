@@ -25,8 +25,6 @@ public class AccountDao {
         return accountbean.getId();
     }
 	 
-
-
     public AccountDao() {
     }
 

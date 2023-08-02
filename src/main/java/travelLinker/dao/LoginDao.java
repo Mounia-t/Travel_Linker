@@ -7,32 +7,21 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 
 import travelLinker.entity.AccountBean;
 import travelLinker.utils.HibernateUtils;
 
 @Stateless
-@LocalBean
+
 public class LoginDao {
 	
-	 public static void setEntityManager(EntityManager entityManager) {
-		LoginDao.entityManager = entityManager;
-	}
-	 @Inject
-	private static EntityManager entityManager;
+	 @PersistenceContext(unitName = "travelLinker")
+	    private EntityManager entityManager;
 	 
 	public LoginDao() {
 		
-	}
-
-	   
-	 /*protected EntityManager getEntityManager() {
-	        if (entityManager == null) {
-	            entityManager = Persistence.createEntityManagerFactory(
-	                    HibernateUtils.getJpaUnitName()).createEntityManager();
-	        }
-	        return entityManager;
-	    }*/
+	}  
 	public LoginDao(EntityManager entityManager) {
 		
 		this.entityManager = entityManager;
