@@ -27,12 +27,6 @@ public class LoginDao {
 		this.entityManager = entityManager;
 	}
 	public static boolean validate(String email, String password) {
-       EntityManagerFactory emf = null;
-        EntityManager em = null;
-
-        try {
-            emf = Persistence.createEntityManagerFactory(HibernateUtils.getJpaUnitName());
-            em = emf.createEntityManager();
 
             AccountBean accountBean = entityManager.find(AccountBean.class, email);
 
