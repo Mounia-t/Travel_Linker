@@ -31,6 +31,7 @@ public class AccountControllerBean implements Serializable {
 
 	public void addAccount() {
     	Long id=accountDao.insert(accountVM);
+
         //accounts.add();
         // Appeler la méthode insert pour enregistrer l'objet dans la base de données
         	//accountDao.insert(accountbean);

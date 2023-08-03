@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 	public class CustomerBean {
@@ -14,7 +15,11 @@ import javax.persistence.Id;
 		private String firstName; 
 		private String lastName; 
 		private String address; 
-//		private AccountBean accountBean;
+		private String email;
+
+		private Long accountId;
+		@OneToOne
+		private AccountBean account;
 		
 		public Long getId() {
 			return id;
@@ -38,6 +43,15 @@ import javax.persistence.Id;
 		public void setAddress(String address) {
 			this.address = address;
 		}
+
+		public String getEmail() {
+			return email;
+		}
+
+		public void setEmail(String email) {
+			this.email = email;
+		}
+
 
 		
 	}

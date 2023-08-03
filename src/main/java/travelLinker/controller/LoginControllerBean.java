@@ -28,7 +28,6 @@ public class LoginControllerBean implements Serializable {
 
 	//Attributs
 	private static final long serialVersionUID = 1L;
-	//je déclare un entityManger pour interagir avec la BDD
 	
 	private AccountViewModel accountVM=new AccountViewModel();
 	private List<AccountBean> accounts = new ArrayList<>();
@@ -46,25 +45,33 @@ public class LoginControllerBean implements Serializable {
 	*/
 
 	
-	    public String validateUsernamePassword() {
+	    public String validateUsername() {
 	        // Vérifier si le nom d'utilisateur et le mot de passe saisis sont valides
 	        boolean valid = loginDao.validate(accountVM);
 
 	        // Si les informations de connexion sont valides
 	        if (valid) {
 	            // Obtenir une session HTTP
-	            HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
-	            session.setAttribute("email", accountVM.getEmail());
-	            return "index"; // Rediriger
+	        	SessionUtils.writeInSession(accountVM.getId(), accountVM.getEmail(), accountVM.getRole());
+	            return "index"; 
+	         
 	        } else {
 	            FacesContext.getCurrentInstance().addMessage(
 	                    null,
+	                    //l'objet FacesMessage, qui est utilisé pour afficher des messages d'informations, 
+	                    //d'avertissements ou d'erreurs à l'utilisateur dans une application JSF 
 	                    new FacesMessage(FacesMessage.SEVERITY_WARN,
-	                            "Incorrect Username and Password",
-	                            "Please enter correct username and Password"));
+	                            "Email ou Mot de pass incorrectes", "Merci de saisir les bons identifiants"));
 	            return "Login"; // Rediriger vers la page de connexion en cas d'informations de connexion incorrectes
 	        }
 	    }
+		// Méthode pour se déconnecter, invalider la session
+	    public String logout() {
+	        HttpSession session = SessionUtils.getSession();
+	        session.invalidate();
+	        return "login"; // Rediriger vers la page de connexion après la déconnexion
+	    }
+
 
 	    public AccountViewModel getAccountVM() {
 			return accountVM;
@@ -74,12 +81,6 @@ public class LoginControllerBean implements Serializable {
 			this.accountVM = accountVM;
 		}
 
-		// Méthode pour se déconnecter, invalider la session
-	    public String logout() {
-	        HttpSession session = SessionUtils.getSession();
-	        session.invalidate();
-	        return "login"; // Rediriger vers la page de connexion après la déconnexion
-	    }
 
 
 	public List<AccountBean> getAccounts() {

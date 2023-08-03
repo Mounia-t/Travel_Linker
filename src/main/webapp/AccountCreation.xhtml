@@ -10,6 +10,15 @@
 <h:body>
 	<h2>Compte</h2>
 	<h:form>
+	
+        <h:outputLabel value="Nom" />
+        <h:inputText value="#{accountControllerBean.accountVM.firstName}" required="true" />
+<br/>
+<br/>
+<h:outputLabel value="Prenom" />
+        <h:inputText value="#{accountControllerBean.accountVM.lastName}" required="true" />
+<br/>
+<br/>
         <h:outputLabel value="Email" />
         <h:inputText value="#{accountControllerBean.accountVM.email}" required="true" /> 
 <br/>
@@ -18,6 +27,12 @@
         <h:inputSecret value="#{accountControllerBean.accountVM.password}" required="true" />
 <br/>
 <br/>
+ <h:selectOneMenu value="#{accountControllerBean.accountVM.role}" required="true">
+            <f:selectItem itemLabel="Sélectionnez un rôle" itemValue="" />
+            <f:selectItem itemLabel="Organisateur de voyage" itemValue="TravelPlanner" />
+            <f:selectItem itemLabel="Préstataire" itemValue="Partner" />
+            <f:selectItem itemLabel="Client" itemValue="Customer" />
+        </h:selectOneMenu>
         <h:commandButton value="Créer" action="#{accountControllerBean.addAccount()}"/>
     </h:form>
 </h:body>
