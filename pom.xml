@@ -74,7 +74,6 @@
 			<dependency>
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-core</artifactId>
-				 <!-- Remplacez par la version appropriée -->
 			</dependency>
 		<!-- API, java.xml.bind module -->
 		<dependency>
