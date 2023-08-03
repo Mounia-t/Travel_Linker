@@ -16,7 +16,7 @@ public class PartnerBean {
 	private String lastName; 
 	private String address; 
 	private String email;
-	private String password;
+	
 	private double phoneNumber;
 	private String siret;
 
@@ -66,13 +66,6 @@ public class PartnerBean {
 		this.siret = siret;
 	}
 
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
 	
 	
 

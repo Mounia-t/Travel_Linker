@@ -15,7 +15,7 @@ public class TravelPlannerBean{
 	private String firstName; 
 	private String address; 
 	private String email;
-	private String password;
+
 	private double phoneNumber;
 	private String siret;
 	private String companyName;
@@ -72,11 +72,4 @@ public class TravelPlannerBean{
 		this.companyName = companyName;
 	}	
 
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}	
 }

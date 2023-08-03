@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 	public class CustomerBean {
@@ -15,8 +16,9 @@ import javax.persistence.Id;
 		private String lastName; 
 		private String address; 
 		private String email;
-		private String password;
+
 		private Long accountId;
+		@OneToOne
 		private AccountBean account;
 		
 		public Long getId() {
@@ -50,14 +52,6 @@ import javax.persistence.Id;
 			this.email = email;
 		}
 
-		public String getPassword() {
-			return password;
-		}
-
-		public void setPassword(String password) {
-			this.password = password;
-		}
-		
 
 		
 	}

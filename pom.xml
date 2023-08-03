@@ -188,6 +188,11 @@
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+    <groupId>org.mindrot</groupId>
+    <artifactId>jbcrypt</artifactId>
+    <version>0.4</version>
+</dependency>
 
 		<!-- Optional, but highly recommended -->
 		<!-- Arquillian allows you to test enterprise code such as EJBs and Transactional(JTA) 

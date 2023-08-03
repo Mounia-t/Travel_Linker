@@ -45,23 +45,23 @@ public class LoginControllerBean implements Serializable {
 	*/
 
 	
-	    public String validateUsernamePassword() {
+	    public String validateUsername() {
 	        // Vérifier si le nom d'utilisateur et le mot de passe saisis sont valides
 	        boolean valid = loginDao.validate(accountVM);
 
 	        // Si les informations de connexion sont valides
 	        if (valid) {
 	            // Obtenir une session HTTP
-	            HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
-	            session.setAttribute("email", accountVM.getEmail());
-	            return "index"; // Rediriger
+	        	SessionUtils.writeInSession(accountVM.getId(), accountVM.getEmail(), accountVM.getRole());
+	            return "index"; 
+	         
 	        } else {
 	            FacesContext.getCurrentInstance().addMessage(
 	                    null,
 	                    //l'objet FacesMessage, qui est utilisé pour afficher des messages d'informations, 
 	                    //d'avertissements ou d'erreurs à l'utilisateur dans une application JSF 
 	                    new FacesMessage(FacesMessage.SEVERITY_WARN,
-	                            "Email ou Mot de pass inccorect", "Merci de saisir les bons identifiants"));
+	                            "Email ou Mot de pass incorrectes", "Merci de saisir les bons identifiants"));
 	            return "Login"; // Rediriger vers la page de connexion en cas d'informations de connexion incorrectes
 	        }
 	    }
