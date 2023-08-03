@@ -25,7 +25,6 @@ public class LoginDao {
 
             AccountBean accountBean = query.getSingleResult();
 
-            // Si l'entité est trouvée, cela signifie que l'email et le mot de passe sont valides
             return accountBean != null;
         } catch (NoResultException ex) {
             System.out.println("Login error -->" + ex.getMessage());

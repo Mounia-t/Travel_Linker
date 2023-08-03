@@ -1,6 +1,7 @@
 package travelLinker.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,7 +15,9 @@ public class AccountBean {
 	private Long id;
 	private String email;
 	private String password;
-	@Enumerated
+	private String firstName; 
+	private String lastName; 
+	@Enumerated(EnumType.STRING)
 	private RoleUser role;
 	
 	public AccountBean(String email, String password) {
@@ -43,4 +46,22 @@ public class AccountBean {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	public RoleUser getRole() {
+		return role;
+	}
+	public void setRole(RoleUser role) {
+		this.role = role;
+	}
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}	
 }

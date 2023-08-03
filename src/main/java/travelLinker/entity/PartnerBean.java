@@ -19,7 +19,6 @@ public class PartnerBean {
 	private String password;
 	private double phoneNumber;
 	private String siret;
-//	private AccountBean accountBean;
 
 
 	public Long getId() {
@@ -66,6 +65,15 @@ public class PartnerBean {
 	public void setSiret(String siret) {
 		this.siret = siret;
 	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
 	
 
 }
