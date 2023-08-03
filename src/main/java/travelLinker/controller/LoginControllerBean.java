@@ -30,7 +30,6 @@ public class LoginControllerBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	//je déclare un entityManger pour interagir avec la BDD
 	
-	private EntityManager entityManager;
 	private AccountViewModel accountVM=new AccountViewModel();
 	private List<AccountBean> accounts = new ArrayList<>();
 	 @Inject
@@ -45,43 +44,42 @@ public class LoginControllerBean implements Serializable {
 	        loginDao.setEntityManager(entityManager);
 	    }
 	*/
-	// private AccountViewModel accountVM=new AccountViewModel();
+
 	
 	    public String validateUsernamePassword() {
 	        // Vérifier si le nom d'utilisateur et le mot de passe saisis sont valides
-	        boolean valid = loginDao.validate(accountVM.getEmail(), accountVM.getPassword());
+	        boolean valid = loginDao.validate(accountVM);
 
 	        // Si les informations de connexion sont valides
 	        if (valid) {
 	            // Obtenir une session HTTP
-	            HttpSession session = SessionUtils.getSession();
-	            session.setAttribute("email", accountVM);
+	            HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+	            session.setAttribute("email", accountVM.getEmail());
 	            return "index"; // Rediriger
 	        } else {
 	            FacesContext.getCurrentInstance().addMessage(
-	                null,
-	                new FacesMessage(FacesMessage.SEVERITY_WARN,
-	                        "Incorrect Username and Password",
-	                        "Please enter correct username and Password"));
-	            return "login"; // Rediriger vers la page de connexion en cas d'informations de connexion incorrectes
+	                    null,
+	                    new FacesMessage(FacesMessage.SEVERITY_WARN,
+	                            "Incorrect Username and Password",
+	                            "Please enter correct username and Password"));
+	            return "Login"; // Rediriger vers la page de connexion en cas d'informations de connexion incorrectes
 	        }
 	    }
 
-	    // Méthode pour se déconnecter, invalider la session
+	    public AccountViewModel getAccountVM() {
+			return accountVM;
+		}
+
+		public void setAccountVM(AccountViewModel accountVM) {
+			this.accountVM = accountVM;
+		}
+
+		// Méthode pour se déconnecter, invalider la session
 	    public String logout() {
 	        HttpSession session = SessionUtils.getSession();
 	        session.invalidate();
 	        return "login"; // Rediriger vers la page de connexion après la déconnexion
 	    }
-
-
-	public EntityManager getEntityManager() {
-		return entityManager;
-	}
-
-	public void setEntityManager(EntityManager entityManager) {
-		this.entityManager = entityManager;
-	}
 
 
 	public List<AccountBean> getAccounts() {

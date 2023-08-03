@@ -1,11 +1,15 @@
 package travelLinker.viewModel;
 
+
+
 import travelLinker.entity.AccountBean;
+import travelLinker.entity.RoleUser;
 
 public class AccountViewModel {
 
 	private String email;
 	private String password;
+	private RoleUser role; 
 	
 	public String getEmail() {
 		return email;

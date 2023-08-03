@@ -1,6 +1,7 @@
 package travelLinker.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,6 +14,8 @@ public class AccountBean {
 	private Long id;
 	private String email;
 	private String password;
+	@Enumerated
+	private RoleUser role;
 	
 	public AccountBean(String email, String password) {
 		this.email = email;

@@ -8,14 +8,13 @@
 	<title>Login: Index</title>
 </h:head>
 <h:body>
-	<h2>Compte</h2>
-	<h:form>
+<h:form>
         <h:outputLabel value="Email" />
-        <h:inputText value="#{loginControllerBean.accountbean.email}" required="true" /> 
+        <h:inputText value="#{accountControllerBean.accountVM.email}" required="true" /> 
 <br/>
 <br/>
         <h:outputLabel value="Mot de passe" />
-        <h:inputSecret value="#{loginControllerBean.accountbean.password}" required="true" />
+        <h:inputSecret value="#{accountControllerBean.accountVM.password}" required="true" />
 <br/>
 <br/>
         <h:commandButton value="Se connecter" action="#{loginControllerBean.validateUsernamePassword() }"/>

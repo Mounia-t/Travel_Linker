@@ -1,47 +1,35 @@
 package travelLinker.dao;
 
-import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-import javax.faces.bean.ManagedBean;
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import travelLinker.entity.AccountBean;
-import travelLinker.utils.HibernateUtils;
+import travelLinker.viewModel.AccountViewModel;
 
 @Stateless
-
 public class LoginDao {
-	
-	 @PersistenceContext(unitName = "travelLinker")
-	    private EntityManager entityManager;
-	 
-	public LoginDao() {
-		
-	}  
-	public LoginDao(EntityManager entityManager) {
-		
-		this.entityManager = entityManager;
-	}
-	public static boolean validate(String email, String password) {
 
-            AccountBean accountBean = entityManager.find(AccountBean.class, email);
+    @PersistenceContext
+    private EntityManager entityManager;
 
-            if (accountBean != null && accountBean.getPassword().equals(password)) {
-              
-                return true;
-            }
-        } catch (Exception ex) {
+    public boolean validate(AccountViewModel loginViewModel) {
+        try {
+            String queryString = "SELECT a FROM AccountBean a WHERE a.email = :email AND a.password = :password";
+            TypedQuery<AccountBean> query = entityManager.createQuery(queryString, AccountBean.class);
+            query.setParameter("email", loginViewModel.getEmail());
+            query.setParameter("password", loginViewModel.getPassword());
+
+            AccountBean accountBean = query.getSingleResult();
+
+            // Si l'entité est trouvée, cela signifie que l'email et le mot de passe sont valides
+            return accountBean != null;
+        } catch (NoResultException ex) {
             System.out.println("Login error -->" + ex.getMessage());
-            return false;
-      
-	}
-		return false;
+        }
+        return false;
+    }
 }
-
-}
-
-	 
