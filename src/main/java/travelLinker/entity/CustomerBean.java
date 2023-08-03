@@ -1,4 +1,4 @@
-package travelLinker.beans;
+package travelLinker.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
