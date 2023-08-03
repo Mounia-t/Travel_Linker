@@ -1,11 +1,12 @@
 package travelLinker.beans;
 
 import java.util.Date;
-
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+@Entity
 public class JourneyBean {
 	
 	@Id
@@ -17,7 +18,20 @@ public class JourneyBean {
 	private String location;
 	private Date startDate;
 	private Date endDate;
+
+	public JourneyBean (){
+			}
 	
+	public JourneyBean(String country, int numberOfTravellers, float price, String location, Date startDate,
+			Date endDate) {
+		super();
+		this.country = country;
+		this.numberOfTravellers = numberOfTravellers;
+		this.price = price;
+		this.location = location;
+		this.startDate = startDate;
+		this.endDate = endDate;
+	}
 	public Long getId() {
 		return id;
 	}

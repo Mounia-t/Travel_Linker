@@ -15,8 +15,6 @@ public class JourneyControllerBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private EntityManager entityManager;
 
-	// private AccountViewModel accountVM=new AccountViewModel();
-
 	private JourneyBean journeybean = new JourneyBean();
 	private List<JourneyBean> journeys = new ArrayList<>();
 
@@ -27,12 +25,46 @@ public class JourneyControllerBean implements Serializable {
 		// Appeler la méthode persist pour enregistrer l'objet dans la base de données
 		journeyDao.insert(journeybean);
 		journeybean = new JourneyBean();
-		// accounts.add(accountBean);
+
 	}
 	
 	public List<JourneyBean> getJourney() {
 		return journeys;
 	}
+	
+	public EntityManager getEntityManager() {
+		return entityManager;
+	}
+
+	public JourneyBean getJourneybean() {
+		return journeybean;
+	}
+
+	public List<JourneyBean> getJourneys() {
+		return journeys;
+	}
+
+	public JourneyDao getJourneyDao() {
+		return journeyDao;
+	}
+
+	public void setEntityManager(EntityManager entityManager) {
+		this.entityManager = entityManager;
+	}
+
+	public void setJourneybean(JourneyBean journeybean) {
+		this.journeybean = journeybean;
+	}
+
+	public void setJourneys(List<JourneyBean> journeys) {
+		this.journeys = journeys;
+	}
+
+	public void setJourneyDao(JourneyDao journeyDao) {
+		this.journeyDao = journeyDao;
+	}
+
+
 
 	public void setAccounts(List<JourneyBean> journeys) {
 		this.journeys = journeys;
