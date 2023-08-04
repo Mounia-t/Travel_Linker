@@ -18,47 +18,49 @@
 
 		<div class="form-group">
 			<h:outputLabel value="Pays:" />
-			<h:inputText value="#{journeyControllerBean.journeybean.country}"
+			<h:inputText value="#{journeyControllerBean.journeyVM.country}"
 				required="true" />
 		</div>
 
 		<div class="form-group">
 			<h:outputLabel value="Adresse" />
-			<h:inputText value="#{journeyControllerBean.journeybean.location}"
+			<h:inputText value="#{journeyControllerBean.journeyVM.location}"
 				required="true" />
 		</div>
 
 		<div class="form-group">
 			<h:outputLabel value="Prix" />
-			<h:inputText value="#{journeyControllerBean.journeybean.price}"
+			<h:inputText value="#{journeyControllerBean.journeyVM.price}"
 				required="true" />
 		</div>
 
 		<div class="form-group">
 			<h:outputLabel value="Nombres de voyageurs acceptés" />
 			<h:inputText
-				value="#{journeyControllerBean.journeybean.numberOfTravellers}"
+				value="#{journeyControllerBean.journeyVM.numberOfTravellers}"
 				required="true" />
 		</div>
 
 		<div class="form-group">
 
-			<h:outputLabel for="startDate" value="Date de Début du Voyage:" />
-			<h:inputText id="startDate" value="#{journeybean.startDate}"
+			<h:outputLabel value="Date de Début du Voyage:" />
+			<h:inputText id="startDate" value="#{journeyControllerBean.journeyVM.startDate}"
 				required="true">
 				<f:convertDateTime pattern="dd/MM/yyyy" />
 			</h:inputText>
 
-			<h:outputLabel for="endDate" value="Date de Fin du Voyage:" />
-			<h:inputText id="endDate" value="#{journeybean.endDate}"
+			<h:outputLabel value="Date de Fin du Voyage:" />
+			<h:inputText id="endDate" value="#{journeyControllerBean.journeyVM.endDate}"
 				required="true">
 				<f:convertDateTime pattern="dd/MM/yyyy" />
 			</h:inputText>
 
 		</div>
+		
+		<h:commandButton action="#{journeyControllerBean.clear()}" value="Clear" />
 
 		<div class="form-group">
-			<h:commandButton value="Validez votre voyage !" />
+			<h:commandButton action="#{journeyControllerBean.addJourney()}" value="Create"/>
 		</div>
 	</h:form>
 </body>

@@ -8,6 +8,7 @@
 		transaction-type="JTA">
 		<jta-data-source>java:jboss/datasources/travelLinkerDS</jta-data-source>
 		<class>travelLinker.beans.AccountBean</class>
+		<class>travelLinker.beans.JourneyBean</class>
 		<properties>
 <!-- 			<property name="javax.persistence.jdbc.driver" -->
 <!-- 				value="com.mysql.cj.jdbc.Driver" /> -->

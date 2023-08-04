@@ -1,47 +1,30 @@
 package travelLinker.dao;
 
-	import javax.ejb.Stateless;
-	import javax.inject.Inject;
-	import javax.persistence.EntityManager;
-	import javax.persistence.EntityManagerFactory;
-	import javax.persistence.Persistence;
-	import javax.persistence.PersistenceContext;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
 
-
+import javax.persistence.PersistenceContext;
 import travelLinker.beans.JourneyBean;
 import travelLinker.viewModel.JourneyViewModel;
 
-	@Stateless
-	public class JourneyDao {
+@Stateless
+public class JourneyDao {
 
+	@PersistenceContext
+	private EntityManager entityManager;
 
-	    private EntityManager entityManager;
-		 private static final String JPA_UNIT_NAME = "travelLinker";
-		 protected EntityManager getEntityManager() {
-		        if (entityManager == null) {
-		            entityManager = Persistence.createEntityManagerFactory(
-		                    JPA_UNIT_NAME).createEntityManager();
-		        }
-		        return entityManager;
-		    }
+	public Long insert(JourneyViewModel journeyVM) {
+		JourneyBean journeybean = new JourneyBean();
+		journeybean.setCountry(journeyVM.getCountry());
+		journeybean.setNumberOfTravellers(journeyVM.getNumberOfTravellers());
+		journeybean.setPrice(journeyVM.getPrice());
+		journeybean.setLocation(journeyVM.getLocation());
+		journeybean.setStartDate(journeyVM.getStartDate());
+		journeybean.setEndDate(journeyVM.getEndDate());
 
-		 public JourneyBean insert(JourneyBean journeybean) {
-			    getEntityManager().getTransaction().begin();
-			    getEntityManager().persist(journeybean);
-			    getEntityManager().getTransaction().commit();
-			    return journeybean;}
-		 
-		 
-	    // Constructeur public par défaut nécessaire pour les EJBs
-	    public JourneyDao() {
-	    }
-
-	    public JourneyDao(EntityManager entityManager) {
-	        this.entityManager = entityManager;
-	    }
-
-	    public void persist (JourneyViewModel journeyVM) {
-	        this.entityManager.persist(journeyVM);
-	        this.entityManager.flush();
-	    }
+		entityManager.persist(journeyVM);
+		entityManager.flush();
+		return journeybean.getId();
 	}
+
+}

@@ -71,7 +71,5 @@ public class JourneyBean {
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
-	
-	
 
 }
