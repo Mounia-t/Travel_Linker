@@ -16,7 +16,7 @@ import javax.persistence.PersistenceContext;
 import javax.servlet.http.HttpSession;
 
 import travelLinker.dao.LoginDao;
-import travelLinker.entity.AccountBean;
+import travelLinker.entity.Account;
 import travelLinker.utils.SessionUtils;
 import travelLinker.viewModel.AccountViewModel;
 
@@ -30,7 +30,7 @@ public class LoginControllerBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private AccountViewModel accountVM=new AccountViewModel();
-	private List<AccountBean> accounts = new ArrayList<>();
+	private List<Account> accounts = new ArrayList<>();
 	 @Inject
 	    private LoginDao loginDao;
 
@@ -42,9 +42,7 @@ public class LoginControllerBean implements Serializable {
 	    public void init() {
 	        loginDao.setEntityManager(entityManager);
 	    }
-	*/
-
-	
+	*/	
 	    public String validateUsername() {
 	        // Vérifier si le nom d'utilisateur et le mot de passe saisis sont valides
 	        boolean valid = loginDao.validate(accountVM);
@@ -62,14 +60,14 @@ public class LoginControllerBean implements Serializable {
 	                    //d'avertissements ou d'erreurs à l'utilisateur dans une application JSF 
 	                    new FacesMessage(FacesMessage.SEVERITY_WARN,
 	                            "Email ou Mot de pass incorrectes", "Merci de saisir les bons identifiants"));
-	            return "Login"; // Rediriger vers la page de connexion en cas d'informations de connexion incorrectes
+	            return "signIn"; // Rediriger vers la page de connexion en cas d'informations de connexion incorrectes
 	        }
 	    }
 		// Méthode pour se déconnecter, invalider la session
 	    public String logout() {
 	        HttpSession session = SessionUtils.getSession();
 	        session.invalidate();
-	        return "login"; // Rediriger vers la page de connexion après la déconnexion
+	        return "signIn"; // Rediriger vers la page de connexion après la déconnexion
 	    }
 
 
@@ -83,11 +81,11 @@ public class LoginControllerBean implements Serializable {
 
 
 
-	public List<AccountBean> getAccounts() {
+	public List<Account> getAccounts() {
 		return accounts;
 	}
 
-	public void setAccounts(List<AccountBean> accounts) {
+	public void setAccounts(List<Account> accounts) {
 		this.accounts = accounts;
 	}
 

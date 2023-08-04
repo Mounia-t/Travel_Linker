@@ -42,5 +42,11 @@ public class SessionUtils {
 		    else
 		        return null;
 		}
+		
+		public void resetSessionAttributes() {
+		    // Si on veut accèder à la session http
+		            HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+		            session.invalidate();
+		}
 }
 

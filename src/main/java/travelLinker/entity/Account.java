@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-public class AccountBean {
+public class Account {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,13 +23,13 @@ public class AccountBean {
 	@Enumerated(EnumType.STRING)
 	private RoleUser role;
 	
-	public AccountBean(String email, String password) {
+	public Account(String email, String password) {
 		this.email = email;
 		this.password = password;
 	}
-	public AccountBean() {
+	public Account() {
 	}
-	public AccountBean(Long id, String email, String password) {
+	public Account(Long id, String email, String password) {
 		this.id = id;
 		this.email = email;
 		this.password = password;

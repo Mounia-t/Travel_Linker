@@ -4,11 +4,11 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import travelLinker.entity.AccountBean;
-import travelLinker.entity.CustomerBean;
-import travelLinker.entity.PartnerBean;
+import travelLinker.entity.Account;
+import travelLinker.entity.Customer;
+import travelLinker.entity.Partner;
 import travelLinker.entity.RoleUser;
-import travelLinker.entity.TravelPlannerBean;
+import travelLinker.entity.TravelPlanner;
 import travelLinker.utils.PasswordUtils;
 import travelLinker.viewModel.AccountViewModel;
 
@@ -17,8 +17,9 @@ public class AccountDao {
 
     @PersistenceContext(unitName = "travelLinker")
     private EntityManager entityManager;
+    
     public Long insert(AccountViewModel accountVM) {
-        AccountBean accountbean = new AccountBean();
+        Account accountbean = new Account();
         accountbean.setEmail(accountVM.getEmail());
 
         // Hacher le mot de passe avant de l'enregistrer dans la base de données
@@ -43,7 +44,7 @@ public class AccountDao {
 
     public void insertCustomerInto(AccountViewModel accountVM) {
         if (accountVM.getRole()==RoleUser.Customer) {
-            CustomerBean customer = new CustomerBean();
+            Customer customer = new Customer();
             customer.setEmail(accountVM.getEmail());
        
           
@@ -56,7 +57,7 @@ public class AccountDao {
 
     public void insertTravelPlanner(AccountViewModel accountVM) {
         if (accountVM.getRole()==RoleUser.TravelPlanner) { 
-        TravelPlannerBean travelPlanner = new TravelPlannerBean();
+        TravelPlanner travelPlanner = new TravelPlanner();
         travelPlanner.setEmail(accountVM.getEmail());
 
       
@@ -68,7 +69,7 @@ public class AccountDao {
 
     public void insertPartner(AccountViewModel accountVM) {
         if (accountVM.getRole()==RoleUser.Partner) {
-        	PartnerBean partner = new PartnerBean();
+        	Partner partner = new Partner();
         	partner.setFirstName(accountVM.getFirstName());
         	partner.setLastName(accountVM.getLastName());
         	partner.setEmail(accountVM.getEmail());

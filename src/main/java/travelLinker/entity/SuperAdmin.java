@@ -1,6 +1,6 @@
 package travelLinker.entity;
 
-public class SuperAdminBean {
+public class SuperAdmin {
 	private Long id; 
 }
 

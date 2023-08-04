@@ -10,7 +10,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
 import travelLinker.dao.AccountDao;
-import travelLinker.entity.AccountBean;
+import travelLinker.entity.Account;
 import travelLinker.viewModel.AccountViewModel;
 
 @ManagedBean
@@ -54,8 +54,6 @@ public class AccountControllerBean implements Serializable {
 	public void setAccountDao(AccountDao accountDao) {
 		this.accountDao = accountDao;
 	}
-
-
 	
 	
 }

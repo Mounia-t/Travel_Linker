@@ -6,7 +6,8 @@
 	<persistence-unit name="travelLinker" transaction-type="JTA">
 	 <jta-data-source>java:jboss/datasources/travelLinkerDS</jta-data-source>
 
-	<class>travelLinker.entity.AccountBean</class>
+	<class>travelLinker.entity.Account</class>
+	<class>travelLinker.entity.JourneyBean</class>
 		
 		<properties>
 			<!--<property name="javax.persistence.jdbc.driver"

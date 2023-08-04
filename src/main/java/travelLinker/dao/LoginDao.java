@@ -7,7 +7,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
-import travelLinker.entity.AccountBean;
+import travelLinker.entity.Account;
 import travelLinker.utils.PasswordUtils;
 import travelLinker.viewModel.AccountViewModel;
 
@@ -21,12 +21,12 @@ public class LoginDao {
         System.out.println(loginViewModel.getEmail() + loginViewModel.getPassword());
 
         try {
-            String queryString = "SELECT a FROM AccountBean a WHERE a.email = :email";
+            String queryString = "SELECT a FROM Account a WHERE a.email = :email";
             System.out.println(queryString);
-            TypedQuery<AccountBean> query = entityManager.createQuery(queryString, AccountBean.class);
+            TypedQuery<Account> query = entityManager.createQuery(queryString, Account.class);
             query.setParameter("email", loginViewModel.getEmail());
 
-            AccountBean accountBean = query.getSingleResult();
+            Account accountBean = query.getSingleResult();
 
             // Vérifier si le mot de passe fourni par l'utilisateur correspond au mot de passe haché dans la base de données
             if (PasswordUtils.checkPassword(loginViewModel.getPassword(), accountBean.getPassword())) {
