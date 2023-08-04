@@ -56,7 +56,7 @@ public class PartnerBean {
 		return phoneNumber;
 	}
 
-	public void setPhoneNumber(double numberPhone) {
+	public void setPhoneNumber(double phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 

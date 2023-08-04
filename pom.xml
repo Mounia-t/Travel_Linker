@@ -37,7 +37,7 @@
 
 	<dependencyManagement>
 		<dependencies>
-		
+
 			<!-- JBoss distributes a complete set of Java EE 7 APIs including a Bill 
 				of Materials (BOM). A BOM specifies the versions of a "stack" (or a collection) 
 				of artifacts. We use this here so that we always get the correct versions 
@@ -65,16 +65,17 @@
 
 	<dependencies>
 		<dependency>
-				<groupId>mysql</groupId>
-				<artifactId>mysql-connector-java</artifactId>
-				<version>8.0.26</version> <!-- Remplacez par la version appropriée -->
-			</dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.26</version> <!-- Remplacez par la version appropriée -->
+		</dependency>
 
 			<!-- Dépendance pour Hibernate (facultatif si vous n'utilisez pas JPA) -->
 			<dependency>
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-core</artifactId>
 			</dependency>
+
 		<!-- API, java.xml.bind module -->
 		<dependency>
 			<groupId>jakarta.xml.bind</groupId>
@@ -98,6 +99,12 @@
 			<groupId>javax.enterprise</groupId>
 			<artifactId>cdi-api</artifactId>
 			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.primefaces</groupId>
+			<artifactId>primefaces</artifactId>
+			<version>12.0.0</version>
 		</dependency>
 
 		<!-- Import the Common Annotations API (JSR-250), we use provided scope 
@@ -311,4 +318,4 @@
 		</profile>
 
 	</profiles>
-	</project>
+</project>

@@ -8,9 +8,11 @@
 	<persistence-unit name="travelLinker"
 		transaction-type="JTA">
 		<jta-data-source>java:jboss/datasources/travelLinkerDS</jta-data-source>
+		<class>travelLinker.beans.JourneyBean</class>
 		<class>travelLinker.entity.AccountBean</class>
 		<class>travelLinker.entity.Accomodation</class>
 		<class>travelLinker.entity.Restaurant</class>
+
 		<properties>
 <!-- 			<property name="javax.persistence.jdbc.driver" -->
 <!-- 				value="com.mysql.cj.jdbc.Driver" /> -->
