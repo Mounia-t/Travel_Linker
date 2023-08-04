@@ -1,4 +1,4 @@
-package travelLinker.controllerBean;
+package travelLinker.managedBeans;
 
 import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;

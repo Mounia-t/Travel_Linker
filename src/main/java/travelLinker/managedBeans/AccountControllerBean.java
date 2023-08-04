@@ -1,4 +1,4 @@
-package travelLinker.controllerBean;
+package travelLinker.managedBeans;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -9,8 +9,8 @@ import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
-import travelLinker.beans.AccountBean;
 import travelLinker.dao.AccountDao;
+import travelLinker.entity.AccountBean;
 import travelLinker.viewModel.AccountViewModel;
 
 @ManagedBean
