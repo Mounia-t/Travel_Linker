@@ -24,7 +24,7 @@ public class AccountControllerBean implements Serializable {
 	private AccountBean accountbean=new AccountBean();
     private List<AccountBean> accounts = new ArrayList<>();
     
-    private AccountDao accountDao = new AccountDao(entityManager);
+    private AccountDao accountDao = new AccountDao();
 
     public void addAccount() {
     	
