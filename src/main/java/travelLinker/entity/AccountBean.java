@@ -1,5 +1,6 @@
 package travelLinker.entity;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -9,12 +10,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.UniqueConstraint;
 
+
 @Entity
 public class AccountBean {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+
 	@Column(unique =true)
 	private String email;
 	private String password;
@@ -22,6 +25,7 @@ public class AccountBean {
 	private String lastName; 
 	@Enumerated(EnumType.STRING)
 	private RoleUser role;
+
 	
 	public AccountBean(String email, String password) {
 		this.email = email;
@@ -49,6 +53,7 @@ public class AccountBean {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 	public RoleUser getRole() {
 		return role;
 	}
@@ -67,4 +72,5 @@ public class AccountBean {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}	
+
 }

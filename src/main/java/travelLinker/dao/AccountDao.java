@@ -5,11 +5,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import travelLinker.entity.AccountBean;
+
 import travelLinker.entity.CustomerBean;
 import travelLinker.entity.PartnerBean;
 import travelLinker.entity.RoleUser;
 import travelLinker.entity.TravelPlannerBean;
 import travelLinker.utils.PasswordUtils;
+
 import travelLinker.viewModel.AccountViewModel;
 
 @Stateless

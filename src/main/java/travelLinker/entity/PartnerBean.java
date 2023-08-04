@@ -16,9 +16,11 @@ public class PartnerBean {
 	private String lastName; 
 	private String address; 
 	private String email;
+
 	
 	private double phoneNumber;
 	private String siret;
+
 
 
 	public Long getId() {
@@ -65,8 +67,6 @@ public class PartnerBean {
 	public void setSiret(String siret) {
 		this.siret = siret;
 	}
-
-	
 	
 
 }
