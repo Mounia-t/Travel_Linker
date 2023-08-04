@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<!-- <ui:composition template=""> -->
+
+
+	<h:form id="accomodationForm">
+		<h:panelGrid columns="2">
+
+			<h:outputLabel id="nameLabel" value="Name : " />
+			<h:inputText id="nameTxt" size="30"
+				value="#{accomodationControllerBean.accomodationVm.name}" />
+
+			<h:outputLabel id="typeLabel" value="Type : " />
+			<h:inputText id="typeTxt" size="30"
+				value="#{accomodationControllerBean.accomodationVm.type}" />
+
+			<h:outputLabel id="priceLabel" value="Price : " />
+			<h:inputText id="priceTxt" size="30"
+				value="#{accomodationControllerBean.accomodationVm.price}" />
+
+			<h:outputLabel id="countryLabel" value="Country : " />
+			<h:inputText id="countryTxt" size="30"
+				value="#{accomodationControllerBean.accomodationVm.country}" />
+
+			<h:outputLabel id="locationLabel" value="Location : " />
+			<h:inputText id="locationTxt" size="30"
+				value="#{accomodationControllerBean.accomodationVm.location}" />
+
+			<h:outputLabel id="startDateLabel" value="Check-in Date : " />
+			<h:inputText id="startDateTxt" size="30"
+				value="#{accomodationControllerBean.accomodationVm.startDate}">
+				<f:convertDateTime pattern="dd/MM/yyyy" />
+			</h:inputText>
+
+			<h:outputLabel id="endDateLabel" value="Check-out Date : " />
+			<h:inputText id="endDateTxt" size="30"
+				value="#{accomodationControllerBean.accomodationVm.endDate}">
+				<f:convertDateTime pattern="dd/MM/yyyy" />
+			</h:inputText>
+
+			<h:outputLabel id="descriptionLabel" value="Description : " />
+			<h:inputText id="descriptionTxt" size="100"
+				value="#{accomodationControllerBean.accomodationVm.description}" />
+
+			<h:outputLabel id="typeOfAccomodationLabel"
+				value="Type of accomodation : " />
+			<h:inputText id="typeOfAccomodationTxt" size="30"
+				value="#{accomodationControllerBean.accomodationVm.typeOfAccomodation}" />
+		</h:panelGrid>
+
+		<h:commandButton action="#{accomodationControllerBean.clear()}"
+			value="Clear" />
+		<h:commandButton
+			action="#{accomodationControllerBean.createAccomodation()}"
+			value="Create" />
+	</h:form>
+	
+<!-- </ui:composition> -->
+</html>

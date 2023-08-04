@@ -7,7 +7,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 
-import travelLinker.beans.AccountBean;
+import travelLinker.entity.AccountBean;
 import travelLinker.viewModel.AccountViewModel;
 
 @Stateless
