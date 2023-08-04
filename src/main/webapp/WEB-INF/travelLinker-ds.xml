@@ -6,9 +6,11 @@
 	<datasource
 		jndi-name="java:jboss/datasources/travelLinkerDS"
 		pool-name="travelLinker" enabled="true" use-java-context="true">
-		<connection-url>jdbc:mysql://localhost:3306/travelLinker?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;serverTimezone=Europe/Paris
-		</connection-url>
+		<connection-url>jdbc:mysql://localhost:3306/travelLinker?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;serverTimezone=Europe/Paris</connection-url>
 		<driver>mysql</driver>
+		<connection-property name="databasebaseName">travelLinker
+		</connection-property>
+
 		<security>
 			<user-name>root</user-name>
 			<password>rrrrr</password>
@@ -24,5 +26,6 @@
 		</driver>
 
 	</drivers>
+
 
 </datasources>
