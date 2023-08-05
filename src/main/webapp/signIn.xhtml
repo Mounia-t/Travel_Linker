@@ -1,135 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="signIn.css" />
-    <title>Document</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="signIn.css" />
+<title>Document</title>
 </head>
 
 <body>
-    <main>
-        <section id="flexingSection">
-            <div id="leftContainer" class="fade-in">
-                <form method="post" action="">
-                    <div class="wave-group">
-                        <input required="on" type="text" class="input" autocomplete="on" value="#{loginControllerBean.accountVM.email}" />
-                        <label class="label">
-                            <span class="label-char" style="--index: 0">E</span>
-                            <span class="label-char" style="--index: 1">m</span>
-                            <span class="label-char" style="--index: 2">a</span>
-                            <span class="label-char" style="--index: 3">i</span>
-                            <span class="label-char" style="--index: 4">l</span>
-                        </label>
-                    </div>
-                    <div class="wave-group">
-                        <input required="on" type="password" class="input" autocomplete="on" id="passwordInput"  value="#{loginControllerBean.accountVM.password}" />
-                        <label class="label">
-                            <span class="label-char" style="--index: 0">M</span>
-                            <span class="label-char" style="--index: 1">o</span>
-                            <span class="label-char" style="--index: 2">t</span>
-                            <span class="label-char" style="--index: 3"></span>
-                            <span class="label-char" style="--index: 4">d</span>
-                            <span class="label-char" style="--index: 5">e</span>
-                            <span class="label-char" style="--index: 6"></span>
-                            <span class="label-char" style="--index: 7">p</span>
-                            <span class="label-char" style="--index: 8">a</span>
-                            <span class="label-char" style="--index: 9">s</span>
-                            <span class="label-char" style="--index: 10">s</span>
-                            <span class="label-char" style="--index: 11">e</span>
-                        </label>
-                        <input type="checkbox" id="showPasswordCheckbox" />
-                        <label for="showPasswordCheckbox">Afficher le mot de passe</label>
-                    </div>
-                    <button type="submit" class="designButton" action="#{loginControllerBean.validateUsername() }">Connexion</button>
-                </form>
-                <div class="noAccount">
-                    <p>Vous n'avez pas encore de compte ?</p>
-                    <button type="button" class="designButtonSecond" id="inscriptionButton">Inscrivez-vous !</button>
-                </div>
-                <a href="#" class="backHome" value="index">Retour à l'accueil</a>
-            </div>
-            <div id="rightContainer" class="fade-in">
-                <!-- <div class="ocean">
+	<main>
+		<section id="flexingSection">
+			<div id="leftContainer" class="fade-in">
+				<form method="post" action="">
+					<div class="wave-group">
+						<input required="on" type="text" class="input" autocomplete="on"
+							value="#{loginControllerBean.accountVM.email}" /> <label
+							class="label"> <span class="label-char" style="-index: 0">E</span>
+							<span class="label-char" style="-index: 1">m</span> <span
+							class="label-char" style="-index: 2">a</span> <span
+							class="label-char" style="-index: 3">i</span> <span
+							class="label-char" style="-index: 4">l</span>
+						</label>
+					</div>
+					<div class="wave-group">
+						<input required="on" type="password" class="input"
+							autocomplete="on" id="passwordInput"
+							value="#{loginControllerBean.accountVM.password}" /> <label
+							class="label"> <span class="label-char" style="-index: 0">M</span>
+							<span class="label-char" style="-index: 1">o</span> <span
+							class="label-char" style="-index: 2">t</span> <span
+							class="label-char" style="-index: 3"></span> <span
+							class="label-char" style="-index: 4">d</span> <span
+							class="label-char" style="-index: 5">e</span> <span
+							class="label-char" style="-index: 6"></span> <span
+							class="label-char" style="-index: 7">p</span> <span
+							class="label-char" style="-index: 8">a</span> <span
+							class="label-char" style="-index: 9">s</span> <span
+							class="label-char" style="-index: 10">s</span> <span
+							class="label-char" style="-index: 11">e</span>
+						</label> <input type="checkbox" id="showPasswordCheckbox" /> <label
+							for="showPasswordCheckbox">Afficher le mot de passe</label>
+					</div>
+					<button type="submit" class="designButton"
+						action="#{loginControllerBean.validateUsername() }">Connexion</button>
+				</form>
+				<div class="noAccount">
+					<p>Vous n'avez pas encore de compte ?</p>
+					<button type="button" class="designButtonSecond"
+						id="inscriptionButton">Inscrivez-vous !</button>
+				</div>
+				<a href="#" class="backHome" value="index">Retour à l'accueil</a>
+			</div>
+			<div id="rightContainer" class="fade-in">
+				<!-- <div class="ocean">
                     <div class="wave"></div>
                     <div class="wave"></div>
                 </div> -->
-                <div class="squareCard">
+				<div class="squareCard"></div>
+			</div>
+		</section>
 
-                </div>
-            </div>
-        </section>
-
-        <section id="flexingSectionSecond" style="display: none;">
-            <div id="leftContainerSecond" class="fade-in">
-                <!-- <div class="ocean">
+		<section id="flexingSectionSecond" style="display: none;">
+			<div id="leftContainerSecond" class="fade-in">
+				<!-- <div class="ocean">
                     <div class="wave"></div>
                     <div class="wave"></div>
                 </div> -->
-                <div class="squareCard">
-
-                </div>
-            </div>
-            <div id="rightContainerSecond" class="fade-in">
-                <form method="post" action="">
-                    <div class="wave-group">
-                        <input required="on" type="text" class="input" autocomplete="on" value="#{accountControllerBean.accountVM.lastName}"  />
-                        <label class="label">
-                            <span class="label-char" style="--index: 0">N</span>
-                            <span class="label-char" style="--index: 1">o</span>
-                            <span class="label-char" style="--index: 2">m</span>
-                        </label>
-                    </div>
-                    <div class="wave-group">
-                        <input required="on" type="text" class="input" autocomplete="on" value="#{accountControllerBean.accountVM.firstName}"/>
-                        <label class="label">
-                            <span class="label-char" style="--index: 0">P</span>
-                            <span class="label-char" style="--index: 1">r</span>
-                            <span class="label-char" style="--index: 2">é</span>
-                            <span class="label-char" style="--index: 3">n</span>
-                            <span class="label-char" style="--index: 4">o</span>
-                            <span class="label-char" style="--index: 5">m</span>
-                        </label>
-                    </div>
-                    <div class="wave-group">
-                        <input required="on" type="text" class="input" autocomplete="on" value="#{accountControllerBean.accountVM.email}"  />
-                        <label class="label">
-                            <span class="label-char" style="--index: 0">E</span>
-                            <span class="label-char" style="--index: 1">m</span>
-                            <span class="label-char" style="--index: 2">a</span>
-                            <span class="label-char" style="--index: 3">i</span>
-                            <span class="label-char" style="--index: 4">l</span>
-                        </label>
-                    </div>
-                    <div class="wave-group">
-                        <input required="on" type="password" class="input" autocomplete="on" id="passwordInputSecond" value="#{accountControllerBean.accountVM.password}" />
-                        <label class="label">
-                            <span class="label-char" style="--index: 0">M</span>
-                            <span class="label-char" style="--index: 1">o</span>
-                            <span class="label-char" style="--index: 2">t</span>
-                            <span class="label-char" style="--index: 3"></span>
-                            <span class="label-char" style="--index: 4">d</span>
-                            <span class="label-char" style="--index: 5">e</span>
-                            <span class="label-char" style="--index: 6"></span>
-                            <span class="label-char" style="--index: 7">p</span>
-                            <span class="label-char" style="--index: 8">a</span>
-                            <span class="label-char" style="--index: 9">s</span>
-                            <span class="label-char" style="--index: 10">s</span>
-                            <span class="label-char" style="--index: 11">e</span>
-                        </label>
-                        <input type="checkbox" id="showPasswordCheckboxSecond" />
-                        <label for="showPasswordCheckboxSecond">Afficher le mot de passe</label>
-                    </div>
-                    <button type="submit" class="designButton">Inscription</button>
-                </form>
-                <div class="noAccount">
-                    <p>Vous avez déjà un compte ?</p>
-                    <button type="submit" class="designButtonSecond" id="connexionButton" action="#{accountControllerBean.addAccount()}">Connectez-vous !</button>
-                </div>
-                <a href="#" class="backHome" value="index">Retour à l'accueil</a>
-            </div>
-        </section>
-    </main>
-    <script src="signIn.js"></script>
+				<div class="squareCard"></div>
+			</div>
+			<div id="rightContainerSecond" class="fade-in">
+				<form method="post" action="">
+					<div class="wave-group">
+						<input required="on" type="text" class="input" autocomplete="on"
+							value="#{accountControllerBean.accountVM.lastName}" /> <label
+							class="label"> <span class="label-char" style="-index: 0">N</span>
+							<span class="label-char" style="-index: 1">o</span> <span
+							class="label-char" style="-index: 2">m</span>
+						</label>
+					</div>
+					<div class="wave-group">
+						<input required="on" type="text" class="input" autocomplete="on"
+							value="#{accountControllerBean.accountVM.firstName}" /> <label
+							class="label"> <span class="label-char" style="-index: 0">P</span>
+							<span class="label-char" style="-index: 1">r</span> <span
+							class="label-char" style="-index: 2">é</span> <span
+							class="label-char" style="-index: 3">n</span> <span
+							class="label-char" style="-index: 4">o</span> <span
+							class="label-char" style="-index: 5">m</span>
+						</label>
+					</div>
+					<div class="wave-group">
+						<input required="on" type="text" class="input" autocomplete="on"
+							value="#{accountControllerBean.accountVM.email}" /> <label
+							class="label"> <span class="label-char" style="-index: 0">E</span>
+							<span class="label-char" style="-index: 1">m</span> <span
+							class="label-char" style="-index: 2">a</span> <span
+							class="label-char" style="-index: 3">i</span> <span
+							class="label-char" style="-index: 4">l</span>
+						</label>
+					</div>
+					<div class="wave-group">
+						<input required="on" type="password" class="input"
+							autocomplete="on" id="passwordInputSecond"
+							value="#{accountControllerBean.accountVM.password}" /> <label
+							class="label"> <span class="label-char" style="-index: 0">M</span>
+							<span class="label-char" style="-index: 1">o</span> <span
+							class="label-char" style="-index: 2">t</span> <span
+							class="label-char" style="-index: 3"></span> <span
+							class="label-char" style="-index: 4">d</span> <span
+							class="label-char" style="-index: 5">e</span> <span
+							class="label-char" style="-index: 6"></span> <span
+							class="label-char" style="-index: 7">p</span> <span
+							class="label-char" style="-index: 8">a</span> <span
+							class="label-char" style="-index: 9">s</span> <span
+							class="label-char" style="-index: 10">s</span> <span
+							class="label-char" style="-index: 11">e</span>
+						</label> <input type="checkbox" id="showPasswordCheckboxSecond" /> <label
+							for="showPasswordCheckboxSecond">Afficher le mot de passe</label>
+					</div>
+					
+					<button type="submit" class="designButton"
+						action="#{accountControllerBean.addAccount()}">Inscription</button>
+						
+				</form>
+				<div class="noAccount">
+					<p>Vous avez déjà un compte ?</p>
+					<button type="submit" class="designButtonSecond"
+						id="connexionButton">Connectez-vous !</button>
+				</div>
+				<a href="#" class="backHome" value="index">Retour à l'accueil</a>
+			</div>
+		</section>
+	</main>
+	
+	<script src="signIn.js"></script>
 </body>
 </html>
