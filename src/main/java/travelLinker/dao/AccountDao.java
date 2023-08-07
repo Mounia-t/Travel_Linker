@@ -1,5 +1,8 @@
 package travelLinker.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -84,6 +87,21 @@ public class AccountDao {
 
     public AccountDao() {
     }
+    
+    
+ //-------------------------------------------------------
+    public void delete(Long accountId) {
+        // On cherche le compte dans la BDD avec l'Id
+        AccountBean accountBean = entityManager.find(AccountBean.class, accountId);
+        //Si le compte est trouvé, on le supprime de la BDD
+        if (accountBean != null) {
+            entityManager.remove(accountBean);
+        } else {
+            System.out.println("Compte introuvable pour l'ID : " + accountId);
+        }
+    }
+ 
+//-------------------------------------------------
 
     /*public void persist(AccountViewModel accountVM) {
         this.entityManager.persist(accountVM);

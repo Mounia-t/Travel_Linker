@@ -4,7 +4,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 
 import javax.persistence.PersistenceContext;
-import travelLinker.beans.JourneyBean;
+import travelLinker.entity.JourneyBean;
 import travelLinker.viewModel.JourneyViewModel;
 
 @Stateless
