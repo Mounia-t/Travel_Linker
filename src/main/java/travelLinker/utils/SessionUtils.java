@@ -7,6 +7,9 @@ import javax.servlet.http.HttpSession;
 import travelLinker.entity.RoleUser;
 
 public class SessionUtils {
+	
+	public SessionUtils() {}
+	
 
     // Récupère la session HTTP actuelle
     public static HttpSession getSession() {
@@ -20,10 +23,12 @@ public class SessionUtils {
     }
 
     // Écrit des informations dans la session
-    public static void writeInSession(Long accountId, String email, RoleUser role) {
+    public static void writeInSession(Long accountId, String email, RoleUser role, String lastName, String firstName) {
         getSession().setAttribute(SessionAttributesUtils.CONNECTED_ACCOUNT_ID, accountId);
         getSession().setAttribute("email", email);
         getSession().setAttribute("role", role);
+        getSession().setAttribute("lastName", lastName);
+        getSession().setAttribute("firstName", firstName);
     }
 
     // Récupère l'email de l'utilisateur à partir de la session
@@ -40,16 +45,22 @@ public class SessionUtils {
         else
             return null;
     }
+   
 
-    // Méthode non statique pour lire une valeur à partir de la session
-    // et affiche cette valeur (ou un message d'absence) dans la console
-    public static void readFromSession() {
-        HttpSession session = getSession();
-        Long id = (Long) session.getAttribute(SessionAttributesUtils.CONNECTED_ACCOUNT_ID);
-        if (id != null) {
-            System.out.println(id);
-        } else {
-            System.out.println("Pas d'id dans la session");
+        public static String getUserFirstName() {
+            HttpSession session = getSession();
+            return session.getAttribute("firstName").toString();
         }
-    }
+
+        public static String getUserLastName() {
+            HttpSession session = getSession();
+            return session.getAttribute("lastName").toString();
+        }
+
+        public static String getUserAddress() {
+            HttpSession session = getSession();
+            return session.getAttribute("address").toString();
+        }
+  
+    
 }

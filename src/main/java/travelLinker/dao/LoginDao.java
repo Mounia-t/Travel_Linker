@@ -20,52 +20,40 @@ public class LoginDao {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public boolean validate(AccountViewModel accountVM) {
-        System.out.println(accountVM.getEmail() + accountVM.getPassword());
-
+    private Account findAccountByEmail(String email) {
         try {
-            String queryString = "SELECT a FROM Account a WHERE a.email = :email";
-            System.out.println(queryString);
-            TypedQuery<Account> query = entityManager.createQuery(queryString, Account.class);
-            query.setParameter("email", accountVM.getEmail());
+            TypedQuery<Account> query = entityManager.createQuery(
+                "SELECT a FROM Account a WHERE a.email = :email", Account.class)
+                .setParameter("email", email);
 
-            Account accountBean = query.getSingleResult();
-
-            // Vérifier si le mot de passe fourni par l'utilisateur correspond au mot de passe haché dans la base de données
-            if (PasswordUtils.checkPassword(accountVM.getPassword(), accountBean.getPassword())) {
-                return true; // Le mot de passe est correct, l'utilisateur est authentifié
-            } else {
-                return false; // Le mot de passe est incorrect
-            }
+            return query.getSingleResult();
         } catch (NoResultException ex) {
-            System.out.println("Login error -->" + ex.getMessage());
+            System.out.println("Utilisateur non trouvé dans la base de données");
+            return null; // Ou lancez une exception appropriée
         }
-        return false; // L'utilisateur n'a pas été trouvé dans la base de données
     }
+
+    public boolean validate(AccountViewModel accountVM) {
+        Account accountBean = findAccountByEmail(accountVM.getEmail());
+
+        if (accountBean != null) {
+            return PasswordUtils.checkPassword(accountVM.getPassword(), accountBean.getPassword());
+        }
+
+        return false;
+    }
+
+    public Account findAccountByEmailAndPassword(AccountViewModel accountVM, String email, String password) {
+        Account accountBean = findAccountByEmail(accountVM.getEmail());
+
+        if (accountBean != null && PasswordUtils.checkPassword(accountVM.getPassword(), accountBean.getPassword())) {
+            return accountBean;
+        } else {
+            System.out.println("Mot de passe incorrect");
+            return null; // Ou lancez une exception appropriée
+        }
     
-    public Account findAccountByEmailAndPasswor(AccountViewModel accountVM, String email, String password) {
-
-
-            String queryString = "SELECT a FROM Account a WHERE a.email = :email";
-            System.out.println(queryString);
-            TypedQuery<Account> query = entityManager.createQuery(queryString, Account.class);
-            query.setParameter("email", accountVM.getEmail());
-          	
-            
-
-            Account accountBean = query.getSingleResult();
-            if (PasswordUtils.checkPassword(accountVM.getPassword(), accountBean.getPassword())) {
-                Long connectedAccountId = accountBean.getId();
-                RoleUser connectedAccountRole=accountBean.getRole();
-                System.out.println(connectedAccountId);
-                System.out.println(connectedAccountRole);
-                return accountBean;
-            }else {
-            System.out.println(" L'utilisateur n'a pas été trouvé dans la base de données");
     }
-			return accountBean;
-			
-        }
 
     }
 

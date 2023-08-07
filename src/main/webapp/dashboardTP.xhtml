@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<head>
+<meta charset="UTF-8" />
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+	href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
+	rel="stylesheet" />
+<link rel="stylesheet" href="css/dashboardTP.css" />
+<title>Dashboard</title>
+</head>
+
+<body>
+
+	<div class="container">
+		<!-- Sidebar Section -->
+		<aside>
+			<div class="toggle">
+				<div class="logo">
+					<img src="images/PHOTO-2023-07-03-17-06-30.jpg" />
+					<h2></h2>
+				</div>
+				<div class="close" id="close-btn">
+					<span class="material-icons-sharp"> close </span>
+				</div>
+			</div>
+			<div class="sidebar">
+				<a href="#" id="dashboardBtn" class="active"> <span
+					class="material-icons-sharp"> dashboard </span>
+					<h3>Dashboard</h3>
+				</a> <a href="#" id="profileBtn"> <span class="material-icons-sharp">
+						person_outline </span>
+					<h3>Mon profil</h3>
+				</a> <a href="#" id="usersBtn"> <span class="material-icons-sharp">
+						group </span>
+					<h3>Partenaires</h3>
+				</a> <a href="#" id="historyBtn"> <span class="material-icons-sharp">
+						history </span>
+					<h3>Historique</h3>
+				</a> <a href="#" id="analyticsBtn"> <span
+					class="material-icons-sharp"> insights </span>
+					<h3>Analytics</h3>
+				</a> <a href="#" id="messagesBtn"> <span
+					class="material-icons-sharp"> mail </span>
+					<h3>Messages</h3>
+					</a> 
+				<h:form>
+				<a href="#"> <span class="material-icons-sharp"> logout
+				</span>
+				<h3><h:commandButton value="Déconnexion" action="#{loginControllerBean.logout()}"/></h3>
+
+				</a>
+				</h:form>
+				
+			</div>
+		</aside>
+		<!-- End of Sidebar Section -->
+		<!-- Main content Dashboard -->
+		<main id="mainDashboard">
+			<h1>Dashboard</h1>
+			<!-- Analyses -->
+			<div class="analyse fade-in-bottom">
+				<div class="sales">
+					<div class="status">
+						<div class="info">
+							<h3>Ventes totales</h3>
+							<h1>1M</h1>
+						</div>
+					</div>
+				</div>
+				<div class="visits">
+					<div class="status">
+						<div class="info">
+							<h3>Nombre d'abonnement</h3>
+							<h1>24k</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- End of Analyses -->
+
+			<!-- New Users Section -->
+			<div class="new-users fade-in-bottom">
+				<h2>Nouveaux travel planners</h2>
+				<div class="user-list">
+					<div class="user">
+						<img src="images/profile-2.jpg" />
+						<h2>Jack</h2>
+						<p>54 Min Ago</p>
+					</div>
+					<div class="user">
+						<img src="images/profile-3.jpg" />
+						<h2>Amir</h2>
+						<p>3 Hours Ago</p>
+					</div>
+					<div class="user">
+						<img src="images/profile-4.jpg" />
+						<h2>Ember</h2>
+						<p>6 Hours Ago</p>
+					</div>
+					<div class="user">
+						<img src="images/plus.png" />
+						<h2>More</h2>
+						<p>New User</p>
+					</div>
+				</div>
+			</div>
+			<!-- End of New Users Section -->
+
+			<!-- Recent Orders Table -->
+
+			<!-- End of Recent Orders -->
+
+		</main>
+		<!-- Main Content -->
+		<main id="mainAnalytics" style="display: none;">
+			<h1>Analytics</h1>
+			<!-- Analyses -->
+			<div class="analyse">
+				<div class="sales">
+					<div class="status">
+						<div class="info">
+							<h3>Chiffre d'affaire total</h3>
+							<h1>1M€</h1>
+						</div>
+					</div>
+				</div>
+				<div class="visits">
+					<div class="status">
+						<div class="info">
+							<h3>Type d'abonnement</h3>
+							<h1>Premium</h1>
+						</div>
+					</div>
+				</div>
+				<div class="sales">
+					<div class="status">
+						<div class="info">
+							<h3>Nombre de réservations</h3>
+							<h1>42</h1>
+						</div>
+					</div>
+				</div>
+				<div class="visits">
+					<div class="status">
+						<div class="info">
+							<h3>Nombre de partenaires</h3>
+							<h1>283</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- End of Analyses -->
+
+			<!-- New Users Section -->
+			<div class="new-users">
+				<h2>Nouve</h2>
+				<div class="user-list">
+					<div class="user">
+						<img src="images/profile-2.jpg" />
+						<h2>Jack</h2>
+						<p>54 Min Ago</p>
+					</div>
+					<div class="user">
+						<img src="images/profile-3.jpg" />
+						<h2>Amir</h2>
+						<p>3 Hours Ago</p>
+					</div>
+					<div class="user">
+						<img src="images/profile-4.jpg" />
+						<h2>Ember</h2>
+						<p>6 Hours Ago</p>
+					</div>
+					<div class="user">
+						<img src="images/plus.png" />
+						<h2>More</h2>
+						<p>New User</p>
+					</div>
+				</div>
+			</div>
+			<!-- End of New Users Section -->
+
+			<!-- Recent Orders Table -->
+
+
+		</main>
+
+		<!-- End of MainAnalytics Content -->
+
+		<!-- Start of MainMessages Content -->
+
+		<main id="mainMessages" style="display: none;">
+			<div class="messages">
+				<h1>Messages</h1>
+				<div class="analyse">
+					<div class="sales">
+						<div class="status">
+							<div class="info">
+								<h3>Nombre de messages non lus</h3>
+								<h1>5</h1>
+							</div>
+						</div>
+					</div>
+					<div class="visits">
+						<div class="status">
+							<div class="info">
+								<h3>Nombre de messages totals</h3>
+								<h1>2</h1>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- New unread Messages Section -->
+			<div class="new-users-messages">
+				<h2>Messages non lus</h2>
+				<div class="user-list-unreadMessages">
+					<div>
+						<h3>Provenance</h3>
+					</div>
+					<div>
+						<h3>Titre</h3>
+					</div>
+					<div>
+						<h3>Résumé</h3>
+					</div>
+					<div class="unreadMessages-btn">
+						<button type="submit" class="readBtn">Lire</button>
+						<button type="reset" class="deleteBtn">Supprimer</button>
+					</div>
+				</div>
+				<div class="user-list-unreadMessages">
+					<div>
+						<h3>Provenance</h3>
+					</div>
+					<div>
+						<h3>Titre</h3>
+					</div>
+					<div>
+						<h3>Résumé</h3>
+					</div>
+					<div class="unreadMessages-btn">
+						<button type="submit" class="readBtn">Lire</button>
+						<button type="reset" class="deleteBtn">Supprimer</button>
+					</div>
+				</div>
+				<div class="user-list-unreadMessages">
+					<div>
+						<h3>Provenance</h3>
+					</div>
+					<div>
+						<h3>Titre</h3>
+					</div>
+					<div>
+						<h3>Résumé</h3>
+					</div>
+					<div class="unreadMessages-btn">
+						<button type="submit" class="readBtn">Lire</button>
+						<button type="reset" class="deleteBtn">Supprimer</button>
+					</div>
+				</div>
+				<div class="user-list-unreadMessages">
+					<div>
+						<h3>Provenance</h3>
+					</div>
+					<div>
+						<h3>Titre</h3>
+					</div>
+					<div>
+						<h3>Résumé</h3>
+					</div>
+					<div class="unreadMessages-btn">
+						<button type="submit" class="readBtn">Lire</button>
+						<button type="reset" class="deleteBtn">Supprimer</button>
+					</div>
+				</div>
+				<div class="user-list-unreadMessages">
+					<div>
+						<h3>Provenance</h3>
+					</div>
+					<div>
+						<h3>Titre</h3>
+					</div>
+					<div>
+						<h3>Résumé</h3>
+					</div>
+					<div class="unreadMessages-btn">
+						<button type="submit" class="readBtn">Lire</button>
+						<button type="reset" class="deleteBtn">Supprimer</button>
+					</div>
+				</div>
+
+				<div class="new-usersButton">
+					<button type="button" id="showUnreadMessagesBtn">Afficher
+						tout</button>
+				</div>
+			</div>
+
+			<!-- News all Messages section -->
+
+			<div class="new-users-AllMessages">
+				<h2>Tous les messages</h2>
+				<div class="user-list-AllMessages">
+					<div>
+						<h3>Provenance</h3>
+					</div>
+					<div>
+						<h3>Titre</h3>
+					</div>
+					<div>
+						<h3>Résumé</h3>
+					</div>
+					<div class="AllMessages-btn">
+						<button type="submit" class="readBtn">Lire</button>
+						<button type="reset" class="deleteBtn">Supprimer</button>
+					</div>
+				</div>
+				<div class="user-list-AllMessages">
+					<div>
+						<h3>Provenance</h3>
+					</div>
+					<div>
+						<h3>Titre</h3>
+					</div>
+					<div>
+						<h3>Résumé</h3>
+					</div>
+					<div class="AllMessages-btn">
+						<button type="submit" class="readBtn">Lire</button>
+						<button type="reset" class="deleteBtn">Supprimer</button>
+					</div>
+				</div>
+				<div class="user-list-AllMessages">
+					<div>
+						<h3>Provenance</h3>
+					</div>
+					<div>
+						<h3>Titre</h3>
+					</div>
+					<div>
+						<h3>Résumé</h3>
+					</div>
+					<div class="AllMessages-btn">
+						<button type="submit" class="readBtn">Lire</button>
+						<button type="reset" class="deleteBtn">Supprimer</button>
+					</div>
+				</div>
+				<div class="user-list-AllMessages">
+					<div>
+						<h3>Provenance</h3>
+					</div>
+					<div>
+						<h3>Titre</h3>
+					</div>
+					<div>
+						<h3>Résumé</h3>
+					</div>
+					<div class="AllMessages-btn">
+						<button type="submit" class="readBtn">Lire</button>
+						<button type="reset" class="deleteBtn">Supprimer</button>
+					</div>
+				</div>
+				<div class="user-list-AllMessages">
+					<div>
+						<h3>Provenance</h3>
+					</div>
+					<div>
+						<h3>Titre</h3>
+					</div>
+					<div>
+						<h3>Résumé</h3>
+					</div>
+					<div class="AllMessages-btn">
+						<button type="submit" class="readBtn">Lire</button>
+						<button type="reset" class="deleteBtn">Supprimer</button>
+					</div>
+				</div>
+
+				<div class="new-usersButton">
+					<button type="button" id="showAllMessagesBtn">Afficher
+						tout</button>
+				</div>
+			</div>
+
+			<!-- News input Messages Section-->
+
+			<div class="new-users-messages">
+				<h2>Ecrire un message</h2>
+				<div class="user-listMessages" style="display: block;">
+					<input type="text" id="inputMessageDest"
+						placeholder="Choisir un destinataire..." required="true" /> <input
+						type="text" id="inputMessageResume"
+						placeholder="Écrire un titre..." required="true" /> <input
+						type="text" id="inputMessageDetails"
+						placeholder="Écrire le corps du message..." required="true" />
+				</div>
+			</div>
+		</main>
+
+		<!-- Start of mainProfile Content -->
+
+		<main id="mainProfile" style="display: none;">
+			<div class="messages">
+				<h1>Mon profil</h1>
+				<div class="analyse">
+					<div class="sales">
+						<div class="status">
+							<div class="info logo">
+								<img src="images/IMG_0434.jpg" />
+								<h1>Frédéric Dupin</h1>
+							</div>
+						</div>
+						<span class="material-icons-sharp"> upload </span>
+					</div>
+				</div>
+			</div>
+			<div class="new-users">
+				<h2>Mes informations personnelles</h2>
+				<form action="post">
+					<div class="user-listMessages" style="display: block;">
+						<h:inputText id="inputName"  value="#{loginControllerBean.userLastName}" /> 
+						<h:inputText id="inputFirstName"  value="#{loginControllerBean.userLastName}" />
+							 <h:inputText id="inputMail" value="#{loginControllerBean.userEmail}"  /> <input
+							type="password" id="inputPwd"
+							placeholder="Rentrez votre nouveau mot de passe..." /> <input
+							type="number" id="inputPhoneNumber" placeholder="0601020304" /> <input
+							type="text" id="inputSiret" placeholder="362 521 879 00034" /> <input
+							type="text" id="inputCompanyName" placeholder="Isika" />
+					</div>
+					<div class="new-usersButton">
+						<button type=" button" id="createAdmin">Changer mot de
+							passe</button>
+						<button type="button" id="saveInfos">Enregistrer</button>
+					</div>
+				</form>
+			</div>
+		</main>
+
+		<!-- Start of mainUsers Content -->
+
+		<main id="mainUsers" style="display: none;">
+			<h1>Les partenaires</h1>
+			<!-- Analyses -->
+			<div class="analyse">
+				<div class="sales">
+					<div class="status">
+						<div class="info">
+							<h3>Nombre de partenaire</h3>
+							<h1>608</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="new-users">
+				<h2>Tous les partenaires</h2>
+				<div id="searchUsersZone">
+					<input type="search" placeholder="Rechercher un partenaire..."
+						id="searchUsers" />
+					<button type="submit">
+						<span class="material-icons-sharp"> search </span>
+					</button>
+				</div>
+				<div class="user-list">
+					<div class="user">
+						<img src="images/profile-2.jpg" />
+						<h2>Jack</h2>
+						<p>54 Min Ago</p>
+					</div>
+					<div class="user">
+						<img src="images/profile-3.jpg" />
+						<h2>Amir</h2>
+						<p>3 Hours Ago</p>
+					</div>
+					<div class="user">
+						<img src="images/profile-4.jpg" />
+						<h2>Ember</h2>
+						<p>6 Hours Ago</p>
+					</div>
+					<div class="user">
+						<img src="images/plus.png" />
+						<h2>More</h2>
+						<p>New User</p>
+					</div>
+				</div>
+			</div>
+
+		</main>
+
+		<!-- Start of mainHistory Content -->
+
+		<main id="mainHistory" style="display: none;">
+			<div class="messages">
+				<div></div>
+			</div>
+		</main>
+
+		<!-- Right Section -->
+		<div class="right-section">
+			<div class="nav">
+				<button id="menu-btn">
+					<span class="material-icons-sharp"> menu </span>
+				</button>
+				<div class="dark-mode">
+					<span class="material-icons-sharp active"> light_mode </span> <span
+						class="material-icons-sharp"> dark_mode </span>
+				</div>
+
+			</div>
+			<!-- End of Nav -->
+
+			<div class="user-profile">
+				<div class="logo">
+					<img src="images/IMG_0434.jpg" />
+					<h3>
+						Bonjour, <b>{User}</b>
+					</h3>
+				</div>
+			</div>
+
+			<div class="reminders">
+				<div class="header">
+					<h2>Notes</h2>
+					<span class="material-icons-sharp"> notifications_none </span>
+					<div id="rightNotifNumber" style="display: none;">
+						<h4>1</h4>
+					</div>
+				</div>
+				<div id="rightContainerNotif">
+					<div class="notification">
+						<div class="icon">
+							<span class="material-icons-sharp"> priority_high </span>
+						</div>
+						<div class="content">
+							<div class="info">
+								<h3>Tâches à faire</h3>
+								<small class="text_muted"> Gestion du remboursement </small>
+							</div>
+							<span class="material-icons-sharp closeCrossNotes"> close
+							</span>
+						</div>
+					</div>
+
+					<div class="notification deactive">
+						<div class="icon">
+							<span class="material-icons-sharp"> priority_high </span>
+						</div>
+						<div class="content">
+							<div class="info">
+								<h3>Tâches à faire</h3>
+								<small class="text_muted"> Suppression d'un utilisateur
+								</small>
+							</div>
+							<span class="material-icons-sharp closeCrossNotes"> close
+							</span>
+						</div>
+					</div>
+
+					<div class="notification-add add-reminder">
+						<div>
+							<span class="material-icons-sharp"> add </span>
+							<h3>Ajouter une note</h3>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+
+	</div>
+
+	<script src="js/dashboardTP.js"></script>
+</body>
+
+</html>

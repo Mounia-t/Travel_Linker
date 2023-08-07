@@ -30,45 +30,28 @@ public class LoginControllerBean implements Serializable {
 
 	public LoginControllerBean() {
 	}
-/*
-public String validateUsername() {
-		// Vérifier si le nom d'utilisateur et le mot de passe saisis sont valides
-		boolean valid = loginDao.validate(accountVM);
 
-		// Si les informations de connexion sont valides
-		if (valid) {
-			// Obtenir une session HTTP
-			SessionUtils.writeInSession(accountVM.getId(), accountVM.getEmail(), accountVM.getRole());
-			Account account = loginDao.findAccountByEmailAndPasswor(accountVM, accountVM.getEmail(), accountVM.getPassword());
-
-			RoleUser role = account.getRole();
-            Long accountId = account.getId(); 
-            
-            
-			System.out.println(account.getId());
-			System.out.println(account.getEmail());
-			System.out.println(account.getRole());
-			return "index";
-
-		} else {
-			FacesContext.getCurrentInstance().addMessage(null,
-					// l'objet FacesMessage utilisé pour afficher des messages d'informations,
-					// d'avertissements ou d'erreurs à l'utilisateur dans une appli JSF
-					new FacesMessage(FacesMessage.SEVERITY_WARN, "Email ou Mot de pass incorrectes",
-							"Merci de saisir les bons identifiants"));
-			return "signIn"; // Rediriger vers la page de connexion en cas d'informations de connexion
-			
-		}
-	}*/
 	public void validateAccount() {
 	    // Vérifier si le nom d'utilisateur et le mot de passe saisis sont valides
 	    boolean valid = loginDao.validate(accountVM);
+	    Account account = loginDao.findAccountByEmailAndPassword(accountVM, accountVM.getEmail(), accountVM.getPassword());
 
 	    // Si les informations de connexion sont valides
 	    if (valid) {
-	        // Récupérer l'URL de redirection
+	        // Récupérer l'URL de redirection	    	
 	        String redirectionUrl = redirectionDashboard();
 
+
+            // Recuperer les données de la session
+            SessionUtils.writeInSession(
+                account.getId(), 
+                account.getEmail(), 
+                account.getRole(), 
+                account.getFirstName(), 
+                account.getLastName()
+                //account.get()
+                );
+            
 	        // Effectuer la redirection
 	        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
 	        try {
@@ -91,7 +74,7 @@ public String validateUsername() {
 	}
 
 	public String redirectionDashboard() {
-	    Account account = loginDao.findAccountByEmailAndPasswor(accountVM, accountVM.getEmail(), accountVM.getPassword());
+	    Account account = loginDao.findAccountByEmailAndPassword(accountVM, accountVM.getEmail(), accountVM.getPassword());
 
 	    if (account != null) {
 	        // Le compte a été trouvé dans la base de données.
@@ -108,7 +91,7 @@ public String validateUsername() {
 	            redirectionUrl = "DashboardCustomer.xhtml"; // Remplacez "dashboard-customer.xhtml" par l'URL du tableau de bord des clients
 	        } else if (role == RoleUser.TravelPlanner) {
 	            // Redirection vers le tableau de bord des clients
-	            redirectionUrl = "DashboardTravelPlanner.xhtml"; 
+	            redirectionUrl = "dashboardTP.xhtml"; 
 	        } else {
 	            // Redirection par défaut (par exemple, si le rôle n'est pas géré)
 	            redirectionUrl = "index.xhtml"; // Remplacez "default-dashboard.xhtml" par l'URL de la page de tableau de bord par défaut
@@ -132,10 +115,28 @@ public String validateUsername() {
 	}
 	
 	
-	public void getId() {
-		
+	
+	
+	public void deleteAccount(){
 		
 	}
+	public void editAccount() {
+		
+	}
+	 public String getUserFirstName() {
+	        return SessionUtils.getUserFirstName();
+	    }
+
+	    public String getUserLastName() {
+	        return SessionUtils.getUserLastName();
+	    }
+
+	    public String getUserAddress() {
+	        return SessionUtils.getUserAddress();
+	    }
+	    public String getUserEmail() {
+	        return SessionUtils.getUserEmail();
+	    }
 
 	public AccountViewModel getAccountVM() {
 		return accountVM;
