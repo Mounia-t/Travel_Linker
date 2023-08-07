@@ -50,15 +50,18 @@
 				</a> <a href="#" id="messagesBtn"> <span
 					class="material-icons-sharp"> mail </span>
 					<h3>Messages</h3>
-					</a> 
-				<h:form>
-				<a href="#"> <span class="material-icons-sharp"> logout
-				</span>
-				<h3><h:commandButton value="Déconnexion" action="#{loginControllerBean.logout()}"/></h3>
-
 				</a>
+				<h:form>
+					<a href="#"> <span class="material-icons-sharp"> logout
+					</span>
+						<h3>
+							<h:commandButton value="Déconnexion"
+								action="#{loginControllerBean.logout()}" />
+						</h3>
+
+					</a>
 				</h:form>
-				
+
 			</div>
 		</aside>
 		<!-- End of Sidebar Section -->
@@ -415,7 +418,10 @@
 						<div class="status">
 							<div class="info logo">
 								<img src="images/IMG_0434.jpg" />
-								<h1>Frédéric Dupin</h1>
+								<h1>
+									<h:inputText value="#{loginControllerBean.userFirstName}" />
+									<h:inputText value="#{loginControllerBean.userLastName}" />
+								</h1>
 							</div>
 						</div>
 						<span class="material-icons-sharp"> upload </span>
@@ -426,14 +432,17 @@
 				<h2>Mes informations personnelles</h2>
 				<form action="post">
 					<div class="user-listMessages" style="display: block;">
-						<h:inputText id="inputName"  value="#{loginControllerBean.userLastName}" /> 
-						<h:inputText id="inputFirstName"  value="#{loginControllerBean.userLastName}" />
-							 <h:inputText id="inputMail" value="#{loginControllerBean.userEmail}"  /> <input
-							type="password" id="inputPwd"
+						<h:inputText id="inputName"
+							value="#{loginControllerBean.userLastName}" />
+						<h:inputText id="inputFirstName"
+							value="#{loginControllerBean.userFirstName}" />
+						<h:inputText id="inputMail"
+							value="#{loginControllerBean.userEmail}" />
+						<input type="password" id="inputPwd"
 							placeholder="Rentrez votre nouveau mot de passe..." /> <input
-							type="number" id="inputPhoneNumber" placeholder="0601020304" /> <input
-							type="text" id="inputSiret" placeholder="362 521 879 00034" /> <input
-							type="text" id="inputCompanyName" placeholder="Isika" />
+							type="number" id="inputPhoneNumber" placeholder="0601020304" />
+						<input type="text" id="inputSiret" placeholder="362 521 879 00034" />
+						<input type="text" id="inputCompanyName" placeholder="Isika" />
 					</div>
 					<div class="new-usersButton">
 						<button type=" button" id="createAdmin">Changer mot de
@@ -472,24 +481,12 @@
 				<div class="user-list">
 					<div class="user">
 						<img src="images/profile-2.jpg" />
-						<h2>Jack</h2>
+						<h2><inputText value="#{accountControllerBean.partners}" var="partner"/></h2>
 						<p>54 Min Ago</p>
 					</div>
-					<div class="user">
-						<img src="images/profile-3.jpg" />
-						<h2>Amir</h2>
-						<p>3 Hours Ago</p>
-					</div>
-					<div class="user">
-						<img src="images/profile-4.jpg" />
-						<h2>Ember</h2>
-						<p>6 Hours Ago</p>
-					</div>
-					<div class="user">
-						<img src="images/plus.png" />
-						<h2>More</h2>
-						<p>New User</p>
-					</div>
+					
+						<!-- Ajoutez plus de colonnes selon vos besoins -->
+					
 				</div>
 			</div>
 
@@ -521,7 +518,7 @@
 				<div class="logo">
 					<img src="images/IMG_0434.jpg" />
 					<h3>
-						Bonjour, <b>{User}</b>
+						Bonjour <h:inputText value="#{loginControllerBean.userFirstName}"/>
 					</h3>
 				</div>
 			</div>

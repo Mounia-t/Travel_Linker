@@ -115,8 +115,6 @@ public class LoginControllerBean implements Serializable {
 	}
 	
 	
-	
-	
 	public void deleteAccount(){
 		
 	}
@@ -137,6 +135,8 @@ public class LoginControllerBean implements Serializable {
 	    public String getUserEmail() {
 	        return SessionUtils.getUserEmail();
 	    }
+	    
+	    
 
 	public AccountViewModel getAccountVM() {
 		return accountVM;
