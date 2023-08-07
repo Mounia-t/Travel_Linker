@@ -75,4 +75,10 @@ public class AccountViewModel {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+
+	public void setId(Long accountId) {
+		// TODO Auto-generated method stub
+		this.id = accountId;
+		
+	}
 }

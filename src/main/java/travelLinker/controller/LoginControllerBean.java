@@ -51,6 +51,14 @@ public class LoginControllerBean implements Serializable {
 
 	        // Si les informations de connexion sont valides
 	        if (valid) {
+	        //----------------------------------------	
+	        	// récupérer l'id par email dans le LoginDao
+	        	Long accountId = loginDao.getAccountIdByEmail(accountVM.getEmail());
+	          
+	            // Stocker l'ID du compte dans le ViewModel
+	            accountVM.setId(accountId);
+	        //-------------------------------------------	
+	        	
 	            // Obtenir une session HTTP
 	        	SessionUtils.writeInSession(accountVM.getId(), accountVM.getEmail(), accountVM.getRole());
 	            return "index"; 
@@ -65,6 +73,7 @@ public class LoginControllerBean implements Serializable {
 	            return "Login"; // Rediriger vers la page de connexion en cas d'informations de connexion incorrectes
 	        }
 	    }
+	    
 		// Méthode pour se déconnecter, invalider la session
 	    public String logout() {
 	        HttpSession session = SessionUtils.getSession();
