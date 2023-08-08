@@ -1,12 +1,10 @@
 package travelLinker.dao;
 
-import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-
-import javax.persistence.PersistenceContext;
-
 import travelLinker.entity.JourneyBean;
 import travelLinker.viewModel.JourneyViewModel;
+	import javax.ejb.Stateless;
+	import javax.persistence.EntityManager;
+	import javax.persistence.PersistenceContext;
 
 
 @Stateless
@@ -17,7 +15,6 @@ public class JourneyDao {
 
 	public Long insert(JourneyViewModel journeyVM) {
 		JourneyBean journeybean = new JourneyBean();
-		journeybean.setCountry(journeyVM.getCountry());
 		journeybean.setNumberOfTravellers(journeyVM.getNumberOfTravellers());
 		journeybean.setPrice(journeyVM.getPrice());
 		journeybean.setLocation(journeyVM.getLocation());
@@ -28,5 +25,4 @@ public class JourneyDao {
 		entityManager.flush();
 		return journeybean.getId();
 	}
-
 }

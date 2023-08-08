@@ -4,9 +4,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
-public class TravelPlannerBean{
+public class TravelPlanner{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,7 +22,8 @@ public class TravelPlannerBean{
 	private double phoneNumber;
 	private String siret;
 	private String companyName;
-	//private AccountBean accountBean;
+	@OneToOne
+	private Account account;
 	
 	public Long getId() {
 		return id;

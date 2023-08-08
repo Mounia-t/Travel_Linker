@@ -8,11 +8,16 @@
 	<title>Login: Index</title>
 </h:head>
 <h:body>
+
 <h:form>
 	<h:commandButton action="AccountCreation" value="Créer un compte" />
 	<h:commandButton action="Login" value="Se connecter" />
-	</h:form>
+
+	<h:commandButton action="TravelForm" value="CreateJourney" />
+	<h:commandButton action="#{loginControllerBean.logout()}" value="Deconnexion" />
+
 	
+<<<<<<< HEAD
 	<h:link outcome="CreateAccomodation.xhtml">Create Accomodation</h:link>
 	<hr> </hr>
 	<h:link outcome="CreateRestaurant.xhtml">Create Restaurant</h:link>
@@ -21,5 +26,21 @@
 	<hr> </hr>
 	<h:link outcome="CreateInsurance.xhtml">Create Insurance</h:link>
 	
+=======
+	  <h:commandButton value="Supprimer le compte" action="#{accountControllerBean.deleteAccount}">
+	  </h:commandButton>
+
+	    <h:commandButton value="Modifier le compte" action="UpdateAccount">
+	  </h:commandButton>
+
+	</h:form>
+
+	<h:link outcome="TravelForm.xhtml">Create Journey</h:link>
+	<hr></hr>
+	<h:link outcome="CreateService.xhtml">Create Service</h:link>
+	<hr></hr>
+	<h:link outcome="ListeServices.xhtml">Liste Service</h:link>
+
+>>>>>>> d40f0c964d63ef8e66eecb49730b8f8bba022478
 </h:body>
 </html>

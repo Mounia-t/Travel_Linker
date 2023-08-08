@@ -1,5 +1,6 @@
 package travelLinker.entity;
 
+
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -82,3 +83,4 @@ public class JourneyBean {
 	}
 
 }
+

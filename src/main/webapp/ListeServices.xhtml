@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<!-- 	<ui:composition template=""> -->
+<!-- 	</ui:composition> -->
+
+<h:head>
+	<title>Services</title>
+</h:head>
+
+<h:form>
+	<h:body>
+
+		<!-- List of Accomodations -->
+
+		<h2>Accommodations</h2>
+
+		<p:dataTable value="#{serviceControllerBean.accomodations}"
+			var="accomodation">
+			<p:column headerText="Nom">
+            #{accomodation.name}
+        </p:column>
+			<p:column headerText="Type">
+            #{accomodation.type}
+        </p:column>
+			<p:column headerText="Country">
+            #{accomodation.country}
+        </p:column>
+			<p:column headerText="Location">
+            #{accomodation.location}
+        </p:column>
+			<p:column headerText="Check-in Date">
+        #{accomodation.startDate}
+        </p:column>
+			<p:column headerText="Check-out Date">
+        #{accomodation.endDate}
+        </p:column>
+			<p:column headerText="Description">
+        #{accomodation.description}
+        </p:column>
+			<p:column headerText="Type of Accomodation">
+        #{accomodation.typeOfAccomodation}
+        </p:column>
+			<p:column headerText="Actions">
+				<h:commandButton value="Delete"
+					action="#{serviceControllerBean.deleteAccomodation(accomodation.id)}" />
+					 <h:commandButton value="Edit" action="#{serviceControllerBean.setAccomodationVm(accomodation)}" />
+			</p:column>
+
+
+		</p:dataTable>
+
+		<!-- List of Restaurants -->
+
+		<h2>Restaurants</h2>
+
+		<p:dataTable value="#{serviceControllerBean.restaurants}"
+			var="restaurant">
+			<p:column headerText="Nom">
+            #{restaurant.name}
+        </p:column>
+			<p:column headerText="Type">
+            #{restaurant.type}
+        </p:column>
+			<p:column headerText="Country">
+            #{restaurant.country}
+        </p:column>
+			<p:column headerText="Location">
+            #{restaurant.location}
+        </p:column>
+			<p:column headerText="Check-in Date">
+        #{restaurant.startDate}
+        </p:column>
+			<p:column headerText="Check-out Date">
+        #{restaurant.endDate}
+        </p:column>
+			<p:column headerText="Description">
+        #{restaurant.description}
+        </p:column>
+			<p:column headerText="Type of Restaurant">
+        #{restaurant.typeOfRestaurant}
+        </p:column>
+
+		</p:dataTable>
+
+	</h:body>
+
+
+</h:form>
+</html>
