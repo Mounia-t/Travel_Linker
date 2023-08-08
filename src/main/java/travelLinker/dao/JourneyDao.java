@@ -1,11 +1,13 @@
 package travelLinker.dao;
 
-import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
 
-import javax.persistence.PersistenceContext;
-import travelLinker.entity.JourneyBean;
-import travelLinker.viewModel.JourneyViewModel;
+	import javax.ejb.Stateless;
+	import javax.persistence.EntityManager;
+
+	import javax.persistence.PersistenceContext;
+	import travelLinker.entity.JourneyBean;
+	import travelLinker.viewModel.JourneyViewModel;
+	
 
 @Stateless
 public class JourneyDao {
@@ -26,5 +28,4 @@ public class JourneyDao {
 		entityManager.flush();
 		return journeybean.getId();
 	}
-
 }

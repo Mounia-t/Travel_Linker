@@ -13,6 +13,7 @@
 		<class>travelLinker.entity.Accomodation</class>
 		<class>travelLinker.entity.Restaurant</class>
 
+
 		<properties>
 <!-- 			<property name="javax.persistence.jdbc.driver" -->
 <!-- 				value="com.mysql.cj.jdbc.Driver" /> -->

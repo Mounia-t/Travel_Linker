@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 @Entity
-	public class CustomerBean {
+	public class Customer {
 
 		@Id
 		@GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,7 +21,7 @@ import javax.persistence.OneToOne;
 
 		private Long accountId;
 		@OneToOne
-		private AccountBean account;
+		private Account account;
 		
 		public Long getId() {
 			return id;
