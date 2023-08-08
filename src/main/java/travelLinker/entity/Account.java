@@ -12,7 +12,7 @@ import javax.persistence.UniqueConstraint;
 
 
 @Entity
-public class AccountBean {
+public class Account {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,19 +27,22 @@ public class AccountBean {
 	private RoleUser role;
 
 	
-	public AccountBean(String email, String password) {
+	public Account(String email, String password) {
 		this.email = email;
 		this.password = password;
 	}
-	public AccountBean() {
+	public Account() {
 	}
-	public AccountBean(Long id, String email, String password) {
+	public Account(Long id, String email, String password) {
 		this.id = id;
 		this.email = email;
 		this.password = password;
 	}
 	public Long getId() {
 		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
 	}
 	public String getEmail() {
 		return email;

@@ -1,5 +1,10 @@
 package travelLinker.viewModel;
 
+
+	import java.util.Date;
+
+
+	
 import java.util.Date;
 
 
@@ -70,3 +75,4 @@ public class JourneyViewModel {
 
 	
 }
+

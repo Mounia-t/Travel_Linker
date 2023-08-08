@@ -1,26 +1,37 @@
 package travelLinker.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
-import travelLinker.entity.AccountBean;
 
-import travelLinker.entity.CustomerBean;
-import travelLinker.entity.PartnerBean;
+import travelLinker.entity.Account;
+import travelLinker.entity.Customer;
+import travelLinker.entity.Partner;
+
 import travelLinker.entity.RoleUser;
-import travelLinker.entity.TravelPlannerBean;
+import travelLinker.entity.TravelPlanner;
 import travelLinker.utils.PasswordUtils;
 
 import travelLinker.viewModel.AccountViewModel;
 
 @Stateless
 public class AccountDao {
+	
 
     @PersistenceContext(unitName = "travelLinker")
     private EntityManager entityManager;
+    private List<Partner> partners = new ArrayList<>();
+    
+    public AccountDao() {
+    }
+    
     public Long insert(AccountViewModel accountVM) {
-        AccountBean accountbean = new AccountBean();
+        Account accountbean = new Account();
         accountbean.setEmail(accountVM.getEmail());
 
         // Hacher le mot de passe avant de l'enregistrer dans la base de données
@@ -45,7 +56,7 @@ public class AccountDao {
 
     public void insertCustomerInto(AccountViewModel accountVM) {
         if (accountVM.getRole()==RoleUser.Customer) {
-            CustomerBean customer = new CustomerBean();
+            Customer customer = new Customer();
             customer.setEmail(accountVM.getEmail());
        
           
@@ -58,7 +69,7 @@ public class AccountDao {
 
     public void insertTravelPlanner(AccountViewModel accountVM) {
         if (accountVM.getRole()==RoleUser.TravelPlanner) { 
-        TravelPlannerBean travelPlanner = new TravelPlannerBean();
+        TravelPlanner travelPlanner = new TravelPlanner();
         travelPlanner.setEmail(accountVM.getEmail());
 
       
@@ -70,7 +81,7 @@ public class AccountDao {
 
     public void insertPartner(AccountViewModel accountVM) {
         if (accountVM.getRole()==RoleUser.Partner) {
-        	PartnerBean partner = new PartnerBean();
+        	Partner partner = new Partner();
         	partner.setFirstName(accountVM.getFirstName());
         	partner.setLastName(accountVM.getLastName());
         	partner.setEmail(accountVM.getEmail());
@@ -81,12 +92,57 @@ public class AccountDao {
         	 entityManager.persist(partner);
         }
     }
-
-    public AccountDao() {
+    public List<Partner> displayPartners() {
+        try {
+            TypedQuery<Partner> query = entityManager.createQuery(
+                "SELECT p FROM Partner p", Partner.class);
+            return query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null; // Ou gérer l'exception de manière appropriée
+        }
     }
+
+ //-------------------------------------------------------
+    public void delete(Long accountId) {
+        // On cherche le compte dans la BDD avec l'Id
+        Account accountBean = entityManager.find(Account.class, accountId);
+        //Si le compte est trouvé, on le supprime de la BDD
+        if (accountBean != null) {
+            entityManager.remove(accountBean);
+        } else {
+            System.out.println("Compte introuvable pour l'ID : " + accountId);
+        }
+    }
+//----------------------------------------------------
+	public void update(Account updatedAccount) {
+		 // Rechercher le compte dans la base de données avec l'ID
+	    Account existingAccount = entityManager.find(Account.class, updatedAccount.getId());
+
+	    // Vérifier si le compte existe dans la base de données
+	    if (existingAccount != null) {
+	        // Mettre à jour les champs du compte avec les nouvelles valeurs
+	        existingAccount.setFirstName(updatedAccount.getFirstName());
+	        existingAccount.setEmail(updatedAccount.getEmail());
+	        existingAccount.setLastName(updatedAccount.getLastName());
+	        existingAccount.setPassword(updatedAccount.getPassword());
+	        existingAccount.setRole(updatedAccount.getRole());
+	       
+
+	        // Enregistrer les modifications dans la base de données
+	        entityManager.merge(existingAccount);
+	    } else {
+	        System.out.println("Compte introuvable pour l'ID : " + updatedAccount.getId());
+	    }
+
+		
+	}
+}
+ 
+//-------------------------------------------------
+
 
     /*public void persist(AccountViewModel accountVM) {
         this.entityManager.persist(accountVM);
         this.entityManager.flush();
     }*/
-}
