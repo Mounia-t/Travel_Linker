@@ -1,3 +1,4 @@
+
 //package travelLinker.managedBeans;
 //
 //import java.io.Serializable;
@@ -69,3 +70,4 @@
 //	
 //	
 //}
+
