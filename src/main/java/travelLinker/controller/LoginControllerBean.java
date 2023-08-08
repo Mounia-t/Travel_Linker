@@ -36,6 +36,7 @@ public class LoginControllerBean implements Serializable {
 	    boolean valid = loginDao.validate(accountVM);
 	    Account account = loginDao.findAccountByEmailAndPassword(accountVM, accountVM.getEmail(), accountVM.getPassword());
 
+
 	    // Si les informations de connexion sont valides
 	    if (valid) {
 	        // Récupérer l'URL de redirection	    	
@@ -123,7 +124,37 @@ public class LoginControllerBean implements Serializable {
 	}
 	 public String getUserFirstName() {
 	        return SessionUtils.getUserFirstName();
-	    }
+
+	        
+	 }      
+	        public String validateUsername() {
+		        // Vérifier si le nom d'utilisateur et le mot de passe saisis sont valides
+		        boolean valid = loginDao.validate(accountVM);
+		        // Si les informations de connexion sont valides
+		        if (valid) {
+		        //----------------------------------------	
+		        	// récupérer l'id par email dans le LoginDao
+		        	Long accountId = loginDao.getAccountIdByEmail(accountVM.getEmail());
+		         
+		            // Stocker l'ID du compte dans le ViewModel
+		            accountVM.setId(accountId);
+		        //-------------------------------------------	
+		        	
+		            // Obtenir une session HTTP
+		        	SessionUtils.writeInSession(accountVM.getId(), accountVM.getEmail(), accountVM.getRole(), accountVM.getFirstName(), accountVM.getLastName());
+		            return "index";
+		        
+		        } else {
+		            FacesContext.getCurrentInstance().addMessage(
+		                    null,
+		                    //l'objet FacesMessage, qui est utilisé pour afficher des messages d'informations,
+		                    //d'avertissements ou d'erreurs à l'utilisateur dans une application JSF
+		                    new FacesMessage(FacesMessage.SEVERITY_WARN,
+		                            "Email ou Mot de pass incorrectes", "Merci de saisir les bons identifiants"));
+		            return "Login"; // Rediriger vers la page de connexion en cas d'informations de connexion incorrectes
+		        }
+		    }
+	    
 
 	    public String getUserLastName() {
 	        return SessionUtils.getUserLastName();

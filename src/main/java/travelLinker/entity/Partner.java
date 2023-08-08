@@ -17,11 +17,13 @@ public class Partner {
 	private String lastName; 
 	private String address; 
 	private String email;
+
 	
 	private double phoneNumber;
 	private String siret;
 	@OneToOne
 	private Account account;
+
 
 
 	public Long getId() {
@@ -57,7 +59,7 @@ public class Partner {
 		return phoneNumber;
 	}
 
-	public void setPhoneNumber(double numberPhone) {
+	public void setPhoneNumber(double phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 
@@ -68,8 +70,6 @@ public class Partner {
 	public void setSiret(String siret) {
 		this.siret = siret;
 	}
-
-	
 	
 
 }

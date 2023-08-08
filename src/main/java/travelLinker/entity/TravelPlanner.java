@@ -12,10 +12,12 @@ public class TravelPlanner{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id; 
+
 	private String lastName; 
 	private String firstName; 
 	private String address; 
 	private String email;
+
 
 	private double phoneNumber;
 	private String siret;
@@ -26,6 +28,7 @@ public class TravelPlanner{
 	public Long getId() {
 		return id;
 	}
+
 
 	public String getLastName() {
 		return lastName;
@@ -42,6 +45,7 @@ public class TravelPlanner{
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
+
 
 	public String getAddress() {
 		return address;

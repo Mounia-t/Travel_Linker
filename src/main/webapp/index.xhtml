@@ -11,10 +11,18 @@
 <h:form>
 	<h:commandButton action="AccountCreation" value="Créer un compte" />
 	<h:commandButton action="Login" value="Se connecter" />
-	<h:commandButton action="signIn" value="login" />
+
 	<h:commandButton action="TravelForm" value="CreateJourney" />
 	<h:commandButton action="#{loginControllerBean.logout()}" value="Deconnexion" />
+
 	
+	  <h:commandButton value="Supprimer le compte" action="#{accountControllerBean.deleteAccount}">
+	  </h:commandButton>
+
 	</h:form>
+	
+	<h:link outcome="CreateAccomodation.xhtml">Create Accomodation</h:link>
+	<hr> </hr>
+	<h:link outcome="CreateRestaurant.xhtml">Create Restaurant</h:link>
 </h:body>
 </html>

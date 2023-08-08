@@ -8,12 +8,15 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+
 import travelLinker.entity.Account;
 import travelLinker.entity.Customer;
 import travelLinker.entity.Partner;
+
 import travelLinker.entity.RoleUser;
 import travelLinker.entity.TravelPlanner;
 import travelLinker.utils.PasswordUtils;
+
 import travelLinker.viewModel.AccountViewModel;
 
 @Stateless
@@ -99,9 +102,21 @@ public class AccountDao {
             return null; // Ou gérer l'exception de manière appropriée
         }
     }
-    }
 
-  
+ //-------------------------------------------------------
+    public void delete(Long accountId) {
+        // On cherche le compte dans la BDD avec l'Id
+        Account accountBean = entityManager.find(Account.class, accountId);
+        //Si le compte est trouvé, on le supprime de la BDD
+        if (accountBean != null) {
+            entityManager.remove(accountBean);
+        } else {
+            System.out.println("Compte introuvable pour l'ID : " + accountId);
+        }
+    }}
+ 
+//-------------------------------------------------
+
 
     /*public void persist(AccountViewModel accountVM) {
         this.entityManager.persist(accountVM);

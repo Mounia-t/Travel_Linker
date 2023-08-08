@@ -1,6 +1,9 @@
 /target/
 !.mvn/wrapper/maven-wrapper.jar
+<<<<<<< HEAD
+=======
 
+>>>>>>> master
 ### STS ###
 .apt_generated
 .classpath
@@ -9,12 +12,15 @@
 .settings
 .springBeans
 .sts4-cache
-
+<<<<<<< HEAD
+# Created by https://www.gitignore.io/api/git,java,maven,eclipse,windows
+### Eclipse ###
+=======
 
 # Created by https://www.gitignore.io/api/git,java,maven,eclipse,windows
-
 ### Eclipse ###
 
+>>>>>>> master
 .metadata
 bin/
 tmp/
@@ -26,6 +32,34 @@ local.properties
 .settings/
 .loadpath
 .recommenders
+<<<<<<< HEAD
+# External tool builders
+.externalToolBuilders/
+# Locally stored "Eclipse launch configurations"
+*.launch
+# PyDev specific (Python IDE for Eclipse)
+*.pydevproject
+# CDT-specific (C/C++ Development Tooling)
+.cproject
+# CDT- autotools
+.autotools
+# Java annotation processor (APT)
+.factorypath
+# PDT-specific (PHP Development Tools)
+.buildpath
+# sbteclipse plugin
+.target
+# Tern plugin
+.tern-project
+# TeXlipse plugin
+.texlipse
+# STS (Spring Tool Suite)
+.springBeans
+# Code Recommenders
+.recommenders/
+# Annotation Processing
+.apt_generated/
+=======
 
 # External tool builders
 .externalToolBuilders/
@@ -66,10 +100,21 @@ local.properties
 # Annotation Processing
 .apt_generated/
 
+>>>>>>> master
 # Scala IDE specific (Scala & Java development for Eclipse)
 .cache-main
 .scala_dependencies
 .worksheet
+<<<<<<< HEAD
+### Eclipse Patch ###
+# Eclipse Core
+.project
+# JDT-specific (Eclipse Java Development Tools)
+.classpath
+# Annotation Processing
+.apt_generated
+.sts4-cache/
+=======
 
 ### Eclipse Patch ###
 # Eclipse Core
@@ -83,11 +128,16 @@ local.properties
 
 .sts4-cache/
 
+
+>>>>>>> master
 ### Git ###
 # Created by git for backups. To disable backups in Git:
 # $ git config --global mergetool.keepBackup false
 *.orig
+<<<<<<< HEAD
+=======
 
+>>>>>>> master
 # Created by git when using merge tools for conflicts
 *.BACKUP.*
 *.BASE.*
@@ -97,6 +147,17 @@ local.properties
 *_BASE_*.txt
 *_LOCAL_*.txt
 *_REMOTE_*.txt
+<<<<<<< HEAD
+### Java ###
+# Compiled class file
+*.class
+# Log file
+*.log
+# BlueJ files
+*.ctxt
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+=======
 
 ### Java ###
 # Compiled class file
@@ -111,6 +172,8 @@ local.properties
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
+
+>>>>>>> master
 # Package Files #
 *.jar
 *.war
@@ -119,10 +182,15 @@ local.properties
 *.zip
 *.tar.gz
 *.rar
+<<<<<<< HEAD
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+=======
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
+>>>>>>> master
 ### Maven ###
 target/
 pom.xml.tag
@@ -134,12 +202,24 @@ dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
+<<<<<<< HEAD
+=======
 
+>>>>>>> master
 ### Windows ###
 # Windows thumbnail cache files
 Thumbs.db
 ehthumbs.db
 ehthumbs_vista.db
+<<<<<<< HEAD
+# Dump file
+*.stackdump
+# Folder config file
+[Dd]esktop.ini
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+=======
+
 
 # Dump file
 *.stackdump
@@ -150,15 +230,24 @@ ehthumbs_vista.db
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
 
+
+>>>>>>> master
 # Windows Installer files
 *.cab
 *.msi
 *.msix
 *.msm
 *.msp
+<<<<<<< HEAD
+# Windows shortcuts
+*.lnk
+=======
+
 
 # Windows shortcuts
 *.lnk
 
 
+
+>>>>>>> master
 # End of https://www.gitignore.io/api/git,java,maven,eclipse,windows
