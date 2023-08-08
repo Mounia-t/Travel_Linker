@@ -53,8 +53,15 @@ public class ServiceDao {
 		}
 	}
 
-	public void updateAccomodation(ServiceViewModel accomodationViewModel, Long id) {
-		Accomodation accomodation = entityManager.find(Accomodation.class, id);
+	public void deleteRestaurant(Long id) {
+		Restaurant restaurant = entityManager.find(Restaurant.class, id);
+		if (restaurant != null) {
+			entityManager.remove(restaurant);
+		}
+	}
+
+	public void updateAccomodation(ServiceViewModel accomodationViewModel) {
+		Accomodation accomodation = entityManager.find(Accomodation.class, accomodationViewModel.getId());
 		if (accomodation != null) {
 
 			accomodation.setName(accomodationViewModel.getName());
@@ -67,6 +74,23 @@ public class ServiceDao {
 			accomodation.setDescription(accomodationViewModel.getDescription());
 			accomodation.setTypeOfAccomodation(accomodationViewModel.getTypeOfAccomodation());
 			entityManager.merge(accomodation);
+		}
+	}
+
+	public void updateRestaurant(ServiceViewModel restaurantViewModel) {
+		Restaurant restaurant = entityManager.find(Restaurant.class, restaurantViewModel.getId());
+		if (restaurant != null) {
+
+			restaurant.setName(restaurantViewModel.getName());
+			restaurant.setType(restaurantViewModel.getType());
+			restaurant.setPrice(restaurantViewModel.getPrice());
+			restaurant.setCountry(restaurantViewModel.getCountry());
+			restaurant.setLocation(restaurantViewModel.getLocation());
+			restaurant.setStartDate(restaurantViewModel.getStartDate());
+			restaurant.setEndDate(restaurantViewModel.getEndDate());
+			restaurant.setDescription(restaurantViewModel.getDescription());
+			restaurant.setTypeOfRestaurant(restaurantViewModel.getTypeOfAccomodation());
+			entityManager.merge(restaurant);
 		}
 	}
 

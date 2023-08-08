@@ -1,4 +1,4 @@
-package travelLinker.managedBeans;
+package travelLinker.controller;
 
 import java.io.Serializable;
 import java.util.List;
@@ -12,7 +12,7 @@ import travelLinker.entity.Accomodation;
 import travelLinker.entity.Restaurant;
 import travelLinker.viewModel.ServiceViewModel;
 
-@ManagedBean
+@ManagedBean(name = "serviceControllerBean")
 @ViewScoped
 public class ServiceControllerBean implements Serializable {
 
@@ -54,15 +54,19 @@ public class ServiceControllerBean implements Serializable {
 		System.out.println("Accomodation deleted with id : " + id);
 	}
 
+	public void deleteRestaurant(Long id) {
+		serviceDao.deleteRestaurant(id);
+		System.out.println("Restaurant deleted with id : " + id);
+	}
+
 	public void modifyAccomodation() {
-		serviceDao.updateAccomodation(accomodationVm, accomodationVm.getId());
+		serviceDao.updateAccomodation(accomodationVm);
 		System.out.println("Accomodation updated with id : " + accomodationVm.getId());
+		showAccomodationForm = false;
 		clear();
 	}
 
 	public void setAccomodationVm(Accomodation accomodation) {
-		accomodationVm = new ServiceViewModel();
-		showAccomodationForm = true;
 		accomodationVm.setId(accomodation.getId());
 		accomodationVm.setName(accomodation.getName());
 		accomodationVm.setType(accomodation.getType());
@@ -73,6 +77,31 @@ public class ServiceControllerBean implements Serializable {
 		accomodationVm.setEndDate(accomodation.getEndDate());
 		accomodationVm.setDescription(accomodation.getDescription());
 		accomodationVm.setTypeOfAccomodation(accomodation.getTypeOfAccomodation());
+		this.showAccomodationForm = true;
+	}
+
+	public void modifyRestaurant() {
+		serviceDao.updateRestaurant(restaurantVm);
+		System.out.println("Restaurant updated with id : " + restaurantVm.getId());
+		showRestaurantForm = false;
+		clear();
+	}
+
+	public void setRestaurantVm(Restaurant restaurant) {
+		restaurantVm.setId(restaurant.getId());
+		restaurantVm.setName(restaurant.getName());
+		restaurantVm.setType(restaurant.getType());
+		restaurantVm.setPrice(restaurant.getPrice());
+		restaurantVm.setCountry(restaurant.getCountry());
+		restaurantVm.setLocation(restaurant.getLocation());
+		restaurantVm.setStartDate(restaurant.getStartDate());
+		restaurantVm.setEndDate(restaurant.getEndDate());
+		restaurantVm.setDescription(restaurant.getDescription());
+		restaurantVm.setTypeOfRestaurant(restaurant.getTypeOfRestaurant());
+	}
+
+	public ServiceViewModel getRestaurantVm() {
+		return restaurantVm;
 	}
 
 	public ServiceViewModel getAccomodationVm() {
@@ -109,14 +138,6 @@ public class ServiceControllerBean implements Serializable {
 
 	public void setShowRestaurantForm(boolean showRestaurantForm) {
 		this.showRestaurantForm = showRestaurantForm;
-	}
-
-	public ServiceViewModel getRestaurantVm() {
-		return restaurantVm;
-	}
-
-	public void setRestaurantVm(ServiceViewModel restaurantVm) {
-		this.restaurantVm = restaurantVm;
 	}
 
 }
