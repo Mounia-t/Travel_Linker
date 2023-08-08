@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class ServiceViewModel {
 
+	private Long id;
 	private float price;
 	private String type;
 	private String country;
@@ -118,6 +119,14 @@ public class ServiceViewModel {
 
 	public void setTypeOfRestaurant(String typeOfRestaurant) {
 		this.typeOfRestaurant = typeOfRestaurant;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 }

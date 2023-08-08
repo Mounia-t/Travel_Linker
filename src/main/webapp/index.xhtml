@@ -8,13 +8,16 @@
 	<title>Login: Index</title>
 </h:head>
 <h:body>
-<h:form>
-	<h:commandButton action="AccountCreation" value="Créer un compte" />
-	<h:commandButton action="Login" value="Se connecter" />
+	<h:form>
+		<h:commandButton action="AccountCreation" value="Créer un compte" />
+		<h:commandButton action="Login" value="Se connecter" />
 	</h:form>
-	
-	<h:link outcome="CreateAccomodation.xhtml">Create Accomodation</h:link>
-	<hr> </hr>
-	<h:link outcome="CreateRestaurant.xhtml">Create Restaurant</h:link>
+
+	<h:link outcome="TravelForm.xhtml">Create Journey</h:link>
+	<hr></hr>
+	<h:link outcome="CreateService.xhtml">Create Service</h:link>
+	<hr></hr>
+	<h:link outcome="ListeServices.xhtml">Liste Service</h:link>
+
 </h:body>
 </html>
