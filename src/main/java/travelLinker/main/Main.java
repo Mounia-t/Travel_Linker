@@ -6,7 +6,7 @@ import travelLinker.utils.HibernateUtils;
 
 public class Main {
 	
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
 		
 	
 	try {
@@ -25,6 +25,6 @@ public class Main {
         // On arrête l'application 
         // (à ne pas faire dans une vraie application)
         System.exit(0);
-    }}*/
+    }}
 
 }

@@ -24,7 +24,7 @@ public class JourneyDao {
 		journeybean.setStartDate(journeyVM.getStartDate());
 		journeybean.setEndDate(journeyVM.getEndDate());
 
-		entityManager.persist(journeyVM);
+		entityManager.persist(journeybean);
 		entityManager.flush();
 		return journeybean.getId();
 	}

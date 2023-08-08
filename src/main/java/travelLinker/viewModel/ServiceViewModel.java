@@ -2,8 +2,9 @@ package travelLinker.viewModel;
 
 import java.util.Date;
 
-public class ServiceViewModel {
 
+public class ServiceViewModel {
+	
 	private float price;
 	private String type;
 	private String country;
@@ -14,6 +15,7 @@ public class ServiceViewModel {
 	private String description;
 	private String typeOfAccomodation;
 	private String typeOfRestaurant;
+	
 
 	public float getPrice() {
 		return price;

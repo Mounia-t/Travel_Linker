@@ -13,10 +13,11 @@ public class JourneyControllerBean{
 	private JourneyViewModel journeyVM = new JourneyViewModel();
 
 	public void addJourney() {
+		
+	    Long id = journeyDao.insert(journeyVM);
+	    System.out.println("Journey created with id: " + id);
+	    clear();
 
-		Long id= journeyDao.insert(journeyVM);
-		System.out.println("Journey created with id : " + id);
-		clear();
 	}
 	
 	public void clear() {
@@ -38,6 +39,7 @@ public class JourneyControllerBean{
 	public void setJourneyVM(JourneyViewModel journeyVM) {
 		this.journeyVM = journeyVM;
 	}
+
 	
 
 

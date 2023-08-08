@@ -1,4 +1,4 @@
-package travelLinker.controller;
+ package travelLinker.managedBeans;
 
 import java.io.Serializable;
 import java.util.ArrayList;

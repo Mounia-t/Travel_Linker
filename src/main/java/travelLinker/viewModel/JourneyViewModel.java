@@ -11,25 +11,7 @@ public class JourneyViewModel {
 	private String location;
 	private Date startDate;
 	private Date endDate;
-	
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("JourneyViewModel [country=");
-		builder.append(country);
-		builder.append(", numberOfTravellers=");
-		builder.append(numberOfTravellers);
-		builder.append(", price=");
-		builder.append(price);
-		builder.append(", location=");
-		builder.append(location);
-		builder.append(", startDate=");
-		builder.append(startDate);
-		builder.append(", endDate=");
-		builder.append(endDate);
-		builder.append("]");
-		return builder.toString();
-	}
+
 	
 	public String getCountry() {
 		return country;

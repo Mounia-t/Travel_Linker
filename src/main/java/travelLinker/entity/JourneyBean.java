@@ -2,6 +2,8 @@ package travelLinker.entity;
 
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,12 +14,16 @@ public class JourneyBean {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	
 	private String country;
 	private int numberOfTravellers;
 	private float price;
 	private String location;
 	private Date startDate;
 	private Date endDate;
+	
+	@Enumerated(EnumType.STRING)
+	private journeyState journeyState;
 
 	public JourneyBean (){
 			}
@@ -32,6 +38,9 @@ public class JourneyBean {
 		this.startDate = startDate;
 		this.endDate = endDate;
 	}
+	
+	
+	
 	public Long getId() {
 		return id;
 	}
