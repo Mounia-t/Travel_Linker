@@ -11,8 +11,11 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
 import travelLinker.dao.AccountDao;
-import travelLinker.entity.AccountBean;
+
+import travelLinker.entity.Account;
+import travelLinker.entity.Partner;
 import travelLinker.utils.SessionUtils;
+
 import travelLinker.viewModel.AccountViewModel;
 
 @ManagedBean
@@ -42,6 +45,11 @@ public class AccountControllerBean implements Serializable {
         	accountVM=new AccountViewModel();
 
     }
+
+	public List<Partner> getPartners() {
+        return accountDao.displayPartners();
+    }
+
 //---------------------------------------------------	
 	public void deleteAccount() {
         // Vérifier si l'utilisateur est connecté (authentifié)
