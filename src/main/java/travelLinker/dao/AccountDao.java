@@ -100,6 +100,29 @@ public class AccountDao {
             System.out.println("Compte introuvable pour l'ID : " + accountId);
         }
     }
+//----------------------------------------------------
+	public void update(AccountBean updatedAccount) {
+		 // Rechercher le compte dans la base de données avec l'ID
+	    AccountBean existingAccount = entityManager.find(AccountBean.class, updatedAccount.getId());
+
+	    // Vérifier si le compte existe dans la base de données
+	    if (existingAccount != null) {
+	        // Mettre à jour les champs du compte avec les nouvelles valeurs
+	        existingAccount.setFirstName(updatedAccount.getFirstName());
+	        existingAccount.setEmail(updatedAccount.getEmail());
+	        existingAccount.setLastName(updatedAccount.getLastName());
+	        existingAccount.setPassword(updatedAccount.getPassword());
+	        existingAccount.setRole(updatedAccount.getRole());
+	       
+
+	        // Enregistrer les modifications dans la base de données
+	        entityManager.merge(existingAccount);
+	    } else {
+	        System.out.println("Compte introuvable pour l'ID : " + updatedAccount.getId());
+	    }
+
+		
+	}
  
 //-------------------------------------------------
 
