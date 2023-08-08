@@ -3,12 +3,12 @@ package travelLinker.viewModel;
 import java.util.Date;
 
 
-<<<<<<< HEAD
+
 public class ServiceViewModel {
 	
-=======
+
 	private Long id;
->>>>>>> d40f0c964d63ef8e66eecb49730b8f8bba022478
+
 	private float price;
 	private String type;
 	private String country;
