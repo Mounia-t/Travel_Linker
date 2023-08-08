@@ -65,9 +65,29 @@ public class AccountControllerBean implements Serializable {
 		
 //----------------------------------------------------------	
 
-	public void editAccount() {
-		
+	public void updateAccount() {
+	    // Vérifier si l'utilisateur est connecté (authentifié)
+	    Long accountId = SessionUtils.getUserId();
+	        
+	    if (accountId != null) {
+	        // Créer un nouvel objet AccountBean avec les valeurs mises à jour
+	        Account updatedAccount = new Account();
+	        updatedAccount.setId(accountId);
+	        updatedAccount.setFirstName(accountVM.getFirstName());
+	        updatedAccount.setLastName(accountVM.getLastName());
+	        updatedAccount.setEmail(accountVM.getEmail());
+	        updatedAccount.setPassword(accountVM.getPassword());
+	        updatedAccount.setRole(accountVM.getRole());
+	        
+	        // Appeler la méthode de mise à jour dans le DAO pour mettre à jour le compte
+	        accountDao.update(updatedAccount);
+	    } else {
+	        System.out.println("L'utilisateur n'est pas connecté.");
+	    }
 	}
+//--------------------------------------------------------
+	
+	
 	
 	
 	public AccountViewModel getAccountVM() {
