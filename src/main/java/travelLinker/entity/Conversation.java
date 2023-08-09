@@ -18,4 +18,18 @@ public class Conversation {
     private List<Account> accounts;
     @OneToMany(mappedBy = "conversation")
     private List<Message> messages;
+	public List<Account> getAccounts() {
+		return accounts;
+	}
+	public void setAccounts(List<Account> accounts) {
+		this.accounts = accounts;
+	}
+	public List<Message> getMessages() {
+		return messages;
+	}
+	public void setMessages(List<Message> messages) {
+		this.messages = messages;
+	}
+    
+    
 }

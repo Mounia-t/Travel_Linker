@@ -768,7 +768,7 @@ main .recent-orders a {
     margin-top: 20px;
     border: 1px solid white;
     border-radius: 25px;
-    background-color: white;
+    background-color: red;
     padding: 10px 20px;
     cursor: pointer;
     box-shadow: var(--box-shadow);
@@ -779,6 +779,16 @@ main .recent-orders a {
 #createAdmin:hover {
     box-shadow: none;
 }
+.deleteBtnProfile {
+	margin-top: 20px;
+    border: 1px solid red;
+    border-radius: 25px;
+    background-color: red;
+    padding: 10px 20px;
+    cursor: pointer;
+    box-shadow: var(--box-shadow);
+    width: fit-content;
+    transition: all 0.3s ease; }
 
 /*------------------------------------Zone right Section------------------------------------*/
 .right-section {

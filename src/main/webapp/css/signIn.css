@@ -1,4 +1,3 @@
-@charset "ISO-8859-1";
 main {
     display: flex;
     justify-content: center;
@@ -21,7 +20,7 @@ main {
     align-items: center;
     text-align: center;
     z-index: 1;
-    left: 10%;
+    left: 8%;
     border-radius: 25px;
     background-color: rgba(255, 255, 255, 0.074);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
@@ -29,13 +28,75 @@ main {
     /* Ajout de l'effet de flou */
     opacity: 0.9;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    height: 500px;
-    width: 400px;
+    height: 700px;
+    width: 450px;
+}
+
+#leftContainerSecond {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 1;
+    left: 8%;
+    border-radius: 25px;
+    background-color: rgba(255, 255, 255, 0.074);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(20px);
+    /* Ajout de l'effet de flou */
+    opacity: 0.9;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    height: 700px;
+    width: 500px;
+}
+
+#leftContainerThird {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 1;
+    left: 8%;
+    border-radius: 25px;
+    background-color: rgba(255, 255, 255, 0.074);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(20px);
+    /* Ajout de l'effet de flou */
+    opacity: 0.9;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    height: 700px;
+    width: 500px;
 }
 
 #noAccount {
     margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    border-radius: 25px;
+    background-color: rgba(255, 255, 255, 0.074);
+    box-shadow: 19px 21px 38px 0px rgba(158, 158, 158, 0.32);
+    backdrop-filter: blur(20px);
+    /* Ajout de l'effet de flou */
+    opacity: 0.9;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    padding: 10px 50px;
 }
+
+/* .partnerButton {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.customerButton {
+    margin-top: 20px;
+    margin-bottom: 20px;
+} */
 
 .designButtonSecond {
     padding: 5px 40px;
@@ -51,32 +112,12 @@ main {
     box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
     transition: all 250ms;
     overflow: hidden;
+    margin: 10px 0;
     cursor: pointer;
-}
-
-.designButtonSecond::before {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 0;
-    height: 0%;
-    width: 100%;
-    border-radius: 50%;
-    background-color: black;
-    z-index: -1;
-    -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
-    box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
-    transition: all 250ms
 }
 
 .designButtonSecond:hover {
     color: #e8e8e8;
-}
-
-.designButtonSecond:hover::before {
-    height: 100%;
-    top: 0;
-    border-radius: 25px;
 }
 
 .designButtonSecond:active {
@@ -101,21 +142,41 @@ main {
 }
 
 /*---------------------Zone input waving---------------------------*/
+.containerWave-group {
+    display: flex;
+}
 
 .wave-group {
     position: relative;
     margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    text-align: start;
+}
+
+.margin {
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .wave-group .input {
-    font-size: 16px;
-    padding: 10px 10px 10px 5px;
+    /* font-size: 16px; */
+    /* padding: 10px 10px 10px 5px; */
+    font-size: 14px;
+    padding: 5px;
     display: block;
     width: 200px;
-    border: none;
-    border-bottom: 2px solid lightgrey;
+    border-radius: 25px;
+    border: 1px solid lightgrey;
+    /* border: none; */
+    /* border-bottom: 2px solid lightgrey; */
     background: transparent;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.partnerAddress .input {
+    width: 97.5%;
 }
 
 .wave-group .input .error {
@@ -124,17 +185,18 @@ main {
 
 .wave-group .input:focus {
     outline: none;
-    border-bottom: 2px solid black;
+    /* border-bottom: 2px solid black; */
 }
 
 .wave-group .label {
     color: #999;
-    font-size: 18px;
+    /* font-size: 18px; */
+    font-size: 15px;
     font-weight: normal;
     position: absolute;
     pointer-events: none;
-    left: 5px;
-    top: 10px;
+    left: 15px;
+    top: 5.5px;
     display: flex;
 }
 
@@ -170,29 +232,8 @@ main {
     cursor: pointer;
 }
 
-.designButton::before {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 0;
-    height: 0%;
-    width: 100%;
-    border-radius: 50%;
-    background-color: black;
-    z-index: -1;
-    -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
-    box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
-    transition: all 250ms
-}
-
 .designButton:hover {
     color: #e8e8e8;
-}
-
-.designButton:hover::before {
-    height: 100%;
-    top: 0;
-    border-radius: 25px;
 }
 
 .designButton:active {
@@ -202,6 +243,8 @@ main {
 /*-----------------------Fade in au chargement de la page--------------------------*/
 
 #leftContainer,
+#leftContainerSecond,
+#leftContainerThird,
 #rightContainer {
     opacity: 0;
     animation-duration: 0.5s;
@@ -221,9 +264,11 @@ main {
     }
 }
 
-#leftContainer {
+#leftContainer,
+#leftContainerSecond,
+#leftContainerThird {
     animation-name: fadeInFromBottom;
-    animation-delay: 0.5s;
+
 }
 
 #rightContainer {
@@ -232,7 +277,22 @@ main {
     overflow: hidden;
 }
 
+#rightContainer img {
+    position: absolute;
+    height: 200px;
+    top: 20px;
+    filter: drop-shadow(10px 10px 13px lightgrey);
+}
+
+.rememberMe {
+    margin-top: 5px;
+}
+
 .squareCard {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
     height: 400px;
     width: 400px;
     border-radius: 25px;
@@ -244,122 +304,9 @@ main {
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-/*-----------------Zone Ocean Wave------------------*/
-
-
-.ocean {
-    width: 100%;
-    height: 5%;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    background: #015871;
-}
-
-.wave {
-    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/85486/wave.svg) repeat-x;
-    position: absolute;
-    top: -198px;
-    width: 6400px;
-    height: 198px;
-    animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
-    transform: translate3d(0, 0, 0);
-}
-
-.wave:nth-of-type(2) {
-    top: -175px;
-    animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) -.125s infinite, swell 7s ease -1.25s infinite;
-    opacity: 1;
-}
-
-@keyframes wave {
-    0% {
-        margin-left: 0;
-    }
-
-    100% {
-        margin-left: -1600px;
-    }
-}
-
-@keyframes swell {
-
-    0%,
-    100% {
-        transform: translate3d(0, -25px, 0);
-    }
-
-    50% {
-        transform: translate3d(0, 5px, 0);
-    }
-}
-
 /*------------------------Zone inscription---------------------------*/
 
-#flexingSectionSecond {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 98vh;
-    width: 1200px;
-}
 
-#rightContainerSecond {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    z-index: 1;
-    right: 10%;
-    border-radius: 25px;
-    background-color: rgba(255, 255, 255, 0.074);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    backdrop-filter: blur(20px);
-    /* Ajout de l'effet de flou */
-    opacity: 0.9;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    height: 580px;
-    width: 400px;
-}
-
-#leftContainerSecond {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    left: 10%;
-    border-radius: 25px;
-    background-color: rgba(255, 255, 255, 0.074);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    backdrop-filter: blur(20px);
-    /* Ajout de l'effet de flou */
-    opacity: 0.9;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    height: 800px;
-    width: 600px;
-}
-
-#leftContainerSecond {
-    animation-name: fadeInFromBottom;
-    /* background: radial-gradient(ellipse at center, rgba(255, 254, 234, 1) 0%, rgb(255, 255, 255) 35%, #e2f9fa 100%); */
-    overflow: hidden;
-}
-
-#rightContainerSecond {
-    animation-name: fadeInFromBottom;
-    animation-delay: 0.4s;
-}
-
-#rightContainerSecond,
-#leftContainerSecond {
-    opacity: 0;
-    animation-duration: 0.5s;
-    animation-fill-mode: forwards;
-    animation-timing-function: ease-in;
-}
 
 .backHome {
     text-decoration: none;
@@ -373,3 +320,112 @@ main {
     color: #015871;
     transform: scale(.9);
 }
+
+/*-----------------------------SquareCard-------------------------------*/
+
+/*----------------------------------------------------------------------*/
+
+.eye-icon {
+    position: absolute;
+    cursor: pointer;
+    top: 5px;
+    right: 10px;
+    display: none;
+    fill: grey;
+}
+
+.eye-open {
+    display: block;
+}
+
+.eye-closed {
+    display: none;
+}
+
+#passwordInput[type="text"]~.eye-open {
+    display: none;
+}
+
+#passwordInput[type="password"]~.eye-closed {
+    display: none;
+}
+
+.eye-iconCustomer {
+    position: absolute;
+    cursor: pointer;
+    top: 5px;
+    right: 10px;
+    display: none;
+    fill: grey;
+}
+
+.eye-openCustomer {
+    display: block;
+}
+
+.eye-closedCustomer {
+    display: none;
+}
+
+#passwordInput[type="text"]~.eye-openCustomer {
+    display: none;
+}
+
+#passwordInput[type="password"]~.eye-closedCustomer {
+    display: none;
+}
+
+.eye-iconPartner {
+    position: absolute;
+    cursor: pointer;
+    top: 5px;
+    right: 10px;
+    display: none;
+    fill: grey;
+}
+
+.eye-openPartner {
+    display: block;
+}
+
+.eye-closedPartner {
+    display: none;
+}
+
+#passwordInput[type="text"]~.eye-openPartner {
+    display: none;
+}
+
+#passwordInput[type="password"]~.eye-closedPartner {
+    display: none;
+}
+
+.eye-iconTP {
+    position: absolute;
+    cursor: pointer;
+    top: 5px;
+    right: 10px;
+    display: none;
+    fill: grey;
+}
+
+.eye-openTP {
+    display: block;
+}
+
+.eye-closedTP {
+    display: none;
+}
+
+#passwordInput[type="text"]~.eye-openTP {
+    display: none;
+}
+
+#passwordInput[type="password"]~.eye-closedTP {
+    display: none;
+}
+
+.inputTest {
+    border: 1px solid lightgrey;
+    border-radius: 25px;
+}/*----------------------------------------------------------------------*/
