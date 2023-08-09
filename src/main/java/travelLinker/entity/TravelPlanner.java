@@ -1,9 +1,12 @@
 package travelLinker.entity;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -16,6 +19,7 @@ public class TravelPlanner{
 	private String lastName; 
 	private String firstName; 
 	private String address; 
+	@Column(unique = true)
 	private String email;
 
 
@@ -23,6 +27,7 @@ public class TravelPlanner{
 	private String siret;
 	private String companyName;
 	@OneToOne
+	@JoinColumn(name = "account_id")
 	private Account account;
 	
 	public Long getId() {
@@ -76,6 +81,16 @@ public class TravelPlanner{
 	}
 	public void setCompanyName(String companyName) {
 		this.companyName = companyName;
+	}
+
+
+	public Account getAccount() {
+		return account;
+	}
+
+
+	public void setAccount(Account account) {
+		this.account = account;
 	}	
 
 }

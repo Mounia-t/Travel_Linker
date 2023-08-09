@@ -1,138 +1,385 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr"
+ xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet" href="signIn.css" />
-<title>Document</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <link rel="stylesheet" href="./css/signIn.css" />
+    <title>Page de connexion</title>
 </head>
 
 <body>
-	<main>
-		<section id="flexingSection">
-			<div id="leftContainer" class="fade-in">
-				<form method="post" action="">
-					<div class="wave-group">
-						<input required="on" type="text" class="input" autocomplete="on"
-							value="#{loginControllerBean.accountVM.email}" /> <label
-							class="label"> <span class="label-char" style="-index: 0">E</span>
-							<span class="label-char" style="-index: 1">m</span> <span
-							class="label-char" style="-index: 2">a</span> <span
-							class="label-char" style="-index: 3">i</span> <span
-							class="label-char" style="-index: 4">l</span>
-						</label>
-					</div>
-					<div class="wave-group">
-						<input required="on" type="password" class="input"
-							autocomplete="on" id="passwordInput"
-							value="#{loginControllerBean.accountVM.password}" /> <label
-							class="label"> <span class="label-char" style="-index: 0">M</span>
-							<span class="label-char" style="-index: 1">o</span> <span
-							class="label-char" style="-index: 2">t</span> <span
-							class="label-char" style="-index: 3"></span> <span
-							class="label-char" style="-index: 4">d</span> <span
-							class="label-char" style="-index: 5">e</span> <span
-							class="label-char" style="-index: 6"></span> <span
-							class="label-char" style="-index: 7">p</span> <span
-							class="label-char" style="-index: 8">a</span> <span
-							class="label-char" style="-index: 9">s</span> <span
-							class="label-char" style="-index: 10">s</span> <span
-							class="label-char" style="-index: 11">e</span>
-						</label> <input type="checkbox" id="showPasswordCheckbox" /> <label
-							for="showPasswordCheckbox">Afficher le mot de passe</label>
-					</div>
-					<button type="submit" class="designButton"
-						action="#{loginControllerBean.validateAccount()}">Connexion</button>
-				</form>
-				<div class="noAccount">
-					<p>Vous n'avez pas encore de compte ?</p>
-					<button type="button" class="designButtonSecond"
-						id="inscriptionButton">Inscrivez-vous !</button>
-				</div>
-				<a href="#" class="backHome" value="index">Retour à l'accueil</a>
-			</div>
-			<div id="rightContainer" class="fade-in">
-				<!-- <div class="ocean">
-                    <div class="wave"></div>
-                    <div class="wave"></div>
-                </div> -->
-				<div class="squareCard"></div>
-			</div>
-		</section>
+    <main>
+        <section id="flexingSection">
+            <div id="leftContainer" class="fade-in">
+                <p>Vous voulez devenir client ?</p>
+                <form method="post" action="">
+                    <div class="wave-group">
+                        <input required="on" type="text" class="input" autocomplete="on" />
+                        <label class="label">
+                            <span class="label-char" style="--index: 0">N</span>
+                            <span class="label-char" style="--index: 1">o</span>
+                            <span class="label-char" style="--index: 2">m</span>
+                        </label>
+                    </div>
+                    <div class="wave-group">
+                        <input required="on" type="text" class="input" autocomplete="on" />
+                        <label class="label">
+                            <span class="label-char" style="--index: 0">P</span>
+                            <span class="label-char" style="--index: 1">r</span>
+                            <span class="label-char" style="--index: 2">é</span>
+                            <span class="label-char" style="--index: 3">n</span>
+                            <span class="label-char" style="--index: 4">o</span>
+                            <span class="label-char" style="--index: 5">m</span>
+                        </label>
+                    </div>
+                    <div class="wave-group">
+                        <input required="on" type="text" class="input" autocomplete="on" />
+                        <label class="label">
+                            <span class="label-char" style="--index: 0">E</span>
+                            <span class="label-char" style="--index: 1">m</span>
+                            <span class="label-char" style="--index: 2">a</span>
+                            <span class="label-char" style="--index: 3">i</span>
+                            <span class="label-char" style="--index: 4">l</span>
+                        </label>
+                    </div>
+                    <div class="wave-group">
+                        <input required="on" type="password" class="input" autocomplete="on"
+                            id="passwordInputCustomer" />
+                        <label class="label">
+                            <span class="label-char" style="--index: 0">M</span>
+                            <span class="label-char" style="--index: 1">o</span>
+                            <span class="label-char" style="--index: 2">t</span>
+                            <span class="label-char" style="--index: 3">&#160;</span>
+                            <span class="label-char" style="--index: 4">d</span>
+                            <span class="label-char" style="--index: 5">e</span>
+                            <span class="label-char" style="--index: 6">&#160;</span>
+                            <span class="label-char" style="--index: 7">p</span>
+                            <span class="label-char" style="--index: 8">a</span>
+                            <span class="label-char" style="--index: 9">s</span>
+                            <span class="label-char" style="--index: 10">s</span>
+                            <span class="label-char" style="--index: 11">e</span>
+                        </label>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="24"
+                            class="eye-iconCustomer eye-openCustomer">
+                            <path
+                                d="M480-320q75 0 127.5-52.5T660-500q0-75-52.5-127.5T480-680q-75 0-127.5 52.5T300-500q0 75 52.5 127.5T480-320Zm0-72q-45 0-76.5-31.5T372-500q0-45 31.5-76.5T480-608q45 0 76.5 31.5T588-500q0 45-31.5 76.5T480-392Zm0 192q-146 0-266-81.5T40-500q54-137 174-218.5T480-800q146 0 266 81.5T920-500q-54 137-174 218.5T480-200Zm0-300Zm0 220q113 0 207.5-59.5T832-500q-50-101-144.5-160.5T480-720q-113 0-207.5 59.5T128-500q50 101 144.5 160.5T480-280Z" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="24"
+                            class="eye-iconCustomer eye-closedCustomer">
+                            <path
+                                d="m644-428-58-58q9-47-27-88t-93-32l-58-58q17-8 34.5-12t37.5-4q75 0 127.5 52.5T660-500q0 20-4 37.5T644-428Zm128 126-58-56q38-29 67.5-63.5T832-500q-50-101-143.5-160.5T480-720q-29 0-57 4t-55 12l-62-62q41-17 84-25.5t90-8.5q151 0 269 83.5T920-500q-23 59-60.5 109.5T772-302Zm20 246L624-222q-35 11-70.5 16.5T480-200q-151 0-269-83.5T40-500q21-53 53-98.5t73-81.5L56-792l56-56 736 736-56 56ZM222-624q-29 26-53 57t-41 67q50 101 143.5 160.5T480-280q20 0 39-2.5t39-5.5l-36-38q-11 3-21 4.5t-21 1.5q-75 0-127.5-52.5T300-500q0-11 1.5-21t4.5-21l-84-82Zm319 93Zm-151 75Z" />
+                        </svg>
+                    </div>
+                    <button type="submit" class="designButton">Inscription</button>
+                </form>
+                <div id="noAccount">
+                    <p>Vous n'êtes pas encore inscrit ?</p>
+                    <button type="button" class="designButtonSecond tpButton">Travel Planner !</button>
+                    <button type="button" class="designButtonSecond partnerButton">Partenaire !</button>
+                </div>
+                <a href="#" class="backHome">Retour à l'accueil</a>
+            </div>
 
-		<section id="flexingSectionSecond" style="display: none;">
-			<div id="leftContainerSecond" class="fade-in">
-				<!-- <div class="ocean">
-                    <div class="wave"></div>
-                    <div class="wave"></div>
-                </div> -->
-				<div class="squareCard"></div>
-			</div>
-			<div id="rightContainerSecond" class="fade-in">
-				<form method="post" action="">
-					<div class="wave-group">
-						<input required="on" type="text" class="input" autocomplete="on"
-							value="#{accountControllerBean.accountVM.lastName}" /> <label
-							class="label"> <span class="label-char" style="-index: 0">N</span>
-							<span class="label-char" style="-index: 1">o</span> <span
-							class="label-char" style="-index: 2">m</span>
-						</label>
-					</div>
-					<div class="wave-group">
-						<input required="on" type="text" class="input" autocomplete="on"
-							value="#{accountControllerBean.accountVM.firstName}" /> <label
-							class="label"> <span class="label-char" style="-index: 0">P</span>
-							<span class="label-char" style="-index: 1">r</span> <span
-							class="label-char" style="-index: 2">é</span> <span
-							class="label-char" style="-index: 3">n</span> <span
-							class="label-char" style="-index: 4">o</span> <span
-							class="label-char" style="-index: 5">m</span>
-						</label>
-					</div>
-					<div class="wave-group">
-						<input required="on" type="text" class="input" autocomplete="on"
-							value="#{accountControllerBean.accountVM.email}" /> <label
-							class="label"> <span class="label-char" style="-index: 0">E</span>
-							<span class="label-char" style="-index: 1">m</span> <span
-							class="label-char" style="-index: 2">a</span> <span
-							class="label-char" style="-index: 3">i</span> <span
-							class="label-char" style="-index: 4">l</span>
-						</label>
-					</div>
-					<div class="wave-group">
-						<input required="on" type="password" class="input"
-							autocomplete="on" id="passwordInputSecond"
-							value="#{accountControllerBean.accountVM.password}" /> <label
-							class="label"> <span class="label-char" style="-index: 0">M</span>
-							<span class="label-char" style="-index: 1">o</span> <span
-							class="label-char" style="-index: 2">t</span> <span
-							class="label-char" style="-index: 3"></span> <span
-							class="label-char" style="-index: 4">d</span> <span
-							class="label-char" style="-index: 5">e</span> <span
-							class="label-char" style="-index: 6"></span> <span
-							class="label-char" style="-index: 7">p</span> <span
-							class="label-char" style="-index: 8">a</span> <span
-							class="label-char" style="-index: 9">s</span> <span
-							class="label-char" style="-index: 10">s</span> <span
-							class="label-char" style="-index: 11">e</span>
-						</label> <input type="checkbox" id="showPasswordCheckboxSecond" /> <label
-							for="showPasswordCheckboxSecond">Afficher le mot de passe</label>
-					</div>
-					
-					<button type="submit" class="designButton"
-						action="#{accountControllerBean.addAccount()}">Inscription</button>
-						
-				</form>
-				<div class="noAccount">
-					<p>Vous avez déjà un compte ?</p>
-					<button type="submit" class="designButtonSecond"
-						id="connexionButton">Connectez-vous !</button>
-				</div>
-				<a href="#" class="backHome" value="index">Retour à l'accueil</a>
-			</div>
-		</section>
-	</main>
-	
-	<script src="signIn.js"></script>
+            <div id="leftContainerSecond" class="fade-in">
+                <p>Vous voulez devenir un de nos Travel planner ?</p>
+                <form method="post" action="">
+                    <div class="containerWave-group">
+                        <div class="wave-group margin">
+                            <input required="on" type="text" class="input" autocomplete="on" />
+                            <label class="label">
+                                <span class="label-char" style="--index: 0">N</span>
+                                <span class="label-char" style="--index: 1">o</span>
+                                <span class="label-char" style="--index: 2">m</span>
+                            </label>
+                        </div>
+                        <div class="wave-group margin">
+                            <input required="on" type="text" class="input" autocomplete="on" />
+                            <label class="label">
+                                <span class="label-char" style="--index: 0">P</span>
+                                <span class="label-char" style="--index: 1">r</span>
+                                <span class="label-char" style="--index: 2">é</span>
+                                <span class="label-char" style="--index: 3">n</span>
+                                <span class="label-char" style="--index: 4">o</span>
+                                <span class="label-char" style="--index: 5">m</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="containerWave-group">
+                        <div class="wave-group margin">
+                            <input required="on" type="text" class="input" autocomplete="on" />
+                            <label class="label">
+                                <span class="label-char" style="--index: 0">N</span>
+                                <span class="label-char" style="--index: 1">o</span>
+                                <span class="label-char" style="--index: 2">m</span>
+                                <span class="label-char" style="--index: 3">&#160;</span>
+                                <span class="label-char" style="--index: 4">d</span>
+                                <span class="label-char" style="--index: 5">e</span>
+                                <span class="label-char" style="--index: 6">&#160;</span>
+                                <span class="label-char" style="--index: 7">s</span>
+                                <span class="label-char" style="--index: 8">o</span>
+                                <span class="label-char" style="--index: 9">c</span>
+                                <span class="label-char" style="--index: 10">i</span>
+                                <span class="label-char" style="--index: 11">é</span>
+                                <span class="label-char" style="--index: 12">t</span>
+                                <span class="label-char" style="--index: 13">é</span>
+                            </label>
+                        </div>
+                        <div class="wave-group margin">
+                            <input required="on" type="text" class="input" autocomplete="on" />
+                            <label class="label">
+                                <span class="label-char" style="--index: 0">E</span>
+                                <span class="label-char" style="--index: 1">m</span>
+                                <span class="label-char" style="--index: 2">a</span>
+                                <span class="label-char" style="--index: 3">i</span>
+                                <span class="label-char" style="--index: 4">l</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="containerWave-group">
+                        <div class="wave-group margin">
+                            <input required="on" type="text" class="input" autocomplete="on" />
+                            <label class="label">
+                                <span class="label-char" style="--index: 0">A</span>
+                                <span class="label-char" style="--index: 1">d</span>
+                                <span class="label-char" style="--index: 2">r</span>
+                                <span class="label-char" style="--index: 3">e</span>
+                                <span class="label-char" style="--index: 4">s</span>
+                                <span class="label-char" style="--index: 5">s</span>
+                                <span class="label-char" style="--index: 6">e</span>
+                            </label>
+                        </div>
+                        <div class="wave-group margin">
+                            <input required="on" type="text" class="input" autocomplete="on" />
+                            <label class="label">
+                                <span class="label-char" style="--index: 0">T</span>
+                                <span class="label-char" style="--index: 1">é</span>
+                                <span class="label-char" style="--index: 2">l</span>
+                                <span class="label-char" style="--index: 3">é</span>
+                                <span class="label-char" style="--index: 4">p</span>
+                                <span class="label-char" style="--index: 5">h</span>
+                                <span class="label-char" style="--index: 6">o</span>
+                                <span class="label-char" style="--index: 7">n</span>
+                                <span class="label-char" style="--index: 8">e</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="containerWave-group">
+                        <div class="wave-group margin">
+                            <input required="on" type="text" class="input" autocomplete="on" />
+                            <label class="label">
+                                <span class="label-char" style="--index: 0">S</span>
+                                <span class="label-char" style="--index: 1">i</span>
+                                <span class="label-char" style="--index: 2">r</span>
+                                <span class="label-char" style="--index: 3">e</span>
+                                <span class="label-char" style="--index: 4">t</span>
+                            </label>
+                        </div>
+                        <div class="wave-group margin">
+                            <input required="on" type="password" class="input" autocomplete="on" id="passwordInputTP" />
+                            <label class="label">
+                                <span class="label-char" style="--index: 0">M</span>
+                                <span class="label-char" style="--index: 1">o</span>
+                                <span class="label-char" style="--index: 2">t</span>
+                                <span class="label-char" style="--index: 3">&#160;</span>
+                                <span class="label-char" style="--index: 4">d</span>
+                                <span class="label-char" style="--index: 5">e</span>
+                                <span class="label-char" style="--index: 6">&#160;</span>
+                                <span class="label-char" style="--index: 7">p</span>
+                                <span class="label-char" style="--index: 8">a</span>
+                                <span class="label-char" style="--index: 9">s</span>
+                                <span class="label-char" style="--index: 10">s</span>
+                                <span class="label-char" style="--index: 11">e</span>
+                            </label>
+                            <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="24"
+                                class="eye-iconTP eye-openTP">
+                                <path
+                                    d="M480-320q75 0 127.5-52.5T660-500q0-75-52.5-127.5T480-680q-75 0-127.5 52.5T300-500q0 75 52.5 127.5T480-320Zm0-72q-45 0-76.5-31.5T372-500q0-45 31.5-76.5T480-608q45 0 76.5 31.5T588-500q0 45-31.5 76.5T480-392Zm0 192q-146 0-266-81.5T40-500q54-137 174-218.5T480-800q146 0 266 81.5T920-500q-54 137-174 218.5T480-200Zm0-300Zm0 220q113 0 207.5-59.5T832-500q-50-101-144.5-160.5T480-720q-113 0-207.5 59.5T128-500q50 101 144.5 160.5T480-280Z" />
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="24"
+                                class="eye-iconTP eye-closedTP">
+                                <path
+                                    d="m644-428-58-58q9-47-27-88t-93-32l-58-58q17-8 34.5-12t37.5-4q75 0 127.5 52.5T660-500q0 20-4 37.5T644-428Zm128 126-58-56q38-29 67.5-63.5T832-500q-50-101-143.5-160.5T480-720q-29 0-57 4t-55 12l-62-62q41-17 84-25.5t90-8.5q151 0 269 83.5T920-500q-23 59-60.5 109.5T772-302Zm20 246L624-222q-35 11-70.5 16.5T480-200q-151 0-269-83.5T40-500q21-53 53-98.5t73-81.5L56-792l56-56 736 736-56 56ZM222-624q-29 26-53 57t-41 67q50 101 143.5 160.5T480-280q20 0 39-2.5t39-5.5l-36-38q-11 3-21 4.5t-21 1.5q-75 0-127.5-52.5T300-500q0-11 1.5-21t4.5-21l-84-82Zm319 93Zm-151 75Z" />
+                            </svg>
+                        </div>
+                    </div>
+                    <button type="submit" class="designButton">Inscription</button>
+                </form>
+                <div id="noAccount">
+                    <p>Vous n'êtes pas encore inscrit ?</p>
+                    <button type="button" class="designButtonSecond customerButton">Client !</button>
+                    <button type="button" class="designButtonSecond partnerButton">Partenaire !</button>
+                </div>
+                <a href="#" class="backHome">Retour à l'accueil</a>
+            </div>
+
+            <div id="leftContainerThird" class="fade-in">
+                <p>Vous voulez rejoindre nos prestigieux partenaires ?</p>
+                <form method="post" action="">
+                    <div class="containerWave-group">
+                        <div class="wave-group margin">
+                            <input required="on" type="text" class="input" autocomplete="on" />
+                            <label class="label">
+                                <span class="label-char" style="--index: 0">N</span>
+                                <span class="label-char" style="--index: 1">o</span>
+                                <span class="label-char" style="--index: 2">m</span>
+                            </label>
+                        </div>
+                        <div class="wave-group margin">
+                            <input required="on" type="text" class="input" autocomplete="on" />
+                            <label class="label">
+                                <span class="label-char" style="--index: 0">P</span>
+                                <span class="label-char" style="--index: 1">r</span>
+                                <span class="label-char" style="--index: 2">é</span>
+                                <span class="label-char" style="--index: 3">n</span>
+                                <span class="label-char" style="--index: 4">o</span>
+                                <span class="label-char" style="--index: 5">m</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="containerWave-group">
+                        <div class="wave-group margin">
+                            <input required="on" type="text" class="input" autocomplete="on" />
+                            <label class="label">
+                                <span class="label-char" style="--index: 0">E</span>
+                                <span class="label-char" style="--index: 1">m</span>
+                                <span class="label-char" style="--index: 2">a</span>
+                                <span class="label-char" style="--index: 3">i</span>
+                                <span class="label-char" style="--index: 4">l</span>
+                            </label>
+                        </div>
+                        <div class="wave-group margin">
+                            <input required="on" type="text" class="input" autocomplete="on" />
+                            <label class="label">
+                                <span class="label-char" style="--index: 0">T</span>
+                                <span class="label-char" style="--index: 1">é</span>
+                                <span class="label-char" style="--index: 2">l</span>
+                                <span class="label-char" style="--index: 3">é</span>
+                                <span class="label-char" style="--index: 4">p</span>
+                                <span class="label-char" style="--index: 5">h</span>
+                                <span class="label-char" style="--index: 6">o</span>
+                                <span class="label-char" style="--index: 7">n</span>
+                                <span class="label-char" style="--index: 8">e</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="wave-group margin partnerAddress">
+                        <input required="on" type="text" class="input" autocomplete="on" />
+                        <label class="label">
+                            <span class="label-char" style="--index: 0">A</span>
+                            <span class="label-char" style="--index: 1">d</span>
+                            <span class="label-char" style="--index: 2">r</span>
+                            <span class="label-char" style="--index: 3">e</span>
+                            <span class="label-char" style="--index: 4">s</span>
+                            <span class="label-char" style="--index: 5">s</span>
+                            <span class="label-char" style="--index: 6">e</span>
+                        </label>
+                    </div>
+                    <div class="containerWave-group">
+                        <div class="wave-group margin">
+                            <input required="on" type="text" class="input" autocomplete="on" />
+                            <label class="label">
+                                <span class="label-char" style="--index: 0">S</span>
+                                <span class="label-char" style="--index: 1">i</span>
+                                <span class="label-char" style="--index: 2">r</span>
+                                <span class="label-char" style="--index: 3">e</span>
+                                <span class="label-char" style="--index: 4">t</span>
+                            </label>
+                        </div>
+                        <div class="wave-group margin">
+                            <input required="on" type="password" class="input" autocomplete="on"
+                                id="passwordInputPartner" />
+                            <label class="label">
+                                <span class="label-char" style="--index: 0">M</span>
+                                <span class="label-char" style="--index: 1">o</span>
+                                <span class="label-char" style="--index: 2">t</span>
+                                <span class="label-char" style="--index: 3">&#160;</span>
+                                <span class="label-char" style="--index: 4">d</span>
+                                <span class="label-char" style="--index: 5">e</span>
+                                <span class="label-char" style="--index: 6">&#160;</span>
+                                <span class="label-char" style="--index: 7">p</span>
+                                <span class="label-char" style="--index: 8">a</span>
+                                <span class="label-char" style="--index: 9">s</span>
+                                <span class="label-char" style="--index: 10">s</span>
+                                <span class="label-char" style="--index: 11">e</span>
+                            </label>
+                            <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="24"
+                                class="eye-iconPartner eye-openPartner">
+                                <path
+                                    d="M480-320q75 0 127.5-52.5T660-500q0-75-52.5-127.5T480-680q-75 0-127.5 52.5T300-500q0 75 52.5 127.5T480-320Zm0-72q-45 0-76.5-31.5T372-500q0-45 31.5-76.5T480-608q45 0 76.5 31.5T588-500q0 45-31.5 76.5T480-392Zm0 192q-146 0-266-81.5T40-500q54-137 174-218.5T480-800q146 0 266 81.5T920-500q-54 137-174 218.5T480-200Zm0-300Zm0 220q113 0 207.5-59.5T832-500q-50-101-144.5-160.5T480-720q-113 0-207.5 59.5T128-500q50 101 144.5 160.5T480-280Z" />
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="24"
+                                class="eye-iconPartner eye-closedPartner">
+                                <path
+                                    d="m644-428-58-58q9-47-27-88t-93-32l-58-58q17-8 34.5-12t37.5-4q75 0 127.5 52.5T660-500q0 20-4 37.5T644-428Zm128 126-58-56q38-29 67.5-63.5T832-500q-50-101-143.5-160.5T480-720q-29 0-57 4t-55 12l-62-62q41-17 84-25.5t90-8.5q151 0 269 83.5T920-500q-23 59-60.5 109.5T772-302Zm20 246L624-222q-35 11-70.5 16.5T480-200q-151 0-269-83.5T40-500q21-53 53-98.5t73-81.5L56-792l56-56 736 736-56 56ZM222-624q-29 26-53 57t-41 67q50 101 143.5 160.5T480-280q20 0 39-2.5t39-5.5l-36-38q-11 3-21 4.5t-21 1.5q-75 0-127.5-52.5T300-500q0-11 1.5-21t4.5-21l-84-82Zm319 93Zm-151 75Z" />
+                            </svg>
+                        </div>
+                    </div>
+                    <button type="submit" class="designButton">Inscription</button>
+                </form>
+                <div id="noAccount">
+                    <p>Vous n'êtes pas encore inscrit ?</p>
+                    <button type="button" class="designButtonSecond customerButton">Client !</button>
+                    <button type="button" class="designButtonSecond tpButton">Travel Planner !</button>
+                </div>
+                <a href="#" class="backHome">Retour à l'accueil</a>
+            </div>
+            <div id="rightContainer" class="fade-in">
+                <img src="Travel Linker.png" alt="" />
+                <div class="squareCard">
+                    <form method="post" action="">
+                        <div class="wave-group">
+                            <input required="on" type="text" class="input" autocomplete="on" />
+                            <label class="label">
+                                <span class="label-char" style="--index: 0">E</span>
+                                <span class="label-char" style="--index: 1">m</span>
+                                <span class="label-char" style="--index: 2">a</span>
+                                <span class="label-char" style="--index: 3">i</span>
+                                <span class="label-char" style="--index: 4">l</span>
+                            </label>
+                        </div>
+                        <div class="wave-group">
+                            <input required="on" type="password" class="input" autocomplete="on" id="passwordInput" />
+                            <label class="label">
+                                <span class="label-char" style="--index: 0">M</span>
+                                <span class="label-char" style="--index: 1">o</span>
+                                <span class="label-char" style="--index: 2">t</span>
+                                <span class="label-char" style="--index: 3">&#160;</span>
+                                <span class="label-char" style="--index: 4">d</span>
+                                <span class="label-char" style="--index: 5">e</span>
+                                <span class="label-char" style="--index: 6">&#160;</span>
+                                <span class="label-char" style="--index: 7">p</span>
+                                <span class="label-char" style="--index: 8">a</span>
+                                <span class="label-char" style="--index: 9">s</span>
+                                <span class="label-char" style="--index: 10">s</span>
+                                <span class="label-char" style="--index: 11">e</span>
+                            </label>
+                            <div class="rememberMe">
+                                <input type="checkbox" id="passwordCheckbox" name="passwordCheckbox" />
+                                <label for="passwordCheckbox">Se rappeler de moi</label>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="24"
+                                class="eye-icon eye-open">
+                                <path
+                                    d="M480-320q75 0 127.5-52.5T660-500q0-75-52.5-127.5T480-680q-75 0-127.5 52.5T300-500q0 75 52.5 127.5T480-320Zm0-72q-45 0-76.5-31.5T372-500q0-45 31.5-76.5T480-608q45 0 76.5 31.5T588-500q0 45-31.5 76.5T480-392Zm0 192q-146 0-266-81.5T40-500q54-137 174-218.5T480-800q146 0 266 81.5T920-500q-54 137-174 218.5T480-200Zm0-300Zm0 220q113 0 207.5-59.5T832-500q-50-101-144.5-160.5T480-720q-113 0-207.5 59.5T128-500q50 101 144.5 160.5T480-280Z" />
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="24"
+                                class="eye-icon eye-closed">
+                                <path
+                                    d="m644-428-58-58q9-47-27-88t-93-32l-58-58q17-8 34.5-12t37.5-4q75 0 127.5 52.5T660-500q0 20-4 37.5T644-428Zm128 126-58-56q38-29 67.5-63.5T832-500q-50-101-143.5-160.5T480-720q-29 0-57 4t-55 12l-62-62q41-17 84-25.5t90-8.5q151 0 269 83.5T920-500q-23 59-60.5 109.5T772-302Zm20 246L624-222q-35 11-70.5 16.5T480-200q-151 0-269-83.5T40-500q21-53 53-98.5t73-81.5L56-792l56-56 736 736-56 56ZM222-624q-29 26-53 57t-41 67q50 101 143.5 160.5T480-280q20 0 39-2.5t39-5.5l-36-38q-11 3-21 4.5t-21 1.5q-75 0-127.5-52.5T300-500q0-11 1.5-21t4.5-21l-84-82Zm319 93Zm-151 75Z" />
+                            </svg>
+                        </div>
+                        <button type="submit" class="designButton">Connexion</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="./js/signIn.js"></script>
 </body>
+
 </html>

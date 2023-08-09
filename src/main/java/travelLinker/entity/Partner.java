@@ -1,10 +1,13 @@
 package travelLinker.entity;
 
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -15,13 +18,15 @@ public class Partner {
 	private Long id; 
 	private String firstName; 
 	private String lastName; 
-	private String address; 
+	private String address;
+	@Column(unique = true)
 	private String email;
 
 	
 	private double phoneNumber;
 	private String siret;
 	@OneToOne
+	@JoinColumn(name = "account_id")
 	private Account account;
 
 
@@ -69,6 +74,14 @@ public class Partner {
 
 	public void setSiret(String siret) {
 		this.siret = siret;
+	}
+
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
 	}
 	
 
