@@ -12,6 +12,7 @@
 		<class>travelLinker.entity.AccountBean</class>
 		<class>travelLinker.entity.Accomodation</class>
 		<class>travelLinker.entity.Restaurant</class>
+		<class>travelLinker.entity.Subscription</class>
 
 
 		<properties>
