@@ -404,7 +404,7 @@
 					<div class="user-listMessages" style="display: block;">
 						<h:inputText id="inputMessageDest"
 							placeholder="Choisir un destinataire..." required="true"
-							action="#{accountControllerBean.accountDao.displayPartners()}" />
+							action="#{loginControllerBean.loginDao.findAccountByEmail()}"/>
 
 						<h:inputText id="inputMessageResume"
 							placeholder="Écrire un titre..." required="true" />
@@ -418,7 +418,7 @@
 					</div>
 				</h:form>
 			</div>
-	
+	 
 	</main>
 
 	<!-- Start of mainProfile Content -->

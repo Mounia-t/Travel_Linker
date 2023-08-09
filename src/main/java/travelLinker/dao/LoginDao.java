@@ -21,7 +21,7 @@ public class LoginDao {
     @PersistenceContext
     private EntityManager entityManager;
 
-    private Account findAccountByEmail(String email) {
+    public Account findAccountByEmail(String email) {
         try {
             TypedQuery<Account> query = entityManager.createQuery(
                 "SELECT a FROM Account a WHERE a.email = :email", Account.class)

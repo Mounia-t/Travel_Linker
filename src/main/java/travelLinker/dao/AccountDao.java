@@ -97,9 +97,7 @@ public class AccountDao {
             entityManager.remove(accountBean);
         } else {
             System.out.println("Compte introuvable pour l'ID : " + accountId);
-        }
-    }}
- 
+        }}}
 //-------------------------------------------------
 
 
