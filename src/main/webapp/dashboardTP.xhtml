@@ -1,8 +1,11 @@
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
 
 <head>
 <meta charset="UTF-8" />
@@ -199,7 +202,7 @@
 
 		<!-- Start of MainMessages Content -->
 
-		<main id="mainMessages" style="display: none;">
+<main id="mainMessages" style="display: none;">
 			<div class="messages">
 				<h1>Messages</h1>
 				<div class="analyse">
@@ -397,181 +400,192 @@
 
 			<div class="new-users-messages">
 				<h2>Ecrire un message</h2>
-				<div class="user-listMessages" style="display: block;">
-					<input type="text" id="inputMessageDest"
-						placeholder="Choisir un destinataire..." required="true" /> <input
-						type="text" id="inputMessageResume"
-						placeholder="Écrire un titre..." required="true" /> <input
-						type="text" id="inputMessageDetails"
-						placeholder="Écrire le corps du message..." required="true" />
-				</div>
-			</div>
-		</main>
-
-		<!-- Start of mainProfile Content -->
-
-		<main id="mainProfile" style="display: none;">
-			<div class="messages">
-				<h1>Mon profil</h1>
-				<div class="analyse">
-					<div class="sales">
-						<div class="status">
-							<div class="info logo">
-								<img src="images/IMG_0434.jpg" />
-								<h1>
-									<h:inputText value="#{loginControllerBean.userFirstName}" />
-									<h:inputText value="#{loginControllerBean.userLastName}" />
-								</h1>
-							</div>
-						</div>
-						<span class="material-icons-sharp"> upload </span>
-					</div>
-				</div>
-			</div>
-			<div class="new-users">
-				<h2>Mes informations personnelles</h2>
-				<form action="post">
+				<h:form>
 					<div class="user-listMessages" style="display: block;">
-						<h:inputText id="inputName"
-							value="#{loginControllerBean.userLastName}" />
-						<h:inputText id="inputFirstName"
-							value="#{loginControllerBean.userFirstName}" />
-						<h:inputText id="inputMail"
-							value="#{loginControllerBean.userEmail}" />
-						<input type="password" id="inputPwd"
-							placeholder="Rentrez votre nouveau mot de passe..." /> <input
-							type="number" id="inputPhoneNumber" placeholder="0601020304" />
-						<input type="text" id="inputSiret" placeholder="362 521 879 00034" />
-						<input type="text" id="inputCompanyName" placeholder="Isika" />
+						<h:inputText id="inputMessageDest"
+							placeholder="Choisir un destinataire..." required="true"
+							action="#{accountControllerBean.accountDao.displayPartners()}" />
+
+						<h:inputText id="inputMessageResume"
+							placeholder="Écrire un titre..." required="true" />
+
+						<h:inputTextarea id="inputMessageDetails"
+							placeholder="Écrire le corps du message..." rows="6" cols="50"
+							required="true" />
+
+						<h:commandButton value="Envoyer"
+							action="#{conversationController.sendMessage}" />
 					</div>
-					<div class="new-usersButton">
-						<button type=" button" id="createAdmin">Changer mot de
-							passe</button>
-						<button type="button" id="saveInfos">Enregistrer</button>
-					</div>
-				</form>
+				</h:form>
 			</div>
-		</main>
+	
+	</main>
 
-		<!-- Start of mainUsers Content -->
+	<!-- Start of mainProfile Content -->
 
-		<main id="mainUsers" style="display: none;">
-			<h1>Les partenaires</h1>
-			<!-- Analyses -->
+	<main id="mainProfile" style="display: none;">
+		<div class="messages">
+			<h1>Mon profil</h1>
 			<div class="analyse">
 				<div class="sales">
 					<div class="status">
-						<div class="info">
-							<h3>Nombre de partenaire</h3>
-							<h1>608</h1>
+						<div class="info logo">
+							<img src="images/IMG_0434.jpg" />
+							<h1>
+								<h:inputText
+									value="#{loginControllerBean.userFirstName} #{loginControllerBean.userLastName}" />
+
+							</h1>
 						</div>
+					</div>
+					<span class="material-icons-sharp"> upload </span>
+				</div>
+			</div>
+		</div>
+		<div class="new-users">
+			<h2>Mes informations personnelles</h2>
+			<form action="post">
+				<div class="user-listMessages" style="display: block;">
+					<h:inputText id="inputName"
+						value="#{loginControllerBean.userLastName}" />
+					<h:inputText id="inputFirstName"
+						value="#{loginControllerBean.userFirstName}" />
+					<h:inputText id="inputMail"
+						value="#{loginControllerBean.userEmail}" />
+					<input type="password" id="inputPwd"
+						placeholder="Rentrez votre nouveau mot de passe..." /> <input
+						type="number" id="inputPhoneNumber" placeholder="0601020304" /> <input
+						type="text" id="inputSiret" placeholder="362 521 879 00034" /> <input
+						type="text" id="inputCompanyName" placeholder="Isika" />
+				</div>
+				<div class="new-usersButton">
+					<h:form>
+						<h:commandButton value="Supprimer mon compte" id="createAdmin"
+							class="deleteBtnProfile"
+							action="#{accountControllerBean.deleteAccount}" />
+					</h:form>
+					<button type="button" id="saveInfos">Enregistrer</button>
+				</div>
+			</form>
+		</div>
+	</main>
+
+	<!-- Start of mainUsers Content -->
+
+	<main id="mainUsers" style="display: none;">
+		<h1>Les partenaires</h1>
+		<!-- Analyses -->
+		<div class="analyse">
+			<div class="sales">
+				<div class="status">
+					<div class="info">
+						<h3>Nombre de partenaire</h3>
+						<h1>608</h1>
 					</div>
 				</div>
 			</div>
+		</div>
 
-			<div class="new-users">
-				<h2>Tous les partenaires</h2>
-				<div id="searchUsersZone">
-					<input type="search" placeholder="Rechercher un partenaire..."
-						id="searchUsers" />
-					<button type="submit">
-						<span class="material-icons-sharp"> search </span>
-					</button>
-				</div>
-				<div class="user-list">
+		<div class="new-users">
+			<h2>Tous les partenaires</h2>
+			<div id="searchUsersZone">
+				<input type="search" placeholder="Rechercher un partenaire..."
+					id="searchUsers" />
+				<button type="submit">
+					<span class="material-icons-sharp"> search </span>
+				</button>
+			</div>
+			<div class="user-list">
+				<ui:repeat value="#{accountControllerBean.partners}" var="partner">
 					<div class="user">
 						<img src="images/profile-2.jpg" />
-						<h2><inputText value="#{accountControllerBean.partners}" var="partner"/></h2>
-						<p>54 Min Ago</p>
+						<h2>#{partner.firstName}</h2>
+						<p>#{partner.lastName}</p>
+						<!-- Autres informations sur le partenaire à afficher dans la carte -->
 					</div>
-					
-						<!-- Ajoutez plus de colonnes selon vos besoins -->
-					
-				</div>
+				</ui:repeat>
 			</div>
+		</div>
+	</main>
 
-		</main>
+	<!-- Start of mainHistory Content -->
 
-		<!-- Start of mainHistory Content -->
+	<main id="mainHistory" style="display: none;">
+		<div class="messages">
+			<div></div>
+		</div>
+	</main>
 
-		<main id="mainHistory" style="display: none;">
-			<div class="messages">
-				<div></div>
-			</div>
-		</main>
-
-		<!-- Right Section -->
-		<div class="right-section">
-			<div class="nav">
-				<button id="menu-btn">
-					<span class="material-icons-sharp"> menu </span>
-				</button>
-				<div class="dark-mode">
-					<span class="material-icons-sharp active"> light_mode </span> <span
-						class="material-icons-sharp"> dark_mode </span>
-				</div>
-
-			</div>
-			<!-- End of Nav -->
-
-			<div class="user-profile">
-				<div class="logo">
-					<img src="images/IMG_0434.jpg" />
-					<h3>
-						Bonjour <h:inputText value="#{loginControllerBean.userFirstName}"/>
-					</h3>
-				</div>
-			</div>
-
-			<div class="reminders">
-				<div class="header">
-					<h2>Notes</h2>
-					<span class="material-icons-sharp"> notifications_none </span>
-					<div id="rightNotifNumber" style="display: none;">
-						<h4>1</h4>
-					</div>
-				</div>
-				<div id="rightContainerNotif">
-					<div class="notification">
-						<div class="icon">
-							<span class="material-icons-sharp"> priority_high </span>
-						</div>
-						<div class="content">
-							<div class="info">
-								<h3>Tâches à faire</h3>
-								<small class="text_muted"> Gestion du remboursement </small>
-							</div>
-							<span class="material-icons-sharp closeCrossNotes"> close
-							</span>
-						</div>
-					</div>
-
-					<div class="notification deactive">
-						<div class="icon">
-							<span class="material-icons-sharp"> priority_high </span>
-						</div>
-						<div class="content">
-							<div class="info">
-								<h3>Tâches à faire</h3>
-								<small class="text_muted"> Suppression d'un utilisateur
-								</small>
-							</div>
-							<span class="material-icons-sharp closeCrossNotes"> close
-							</span>
-						</div>
-					</div>
-
-					<div class="notification-add add-reminder">
-						<div>
-							<span class="material-icons-sharp"> add </span>
-							<h3>Ajouter une note</h3>
-						</div>
-					</div>
-				</div>
-
+	<!-- Right Section -->
+	<div class="right-section">
+		<div class="nav">
+			<button id="menu-btn">
+				<span class="material-icons-sharp"> menu </span>
+			</button>
+			<div class="dark-mode">
+				<span class="material-icons-sharp active"> light_mode </span> <span
+					class="material-icons-sharp"> dark_mode </span>
 			</div>
 
 		</div>
+		<!-- End of Nav -->
+
+		<div class="user-profile">
+			<div class="logo">
+				<img src="images/IMG_0434.jpg" />
+				<h3>
+					Bonjour
+					<h:inputText value="#{loginControllerBean.userFirstName}" />
+				</h3>
+			</div>
+		</div>
+
+		<div class="reminders">
+			<div class="header">
+				<h2>Notes</h2>
+				<span class="material-icons-sharp"> notifications_none </span>
+				<div id="rightNotifNumber" style="display: none;">
+					<h4>1</h4>
+				</div>
+			</div>
+			<div id="rightContainerNotif">
+				<div class="notification">
+					<div class="icon">
+						<span class="material-icons-sharp"> priority_high </span>
+					</div>
+					<div class="content">
+						<div class="info">
+							<h3>Tâches à faire</h3>
+							<small class="text_muted"> Gestion du remboursement </small>
+						</div>
+						<span class="material-icons-sharp closeCrossNotes"> close </span>
+					</div>
+				</div>
+
+				<div class="notification deactive">
+					<div class="icon">
+						<span class="material-icons-sharp"> priority_high </span>
+					</div>
+					<div class="content">
+						<div class="info">
+							<h3>Tâches à faire</h3>
+							<small class="text_muted"> Suppression d'un utilisateur </small>
+						</div>
+						<span class="material-icons-sharp closeCrossNotes"> close </span>
+					</div>
+				</div>
+
+				<div class="notification-add add-reminder">
+					<div>
+						<span class="material-icons-sharp"> add </span>
+						<h3>Ajouter une note</h3>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
 
 
 	</div>
