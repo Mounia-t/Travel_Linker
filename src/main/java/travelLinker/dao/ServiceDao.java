@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 
 import travelLinker.entity.Accomodation;
 import travelLinker.entity.Restaurant;
+import travelLinker.entity.Transport;
 import travelLinker.viewModel.ServiceViewModel;
 
 @Stateless
@@ -46,6 +47,21 @@ public class ServiceDao {
 		return restaurant.getId();
 	}
 
+	public Long createTransport(ServiceViewModel transportViewModel) {
+		Transport transport = new Transport();
+		transport.setName(transportViewModel.getName());
+		transport.setType(transportViewModel.getType());
+		transport.setPrice(transportViewModel.getPrice());
+		transport.setCountry(transportViewModel.getCountry());
+		transport.setLocation(transportViewModel.getLocation());
+		transport.setStartDate(transportViewModel.getStartDate());
+		transport.setEndDate(transportViewModel.getEndDate());
+		transport.setDescription(transportViewModel.getDescription());
+		transport.setModeOfTransport(transportViewModel.getModeOfTransport());
+		entityManager.persist(transport);
+		return transport.getId();
+	}
+
 	public void deleteAccomodation(Long id) {
 		Accomodation accomodation = entityManager.find(Accomodation.class, id);
 		if (accomodation != null) {
@@ -57,6 +73,13 @@ public class ServiceDao {
 		Restaurant restaurant = entityManager.find(Restaurant.class, id);
 		if (restaurant != null) {
 			entityManager.remove(restaurant);
+		}
+	}
+
+	public void deleteTransport(Long id) {
+		Transport transport = entityManager.find(Transport.class, id);
+		if (transport != null) {
+			entityManager.remove(transport);
 		}
 	}
 
@@ -89,8 +112,25 @@ public class ServiceDao {
 			restaurant.setStartDate(restaurantViewModel.getStartDate());
 			restaurant.setEndDate(restaurantViewModel.getEndDate());
 			restaurant.setDescription(restaurantViewModel.getDescription());
-			restaurant.setTypeOfRestaurant(restaurantViewModel.getTypeOfAccomodation());
+			restaurant.setTypeOfRestaurant(restaurantViewModel.getTypeOfRestaurant());
 			entityManager.merge(restaurant);
+		}
+	}
+
+	public void updateTransport(ServiceViewModel transportViewModel) {
+		Transport transport = entityManager.find(Transport.class, transportViewModel.getId());
+		if (transport != null) {
+
+			transport.setName(transportViewModel.getName());
+			transport.setType(transportViewModel.getType());
+			transport.setPrice(transportViewModel.getPrice());
+			transport.setCountry(transportViewModel.getCountry());
+			transport.setLocation(transportViewModel.getLocation());
+			transport.setStartDate(transportViewModel.getStartDate());
+			transport.setEndDate(transportViewModel.getEndDate());
+			transport.setDescription(transportViewModel.getDescription());
+			transport.setModeOfTransport(transportViewModel.getModeOfTransport());
+			entityManager.merge(transport);
 		}
 	}
 
@@ -100,6 +140,10 @@ public class ServiceDao {
 
 	public List<Restaurant> getAllRestaurants() {
 		return entityManager.createQuery("SELECT r FROM Restaurant r", Restaurant.class).getResultList();
+	}
+
+	public List<Transport> getAllTransports() {
+		return entityManager.createQuery("SELECT t FROM Transport t", Transport.class).getResultList();
 	}
 
 }
