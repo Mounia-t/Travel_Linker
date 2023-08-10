@@ -15,7 +15,7 @@
 		<class>travelLinker.entity.Subscription</class>
 		<class>travelLinker.entity.Message</class>
 		<class>travelLinker.entity.Conversation</class>
-
+		<class>travelLinker.entity.Insurance</class>
 
 		<properties>
 <!-- 			<property name="javax.persistence.jdbc.driver" -->
