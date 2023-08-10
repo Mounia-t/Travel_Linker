@@ -8,7 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class JourneyBean {
+public class Journey {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,10 +20,10 @@ public class JourneyBean {
 	private Date startDate;
 	private Date endDate;
 
-	public JourneyBean (){
+	public Journey (){
 			}
 	
-	public JourneyBean(String country, int numberOfTravellers, float price, String location, Date startDate,
+	public Journey(String country, int numberOfTravellers, float price, String location, Date startDate,
 			Date endDate) {
 		super();
 		this.country = country;
