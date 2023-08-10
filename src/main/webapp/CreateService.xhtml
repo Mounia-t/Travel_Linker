@@ -16,6 +16,10 @@
 	<h:selectBooleanCheckbox
 		value="#{serviceControllerBean.showAccomodationForm}" />
 	<h:outputLabel for="accomodationCheckbox" value="Offer accommodation" />
+	
+		<h:selectBooleanCheckbox
+		value="#{serviceControllerBean.showTransportForm}" />
+	<h:outputLabel for="transportCheckbox" value="Offer transport" />
 
 	<h:commandButton value="Update Form"
 		action="#{serviceControllerBean.updateForm}" />
@@ -121,6 +125,57 @@
 		<h:commandButton
 			action="#{serviceControllerBean.createAccomodation()}"
 			value="Create Accomodation" />
+	</h:panelGrid>
+	
+	<!-- Transport Form -->
+
+	<h:panelGrid rendered="#{serviceControllerBean.showTransportForm}">
+		<h:outputLabel id="nameLabelTransport" value="Name : " />
+		<h:inputText id="nameTxtTransport" size="30"
+			value="#{serviceControllerBean.transportVm.name}" />
+
+		<h:outputLabel id="typeLabelTransport" value="Type : " />
+		<h:inputText id="typeTxtTransport" size="30"
+			value="#{serviceControllerBean.transportVm.type}" />
+
+		<h:outputLabel id="priceLabelTransport" value="Price : " />
+		<h:inputText id="priceTxtTransport" size="30"
+			value="#{serviceControllerBean.transportVm.price}" />
+
+		<h:outputLabel id="countryLabelTransport" value="Country : " />
+		<h:inputText id="countryTxtTransport" size="30"
+			value="#{serviceControllerBean.transportVm.country}" />
+
+		<h:outputLabel id="locationLabelTransport" value="Location : " />
+		<h:inputText id="locationTxtTransport" size="30"
+			value="#{serviceControllerBean.transportVm.location}" />
+
+		<h:outputLabel id="startDateLabelTransport" value="Check-in Date : " />
+		<h:inputText id="startDateTxtTransport" size="30"
+			value="#{serviceControllerBean.transportVm.startDate}">
+			<f:convertDateTime pattern="dd/MM/yyyy" />
+		</h:inputText>
+
+		<h:outputLabel id="endDateLabelTransport" value="Check-out Date : " />
+		<h:inputText id="endDateTxtTransport" size="30"
+			value="#{serviceControllerBean.transportVm.endDate}">
+			<f:convertDateTime pattern="dd/MM/yyyy" />
+		</h:inputText>
+
+		<h:outputLabel id="descriptionLabelTransport" value="Description : " />
+		<h:inputText id="descriptionTxtTransport" size="100"
+			value="#{serviceControllerBean.transportVm.description}" />
+
+		<h:outputLabel id="typeOfTransportLabel"
+			value="Type of transport : " />
+		<h:inputText id="modeOfTransportTxt" size="30"
+			value="#{serviceControllerBean.transportVm.modeOfTransport}" />
+
+		<h:commandButton action="#{serviceControllerBean.clear()}"
+			value="Clear" />
+		<h:commandButton action="#{serviceControllerBean.createTransport()}"
+			value="Create Transport" />
+
 	</h:panelGrid>
 
 </h:form>
