@@ -21,6 +21,9 @@ public class AccountViewModel {
 	private String siret;
 	private String companyName;
 	private String address;
+	private String recepientEmail;
+	private String senderEmail;
+	private String messageResume;
 
 	public String getContent() {
 		return content;
@@ -129,8 +132,33 @@ public class AccountViewModel {
 	}
 
 	public void setId(Long accountId) {
-		// TODO Auto-generated method stub
+
 		this.id = accountId;
 
 	}
+
+	public String getRecepientEmail() {
+		return recepientEmail;
+	}
+
+	public void setRecepientEmail(String recepientEmail) {
+		this.recepientEmail = recepientEmail;
+	}
+
+	public String getSenderEmail() {
+		return senderEmail;
+	}
+
+	public void setSenderEmail(String senderEmail) {
+		this.senderEmail = senderEmail;
+	}
+
+	public String getMessageResume() {
+		return messageResume;
+	}
+
+	public void setMessageResume(String messageResume) {
+		this.messageResume = messageResume;
+	}
+
 }

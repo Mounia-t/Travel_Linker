@@ -202,7 +202,7 @@
 
 		<!-- Start of MainMessages Content -->
 
-<main id="mainMessages" style="display: none;">
+		<main id="mainMessages" style="display: none;">
 			<div class="messages">
 				<h1>Messages</h1>
 				<div class="analyse">
@@ -314,72 +314,14 @@
 
 			<div class="new-users-AllMessages">
 				<h2>Tous les messages</h2>
+				
+								
 				<div class="user-list-AllMessages">
 					<div>
-						<h3>Provenance</h3>
+						<h3><h:outputText value="#{conversationController.getRecipientEmailBySenderEmail()}" /></h3>
 					</div>
 					<div>
-						<h3>Titre</h3>
-					</div>
-					<div>
-						<h3>Résumé</h3>
-					</div>
-					<div class="AllMessages-btn">
-						<button type="submit" class="readBtn">Lire</button>
-						<button type="reset" class="deleteBtn">Supprimer</button>
-					</div>
-				</div>
-				<div class="user-list-AllMessages">
-					<div>
-						<h3>Provenance</h3>
-					</div>
-					<div>
-						<h3>Titre</h3>
-					</div>
-					<div>
-						<h3>Résumé</h3>
-					</div>
-					<div class="AllMessages-btn">
-						<button type="submit" class="readBtn">Lire</button>
-						<button type="reset" class="deleteBtn">Supprimer</button>
-					</div>
-				</div>
-				<div class="user-list-AllMessages">
-					<div>
-						<h3>Provenance</h3>
-					</div>
-					<div>
-						<h3>Titre</h3>
-					</div>
-					<div>
-						<h3>Résumé</h3>
-					</div>
-					<div class="AllMessages-btn">
-						<button type="submit" class="readBtn">Lire</button>
-						<button type="reset" class="deleteBtn">Supprimer</button>
-					</div>
-				</div>
-				<div class="user-list-AllMessages">
-					<div>
-						<h3>Provenance</h3>
-					</div>
-					<div>
-						<h3>Titre</h3>
-					</div>
-					<div>
-						<h3>Résumé</h3>
-					</div>
-					<div class="AllMessages-btn">
-						<button type="submit" class="readBtn">Lire</button>
-						<button type="reset" class="deleteBtn">Supprimer</button>
-					</div>
-				</div>
-				<div class="user-list-AllMessages">
-					<div>
-						<h3>Provenance</h3>
-					</div>
-					<div>
-						<h3>Titre</h3>
+						<h3><h:outputText value="#{conversationController.messages}" />></h3>
 					</div>
 					<div>
 						<h3>Résumé</h3>
@@ -397,28 +339,21 @@
 			</div>
 
 			<!-- News input Messages Section-->
-
-			<div class="new-users-messages">
-				<h2>Ecrire un message</h2>
-				<h:form>
-					<div class="user-listMessages" style="display: block;">
-						<h:inputText id="inputMessageDest"
-							placeholder="Choisir un destinataire..." required="true"
-							action="#{loginControllerBean.loginDao.findAccountByEmail()}"/>
-
-						<h:inputText id="inputMessageResume"
-							placeholder="Écrire un titre..." required="true" />
-
-						<h:inputTextarea id="inputMessageDetails"
-							placeholder="Écrire le corps du message..." rows="6" cols="50"
-							required="true" />
-
-						<h:commandButton value="Envoyer"
-							action="#{conversationController.sendMessage}" />
-					</div>
-				</h:form>
-			</div>
-	 
+ 
+			  <div class="new-users-messages">
+			
+                <h2>Ecrire un message</h2>
+                 <h:form>
+                <div class="user-listMessages" style="display: block;">
+                    <h:inputText  id="inputMessageDest" placeholder="Choisir un destinataire..." required ="true" value="#{conversationController.accVM.recepientEmail}"/>
+                    <h:inputText  id="inputMessageResume" placeholder="Écrire un titre..." required="true"/>
+                    <h:inputText  id="inputMessageDetails" placeholder="Écrire le corps du message..." value="#{conversationController.accVM.content}"  required ="true"/>
+                
+                <h:commandButton action="#{conversationController.sendMessage()}" value="Envoyer" />
+                </div>
+                </h:form>
+            </div>
+	
 	</main>
 
 	<!-- Start of mainProfile Content -->

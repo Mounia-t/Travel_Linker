@@ -26,9 +26,7 @@ public class AccountControllerBean implements Serializable {
 	
 	
 	private AccountViewModel accountVM=new AccountViewModel();
-	private Long accountId;
- 
-    @Inject
+	@Inject
     private AccountDao accountDao;
 
  
