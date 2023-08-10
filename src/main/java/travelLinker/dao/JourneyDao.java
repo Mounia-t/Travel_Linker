@@ -5,7 +5,7 @@ package travelLinker.dao;
 	import javax.persistence.EntityManager;
 
 	import javax.persistence.PersistenceContext;
-	import travelLinker.entity.JourneyBean;
+	import travelLinker.entity.Journey;
 	import travelLinker.viewModel.JourneyViewModel;
 	
 
@@ -16,7 +16,7 @@ public class JourneyDao {
 	private EntityManager entityManager;
 
 	public Long insert(JourneyViewModel journeyVM) {
-		JourneyBean journeybean = new JourneyBean();
+		Journey journeybean = new Journey();
 		journeybean.setNumberOfTravellers(journeyVM.getNumberOfTravellers());
 		journeybean.setPrice(journeyVM.getPrice());
 		journeybean.setLocation(journeyVM.getLocation());
