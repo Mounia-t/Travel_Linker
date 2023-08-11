@@ -6,8 +6,11 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
+
 import travelLinker.dao.ConversationDao;
 import travelLinker.entity.Message;
+import travelLinker.utils.SessionUtils;
 import travelLinker.viewModel.AccountViewModel;
 
 @ManagedBean
@@ -27,14 +30,23 @@ public class ConversationController implements Serializable{
 		 conversationDao.sendMessage( accVM);	 
 		 }
 	 
-	 public List<Message> getMessages(){
-			    String senderEmail = accVM.getSenderEmail();
-			    String recipientEmail = accVM.getRecepientEmail();
-			    return conversationDao.getMessages(senderEmail, recipientEmail);
-			}
 
-	
+
+	 public List<Message> getReceivedMessages() {
+		    HttpSession session = SessionUtils.getSession();
+		    String recipientEmail = (String) session.getAttribute("email");
+		    System.out.println(recipientEmail);
+		    return conversationDao.getReceivedMessages(recipientEmail);
+		}
 	    
+	 public List<Message>getSentMessages(){
+		
+			    HttpSession session = SessionUtils.getSession();
+			    String senderEmail = (String) session.getAttribute("email");
+			    System.out.println(senderEmail);
+			    return conversationDao.getSentMessages(senderEmail);
+			
+	 }
 	public AccountViewModel getAccVM() {
 		return accVM;
 	}

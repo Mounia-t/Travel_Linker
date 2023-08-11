@@ -15,13 +15,12 @@ public class Message {
     
 
 
-    private String recepientEmail;
+    private String recipientEmail;
     private String senderEmail;
     private Long senderId;
     private Long recepientId;
     private String messageResume;
-    @ManyToOne
-    private Conversation conversation;
+ 
     
     public Message() {
     }
@@ -32,11 +31,7 @@ public class Message {
         this.content = content;
     }
     
-    public Message(Account sender, Conversation conv , String content) {
-   //     this.sender = sender;
-        this.conversation = conv;
-        this.content = content;
-    }
+
     
 	public String getContent() {
 		return content;
@@ -64,19 +59,14 @@ public class Message {
 		this.dest = dest;
 	}
 */
-	public Conversation getConversation() {
-		return conversation;
-	}
-	public void setConversation(Conversation conversation) {
-		this.conversation = conversation;
-	}
+
 
 	public String getRecepientEmail() {
-		return recepientEmail;
+		return recipientEmail;
 	}
 
-	public void setRecepientEmail(String recepientEmail) {
-		this.recepientEmail = recepientEmail;
+	public void setRecepientEmail(String recipientEmail) {
+		this.recipientEmail = recipientEmail;
 	}
 
 	public String getSenderEmail() {

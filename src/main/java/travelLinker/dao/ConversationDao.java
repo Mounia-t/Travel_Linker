@@ -41,15 +41,6 @@ public class ConversationDao {
 
 	}
 
-	public List<Message> getMessages(String senderEmail, String recipientEmail) {
-	    String queryString = "SELECT m FROM Message m WHERE (m.senderEmail = :senderEmail AND m.recepientEmail = :recipientEmail) OR (m.senderEmail = :recipientEmail AND m.recepientEmail = :senderEmail)";
-	    TypedQuery<Message> query = entityManager.createQuery(queryString, Message.class);
-	    query.setParameter("senderEmail", senderEmail);
-	    query.setParameter("recipientEmail",recipientEmail);
-
-	    return query.getResultList();
-	}
-
 
 
 	public String getEmail() {
@@ -57,16 +48,18 @@ public class ConversationDao {
 		return EmailSender;
 	}
 	
-	public String getRecipientEmailBySenderEmail(String senderEmail) {
-	    TypedQuery<String> query = entityManager.createQuery(
-	        "SELECT m.recepientEmail FROM Message m WHERE m.senderEmail = :senderEmail", String.class);
+
+	public List<Message> getReceivedMessages(String recipientEmail) {
+	    TypedQuery<Message> query = entityManager.createQuery(
+	        "SELECT m FROM Message m WHERE m.recipientEmail = :recipientEmail", Message.class);
+	    query.setParameter("recipientEmail", recipientEmail);
+	    return query.getResultList();
+	}
+
+	public List<Message> getSentMessages(String senderEmail) {
+	    TypedQuery<Message> query = entityManager.createQuery(
+	        "SELECT m FROM Message m WHERE m.senderEmail = :senderEmail", Message.class);
 	    query.setParameter("senderEmail", senderEmail);
-	    
-	    List<String> recipientEmails = query.getResultList();
-	    if (!recipientEmails.isEmpty()) {
-	        return recipientEmails.get(0); // Récupère la première adresse e-mail trouvée
-	    }
-	    
-	    return null; // Aucun destinataire trouvé avec cet e-mail d'expéditeur
+	    return query.getResultList();
 	}
 }

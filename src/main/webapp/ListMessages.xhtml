@@ -9,26 +9,27 @@
 	<title>Messagerie: Index</title>
 </h:head>
 <h:body>
+<h2>Messages reçus</h2>
+<ui:repeat value="#{conversationController.getReceivedMessages()}" var="message">
+    <div class="received-message">
+        <p><strong>Expéditeur :</strong> #{message.senderEmail}</p>
+        <p><strong>Destinataire :</strong> #{message.recepientEmail}</p>
+        <p><strong>Contenu :</strong> #{message.content}</p>
+    </div>
+</ui:repeat>
 
-       <ui:repeat value="#{conversationController.messages}" var="message">
-            <div class="user-list-AllMessages">
-                <div>
-                    <h3><h:outputText value="#{message.senderEmail}" /></h3>
-                </div>
-                <div>
-                    <h3><h:outputText value="#{message.content}" /></h3>
-                </div>
-                <div>
-                    <h3><h:outputText value="#{message.messageResume}" /></h3>
-                </div>
-                <div class="AllMessages-btn">
-                    <h:commandButton value="Lire"
-                        action="#{conversationController.readMessage(message)}" />
-                    <h:commandButton value="Supprimer"
-                        action="#{conversationController.deleteMessage(message)}" />
-                </div>
-            </div>
-        </ui:repeat>
+<h2>Messages envoyés</h2>
+<ui:repeat value="#{conversationController.getSentMessages()}" var="message">
+    <div class="sent-message">
+        <p><strong>Expéditeur :</strong> #{message.senderEmail}</p>
+        <p><strong>Destinataire :</strong> #{message.recepientEmail}</p>
+        <p><strong>Contenu :</strong> #{message.content}</p>
+    </div>
+</ui:repeat>
+
+
+
+
 </h:body>
 </html>
 	

@@ -311,25 +311,33 @@
 			</div>
 
 			<!-- News all Messages section -->
-
 			<div class="new-users-AllMessages">
-				<h2>Tous les messages</h2>
-				
-								
+				<h2>Messages reçus</h2>
+
 				<div class="user-list-AllMessages">
-					<div>
-						<h3><h:outputText value="#{conversationController.getRecipientEmailBySenderEmail()}" /></h3>
+
+					<div class="received-message">
+						<ui:repeat value="#{conversationController.getSentMessages()}"
+							var="message">
+							<div>
+								<h3>Provenance: #{message.recepientEmail}</h3>
+							</div>
+
+							<div>
+								<h3>Résumé: #{message.messageResume}</h3>
+							</div>
+
+							<div>
+								<h3>Contenu: #{message.content}</h3>
+							</div>
+
+							<div class="AllMessages-btn">
+								<button type="submit" class="readBtn">Lire</button>
+								<button type="reset" class="deleteBtn">Supprimer</button>
+							</div>
+						</ui:repeat>
 					</div>
-					<div>
-						<h3><h:outputText value="#{conversationController.messages}" />></h3>
-					</div>
-					<div>
-						<h3>Résumé</h3>
-					</div>
-					<div class="AllMessages-btn">
-						<button type="submit" class="readBtn">Lire</button>
-						<button type="reset" class="deleteBtn">Supprimer</button>
-					</div>
+
 				</div>
 
 				<div class="new-usersButton">
@@ -339,188 +347,198 @@
 			</div>
 
 			<!-- News input Messages Section-->
- 
-			  <div class="new-users-messages">
-			
-                <h2>Ecrire un message</h2>
-                 <h:form>
-                <div class="user-listMessages" style="display: block;">
-                    <h:inputText  id="inputMessageDest" placeholder="Choisir un destinataire..." required ="true" value="#{conversationController.accVM.recepientEmail}"/>
-                    <h:inputText  id="inputMessageResume" placeholder="Écrire un titre..." required="true"/>
-                    <h:inputText  id="inputMessageDetails" placeholder="Écrire le corps du message..." value="#{conversationController.accVM.content}"  required ="true"/>
-                
-                <h:commandButton action="#{conversationController.sendMessage()}" value="Envoyer" />
-                </div>
-                </h:form>
-            </div>
-	
-	</main>
 
-	<!-- Start of mainProfile Content -->
+			<div class="new-users-messages">
 
-	<main id="mainProfile" style="display: none;">
-		<div class="messages">
-			<h1>Mon profil</h1>
+				<h2>Ecrire un message</h2>
+				<h:form>
+					<div class="user-listMessages" style="display: block;">
+						<h:inputText id="inputMessageDest"
+							placeholder="Choisir un destinataire..." required="true"
+							value="#{conversationController.accVM.recepientEmail}" />
+						<h:inputText id="inputMessageResume"
+							placeholder="Écrire un titre..." required="true"
+							value="#{conversationController.accVM.messageResume}" />
+						<h:inputText id="inputMessageDetails"
+							placeholder="Écrire le corps du message..."
+							value="#{conversationController.accVM.content}" required="true" />
+
+						<h:commandButton action="#{conversationController.sendMessage()}"
+							value="Envoyer" />
+					</div>
+				</h:form>
+			</div>
+
+		</main>
+
+		<!-- Start of mainProfile Content -->
+
+		<main id="mainProfile" style="display: none;">
+			<div class="messages">
+				<h1>Mon profil</h1>
+				<div class="analyse">
+					<div class="sales">
+						<div class="status">
+							<div class="info logo">
+								<img src="images/IMG_0434.jpg" />
+								<h1>
+									<h:inputText
+										value="#{loginControllerBean.userFirstName} #{loginControllerBean.userLastName}" />
+
+								</h1>
+							</div>
+						</div>
+						<span class="material-icons-sharp"> upload </span>
+					</div>
+				</div>
+			</div>
+			<div class="new-users">
+				<h2>Mes informations personnelles</h2>
+				<form action="post">
+					<div class="user-listMessages" style="display: block;">
+						<h:inputText id="inputName"
+							value="#{loginControllerBean.userLastName}" />
+						<h:inputText id="inputFirstName"
+							value="#{loginControllerBean.userFirstName}" />
+						<h:inputText id="inputMail"
+							value="#{loginControllerBean.userEmail}" />
+						<input type="password" id="inputPwd"
+							placeholder="Rentrez votre nouveau mot de passe..." /> <input
+							type="number" id="inputPhoneNumber" placeholder="0601020304" />
+						<input type="text" id="inputSiret" placeholder="362 521 879 00034" />
+						<input type="text" id="inputCompanyName" placeholder="Isika" />
+					</div>
+					<div class="new-usersButton">
+						<h:form>
+							<h:commandButton value="Supprimer mon compte" id="createAdmin"
+								class="deleteBtnProfile"
+								action="#{accountControllerBean.deleteAccount}" />
+						</h:form>
+						<button type="button" id="saveInfos">Enregistrer</button>
+					</div>
+				</form>
+			</div>
+		</main>
+
+		<!-- Start of mainUsers Content -->
+
+		<main id="mainUsers" style="display: none;">
+			<h1>Les partenaires</h1>
+			<!-- Analyses -->
 			<div class="analyse">
 				<div class="sales">
 					<div class="status">
-						<div class="info logo">
-							<img src="images/IMG_0434.jpg" />
-							<h1>
-								<h:inputText
-									value="#{loginControllerBean.userFirstName} #{loginControllerBean.userLastName}" />
-
-							</h1>
+						<div class="info">
+							<h3>Nombre de partenaire</h3>
+							<h1>608</h1>
 						</div>
 					</div>
-					<span class="material-icons-sharp"> upload </span>
 				</div>
 			</div>
-		</div>
-		<div class="new-users">
-			<h2>Mes informations personnelles</h2>
-			<form action="post">
-				<div class="user-listMessages" style="display: block;">
-					<h:inputText id="inputName"
-						value="#{loginControllerBean.userLastName}" />
-					<h:inputText id="inputFirstName"
-						value="#{loginControllerBean.userFirstName}" />
-					<h:inputText id="inputMail"
-						value="#{loginControllerBean.userEmail}" />
-					<input type="password" id="inputPwd"
-						placeholder="Rentrez votre nouveau mot de passe..." /> <input
-						type="number" id="inputPhoneNumber" placeholder="0601020304" /> <input
-						type="text" id="inputSiret" placeholder="362 521 879 00034" /> <input
-						type="text" id="inputCompanyName" placeholder="Isika" />
-				</div>
-				<div class="new-usersButton">
-					<h:form>
-						<h:commandButton value="Supprimer mon compte" id="createAdmin"
-							class="deleteBtnProfile"
-							action="#{accountControllerBean.deleteAccount}" />
-					</h:form>
-					<button type="button" id="saveInfos">Enregistrer</button>
-				</div>
-			</form>
-		</div>
-	</main>
 
-	<!-- Start of mainUsers Content -->
-
-	<main id="mainUsers" style="display: none;">
-		<h1>Les partenaires</h1>
-		<!-- Analyses -->
-		<div class="analyse">
-			<div class="sales">
-				<div class="status">
-					<div class="info">
-						<h3>Nombre de partenaire</h3>
-						<h1>608</h1>
-					</div>
+			<div class="new-users">
+				<h2>Tous les partenaires</h2>
+				<div id="searchUsersZone">
+					<input type="search" placeholder="Rechercher un partenaire..."
+						id="searchUsers" />
+					<button type="submit">
+						<span class="material-icons-sharp"> search </span>
+					</button>
+				</div>
+				<div class="user-list">
+					<ui:repeat value="#{accountControllerBean.partners}" var="partner">
+						<div class="user">
+							<img src="images/profile-2.jpg" />
+							<h2>#{partner.firstName}</h2>
+							<p>#{partner.lastName}</p>
+							<!-- Autres informations sur le partenaire à afficher dans la carte -->
+						</div>
+					</ui:repeat>
 				</div>
 			</div>
-		</div>
+		</main>
 
-		<div class="new-users">
-			<h2>Tous les partenaires</h2>
-			<div id="searchUsersZone">
-				<input type="search" placeholder="Rechercher un partenaire..."
-					id="searchUsers" />
-				<button type="submit">
-					<span class="material-icons-sharp"> search </span>
+		<!-- Start of mainHistory Content -->
+
+		<main id="mainHistory" style="display: none;">
+			<div class="messages">
+				<div></div>
+			</div>
+		</main>
+
+		<!-- Right Section -->
+		<div class="right-section">
+			<div class="nav">
+				<button id="menu-btn">
+					<span class="material-icons-sharp"> menu </span>
 				</button>
+				<div class="dark-mode">
+					<span class="material-icons-sharp active"> light_mode </span> <span
+						class="material-icons-sharp"> dark_mode </span>
+				</div>
+
 			</div>
-			<div class="user-list">
-				<ui:repeat value="#{accountControllerBean.partners}" var="partner">
-					<div class="user">
-						<img src="images/profile-2.jpg" />
-						<h2>#{partner.firstName}</h2>
-						<p>#{partner.lastName}</p>
-						<!-- Autres informations sur le partenaire à afficher dans la carte -->
-					</div>
-				</ui:repeat>
-			</div>
-		</div>
-	</main>
+			<!-- End of Nav -->
 
-	<!-- Start of mainHistory Content -->
-
-	<main id="mainHistory" style="display: none;">
-		<div class="messages">
-			<div></div>
-		</div>
-	</main>
-
-	<!-- Right Section -->
-	<div class="right-section">
-		<div class="nav">
-			<button id="menu-btn">
-				<span class="material-icons-sharp"> menu </span>
-			</button>
-			<div class="dark-mode">
-				<span class="material-icons-sharp active"> light_mode </span> <span
-					class="material-icons-sharp"> dark_mode </span>
-			</div>
-
-		</div>
-		<!-- End of Nav -->
-
-		<div class="user-profile">
-			<div class="logo">
-				<img src="images/IMG_0434.jpg" />
-				<h3>
-					Bonjour
-					<h:inputText value="#{loginControllerBean.userFirstName}" />
-				</h3>
-			</div>
-		</div>
-
-		<div class="reminders">
-			<div class="header">
-				<h2>Notes</h2>
-				<span class="material-icons-sharp"> notifications_none </span>
-				<div id="rightNotifNumber" style="display: none;">
-					<h4>1</h4>
+			<div class="user-profile">
+				<div class="logo">
+					<img src="images/IMG_0434.jpg" />
+					<h3>
+						Bonjour
+						<h:inputText value="#{loginControllerBean.userFirstName}" />
+					</h3>
 				</div>
 			</div>
-			<div id="rightContainerNotif">
-				<div class="notification">
-					<div class="icon">
-						<span class="material-icons-sharp"> priority_high </span>
+
+			<div class="reminders">
+				<div class="header">
+					<h2>Notes</h2>
+					<span class="material-icons-sharp"> notifications_none </span>
+					<div id="rightNotifNumber" style="display: none;">
+						<h4>1</h4>
 					</div>
-					<div class="content">
-						<div class="info">
-							<h3>Tâches à faire</h3>
-							<small class="text_muted"> Gestion du remboursement </small>
+				</div>
+				<div id="rightContainerNotif">
+					<div class="notification">
+						<div class="icon">
+							<span class="material-icons-sharp"> priority_high </span>
 						</div>
-						<span class="material-icons-sharp closeCrossNotes"> close </span>
-					</div>
-				</div>
-
-				<div class="notification deactive">
-					<div class="icon">
-						<span class="material-icons-sharp"> priority_high </span>
-					</div>
-					<div class="content">
-						<div class="info">
-							<h3>Tâches à faire</h3>
-							<small class="text_muted"> Suppression d'un utilisateur </small>
+						<div class="content">
+							<div class="info">
+								<h3>Tâches à faire</h3>
+								<small class="text_muted"> Gestion du remboursement </small>
+							</div>
+							<span class="material-icons-sharp closeCrossNotes"> close
+							</span>
 						</div>
-						<span class="material-icons-sharp closeCrossNotes"> close </span>
+					</div>
+
+					<div class="notification deactive">
+						<div class="icon">
+							<span class="material-icons-sharp"> priority_high </span>
+						</div>
+						<div class="content">
+							<div class="info">
+								<h3>Tâches à faire</h3>
+								<small class="text_muted"> Suppression d'un utilisateur
+								</small>
+							</div>
+							<span class="material-icons-sharp closeCrossNotes"> close
+							</span>
+						</div>
+					</div>
+
+					<div class="notification-add add-reminder">
+						<div>
+							<span class="material-icons-sharp"> add </span>
+							<h3>Ajouter une note</h3>
+						</div>
 					</div>
 				</div>
 
-				<div class="notification-add add-reminder">
-					<div>
-						<span class="material-icons-sharp"> add </span>
-						<h3>Ajouter une note</h3>
-					</div>
-				</div>
 			</div>
 
 		</div>
-
-	</div>
 
 
 	</div>
