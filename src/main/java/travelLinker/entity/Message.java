@@ -101,6 +101,8 @@ public class Message {
 	    this.messageResume = messageResume;
 	}
 
-	
+	public Long getId() {
+		return id;
+	}
     
 }

@@ -37,29 +37,42 @@ public class ConversationDao {
 			message.setRecepientId(idRecipient);
 			entityManager.persist(message);
 		}
-		// System.out.println("Message introuvbale");
-
 	}
-
-
 
 	public String getEmail() {
 		String EmailSender = SessionUtils.getUserEmail();
 		return EmailSender;
 	}
-	
 
 	public List<Message> getReceivedMessages(String recipientEmail) {
-	    TypedQuery<Message> query = entityManager.createQuery(
-	        "SELECT m FROM Message m WHERE m.recipientEmail = :recipientEmail", Message.class);
-	    query.setParameter("recipientEmail", recipientEmail);
-	    return query.getResultList();
+		TypedQuery<Message> query = entityManager
+				.createQuery("SELECT m FROM Message m WHERE m.recipientEmail = :recipientEmail", Message.class);
+		query.setParameter("recipientEmail", recipientEmail);
+		return query.getResultList();
 	}
 
 	public List<Message> getSentMessages(String senderEmail) {
-	    TypedQuery<Message> query = entityManager.createQuery(
-	        "SELECT m FROM Message m WHERE m.senderEmail = :senderEmail", Message.class);
-	    query.setParameter("senderEmail", senderEmail);
-	    return query.getResultList();
+		TypedQuery<Message> query = entityManager
+				.createQuery("SELECT m FROM Message m WHERE m.senderEmail = :senderEmail", Message.class);
+		query.setParameter("senderEmail", senderEmail);
+		return query.getResultList();
+	}
+
+	public List<Message> getAllMessages(String senderEmail, String recipientEmail) {
+		TypedQuery<Message> query = entityManager.createQuery(
+				"SELECT m FROM Message m WHERE m.senderEmail = :senderEmail OR m.recipientEmail = :recipientEmail",
+				Message.class);
+		query.setParameter("senderEmail", senderEmail);
+		query.setParameter("recipientEmail", recipientEmail);
+		return query.getResultList();
+	}
+
+	public void deleteMessage(Long messageId) {
+
+		Message message = entityManager.find(Message.class, messageId);
+
+		if (message != null) {
+			entityManager.remove(message);
+		}
 	}
 }

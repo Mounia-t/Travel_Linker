@@ -4,10 +4,825 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
-<h:head>
-	<title>Login: Index</title>
-</h:head>
-<h:body>
-<h1>Je suis partenaire</h1>
-</h:body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" href="./css/dashboardPartner.css">
+    <title>Dashboard</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- Sidebar Section -->
+        <aside>
+            <div class="toggle">
+                <div class="logo">
+                    <img src="images/PHOTO-2023-07-03-17-06-30.jpg">
+                    <h2></h2>
+                </div>
+                <div class="close" id="close-btn">
+                    <span class="material-icons-sharp">
+                        close
+                    </span>
+                </div>
+            </div>
+            <div class="sidebar">
+                <a href="#" id="dashboardBtn" class="active">
+                    <span class="material-icons-sharp">
+                        dashboard
+                    </span>
+                    <h3>Dashboard</h3>
+                </a>
+                <a href="#" id="profileBtn">
+                    <span class="material-icons-sharp">
+                        person_outline
+                    </span>
+                    <h3>Mon profil</h3>
+                </a>
+                <a href="#" id="usersBtn">
+                    <span class="material-icons-sharp">
+                        group
+                    </span>
+                    <h3>Mes services</h3>
+                </a>
+                <a href="#" id="listServicesBtn">
+                    <span class="material-icons-sharp">
+                        format_list_bulleted
+                    </span>
+                    <h3>Liste</h3>
+                </a>
+                <a href="#" id="addServicesBtn">
+                    <span class="material-icons-sharp">
+                        add_circle_outline
+                    </span>
+                    <h3>Créer</h3>
+                </a>
+                <a href="#" id="analyticsBtn">
+                    <span class="material-icons-sharp">
+                        insights
+                    </span>
+                    <h3>Analytics</h3>
+                </a>
+                <a href="#" id="messagesBtn">
+                    <span class="material-icons-sharp">
+                        mail
+                    </span>
+                    <h3>Messages</h3>
+                </a>
+                <a href="#">
+                    <span class="material-icons-sharp">
+                        logout
+                    </span>
+                    <h3>Déconnexion</h3>
+                </a>
+            </div>
+        </aside>
+        <!-- End of Sidebar Section -->
+        <!-- Main content Dashboard -->
+        <main id="mainDashboard">
+            <h1>Dashboard</h1>
+            <!-- Analyses -->
+            <div class="analyse fade-in-bottom">
+                <div class="sales">
+                    <div class="status">
+                        <div class="info">
+                            <h3>Ventes totales</h3>
+                            <h1>1M</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="visits">
+                    <div class="status">
+                        <div class="info">
+                            <h3>Nombre d'abonnement</h3>
+                            <h1>24k</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End of Analyses -->
+
+            <!-- New Users Section -->
+            <div class="new-users fade-in-bottom">
+                <h2>Nouveaux travel planners</h2>
+                <div class="user-list">
+                    <div class="user">
+                        <img src="images/profile-2.jpg">
+                        <h2>Jack</h2>
+                        <p>54 Min Ago</p>
+                    </div>
+                    <div class="user">
+                        <img src="images/profile-3.jpg">
+                        <h2>Amir</h2>
+                        <p>3 Hours Ago</p>
+                    </div>
+                    <div class="user">
+                        <img src="images/profile-4.jpg">
+                        <h2>Ember</h2>
+                        <p>6 Hours Ago</p>
+                    </div>
+                    <div class="user">
+                        <img src="images/plus.png">
+                        <h2>More</h2>
+                        <p>New User</p>
+                    </div>
+                </div>
+            </div>
+            <!-- End of New Users Section -->
+
+            <!-- Recent Orders Table -->
+
+            <!-- End of Recent Orders -->
+
+        </main>
+        <!-- Main Content -->
+        <main id="mainAnalytics" style="display: none;">
+            <h1>Analytics</h1>
+            <!-- Analyses -->
+            <div class="analyse">
+                <div class="sales">
+                    <div class="status">
+                        <div class="info">
+                            <h3>Chiffre d'affaire total</h3>
+                            <h1>1M€</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="visits">
+                    <div class="status">
+                        <div class="info">
+                            <h3>Type d'abonnement</h3>
+                            <h1>Premium</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="sales">
+                    <div class="status">
+                        <div class="info">
+                            <h3>Nombre de réservations</h3>
+                            <h1>42</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="visits">
+                    <div class="status">
+                        <div class="info">
+                            <h3>Nombre de partenaires</h3>
+                            <h1>283</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End of Analyses -->
+
+            <!-- New Users Section -->
+            <div class="new-users">
+                <h2>Nouve</h2>
+                <div class="user-list">
+                    <div class="user">
+                        <img src="images/profile-2.jpg">
+                        <h2>Jack</h2>
+                        <p>54 Min Ago</p>
+                    </div>
+                    <div class="user">
+                        <img src="images/profile-3.jpg">
+                        <h2>Amir</h2>
+                        <p>3 Hours Ago</p>
+                    </div>
+                    <div class="user">
+                        <img src="images/profile-4.jpg">
+                        <h2>Ember</h2>
+                        <p>6 Hours Ago</p>
+                    </div>
+                    <div class="user">
+                        <img src="images/plus.png">
+                        <h2>More</h2>
+                        <p>New User</p>
+                    </div>
+                </div>
+            </div>
+            <!-- End of New Users Section -->
+
+            <!-- Recent Orders Table -->
+
+
+        </main>
+
+        <!-- End of MainAnalytics Content -->
+
+        <!-- Start of MainMessages Content -->
+
+        <main id="mainMessages" style="display: none;">
+            <div class="messages">
+                <h1>Messages</h1>
+                <div class="analyse">
+                    <div class="sales">
+                        <div class="status">
+                            <div class="info">
+                                <h3>Nombre de messages non lus</h3>
+                                <h1>5</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="visits">
+                        <div class="status">
+                            <div class="info">
+                                <h3>Nombre de messages totals</h3>
+                                <h1>2</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="new-users flexingRB">
+                <div class="radio-inputs">
+                    <label class="radio">
+                        <input type="radio" name="radio" id="allMsg">
+                        <span class="name">Tous</span>
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="radio" id="readMsg">
+                        <span class="name">Lus</span>
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="radio" id="unreadMsg">
+                        <span class="name">Non lus</span>
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="radio" id="sentMsg">
+                        <span class="name">Envoyés</span>
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="radio" id="writeMsg">
+                        <span class="name">Écrire</span>
+                    </label>
+                </div>
+                <div id="allMsgSection">
+
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Expéditeur</th>
+                                    <th>Objet</th>
+                                    <th>Résumé</th>
+                                    <th>Statut</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Le Gourmet Parisien</td>
+                                    <td>Restaurant</td>
+                                    <td>Restaurant français raffiné au cœur de Paris</td>
+                                    <td>75 €</td>
+                                    <td> <button class="readBtn">Lire</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Étoile Hôtel</td>
+                                    <td>Hébergement</td>
+                                    <td>Hôtel de luxe cinq étoiles avec vue panoramique</td>
+                                    <td>300 €</td>
+                                    <td> <button class="readBtn">Lire</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Airport Shuttle</td>
+                                    <td>Transport</td>
+                                    <td>Service de navette entre l'aéroport et le centre-ville</td>
+                                    <td>20 €</td>
+                                    <td> <button class="readBtn">Lire</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Sakura Sushi</td>
+                                    <td>Restaurant</td>
+                                    <td>Restaurant japonais spécialisé dans les sushis</td>
+                                    <td>40 €</td>
+                                    <td> <button class="readBtn">Lire</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Mountain Lodge</td>
+                                    <td>Hébergement</td>
+                                    <td>Charmante auberge de montagne pour les amoureux de la nature</td>
+                                    <td>110 €</td>
+                                    <td> <button class="readBtn">Lire</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Mountain Lodge</td>
+                                    <td>Hébergement</td>
+                                    <td>Charmante auberge de montagne pour les amoureux de la nature</td>
+                                    <td>110 €</td>
+                                    <td> <button class="readBtn">Lire</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="readMsgSection">
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Expéditeur</th>
+                                    <th>Objet</th>
+                                    <th>Résumé</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Le Gourmet Parisien</td>
+                                    <td>Restaurant</td>
+                                    <td>Restaurant français raffiné au cœur de Paris</td>
+                                    <td> <button class="readBtn">Lire</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Étoile Hôtel</td>
+                                    <td>Hébergement</td>
+                                    <td>Hôtel de luxe cinq étoiles avec vue panoramique</td>
+                                    <td> <button class="readBtn">Lire</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Airport Shuttle</td>
+                                    <td>Transport</td>
+                                    <td>Service de navette entre l'aéroport et le centre-ville</td>
+                                    <td> <button class="readBtn">Lire</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Sakura Sushi</td>
+                                    <td>Restaurant</td>
+                                    <td>Restaurant japonais spécialisé dans les sushis</td>
+                                    <td> <button class="readBtn">Lire</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Mountain Lodge</td>
+                                    <td>Hébergement</td>
+                                    <td>Charmante auberge de montagne pour les amoureux de la nature</td>
+                                    <td> <button class="readBtn">Lire</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="unreadMsgSection">
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Expéditeur</th>
+                                    <th>Objet</th>
+                                    <th>Résumé</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Le Gourmet Parisien</td>
+                                    <td>Restaurant</td>
+                                    <td>Restaurant français raffiné au cœur de Paris</td>
+                                    <td> <button class="readBtn">Lire</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Étoile Hôtel</td>
+                                    <td>Hébergement</td>
+                                    <td>Hôtel de luxe cinq étoiles avec vue panoramique</td>
+                                    <td> <button class="readBtn">Lire</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Airport Shuttle</td>
+                                    <td>Transport</td>
+                                    <td>Service de navette entre l'aéroport et le centre-ville</td>
+                                    <td> <button class="readBtn">Lire</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Sakura Sushi</td>
+                                    <td>Restaurant</td>
+                                    <td>Restaurant japonais spécialisé dans les sushis</td>
+                                    <td> <button class="readBtn">Lire</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Mountain Lodge</td>
+                                    <td>Hébergement</td>
+                                    <td>Charmante auberge de montagne pour les amoureux de la nature</td>
+                                    <td> <button class="readBtn">Lire</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="sentMsgSection">
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Destinataire</th>
+                                    <th>Objet</th>
+                                    <th>Résumé</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Le Gourmet Parisien</td>
+                                    <td>Restaurant</td>
+                                    <td>Restaurant français raffiné au cœur de Paris</td>
+                                    <td> <button class="readBtn">Lire</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Étoile Hôtel</td>
+                                    <td>Hébergement</td>
+                                    <td>Hôtel de luxe cinq étoiles avec vue panoramique</td>
+                                    <td> <button class="readBtn">Lire</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Airport Shuttle</td>
+                                    <td>Transport</td>
+                                    <td>Service de navette entre l'aéroport et le centre-ville</td>
+                                    <td> <button class="readBtn">Lire</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Sakura Sushi</td>
+                                    <td>Restaurant</td>
+                                    <td>Restaurant japonais spécialisé dans les sushis</td>
+                                    <td> <button class="readBtn">Lire</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Mountain Lodge</td>
+                                    <td>Hébergement</td>
+                                    <td>Charmante auberge de montagne pour les amoureux de la nature</td>
+                                    <td> <button class="readBtn">Lire</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="writeMsgSection">
+                    <div class="new-users-messages">
+                        <h2>Ecrire un message</h2>
+                        <div class="user-listMessages" style="display: block;">
+                            <div class="radio-inputs">
+                                <label class="radio">
+                                    <input type="radio" name="radio" id="allMsg">
+                                    <span class="name">Partenaire</span>
+                                </label>
+                                <label class="radio">
+                                    <input type="radio" name="radio" id="readMsg">
+                                    <span class="name">Travel planner</span>
+                                </label>
+                                <label class="radio">
+                                    <input type="radio" name="radio" id="unreadMsg">
+                                    <span class="name">Client</span>
+                                </label>
+                                <label class="radio">
+                                    <input type="radio" name="radio" id="sentMsg">
+                                    <span class="name">Administration</span>
+                                </label>
+                            </div>
+                            <input type="text" id="inputMessageDest" placeholder="Choisir un destinataire..." required>
+                            <input type="text" id="inputMessageResume" placeholder="Écrire un titre..." required>
+                            <input type="text" id="inputMessageDetails" placeholder="Écrire le corps du message..."
+                                required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </main>
+
+        <!-- Start of mainProfile Content -->
+
+        <main id="mainProfile" style="display: none;">
+            <div class="messages">
+                <h1>Mon profil</h1>
+                <div class="analyse">
+                    <div class="sales">
+                        <div class="status">
+                            <div class="info logo">
+                                <img src="images/IMG_0434.jpg">
+                                <h1>Frédéric Dupin</h1>
+                            </div>
+                        </div>
+                        <span class="material-icons-sharp">
+                            upload
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="new-users">
+                <h2>Mes informations personnelles</h2>
+                <form action="post">
+                    <div class="user-listMessages" style="display: block;">
+                        <input type="text" id="inputName" placeholder="Dupin...">
+                        <input type="text" id="inputFirstName" placeholder="Frédéric...">
+                        <input type="text" id="inputAddress" placeholder="2 rue de la liberté, 75017 paris, France">
+                        <input type="text" id="inputMail" placeholder="frederic.dupin@gmail.com...">
+                        <input type="password" id="inputPwd" placeholder="Rentrez votre nouveau mot de passe...">
+                        <input type="text" id="inputPhoneNumber" placeholder="0601020304">
+                        <input type="text" id="inputSiret" placeholder="362 521 879 00034">
+                    </div>
+                    <div class="new-usersButton">
+                        <button type=" button" id="createAdmin">Changer mot de passe</button>
+                        <button type="button" id="saveInfos">Enregistrer</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+
+        <!-- Start of mainUsers Content -->
+
+        <main id="mainUsers" style="display: none;">
+            <h1>Mes services</h1>
+            <!-- Analyses -->
+            <div class="analyse">
+                <div class="sales">
+                    <div class="status">
+                        <div class="info">
+                            <h3>Nombre de partenaire</h3>
+                            <h1>608</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="new-users">
+                <h2>Tous mes services</h2>
+                <div id="searchUsersZone">
+                    <input type="search" placeholder="Rechercher un service..." id="searchUsers">
+                    <button type="submit"><span class="material-icons-sharp">
+                            search
+                        </span></button>
+                </div>
+                <div class="user-list">
+                    <div class="user">
+                        <img src="images/profile-2.jpg">
+                        <h2>Jack</h2>
+                        <p>54 Min Ago</p>
+                    </div>
+                    <div class="user">
+                        <img src="images/profile-3.jpg">
+                        <h2>Amir</h2>
+                        <p>3 Hours Ago</p>
+                    </div>
+                    <div class="user">
+                        <img src="images/profile-4.jpg">
+                        <h2>Ember</h2>
+                        <p>6 Hours Ago</p>
+                    </div>
+                    <div class="user">
+                        <img src="images/plus.png">
+                        <h2>More</h2>
+                        <p>New User</p>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Start of mainHistory Content -->
+
+        <main id="mainAddServices" style="display: none;">
+            <div class="messages">
+                <h1>Création de service</h1>
+                <div class="new-users flexingRB">
+                    <div class="radio-inputs">
+                        <label class="radio">
+                            <input type="radio" name="radio" id="rbRestaurant">
+                            <span class="name">Restaurant</span>
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="radio" id="rbAccomo">
+                            <span class="name">Hébergement</span>
+                        </label>
+
+                        <label class="radio">
+                            <input type="radio" name="radio" id="rbTrans">
+                            <span class="name">Transport</span>
+                        </label>
+                    </div>
+                    <form action="post" id="creationFormRest">
+                        <div class="user-listMessages">
+                            <input type="text" id="inputName" placeholder="Nom...">
+                            <input type="text" id="inputFirstName" placeholder="Type de service...">
+                            <input type="number" id="inputAddress" placeholder="Prix du service...">
+                            <input type="text" id="inputMail" placeholder="Pays...">
+                            <input type="text" id="inputPwd" placeholder="Localisation...">
+                            <input type="text" id="inputPhoneNumber" placeholder="Date d'arrivée...">
+                            <input type="text" id="inputSiret" placeholder="Date de départ...">
+                            <input type="text" id="inputPhoneNumber" placeholder="Description...">
+                            <input type="text" id="inputSiret" placeholder="Type de restaurant...">
+                        </div>
+                        <div class="new-usersButton">
+                            <button type=" button" id="createAdmin">Vider les champs</button>
+                            <button type="button" id="saveInfos">Créer le restaurant</button>
+                        </div>
+                    </form>
+
+                    <form action="post" id="creationFormAccom">
+                        <div class="user-listMessages">
+                            <input type="text" id="inputName" placeholder="Nom...">
+                            <input type="text" id="inputFirstName" placeholder="Type de service...">
+                            <input type="number" id="inputAddress" placeholder="Prix du service...">
+                            <input type="text" id="inputMail" placeholder="Pays...">
+                            <input type="text" id="inputPwd" placeholder="Localisation...">
+                            <input type="text" id="inputPhoneNumber" placeholder="Date d'arrivée...">
+                            <input type="text" id="inputSiret" placeholder="Date de départ...">
+                            <input type="text" id="inputPhoneNumber" placeholder="Description...">
+                            <input type="text" id="inputSiret" placeholder="Type de d'hébergement...">
+                        </div>
+                        <div class="new-usersButton">
+                            <button type=" button" id="createAdmin">Vider les champs</button>
+                            <button type="button" id="saveInfos">Créer l'hébergement</button>
+                        </div>
+                    </form>
+
+                    <form action="post" id="creationFormTrans">
+                        <div class="user-listMessages">
+                            <input type="text" id="inputName" placeholder="Nom...">
+                            <input type="text" id="inputFirstName" placeholder="Type de service...">
+                            <input type="number" id="inputAddress" placeholder="Prix du service...">
+                            <input type="text" id="inputMail" placeholder="Pays...">
+                            <input type="text" id="inputPwd" placeholder="Localisation...">
+                            <input type="text" id="inputPhoneNumber" placeholder="Date d'arrivée...">
+                            <input type="text" id="inputSiret" placeholder="Date de départ...">
+                            <input type="text" id="inputPhoneNumber" placeholder="Description...">
+                            <input type="text" id="inputSiret" placeholder="Type de transport...">
+                        </div>
+                        <div class="new-usersButton">
+                            <button type=" button" id="createAdmin">Vider les champs</button>
+                            <button type="button" id="saveInfos">Créer le transport</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+
+
+        <!-- Start of mainHistory Content -->
+
+        <main id="mainListServices" style="display: none;">
+            <div class="messages">
+                <h1>Liste des services</h1>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Nom du service</th>
+                                <th>Type de service</th>
+                                <th>Description</th>
+                                <th>Prix</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td>Le Gourmet Parisien</td>
+                                <td>Restaurant</td>
+                                <td class="fourthTD">Restaurant français raffiné au cœur de Paris</td>
+                                <td>75 €</td>
+                                <td> <button class="readBtn">Modifier</button></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Étoile Hôtel</td>
+                                <td>Hébergement</td>
+                                <td class="fourthTD">Hôtel de luxe cinq étoiles avec vue panoramique</td>
+                                <td>300 €</td>
+                                <td> <button class="readBtn">Modifier</button></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Airport Shuttle</td>
+                                <td>Transport</td>
+                                <td class="fourthTD">Service de navette entre l'aéroport et le centre-ville</td>
+                                <td>20 €</td>
+                                <td> <button class="readBtn">Modifier</button></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Sakura Sushi</td>
+                                <td>Restaurant</td>
+                                <td class="fourthTD">Restaurant japonais spécialisé dans les sushis</td>
+                                <td>40 €</td>
+                                <td> <button class="readBtn">Modifier</button></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Mountain Lodge</td>
+                                <td>Hébergement</td>
+                                <td class="fourthTD">Charmante auberge de montagne pour les amoureux de la nature</td>
+                                <td>110 €</td>
+                                <td> <button class="readBtn">Modifier</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <button class="deleteBtn">Supprimer</button>
+            </div>
+        </main>
+
+        <!-- Right Section -->
+        <div class="right-section">
+            <div class="nav">
+                <button id="menu-btn">
+                    <span class="material-icons-sharp">
+                        menu
+                    </span>
+                </button>
+                <div class="dark-mode">
+                    <span class="material-icons-sharp active">
+                        light_mode
+                    </span>
+                    <span class="material-icons-sharp">
+                        dark_mode
+                    </span>
+                </div>
+
+            </div>
+            <!-- End of Nav -->
+
+            <div class="user-profile">
+                <div class="logo">
+                    <img src="images/IMG_0434.jpg">
+                    <h3>Bonjour, <b>{User}</b></h3>
+                </div>
+            </div>
+
+            <div class="reminders">
+                <div class="header">
+                    <h2>Notes</h2>
+                    <span class="material-icons-sharp">
+                        notifications_none
+                    </span>
+                    <div id="rightNotifNumber" style="display: none;">
+                        <h4>1</h4>
+                    </div>
+                </div>
+                <div id="rightContainerNotif">
+                    <div class="notification">
+                        <div class="icon">
+                            <span class="material-icons-sharp">
+                                priority_high
+                            </span>
+                        </div>
+                        <div class="content">
+                            <div class="info">
+                                <h3>Tâches à faire</h3>
+                                <small class="text_muted">
+                                    Gestion du remboursement
+                                </small>
+                            </div>
+                            <span class="material-icons-sharp closeCrossNotes">
+                                close
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="notification deactive">
+                        <div class="icon">
+                            <span class="material-icons-sharp">
+                                priority_high
+                            </span>
+                        </div>
+                        <div class="content">
+                            <div class="info">
+                                <h3>Tâches à faire</h3>
+                                <small class="text_muted">
+                                    Suppression d'un utilisateur
+                                </small>
+                            </div>
+                            <span class="material-icons-sharp closeCrossNotes">
+                                close
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="notification-add add-reminder">
+                        <div>
+                            <span class="material-icons-sharp">
+                                add
+                            </span>
+                            <h3>Ajouter une note</h3>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <script src="./js/dashboardPartner.js"></script>
+</body>
+
 </html>

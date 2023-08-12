@@ -12,6 +12,7 @@ import javax.persistence.TypedQuery;
 
 import travelLinker.entity.Account;
 import travelLinker.entity.RoleUser;
+import travelLinker.entity.TravelPlanner;
 import travelLinker.utils.PasswordUtils;
 import travelLinker.viewModel.AccountViewModel;
 
@@ -55,6 +56,19 @@ public class LoginDao {
             return null; // Ou lancez une exception appropriée
         }
     
+    }
+    
+    public TravelPlanner findTravelPlanner(String email) {
+        try {
+            TypedQuery<TravelPlanner> query = entityManager.createQuery(
+                "SELECT tp FROM TravelPlanner tp WHERE tp.email = :email", TravelPlanner.class)
+                .setParameter("email", email);
+
+            return query.getSingleResult();
+        } catch (NoResultException ex) {
+            System.out.println("Utilisateur non trouvé dans la base de données");
+            return null; // Ou lancez une exception appropriée
+        }
     }
 
     }

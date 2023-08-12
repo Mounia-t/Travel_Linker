@@ -45,8 +45,22 @@ public class ConversationController implements Serializable{
 			    String senderEmail = (String) session.getAttribute("email");
 			    System.out.println(senderEmail);
 			    return conversationDao.getSentMessages(senderEmail);
-			
-	 }
+			}
+	 public List<Message> displayMessages() {
+		    HttpSession session = SessionUtils.getSession();
+		    String senderEmail = (String) session.getAttribute("email");
+		    String recipientEmail = (String) session.getAttribute("recipientEmail"); // Assurez-vous d'obtenir le destinataire approprié
+		    System.out.println(senderEmail);
+		    System.out.println(recipientEmail);
+
+		    return conversationDao.getAllMessages(senderEmail, recipientEmail);
+		}
+
+	 public void deleteMessage(Long id) {
+
+			conversationDao.deleteMessage(id);
+			System.out.println("Message deleted with id : " + id);
+		}
 	public AccountViewModel getAccVM() {
 		return accVM;
 	}

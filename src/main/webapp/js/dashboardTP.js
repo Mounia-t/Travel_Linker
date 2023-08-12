@@ -41,10 +41,6 @@ const activeLink = document.querySelector('.sidebar a.active');
 if (activeLink) {
     activeLink.classList.add('active');
 }
-/*------------------------Zone affichage main----------------------------*/
-
-
-
 
 /*------------------------Zone affichage main----------------------------*/
 
@@ -56,6 +52,7 @@ const messagesBtn = document.getElementById('messagesBtn');
 const addBtn = document.getElementById('addBtn');
 const profileBtn = document.getElementById('profileBtn');
 const dashboardBtn = document.getElementById('dashboardBtn')
+const managedBtn = document.getElementById('managedResaBtn')
 
 // Récupération des éléments de contenu
 const mainAnalytics = document.getElementById('mainAnalytics');
@@ -65,10 +62,11 @@ const mainHistory = document.getElementById('mainHistory');
 const mainAdd = document.getElementById('mainAdd');
 const mainProfile = document.getElementById('mainProfile');
 const mainDashboard = document.getElementById('mainDashboard')
+const mainManagedResa = document.getElementById('mainManagedResa')
 
 // Fonction pour masquer tous les contenus
 function hideMainContent() {
-    const contenus = [mainAnalytics, mainMessages, mainUsers, mainProfile, mainHistory, mainDashboard];
+    const contenus = [mainAnalytics, mainMessages, mainUsers, mainProfile, mainHistory, mainDashboard, mainManagedResa];
     contenus.forEach(contenu => {
         contenu.style.display = 'none';
     });
@@ -109,95 +107,9 @@ dashboardBtn.addEventListener('click', () => {
     showMainContent(mainDashboard);
 });
 
-/*--------------------------------Zone affihage Messages non lus--------------------------------------*/
-
-// Récupération des éléments
-const userLists = document.querySelectorAll('#mainMessages  .user-list-unreadMessages');
-const showAllButton = document.getElementById('showUnreadMessagesBtn');
-const newUsersDiv = document.querySelector('.new-users');
-let isShowingAll = false;
-
-// Fonction pour afficher uniquement les trois premières div user-list
-function afficherDeuxPremieresDiv() {
-    for (let i = 0; i < userLists.length; i++) {
-        if (i < 2) {
-            userLists[i].style.display = 'flex';
-        } else {
-            userLists[i].style.display = 'none';
-        }
-    }
-}
-
-// Appel de la fonction pour afficher les trois premières div
-afficherDeuxPremieresDiv();
-
-// Fonction pour afficher toutes les div
-function afficherToutesLesDiv() {
-    userLists.forEach(userList => {
-        userList.style.display = 'flex';
-    });
-}
-
-// Fonction pour basculer entre l'affichage des trois premières div et l'affichage de toutes les div
-function toggleAffichageDiv() {
-    if (isShowingAll) {
-        afficherDeuxPremieresDiv();
-        showAllButton.textContent = 'Afficher tout';
-        isShowingAll = false;
-    } else {
-        afficherToutesLesDiv();
-        showAllButton.textContent = 'Retour';
-        isShowingAll = true;
-    }
-}
-
-// Gestionnaire d'événement pour le bouton "Afficher tout / Retour"
-showAllButton.addEventListener('click', toggleAffichageDiv);
-
-/*--------------------------------Zone affihage all Messages--------------------------------------*/
-
-// Récupération des éléments
-const userListsAllMessages = document.querySelectorAll('#mainMessages  .user-list-AllMessages');
-const showAllButtonAllMessages = document.getElementById('showAllMessagesBtn');
-const newUsersDivAllMessages = document.querySelector('.new-users');
-let isShowingAllMessages = false;
-
-// Fonction pour afficher uniquement les trois premières div user-list
-function afficherDeuxPremieresDiv2() {
-    for (let i = 0; i < userListsAllMessages.length; i++) {
-        if (i < 2) {
-            userListsAllMessages[i].style.display = 'flex';
-        } else {
-            userListsAllMessages[i].style.display = 'none';
-        }
-    }
-}
-
-// Appel de la fonction pour afficher les trois premières div
-afficherDeuxPremieresDiv2();
-
-// Fonction pour afficher toutes les div
-function afficherToutesLesDiv2() {
-    userListsAllMessages.forEach(userList => {
-        userList.style.display = 'flex';
-    });
-}
-
-// Fonction pour basculer entre l'affichage des trois premières div et l'affichage de toutes les div
-function toggleAffichageDiv2() {
-    if (isShowingAllMessages) {
-        afficherDeuxPremieresDiv2();
-        showAllButtonAllMessages.textContent = 'Afficher tout';
-        isShowingAllMessages = false;
-    } else {
-        afficherToutesLesDiv2();
-        showAllButtonAllMessages.textContent = 'Retour';
-        isShowingAllMessages = true;
-    }
-}
-
-// Gestionnaire d'événement pour le bouton "Afficher tout / Retour"
-showAllButtonAllMessages.addEventListener('click', toggleAffichageDiv2);
+managedBtn.addEventListener('click', () => {
+    showMainContent(mainManagedResa);
+});
 
 /*---------------------------------------Zone de glisser déposer ---------------------------------------------*/
 
@@ -324,3 +236,126 @@ function setupNotificationDeletion() {
 setupDraggableNotifications();
 setupNotificationAdd();
 setupNotificationDeletion();
+
+
+/*----------------------Zone radioButton service------------------------*/
+
+document.addEventListener('DOMContentLoaded', function () {
+    const listTravel = document.getElementById('listTravel');
+    const createTravel = document.getElementById('createTravel');
+
+    const listTravelSection = document.getElementById('ListTravelSection');
+    const createTravelSection = document.getElementById('createTravelSection');
+
+    // Fonction pour masquer tous les sections
+    function hideAllSections() {
+        const sections = [listTravelSection, createTravelSection];
+        sections.forEach(section => {
+            section.style.display = 'none';
+        });
+    }
+
+    // Fonction pour afficher un formulaire spécifique
+    function showSection(section) {
+        hideAllSections();
+        if (listTravelSection) {
+            section.style.display = 'flex';
+        } else if (createTravelSection) {
+            section.style.display = 'block';
+        }
+        section.classList.add('fade-in-bottom'); // Ajout de la classe pour l'animation fade-in
+    }
+
+    // Par défaut, masquer tous les formulaires
+    hideAllSections();
+
+    // Gestion des événements de clic sur les radios
+    listTravel.addEventListener('click', () => {
+        showSection(listTravelSection);
+    });
+
+    createTravel.addEventListener('click', () => {
+        showSection(createTravelSection);
+    });
+});
+
+/*--------------------------Zone survol des tPCard---------------------------*/
+
+// Récupération de tous les éléments tPCard
+const tPCards = document.querySelectorAll('.tPCard');
+
+// Fonction pour réinitialiser la position de lTSBtnContainer
+function resetBtnContainerPosition(btnContainer) {
+    btnContainer.style.bottom = '30px';
+}
+
+// Ajout des gestionnaires d'événements à chaque tPCard
+tPCards.forEach(tPCard => {
+    const lTSBtnContainer = tPCard.nextElementSibling;
+    let timeoutId;
+
+    // Lorsque la souris survole tPCard
+    tPCard.addEventListener('mouseenter', () => {
+        lTSBtnContainer.style.bottom = '-30px';
+        lTSBtnContainer.style.visibility = 'visible';
+        lTSBtnContainer.style.display = 'flex';
+        clearTimeout(timeoutId); // Efface le délai de réinitialisation
+    });
+
+    // Lorsque la souris quitte tPCard
+    tPCard.addEventListener('mouseleave', () => {
+        // Définit un délai pour réinitialiser la position après 10 secondes
+        timeoutId = setTimeout(() => resetBtnContainerPosition(lTSBtnContainer), 5000);
+    });
+});
+
+/*----------------------Zone radioButton messages------------------------*/
+
+document.addEventListener('DOMContentLoaded', function () {
+    const allMsg = document.getElementById('allMsg');
+    const readMsg = document.getElementById('readMsg');
+    const unreadMsg = document.getElementById('unreadMsg');
+    const sentMsg = document.getElementById('sentMsg');
+    const writeMsg = document.getElementById('writeMsg');
+
+    const allMsgSection = document.getElementById('allMsgSection');
+    const readMsgSection = document.getElementById('readMsgSection');
+    const unreadMsgSection = document.getElementById('unreadMsgSection');
+    const sentMsgSection = document.getElementById('sentMsgSection');
+    const writeMsgSection = document.getElementById('writeMsgSection');
+
+    // Fonction pour masquer tous les sections
+    function hideAllSections() {
+        const sections = [allMsgSection, readMsgSection, unreadMsgSection, sentMsgSection, writeMsgSection];
+        sections.forEach(section => {
+            section.style.display = 'none';
+        });
+    }
+
+    // Fonction pour afficher un formulaire spécifique
+    function showSection(section) {
+        hideAllSections();
+        section.style.display = 'block';
+        section.classList.add('fade-in-bottom'); // Ajout de la classe pour l'animation fade-in
+    }
+
+    // Par défaut, masquer tous les formulaires
+    hideAllSections();
+
+    // Gestion des événements de clic sur les radios
+    allMsg.addEventListener('click', () => {
+        showSection(allMsgSection);
+    });
+    readMsg.addEventListener('click', () => {
+        showSection(readMsgSection);
+    });
+    unreadMsg.addEventListener('click', () => {
+        showSection(unreadMsgSection);
+    });
+    sentMsg.addEventListener('click', () => {
+        showSection(sentMsgSection);
+    });
+    writeMsg.addEventListener('click', () => {
+        showSection(writeMsgSection);
+    });
+});

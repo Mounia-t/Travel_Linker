@@ -97,11 +97,13 @@ public class AccountDao {
             entityManager.remove(accountBean);
         } else {
             System.out.println("Compte introuvable pour l'ID : " + accountId);
-        }}}
+        }}
 //-------------------------------------------------
 
-
-    /*public void persist(AccountViewModel accountVM) {
-        this.entityManager.persist(accountVM);
-        this.entityManager.flush();
-    }*/
+public int getTotalPartnersCount() {
+    TypedQuery<Long> query = entityManager.createQuery(
+        "SELECT COUNT(p) FROM Partner p", Long.class);
+    Long count = query.getSingleResult();
+    return count.intValue();
+}
+}
