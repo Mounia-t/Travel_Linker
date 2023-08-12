@@ -39,6 +39,10 @@ public class Item {
 	@JoinColumn(name = "cart_id_fk")
 	private Cart cart;
 
+	@ManyToOne
+	@JoinColumn(name = "subscription_id_fk")
+	private Subscription subscription;
+
 	public Long getId() {
 		return id;
 	}
@@ -111,5 +115,4 @@ public class Item {
 		this.cart = cart;
 	}
 
-	
 }
