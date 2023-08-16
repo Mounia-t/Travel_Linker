@@ -26,6 +26,8 @@ public class Subscription {
     private Date startDate;
     private Date endDate;
     private String type;
+    
+	
 	public Long getId() {
 		return id;
 	}

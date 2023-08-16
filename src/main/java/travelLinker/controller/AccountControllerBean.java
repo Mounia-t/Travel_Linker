@@ -14,6 +14,7 @@ import travelLinker.dao.AccountDao;
 
 import travelLinker.entity.Account;
 import travelLinker.entity.Partner;
+import travelLinker.entity.RoleUser;
 import travelLinker.utils.SessionUtils;
 
 import travelLinker.viewModel.AccountViewModel;
@@ -105,6 +106,11 @@ public class AccountControllerBean implements Serializable {
 	public void setAccountDao(AccountDao accountDao) {
 		this.accountDao = accountDao;
 	}
+//----------------------------------------------------------
 	
+	public boolean isUserTravelPlanner(Long userId) {
+        RoleUser userRole = accountDao.getUserRoleById(userId);
+        return userRole == RoleUser.TravelPlanner;
+    }
 	
 }

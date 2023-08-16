@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:c="http://java.sun.com/jsp/jstl/core">
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:f="http://java.sun.com/jsf/core">
 
 <h:head>
     <title>Abonnement</title>
@@ -10,38 +11,19 @@
 <h:body>
     <h1>Page d'Abonnement</h1>
 
+    <!-- Formulaire pour souscrire un nouvel abonnement -->
     <h:form>
-        <!-- Champs de saisie pour les informations d'abonnement -->
-        <h:outputLabel for="price" value="Prix : " />
-        <p:inputText id="price" value="#{subscriptionController.newSubscription.price}" />
+        <h2>Souscrire un nouvel abonnement</h2>
+        <p:inputText value="#{subscriptionController.newSubscription.price}" label="Prix" />
+         
+        <p:calendar value="#{subscriptionController.newSubscription.endDate}" label="Date de fin" />
+        <p:inputText value="#{subscriptionController.newSubscription.type}" label="Type" />
 
-        <h:outputLabel for="startDate" value="Date de début : " />
-        <p:calendar id="startDate" value="#{subscriptionController.newSubscription.startDate}" />
-
-        <h:outputLabel for="endDate" value="Date de fin : " />
-        <p:calendar id="endDate" value="#{subscriptionController.newSubscription.endDate}" />
-
-        <h:outputLabel for="type" value="Type : " />
-        <p:inputText id="type" value="#{subscriptionController.newSubscription.type}" />
-
-        <h:commandButton value="Souscrire" action="#{subscriptionController.createSubscription}" />
+        
+        <p:commandButton value="Souscrire" action="#{subscriptionController.createSubscription}" />
     </h:form>
 
-    <!-- Afficher la liste des abonnements de l'utilisateur -->
-    <h2>Vos Abonnements</h2>
-    <ul>
-          <c:forEach items="#{subscriptionController.subscriptions}" var="subscription">
-            <li>Prix : #{subscription.price}, Début : #{subscription.startDate}, Fin : #{subscription.endDate}, Type : #{subscription.type}</li>
-        </c:forEach>
-    </ul>
     
-    <!-- Formulaire de création d'abonnement -->
-<h2>Créer un nouvel abonnement</h2>
-<h:form>
-    <h:inputText value="#{subscriptionController.newSubscription.price}" />
-    <!-- Autres champs du formulaire -->
-    <h:commandButton value="Créer" action="#{subscriptionController.createSubscription}" />
-</h:form>
-    
+
 </h:body>
 </html>
