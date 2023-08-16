@@ -146,4 +146,16 @@ public class ServiceDao {
 		return entityManager.createQuery("SELECT t FROM Transport t", Transport.class).getResultList();
 	}
 
+	public Accomodation findByIdAccomodation(Long id) {
+		return entityManager.find(Accomodation.class, id);
+	}
+
+	public Restaurant findByIdRestaurant(Long id) {
+		return entityManager.find(Restaurant.class, id);
+	}
+
+	public Transport findByIdTransport(Long id) {
+		return entityManager.find(Transport.class, id);
+	}
+
 }

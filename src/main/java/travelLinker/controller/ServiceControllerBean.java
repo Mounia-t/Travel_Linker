@@ -13,7 +13,7 @@ import travelLinker.entity.Restaurant;
 import travelLinker.entity.Transport;
 import travelLinker.viewModel.ServiceViewModel;
 
-@ManagedBean(name = "serviceControllerBean")
+@ManagedBean
 @SessionScoped
 public class ServiceControllerBean implements Serializable {
 
