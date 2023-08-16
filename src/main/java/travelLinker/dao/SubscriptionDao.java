@@ -33,5 +33,7 @@ public class SubscriptionDao{
         return entityManager.createQuery("SELECT s FROM Subscription s WHERE s.account = :account", Subscription.class)
                 .setParameter("account", account)
                 .getResultList();
-    }
+   
+
+}
 }

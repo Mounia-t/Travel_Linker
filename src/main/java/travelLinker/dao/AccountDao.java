@@ -122,10 +122,26 @@ public class AccountDao {
 
 		
 	}
-}
- 
-//-------------------------------------------------
 
+//-------------------------------------------------
+public Account getAccountById(Long accountId) {
+    try {
+        return entityManager.find(Account.class, accountId);
+    } catch (Exception e) {
+        e.printStackTrace(); // Gérez les exceptions de manière appropriée
+        return null;
+    }
+}
+//---------------------------------------------------
+
+public RoleUser getUserRoleById(Long userId) {
+    Account account = getAccountById(userId);
+    if (account != null) {
+        return account.getRole();
+    }
+    return null;
+}
+}
 
     /*public void persist(AccountViewModel accountVM) {
         this.entityManager.persist(accountVM);

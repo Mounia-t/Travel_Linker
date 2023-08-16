@@ -4,12 +4,13 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import travelLinker.dao.AccountDao;
+import travelLinker.entity.Account;
 import travelLinker.entity.RoleUser;
 
 public class SessionUtils {
 	
 	public SessionUtils() {}
-	
 
     // Récupère la session HTTP actuelle
     public static HttpSession getSession() {
@@ -61,6 +62,6 @@ public class SessionUtils {
             HttpSession session = getSession();
             return session.getAttribute("address").toString();
         }
-  
-    
+        
+       
 }
