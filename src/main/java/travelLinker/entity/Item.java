@@ -3,6 +3,8 @@ package travelLinker.entity;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,6 +20,7 @@ public class Item {
 	private int quantity;
 	private Date startDate;
 	private Date endDate;
+	private float price;
 
 	@ManyToOne
 	@JoinColumn(name = "journey_id_fk")
@@ -42,6 +45,29 @@ public class Item {
 	@ManyToOne
 	@JoinColumn(name = "subscription_id_fk")
 	private Subscription subscription;
+
+	@Enumerated(EnumType.STRING)
+	private ItemType itemType;
+
+	public enum ItemType {
+		JOURNEY, ACCOMODATION, TRANSPORT, RESTAURANT, SUBSCRIPTION
+	}
+
+	public Subscription getSubscription() {
+		return subscription;
+	}
+
+	public void setSubscription(Subscription subscription) {
+		this.subscription = subscription;
+	}
+
+	public ItemType getItemType() {
+		return itemType;
+	}
+
+	public void setItemType(ItemType itemType) {
+		this.itemType = itemType;
+	}
 
 	public Long getId() {
 		return id;
@@ -113,6 +139,14 @@ public class Item {
 
 	public void setCart(Cart cart) {
 		this.cart = cart;
+	}
+
+	public float getPrice() {
+		return price;
+	}
+
+	public void setPrice(float price) {
+		this.price = price;
 	}
 
 }

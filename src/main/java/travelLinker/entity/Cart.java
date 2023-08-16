@@ -1,7 +1,9 @@
 package travelLinker.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,8 +19,8 @@ public class Cart {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@OneToMany(mappedBy = "cart")
-	private List<Item> items;
+	@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
+	private List<Item> items = new ArrayList<>();
 
 	@OneToOne
 	@JoinColumn(name = "customer_id_fk")
@@ -31,5 +33,41 @@ public class Cart {
 	@OneToOne
 	@JoinColumn(name = "partner_id_fk")
 	private Partner partner;
+
+	public List<Item> getItems() {
+		return items;
+	}
+
+	public void setItems(List<Item> items) {
+		this.items = items;
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+	public TravelPlanner getTravelPlanner() {
+		return travelPlanner;
+	}
+
+	public void setTravelPlanner(TravelPlanner travelPlanner) {
+		this.travelPlanner = travelPlanner;
+	}
+
+	public Partner getPartner() {
+		return partner;
+	}
+
+	public void setPartner(Partner partner) {
+		this.partner = partner;
+	}
+
+	public Long getId() {
+		return id;
+	}
 
 }
