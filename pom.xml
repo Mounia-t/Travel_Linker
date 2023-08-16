@@ -89,9 +89,6 @@
 			<artifactId>jaxb-runtime</artifactId>
 			<version>2.3.2</version>
 		</dependency>
-		
-		<!-- First declare the APIs we depend on and need for compilation. All 
-			of them are provided by JBoss WildFly -->
 
 		<!-- Import the CDI API, we use provided scope as the API is included in 
 			JBoss WildFly -->
@@ -105,6 +102,12 @@
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
 			<version>12.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.4</version> <!-- Assurez-vous de vérifier la dernière version disponible -->
 		</dependency>
 
 		<!-- Import the Common Annotations API (JSR-250), we use provided scope 

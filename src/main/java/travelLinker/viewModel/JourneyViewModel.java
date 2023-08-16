@@ -4,10 +4,6 @@ package travelLinker.viewModel;
 	import java.util.Date;
 
 
-	
-import java.util.Date;
-
-
 public class JourneyViewModel {
 	
 	private String country;
@@ -16,6 +12,7 @@ public class JourneyViewModel {
 	private String location;
 	private Date startDate;
 	private Date endDate;
+	private byte []imageFile;
 	
 	@Override
 	public String toString() {
@@ -71,6 +68,14 @@ public class JourneyViewModel {
 	}
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
+	}
+
+	public byte[] getImage() {
+		return imageFile;
+	}
+
+	public void setImage(byte[] imageFile) {
+		this.imageFile = imageFile;
 	}
 
 	

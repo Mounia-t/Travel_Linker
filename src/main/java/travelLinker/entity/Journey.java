@@ -19,12 +19,15 @@ public class Journey {
 	private String location;
 	private Date startDate;
 	private Date endDate;
+	private byte[] imageFile;
+
+
 
 	public Journey (){
 			}
 	
 	public Journey(String country, int numberOfTravellers, float price, String location, Date startDate,
-			Date endDate) {
+			Date endDate, byte[]imageFile) {
 		super();
 		this.country = country;
 		this.numberOfTravellers = numberOfTravellers;
@@ -32,6 +35,7 @@ public class Journey {
 		this.location = location;
 		this.startDate = startDate;
 		this.endDate = endDate;
+		this.imageFile= imageFile;
 	}
 	public Long getId() {
 		return id;
@@ -71,6 +75,13 @@ public class Journey {
 	}
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
+	}
+	public byte[] getImage() {
+		return imageFile;
+	}
+
+	public void setImageFile(byte[] imageFile) {
+		this.imageFile = imageFile;
 	}
 
 }
