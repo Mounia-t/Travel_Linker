@@ -20,6 +20,7 @@ public class JourneyDao {
 		journeybean.setLocation(journeyVM.getLocation());
 		journeybean.setStartDate(journeyVM.getStartDate());
 		journeybean.setEndDate(journeyVM.getEndDate());
+		journeybean.setImageFile(journeyVM.getImage());
 
 		entityManager.persist(journeybean);
 		entityManager.flush();
