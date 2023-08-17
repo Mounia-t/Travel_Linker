@@ -6,6 +6,7 @@ package travelLinker.viewModel;
 
 public class JourneyViewModel {
 	
+	private Long id;
 	private String country;
 	private int numberOfTravellers;
 	private float price;
@@ -76,6 +77,14 @@ public class JourneyViewModel {
 
 	public void setImage(byte[] imageFile) {
 		this.imageFile = imageFile;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	

@@ -3,6 +3,8 @@ package travelLinker.controller;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
+import java.util.List;
+
 import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 import javax.persistence.Basic;
@@ -14,7 +16,8 @@ import javax.servlet.http.Part;
 import org.apache.commons.io.IOUtils;
 
 import travelLinker.dao.JourneyDao;
-	import travelLinker.viewModel.JourneyViewModel;
+import travelLinker.entity.Journey;
+import travelLinker.viewModel.JourneyViewModel;
 
 	@ManagedBean
 	public class JourneyControllerBean  implements Serializable{
@@ -23,14 +26,19 @@ import travelLinker.dao.JourneyDao;
 		 * 
 		 */
 		private static final long serialVersionUID = 1L;
+		
 		private JourneyViewModel journeyVM = new JourneyViewModel();
+		
 		@Inject
 		private JourneyDao journeyDao;
+		
 		@Lob
 		@Basic(fetch = FetchType.LAZY)
 		@Column(columnDefinition = "BLOB")
 		private Part imageFile;
 		
+		public List<Journey> journeys;
+
 		public void addJourney() {
 
 			if (imageFile != null) {
@@ -81,6 +89,14 @@ import travelLinker.dao.JourneyDao;
 
 		public void setImageFile(Part imageFile) {
 			this.imageFile = imageFile;
+		}
+		
+		public List<Journey> getJourneys() {
+			return journeys;
+		}
+
+		public void setJourneys(List<Journey> journeys) {
+			this.journeys = journeys;
 		}
 		
 		
