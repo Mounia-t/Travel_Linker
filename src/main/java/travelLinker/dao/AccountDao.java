@@ -141,7 +141,14 @@ public RoleUser getUserRoleById(Long userId) {
     }
     return null;
 }
+
+
+
 }
+
+
+
+
 
     /*public void persist(AccountViewModel accountVM) {
         this.entityManager.persist(accountVM);

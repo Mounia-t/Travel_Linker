@@ -2,17 +2,20 @@ package travelLinker.controller;
 
 
 import travelLinker.entity.Account;
+import travelLinker.entity.Subscription;
+import travelLinker.entity.SubscriptionPack;
 import travelLinker.dao.AccountDao;
 import travelLinker.dao.SubscriptionDao;
-import travelLinker.entity.Subscription;
-import travelLinker.utils.SessionUtils;
 import travelLinker.viewModel.SubscriptionViewModel;
 
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
 
+import travelLinker.controller.AccountControllerBean;
+
+import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,65 +36,51 @@ public class SubscriptionController implements Serializable {
     @Inject
     private AccountDao accountDao;
     
-    @PostConstruct
-    public void init() {
-        loadSubscriptionsForUser();
-    }
-    private SubscriptionViewModel newSubscription = new SubscriptionViewModel();
-    private List<Subscription> subscriptions;
-    private EntityManager entityManager;
+    @Inject
+    private AccountControllerBean accountControllerBean;
+    
 
-    public SubscriptionViewModel getNewSubscription() {
-        return newSubscription;
+    
+    private List<SubscriptionPack> pack;
+    private SubscriptionViewModel newSubscription = new SubscriptionViewModel();
+   
+    
+    public void createSubscription(SubscriptionPack selectedPack) {
+        if (account == null) {
+            
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "User not logged in", "Please log in to create a subscription."));
+            return;
         }
 
-    public void createSubscription() {
+        if (!accountControllerBean.isUserTravelPlanner(account.getId())) {
+            
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Access Denied", "Only travelplanners can create subscriptions."));
+            return;
+        }
+        
+        else {
+
         Subscription subscription = new Subscription();
         subscription.setAccount(account);
-        subscription.setPrice(newSubscription.getPrice());
+        subscription.setPrice(selectedPack.getPrice()); 
         subscription.setStartDate(newSubscription.getStartDate());
         subscription.setEndDate(newSubscription.getEndDate());
-        subscription.setType(newSubscription.getType());
+        subscription.setType(selectedPack);
 
-        subsDao.createSubscription(subscription);
-        newSubscription = new SubscriptionViewModel(); // Reset the form
+        
+        subsDao.save(subscription);
+
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Subscription created", "Your subscription has been successfully created."));
     }
-
-    public List<Subscription> getSubscriptions() {
-        return subscriptions;
-    }
-    
-    public void loadSubscriptionsForUser() {
-        // Obtenez l'ID de l'utilisateur actuellement connecté à partir de la session
-        Long loggedInAccountId = SessionUtils.getUserId();
-
-        if (loggedInAccountId != null) {
-            // Obtenez l'objet Account associé à partir de la base de données en utilisant l'ID
-            Account loggedInAccount = accountDao.getAccountById(loggedInAccountId);
-
-            if (loggedInAccount != null) {
-                // Chargez les abonnements pour l'utilisateur connecté
-                subscriptions = subsDao.getSubscriptionsByAccount(loggedInAccount);
-            } else {
-                // L'utilisateur n'est pas trouvé, gérer selon vos besoins
-                subscriptions = new ArrayList<>();
-            }
-        } else {
-            // L'utilisateur n'est pas connecté, gérer selon vos besoins
-            subscriptions = new ArrayList<>();
-        }
-    }
-    public void subscribeToFormule(SubscriptionViewModel selectedSubscription) {
-        Subscription subscription = new Subscription();
-        subscription.setAccount(account);
-        subscription.setPrice(selectedSubscription.getPrice());
-        subscription.setStartDate(selectedSubscription.getStartDate());
-        subscription.setEndDate(selectedSubscription.getEndDate());
-        subscription.setType(selectedSubscription.getType());
-
-        subsDao.createSubscription(subscription);
-        subscriptions.add(subscription); // Ajoutez la nouvelle formule à la liste
     }
     
-   
+    public List<Subscription> getAllSubscriptions() {
+       return subsDao.getAllSubscriptions();
+    }
+
+    
 }
+
+    
+
+  
