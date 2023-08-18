@@ -12,14 +12,12 @@ public class Message {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String content;
-    
-
-
     private String recipientEmail;
     private String senderEmail;
     private Long senderId;
     private Long recepientId;
     private String messageResume;
+    private boolean isRead;
  
     
     public Message() {
@@ -61,11 +59,11 @@ public class Message {
 */
 
 
-	public String getRecepientEmail() {
+	public String getRecipientEmail() {
 		return recipientEmail;
 	}
 
-	public void setRecepientEmail(String recipientEmail) {
+	public void setRecipientEmail(String recipientEmail) {
 		this.recipientEmail = recipientEmail;
 	}
 
@@ -103,6 +101,14 @@ public class Message {
 
 	public Long getId() {
 		return id;
+	}
+
+	public boolean isRead() {
+		return isRead;
+	}
+
+	public void setRead(boolean isRead) {
+		this.isRead = isRead;
 	}
     
 }

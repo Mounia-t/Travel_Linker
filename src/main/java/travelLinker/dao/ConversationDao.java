@@ -19,7 +19,8 @@ public class ConversationDao {
 	private EntityManager entityManager;
 	@Inject
 	private LoginDao loginDao;
-
+	
+//Methode pour ajouter un message à la base de donnée 
 	public void sendMessage(AccountViewModel accVM) {
 		String senderEmail = SessionUtils.getUserEmail();
 		Long idSender = SessionUtils.getUserId();
@@ -29,12 +30,13 @@ public class ConversationDao {
 		if (recipient != null) {
 
 			Message message = new Message();
-			message.setRecepientEmail(accVM.getRecepientEmail());
+			message.setRecipientEmail(accVM.getRecepientEmail());
 			message.setContent(accVM.getContent());
 			message.setMessageResume(accVM.getMessageResume());
 			message.setSenderEmail(senderEmail);
 			message.setSenderId(idSender);
 			message.setRecepientId(idRecipient);
+			message.setRead(false);
 			entityManager.persist(message);
 		}
 	}
@@ -67,6 +69,27 @@ public class ConversationDao {
 		return query.getResultList();
 	}
 
+	public List<Message> getReadMessages() {
+		TypedQuery<Message> query = entityManager.createQuery("SELECT m FROM Message m WHERE m.isRead = true",
+				Message.class);
+		return query.getResultList();
+	}
+
+	public List<Message> getUnreadMessages() {
+		TypedQuery<Message> query = entityManager.createQuery("SELECT m FROM Message m WHERE m.isRead = false",
+				Message.class);
+		return query.getResultList();
+	}
+
+	public void markMessageAsRead(Long messageId) {
+		Message message = entityManager.find(Message.class, messageId);
+		if (message != null) {
+			message.setRead(true);
+			entityManager.merge(message);
+		}
+	}
+
+
 	public void deleteMessage(Long messageId) {
 
 		Message message = entityManager.find(Message.class, messageId);
@@ -74,5 +97,10 @@ public class ConversationDao {
 		if (message != null) {
 			entityManager.remove(message);
 		}
+	}
+
+	public Message getMessageById(Long messageId) {
+		Message message = entityManager.find(Message.class, messageId);
+		return message;
 	}
 }

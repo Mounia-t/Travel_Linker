@@ -1,8 +1,10 @@
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
 <head>
 <meta charset="UTF-8" />
@@ -203,7 +205,6 @@
 		<!-- End of MainAnalytics Content -->
 
 		<!-- Start of MainMessages Content -->
-
 		<main id="mainMessages" style="display: none;">
 			<div class="messages">
 				<h1>Messages</h1>
@@ -257,9 +258,12 @@
 									var="message">
 									<tr>
 										<td>#{message.senderEmail}</td>
-
 										<td>#{message.messageResume}</td>
-										<td><button class="readBtn">Lire</button></td>
+										<td><h:form>
+												<h:commandButton class="readBtn" value="Lire" id="readAllMsgBtn"
+													action="#{conversationController.selectMessage(message)}">
+												</h:commandButton>
+											</h:form></td>
 									</tr>
 								</ui:repeat>
 							</tbody>
@@ -398,10 +402,13 @@
 								<ui:repeat value="#{conversationController.getSentMessages()}"
 									var="message">
 									<tr>
-										<td>#{message.recepientEmail}</td>
+										<td>#{message.recipientEmail}</td>
 
 										<td>#{message.messageResume}</td>
-										<td><button class="readBtn">Lire</button></td>
+										<td><h:commandButton class="readBtn" value="Lire" id="readSentMsgBtn"
+												action="#{conversationController.selectMessage(message)}">
+											</h:commandButton></td>
+
 									</tr>
 								</ui:repeat>
 							</tbody>
@@ -424,22 +431,23 @@
 									id="sentMsg" /> <span class="name">Administration</span>
 								</label>
 							</div>
-<h:form>
-							<h:inputText id="inputMessageDest"
-								placeholder="Choisir un destinataire..." required="true"
-								value="#{conversationController.accVM.recepientEmail}" />
-							<h:inputText id="inputMessageResume"
-								placeholder="Écrire un titre..." required="true"
-								value="#{conversationController.accVM.messageResume}" />
-							<h:inputText value="#{conversationController.accVM.content}"
-								id="inputMessageDetails"
-								placeholder="Écrire le corps du message..." required="true" />
+							<h:form>
+								<h:inputText id="inputMessageDest"
+									placeholder="Choisir un destinataire..." required="true"
+									value="#{conversationController.accVM.recepientEmail}" />
+								<h:inputText id="inputMessageResume"
+									placeholder="Écrire un titre..." required="true"
+									value="#{conversationController.accVM.messageResume}" />
+								<h:inputText value="#{conversationController.accVM.content}"
+									id="inputMessageDetails"
+									placeholder="Écrire le corps du message..." required="true" />
 
-						
-						
-							<h:commandButton action="#{conversationController.sendMessage()}"
-								value="Envoyer" />
-						</h:form>
+
+
+								<h:commandButton
+									action="#{conversationController.sendMessage()}"
+									value="Envoyer" />
+							</h:form>
 						</div>
 					</div>
 				</div>
@@ -599,26 +607,30 @@
 						</div>
 					</div>
 
-					<form action="post" id="createTravelSection">
+					<h:form action="post" id="createTravelSection">
 						<div class="user-listMessages">
-							<input type="text" id="inputName" placeholder="Nom..." /> <input
-								type="text" id="inputFirstName" placeholder="Type de service..." />
-							<input type="number" id="inputAddress"
-								placeholder="Prix du service..." /> <input type="text"
-								id="inputMail" placeholder="Pays..." /> <input type="text"
-								id="inputPwd" placeholder="Localisation..." /> <input
-								type="text" id="inputPhoneNumber"
-								placeholder="Date d'arrivée..." /> <input type="text"
-								id="inputSiret" placeholder="Date de départ..." /> <input
-								type="text" id="inputPhoneNumber" placeholder="Description..." />
-							<input type="text" id="inputSiret"
-								placeholder="Type de d'hébergement..." />
+							<h:inputText id="inputName"
+								value="#{journeyControllerBean.journeyVM.name}"
+								placeholder="Nom..." />
+							<h:inputText id="inputFirstName" placeholder="Pays..."
+								value="#{journeyControllerBean.journeyVM.country}" />
+							<h:inputText id="inputAddress" placeholder="Adresse..."
+								value="#{journeyControllerBean.journeyVM.location}" />
+							<h:inputText id="inputPhoneNum" placeholder="Date de Départ..."
+								value="#{journeyControllerBean.journeyVM.startDate}" />
+							<h:inputText id="inputSiret" placeholder="Date de retour..."
+								value="#{journeyControllerBean.journeyVM.endDate}" />
+							<h:inputText id="inputPhoneNumber" placeholder="Description..."
+								value="#{journeyControllerBean.journeyVM.description}" />
+
 						</div>
 						<div class="new-usersButton">
-							<button type=" button" id="createAdmin">Vider les champs</button>
-							<button type="button" id="saveInfos">Créer l'hébergement</button>
+							<h:commandButton id="createAdmin" value="Vider les champs"
+								action="#{journeyControllerBean.clear()}" />
+							<h:commandButton id="saveInfos" value="Créer l'hébergement"
+								action="#{journeyControllerBean.addJourney()}" />
 						</div>
-					</form>
+					</h:form>
 				</div>
 			</div>
 		</main>
@@ -699,7 +711,8 @@
 				<div class="logo">
 					<img src="images/IMG_0434.jpg" />
 					<h3>
-						Bonjour, <b>{User}</b>
+						Bonjour, <b><h:outputText
+								value="#{loginControllerBean.userFirstName}" /></b>
 					</h3>
 				</div>
 			</div>
@@ -756,7 +769,72 @@
 
 
 	</div>
+	<div class="popup-container" id="popupContainer">
+		<div class="popup-content">
+			<!-- <span class="popup-close" id="popupCloseBtn">&times;</span> -->
+			<div class="expDateZone">
+				<div class="expZone">
+					<h2>Expéditeur :</h2>
 
+					<h:outputText
+						value="#{conversationController.selectedMessage.senderEmail}" />
+
+				</div>
+				<div class="dateTimeMsg">
+					<h3>{DateTime}</h3>
+				</div>
+			</div>
+			<div class="objectZone">
+				<h2>Objet :</h2>
+
+				<h:outputText
+					value="#{conversationController.selectedMessage.messageResume}" />
+
+			</div>
+			<div class="msgZone">
+				<h2>Message :</h2>
+
+				<h:outputText
+					value="#{conversationController.selectedMessage.content}" />
+
+			</div>
+			<button class="popup-close-btn" id="popupCloseButton">
+				<span class="material-icons-sharp"> highlight_off </span>
+			</button>
+		</div>
+		<button class="popup-answer-btn" id="popupAnswerButton">Répondre</button>
+	</div>
+
+	<div class="popup-answer-container" id="popupAnswerContainer">
+		<div class="popup-answer-content">
+			<div class="destDateZone">
+				<div class="destZone">
+					<h2>Destinataire :</h2>
+					<h2>{User(rôle)}</h2>
+				</div>
+				<div class="dateTimeMsg">
+					<h3>{DateTime}</h3>
+				</div>
+			</div>
+			<div class="objectZone">
+				<h2>Objet :</h2>
+				<h2>{Objet}</h2>
+			</div>
+			<div class="recapZone">
+				<h2>Récapitulatif :</h2>
+				<h3>{Récapitulatif du message auquel on répond}</h3>
+			</div>
+			<div class="msgZone">
+				<h2>Message :</h2>
+				<textarea name="msgZoneTA" id="msgZoneTA" cols="100" rows="13"
+					placeholder="Écrire le corps du message..."></textarea>
+			</div>
+			<button class="popup-close-btn" id="popupCloseAnswerButton">
+				<span class="material-icons-sharp"> highlight_off </span>
+			</button>
+		</div>
+		<button class="popup-send-btn" id="popupSendButton">Envoyer</button>
+	</div>
 	<script src="./js/dashboardTP.js"></script>
 </body>
 

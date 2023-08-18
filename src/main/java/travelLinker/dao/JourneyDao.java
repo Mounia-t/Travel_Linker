@@ -23,6 +23,8 @@ public class JourneyDao {
 		journeybean.setLocation(journeyVM.getLocation());
 		journeybean.setStartDate(journeyVM.getStartDate());
 		journeybean.setEndDate(journeyVM.getEndDate());
+		journeybean.setName(journeyVM.getName());
+		journeybean.setDescription(journeyVM.getDescription());
 
 		entityManager.persist(journeyVM);
 		entityManager.flush();

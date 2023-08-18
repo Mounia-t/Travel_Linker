@@ -9,26 +9,43 @@
 	<title>Messagerie: Index</title>
 </h:head>
 <h:body>
-<h2>Messages reçus</h2>
-<ui:repeat value="#{conversationController.getReceivedMessages()}" var="message">
-    <div class="received-message">
-        <p><strong>Expéditeur :</strong> #{message.senderEmail}</p>
-        <p><strong>Destinataire :</strong> #{message.recepientEmail}</p>
-        <p><strong>Contenu :</strong> #{message.content}</p>
-    </div>
-</ui:repeat>
+				<div id="allMsgSection">
 
-<h2>Messages envoyés</h2>
-<ui:repeat value="#{conversationController.getSentMessages()}" var="message">
-    <div class="sent-message">
-        <p><strong>Expéditeur :</strong> #{message.senderEmail}</p>
-        <p><strong>Destinataire :</strong> #{message.recepientEmail}</p>
-        <p><strong>Contenu :</strong> #{message.content}</p>
-    </div>
-</ui:repeat>
-
-
-
+					<div class="table-container">
+						<table>
+							<thead>
+								<tr>
+									<th>Expéditeur</th>
+									<th>Objet</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<ui:repeat value="#{conversationController.displayMessages()}"
+									var="message">
+									<tr>
+										<td>#{message.senderEmail}</td>
+										<td>#{message.messageResume}</td>
+										<td><p:commandButton value="Lire"
+												action="#{conversationController.markMessageAsRead(message.id)}"
+												rendered="#{not message.read}" update="messageDia"
+												oncomplete="PF('messageDia').show()">
+												<f:setPropertyActionListener
+													target="#{conversationController.selectedMessageContent}"
+													value="#{message.content}" />
+											</p:commandButton></td>
+									</tr>
+								</ui:repeat>
+							</tbody>
+						</table>
+						<p:dialog header="Contenu du Message" widgetVar="messageDia"
+							modal="true" resizable="false" dynamic="true">
+							<p:outputPanel>
+								<p>#{conversationController.selectedMessageContent}</p>
+							</p:outputPanel>
+						</p:dialog>
+					</div>
+				</div>
 
 </h:body>
 </html>

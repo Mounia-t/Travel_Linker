@@ -39,6 +39,7 @@ public class SessionUtils {
 	
 	}
 
+
 	// Récupère l'email de l'utilisateur à partir de la session
 	public static String getUserEmail() {
 		HttpSession session = getSession();
