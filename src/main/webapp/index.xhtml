@@ -4,37 +4,428 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
-	
 
-<h:head>
-	<title>Login: Index</title>
-</h:head>
-<h:body>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Travel Linker</title>
 
-<h:form>
-	<h:commandButton action="AccountCreation" value="Créer un compte" />
-	<h:commandButton action="Login" value="Se connecter" />
+<!-- Lien vers la feuille de style -->
 
-	<h:commandButton action="TravelForm" value="CreateJourney" />
-	<h:commandButton action="#{loginControllerBean.logout()}" value="Deconnexion" />
+<link rel="stylesheet" href="css/style.css" />
 
-	
-	  <h:commandButton value="Supprimer le compte" action="#{accountControllerBean.deleteAccount}">
-	  </h:commandButton>
+<!-- Lien vers la bibliothèque FONT AWESOME -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
+<!--Font Awesome pour client-->
+<script src="https://kit.fontawesome.com/c8e4d183c2.js"></script>
+<!--Lien pour les boutons du carousel-->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+	</link>
+	<!--Lien pour les boutons du carousel-->
+</head>
 
-	    <h:commandButton value="Modifier le compte" action="UpdateAccount">
-	  </h:commandButton>
-	  
-	  <h:commandButton value="Abonnement" action="Subscription.xhtml" />
+<body>
+	<header>
+		<a href="#" class="brand">Travel linker</a>
+		<div class="menu-btn"></div>
+		<!-- Bouton de menu (hamburger) -->
+		<div class="navigation">
+			<div class="navigation-items">
+				<a href="#">Accueil</a> <a href="#">A Propos de nous</a> <a href="#">Services</a>
+				<a href="#contact">Contact</a> <a href="#">Connexion</a>
+			</div>
+		</div>
+	</header>
 
-	</h:form>
+	<section class="home">
 
-	<h:link outcome="TravelForm.xhtml">Create Journey</h:link>
-	<hr></hr>
-	<h:link outcome="CreateService.xhtml">Create Service</h:link>
-	<hr></hr>
-	<h:link outcome="ListeServices.xhtml">Liste Service</h:link>
-	<hr></hr>
-	<h:link outcome="CreateInsurance.xhtml">Insurance Service</h:link>
-</h:body>
+		<!-- Vidéos en arrière-plan pour le slider -->
+
+			
+			<video class="video-slide active" src="media/videos/videoPlage.mp4" controls="controls" muted="muted" loop="loop">
+      
+    </video>
+    <video class="video-slide" src="media/videos/videoMarche.mp4" controls="controls" muted="muted" loop="loop">
+     
+    </video>
+    <video class="video-slide" src="media/videos/videoDesert.mp4" controls="controls" muted="muted" loop="loop">
+       
+    </video>
+    <video class="video-slide" src="media/videos/videoRoute.mp4" controls="controls" muted="muted" loop="loop">
+       
+    </video>
+    <video class="video-slide" src="media/videos/videoNature.mp4" controls="controls" muted="muted" loop="loop">
+        
+    </video>
+
+		<!-- Contenu de chaque diapositive -->
+
+		<div class="content active">
+			<img src="media/images/logoTravelLinker2.png" alt="Logo" class="logo"/>
+			<p>Une plateforme de connectivité qui relie les organisateurs de
+				voyage locaux, les partenaires et les clients. C’est l'outil ultime
+				pour les organisateurs de voyage, offrant une gestion complète et
+				professionnelle des voyages, avec des fonctionnalités avancées et
+				innovantes.</p>
+			<a href="#">Lire Plus</a>
+		</div>
+		<div class="content">
+			<h1>
+				Vous êtes<br />
+				<span>une agence?</span>
+			</h1>
+			<p>Découvrez la révolution dans la gestion de voyages pour les
+				futures agences innovantes. Notre plateforme de connectivité
+				inégalée relie parfaitement les organisateurs de voyages locaux, les
+				partenaires et les clients. Simplifiez la gestion complète de vos
+				voyages avec des fonctionnalités avancées et novatrices.</p>
+			<a href="#">Lire Plus</a>
+		</div>
+		<div class="content">
+			<h1>
+				Vous êtes<br />
+				<span>un partenaire?</span>
+			</h1>
+			<p>Plongez dans l'avenir de la collaboration avec notre
+				plateforme conçue spécialement pour nos partenaires privilégiés. En
+				tant que partenaire, vous serez intégré de manière transparente dans
+				l'écosystème reliant les organisateurs de voyages, les clients et
+				vous. Renforcez votre visibilité et élargissez vos opportunités.</p>
+			<a href="#">Lire Plus</a>
+		</div>
+		<div class="content">
+			<h1>
+				Vous êtes<br />
+				<span>un client?</span>
+			</h1>
+			<p>Prêt à vivre des aventures extraordinaires ? Bienvenue sur
+				notre plateforme de connectivité de voyage. Que vous soyez un
+				explorateur solo, un couple en quête de romantisme ou une famille
+				avide d'aventures, nous sommes là pour créer des expériences
+				inoubliables sur mesure, rien que pour vous.</p>
+			<a href="#">Lire Plus</a>
+		</div>
+		<div class="content">
+			<h1>
+				N'attendez pu<br />
+				<span>essayez !</span>
+			</h1>
+			<p>Notre plateforme n'attend que vous, inscrivez-vous en cliquant
+				sur le bouton "Lire Plus", afin de profiter de tous les avantages
+				qu'offrent notre site. Vous avez longtemps cherché un moyen rapide
+				et efficace de trouver les meilleurs plans voyages? Nous l'avons
+				fait !</p>
+			<a href="#">Lire Plus</a>
+		</div>
+
+		<!-- Icônes de médias sociaux -->
+
+		<div class="media-icons">
+			<a href="#"><i class="fab fa-facebook-f"></i></a> <a href="#"><i
+				class="fab fa-instagram"></i></a> <a href="#"><i
+				class="fab fa-twitter"></i></a>
+		</div>
+
+		<!-- Boutons de navigation du slider -->
+
+		<div class="slider-navigation">
+			<div class="nav-btn active"></div>
+			<div class="nav-btn"></div>
+			<div class="nav-btn"></div>
+			<div class="nav-btn"></div>
+			<div class="nav-btn"></div>
+		</div>
+	</section>
+	<!-- Section 2 -->
+	<section class="package">
+		<div class="title-package">
+			<h1>
+				nos <span>packages</span>
+			</h1>
+		</div>
+		<div class="container-package">
+			<div id="slide-package">
+				<div class="item-package"
+					style="background-image: url(media/images/Grece.jpg)">
+					<div class="content-package">
+						<div class="name-package">grèce</div>
+						<div class="description-package">Découvrez la magie
+							intemporelle de la Grèce, où l'histoire ancienne se mêle
+							harmonieusement aux paysages à couper le souffle.</div>
+						<button>Voir plus</button>
+					</div>
+				</div>
+				<div class="item-package"
+					style="background-image: url(media/images/Ireland.jpg)">
+					<div class="content-package">
+						<div class="name-package">Ireland</div>
+						<div class="description-package">Explorez des paysages d'une
+							verdeur exceptionnelle, des falaises dramatiques aux prairies
+							vallonnées en passant par des lacs miroitants.</div>
+						<button>Voir plus</button>
+					</div>
+				</div>
+				<div class="item-package"
+					style="background-image: url(media/images/PaysBas.jpg)">
+					<div class="content-package">
+						<div class="name-package">Pays-Bas</div>
+						<div class="description-package">Venez vister des villes
+							historiques dotées de canaux sinueux, admirez les moulins à vent
+							emblématiques et profitez d'une culture artistique et innovante.
+						</div>
+						<button>Voir plus</button>
+					</div>
+				</div>
+				<div class="item-package"
+					style="background-image: url(media/images/TourEiffel.jpg)">
+					<div class="content-package">
+						<div class="name-package">France</div>
+						<div class="description-package">Plongez dans l'élégance
+							intemporelle et l'art de vivre inimitable de la France, ainsi que
+							sa vie parisienne.</div>
+						<button>Voir plus</button>
+					</div>
+				</div>
+				<div class="item-package"
+					style="background-image: url(media/images/Italie.jpg)">
+					<div class="content-package">
+						<div class="name-package">Italie</div>
+						<div class="description-package">Une expérience sensorielle
+							et culturelle inoubliable vous attend dans ce pays où chaque
+							instant, se transforme en une œuvre d'art vivante.</div>
+						<button>Voir plus</button>
+					</div>
+				</div>
+				<div class="item-package"
+					style="background-image: url(media/images/Suisse.jpg)">
+					<div class="content-package">
+						<div class="name-package">Suisse</div>
+						<div class="description-package">Parcourez des paysages
+							époustouflants, des sommets alpins enneigés aux lacs d'un bleu
+							profond, où la nature se déploie dans toute sa splendeur.</div>
+						<button>Voir plus</button>
+					</div>
+				</div>
+			</div>
+			<div class="buttons-package">
+				<button id="prev">
+					<i class="fa-solid fa-angle-left"></i>
+				</button>
+				<button id="next">
+					<i class="fa-solid fa-angle-right"></i>
+				</button>
+			</div>
+		</div>
+	</section>
+	<!-- FIN DES PACKAGES -->
+	<!-- DEBUT DES AVIS CLIENTS-->
+	<section class="client">
+		<div class="title-package">
+			<h1>
+				nos avis <span>clients</span>
+			</h1>
+		</div>
+		<div class="container-client">
+			<div class="box-contact-client">
+				<div class="box-contact-top">
+					<div class="profile-client">
+						<div class="profile-image">
+							<img src="media/images/restaurant.png" />
+						</div>
+						<div class="name-client">
+							<strong>Le Koffi</strong> <span>@lekoffi</span>
+						</div>
+					</div>
+					<div class="review-client">
+						<i class="fas fa-star"></i> <i class="fas fa-star"></i> <i
+							class="fas fa-star"></i> <i class="fas fa-star"></i> <i
+							class="fas fa-star"></i>
+					</div>
+				</div>
+				<div class="comment-client">
+					<p>"Expérience exceptionnelle ! Notre agence a bénéficié de
+						services sur mesure et d'une visibilité accrue. Nous recommandons
+						fortement."</p>
+				</div>
+			</div>
+
+			<div class="box-contact-client">
+				<div class="box-contact-top">
+					<div class="profile-client">
+						<div class="profile-image">
+							<img src="media/images/voyage.jpg" />
+						</div>
+						<div class="name-client">
+							<strong>Travelink</strong> <span>@travelinkofficial</span>
+						</div>
+					</div>
+					<div class="review-client">
+						<i class="fas fa-star"></i> <i class="fas fa-star"></i> <i
+							class="fas fa-star"></i> <i class="fas fa-star"></i> <i
+							class="fas fa-star"></i>
+					</div>
+				</div>
+				<div class="comment-client">
+					<p>"Innovant et rapide, grâce à leurs services, notre agence de
+						voyage rayonne davantage, offrant des expériences mémorables."</p>
+				</div>
+			</div>
+
+			<div class="box-contact-client">
+				<div class="box-contact-top">
+					<div class="profile-client">
+						<div class="profile-image">
+							<img src="media/images/hotel.png" />
+						</div>
+						<div class="name-client">
+							<strong>Hotel Tour</strong> <span>@hoteltour</span>
+						</div>
+					</div>
+					<div class="review-client">
+						<i class="fas fa-star"></i> <i class="fas fa-star"></i> <i
+							class="fas fa-star"></i> <i class="fas fa-star"></i> <i
+							class="fas fa-star"></i>
+					</div>
+				</div>
+				<div class="comment-client">
+					<p>"Collaboration fantastique ! Notre hôtel a gagné en
+						visibilité et en réservations grâce à leurs solutions
+						personnalisées. Bravo Travel Linker."</p>
+				</div>
+			</div>
+
+			<div class="box-contact-client">
+				<div class="box-contact-top">
+					<div class="profile-client">
+						<div class="profile-image">
+							<img src="media/images/logovoiture.jpg" />
+						</div>
+						<div class="name-client">
+							<strong>Car Rental</strong> <span>@carrental</span>
+						</div>
+					</div>
+					<div class="review-client">
+						<i class="fas fa-star"></i> <i class="fas fa-star"></i> <i
+							class="fas fa-star"></i> <i class="fas fa-star"></i> <i
+							class="fas fa-star"></i>
+					</div>
+				</div>
+				<div class="comment-client">
+					<p>"Leurs solutions uniques ont amplifié notre activité de
+						location de voitures, attirant de nouveaux clients. Partenariat
+						inestimable ! "</p>
+				</div>
+			</div>
+		</div>
+
+
+
+	</section>
+	<section id="contact" class="contact">
+		<div class="title-contact">
+			<h1>
+				NOUS <span>CONTACTER</span>
+			</h1>
+		</div>
+
+		<div class="row-contact">
+
+			<iframe class="map"
+				src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2626.8907461958947!2d2.2983450761843427!3d48.82214597132722!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e6705c21f00001%3A0x56cd923a25baed54!2sISIKA%20-%20Formation%20et%20Reconversion%20aux%20M%C3%A9tiers%20du%20Num%C3%A9rique!5e0!3m2!1sfr!2sfr!4v1691145250537!5m2!1sfr!2sfr"
+				allowfullscreen="" loading="lazy"></iframe>
+
+		<form action="">
+        <input type="text" placeholder="Votre nom" class="box-contact" />
+        <input type="email" placeholder="Votre email" class="box-contact" />
+        <input type="tel" placeholder="Sujet" class="box-contact" />
+        <textarea placeholder="Votre message" class="box-contact" cols="30" rows="10"></textarea>
+        <input type="submit" value="SOUMETTRE" class="btn-contact" />
+    </form>
+
+		</div>
+
+	</section>
+
+	<!--Début du footer-->
+
+	<div class="footer">
+		<div class="logo-footer">
+			<img src="media/images/logoTravelLinker2.png" alt="Logo-footer"/>
+			<div class="social-icons-footer">
+				<div class="social-icon">
+					<i class="fab fa-facebook-f"></i>
+				</div>
+				<div class="social-icon">
+					<i class="fab fa-instagram"></i>
+				</div>
+				<div class="social-icon">
+					<i class="fab fa-twitter"></i>
+				</div>
+			</div>
+		</div>
+
+		<div class="quick-links">
+			<div class="quick-links-title">Liens</div>
+			<div class="quick-link">
+				<div class="link-text">Accueil</div>
+			</div>
+			<div class="quick-link">
+				<div class="link-text">A propos de nous</div>
+			</div>
+			<div class="quick-link">
+				<div class="link-text">Services</div>
+			</div>
+			<div class="quick-link">
+				<div class="link-text">Contact</div>
+			</div>
+		</div>
+
+		<div class="info-section">
+			<div class="info-section-title">Nos informations</div>
+			<div class="info-item">
+				<div class="icon">
+					<i class="fas fa-map-marker-alt"></i>
+				</div>
+				<div>Paris, FRANCE</div>
+			</div>
+			<div class="info-item">
+				<div class="icon">
+					<i class="fas fa-phone"></i>
+				</div>
+				<div>+331.65.74.83.02</div>
+			</div>
+			<div class="info-item">
+				<div class="icon">
+					<i class="fas fa-envelope"></i>
+				</div>
+				<div>contact@travellinker.com</div>
+			</div>
+			<div class="info-item">
+				<div class="icon">
+					<i class="fas fa-clock"></i>
+				</div>
+				<div>24h/24, 7j/7</div>
+			</div>
+		</div>
+
+		<div class="newsletter">
+			<div class="newsletter-title">Newsletters</div>
+			<div class="newsletter-text">Inscrivez-vous pour recevoir notre
+				newsletters</div>
+			<div class="subscribe-form">
+				<input type="email" class="subscribe-input"
+					placeholder="Adresse e-mail"/>
+				<button class="subscribe-button">Souscrire</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- Lien vers le script JavaScript -->
+
+	<script src="js/index.js" defer="defer"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</body>
+
 </html>
