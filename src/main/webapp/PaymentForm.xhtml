@@ -52,19 +52,23 @@
 						<h:outputLabel value="Numéro de carte" for="numeroCarte"
 							styleClass="placeholder label" />
 					</div>
-<div id="dateCvvDiv" class="inputFormContainer">
-    <h:inputText type="text" id="expirationDate" name="expirationDate" value="" maxlength="5" class="inputForm" />
-    <h:outputLabel value="09/23" for="expirationDate" styleClass="placeholder label" />
+					<div id="dateCvvDiv" class="inputFormContainer">
+						<h:inputText type="text" id="expirationDate" name="expirationDate"
+							value="" maxlength="5" class="inputForm" />
+						<h:outputLabel value="09/23" for="expirationDate"
+							styleClass="placeholder label" />
 
-    <h:inputText type="text" id="cvv" name="cvv" value="" maxlength="3" class="inputForm" />
-    <h:outputLabel value="CVV" for="cvv" styleClass="placeholder label cvv" />
-</div>
+						<h:inputText type="text" id="cvv" name="cvv" value=""
+							maxlength="3" class="inputForm" />
+						<h:outputLabel value="CVV" for="cvv"
+							styleClass="placeholder label cvv" />
+					</div>
 
 
 					<h:commandButton type="submit" value="Payer" class="paymentBtn"></h:commandButton>
 				</h:form>
 			</div>
-			<script src="./js/PaymentForm.js"></script>
+			<script src="./js/paymentForm.js"></script>
 		</section>
 	</main>
 </body>

@@ -118,18 +118,6 @@
 #paiementForm .inputForm:focus{
     border-color: green;
 }
-/* .inputFormLabel .label, #dateCvvDiv .label{
-	position: absolute;
-	bottom: 8px;
-	left: 15px;
-    color: grey;
-    transition: 0.2s ease all;
-}
-
-.inputForm:active .label{
-	transform: translateY(-25px);
-	background-color: white;
-} */
 .inputFormLabel {
     position: relative;
     margin-bottom: 20px;
