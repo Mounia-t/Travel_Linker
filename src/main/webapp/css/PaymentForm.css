@@ -102,6 +102,10 @@
     text-align: center;
 }
 
+.inputFormLabel, #dateCvvDiv {
+	position: relative;
+	transition: 0.2s ease all;
+}
 #paiementForm .inputForm{
     border: 1px solid grey;
     border-radius: 25px;
@@ -114,6 +118,48 @@
 #paiementForm .inputForm:focus{
     border-color: green;
 }
+/* .inputFormLabel .label, #dateCvvDiv .label{
+	position: absolute;
+	bottom: 8px;
+	left: 15px;
+    color: grey;
+    transition: 0.2s ease all;
+}
+
+.inputForm:active .label{
+	transform: translateY(-25px);
+	background-color: white;
+} */
+.inputFormLabel {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.placeholder {
+    position: absolute;
+    pointer-events: none;
+    left: 14px;
+    top: 38px;
+    transition: 0.2s ease all;
+    font-size: 17px;
+    color: #999;
+}
+
+.cvv {
+    left: auto;
+    right: 35%;
+}
+
+.inputForm:focus + .placeholder,
+.inputForm:not(:placeholder-shown) + .placeholder,
+.inputForm:not(:valid) + .placeholder{
+    top: 20px;
+    font-size: 15px;
+    color: #333;
+    padding: 2px 5px;
+    background-color: white;
+}
+
 #paiementForm .paymentBtn{
     margin-top: 20px;
     font-size: 20px;
@@ -135,4 +181,8 @@
 #dateCvvDiv {
     display: flex;
     justify-content: space-between;
+}
+
+.inputFormContainer {
+    position: relative;
 }
