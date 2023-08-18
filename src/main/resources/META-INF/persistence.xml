@@ -16,6 +16,8 @@
 		<class>travelLinker.entity.Message</class>
 		<class>travelLinker.entity.Conversation</class>
 		<class>travelLinker.entity.Insurance</class>
+		<class>travelLinker.entity.ColorChoice</class>
+		<class>travelLinker.entity.Template</class>
 
 		<properties>
 <!-- 			<property name="javax.persistence.jdbc.driver" -->
