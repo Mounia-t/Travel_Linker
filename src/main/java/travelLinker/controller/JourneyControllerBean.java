@@ -62,6 +62,11 @@ import travelLinker.viewModel.JourneyViewModel;
 		public void clear() {
 			journeyVM = new JourneyViewModel();
 		}
+		
+		public void deleteJourney (Long id) {
+			journeyDao.deleteJourney(id);
+			System.out.println("Journey deleted with id " + id);
+		}
 
 		public JourneyDao getJourneyDao() {
 			return journeyDao;
