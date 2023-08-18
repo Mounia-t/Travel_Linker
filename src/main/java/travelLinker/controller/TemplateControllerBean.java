@@ -18,8 +18,14 @@ public class TemplateControllerBean {
 
     public String loadTemplate(Long templateId) {
         selectedTemplate = templateDao.getTemplateById(templateId);
-        return "userHomePage.xhtml"; // Nom de la vue de la page d'accueil personnalisée
+        return "userHomePage.xhtml";
     }
+    
+    public String saveTemplate() {
+        templateDao.createTemplate(selectedTemplate);
+        return "userHomePage.xhtml";
+    }
+
 
 	public TemplateDao getTemplateDao() {
 		return templateDao;
