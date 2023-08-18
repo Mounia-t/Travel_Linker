@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class ServiceViewModel {
 
+	private Long id;
 	private float price;
 	private String type;
 	private String country;
@@ -14,6 +15,7 @@ public class ServiceViewModel {
 	private String description;
 	private String typeOfAccomodation;
 	private String typeOfRestaurant;
+	private String modeOfTransport;
 
 	public float getPrice() {
 		return price;
@@ -90,7 +92,9 @@ public class ServiceViewModel {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("AccomodationViewModel [price=");
+		builder.append("ServiceViewModel [id=");
+		builder.append(id);
+		builder.append(", price=");
 		builder.append(price);
 		builder.append(", type=");
 		builder.append(type);
@@ -108,6 +112,10 @@ public class ServiceViewModel {
 		builder.append(description);
 		builder.append(", typeOfAccomodation=");
 		builder.append(typeOfAccomodation);
+		builder.append(", typeOfRestaurant=");
+		builder.append(typeOfRestaurant);
+		builder.append(", typeOfTransport=");
+		builder.append(modeOfTransport);
 		builder.append("]");
 		return builder.toString();
 	}
@@ -118,6 +126,22 @@ public class ServiceViewModel {
 
 	public void setTypeOfRestaurant(String typeOfRestaurant) {
 		this.typeOfRestaurant = typeOfRestaurant;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getModeOfTransport() {
+		return modeOfTransport;
+	}
+
+	public void setModeOfTransport(String modeOfTransport) {
+		this.modeOfTransport = modeOfTransport;
 	}
 
 }

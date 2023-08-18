@@ -4,12 +4,9 @@ package travelLinker.viewModel;
 	import java.util.Date;
 
 
-	
-import java.util.Date;
-
-
 public class JourneyViewModel {
 	
+	private Long id;
 	private String country;
 	private int numberOfTravellers;
 	private float price;
@@ -18,6 +15,8 @@ public class JourneyViewModel {
 	private Date endDate;
 	private String name;
 	private String description;
+	private byte []imageFile;
+
 	
 	@Override
 	public String toString() {
@@ -91,6 +90,21 @@ public class JourneyViewModel {
 		this.description = description;
 	}
 	
-	
+	public byte[] getImage() {
+		return imageFile;
+	}
+
+	public void setImage(byte[] imageFile) {
+		this.imageFile = imageFile;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 }
 

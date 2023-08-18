@@ -12,11 +12,11 @@ public class Restaurant extends Service {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	private String typeOfRestaurant;
+
 	public Long getId() {
 		return id;
 	}
-
-	private String typeOfRestaurant;
 
 	public String getTypeOfRestaurant() {
 		return typeOfRestaurant;

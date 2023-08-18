@@ -12,9 +12,12 @@
 		<class>travelLinker.entity.AccountBean</class>
 		<class>travelLinker.entity.Accomodation</class>
 		<class>travelLinker.entity.Restaurant</class>
+		<class>travelLinker.entity.Subscription</class>
 		<class>travelLinker.entity.Message</class>
 		<class>travelLinker.entity.Conversation</class>
-
+		<class>travelLinker.entity.Insurance</class>
+		<class>travelLinker.entity.ColorChoice</class>
+		<class>travelLinker.entity.Template</class>
 
 		<properties>
 <!-- 			<property name="javax.persistence.jdbc.driver" -->

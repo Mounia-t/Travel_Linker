@@ -14,6 +14,7 @@ import travelLinker.dao.AccountDao;
 
 import travelLinker.entity.Account;
 import travelLinker.entity.Partner;
+import travelLinker.entity.RoleUser;
 import travelLinker.utils.SessionUtils;
 
 import travelLinker.viewModel.AccountViewModel;
@@ -46,8 +47,7 @@ public class AccountControllerBean implements Serializable {
 	public void deleteAccount() {
 		// Vérifier si l'utilisateur est connecté (authentifié)
 		Long accountId = SessionUtils.getUserId();
-
-		if (accountId != null) {
+	if (accountId != null) {
 			// On appelle la méthode de suppression dans le DAO pour supprimer le compte
 			accountDao.delete(accountId);
 		} else {
@@ -65,6 +65,28 @@ public class AccountControllerBean implements Serializable {
 		return accountDao.displayPartners();
 	}
 
+	public void updateAccount() {
+	    // Vérifier si l'utilisateur est connecté (authentifié)
+	    Long accountId = SessionUtils.getUserId();
+	        
+	    if (accountId != null) {
+	        // Créer un nouvel objet AccountBean avec les valeurs mises à jour
+	        Account updatedAccount = new Account();
+	        updatedAccount.setId(accountId);
+	        updatedAccount.setFirstName(accountVM.getFirstName());
+	        updatedAccount.setLastName(accountVM.getLastName());
+	        updatedAccount.setEmail(accountVM.getEmail());
+	        updatedAccount.setPassword(accountVM.getPassword());
+	        updatedAccount.setRole(accountVM.getRole());
+	        
+	        // Appeler la méthode de mise à jour dans le DAO pour mettre à jour le compte
+	        accountDao.update(updatedAccount);
+	    } else {
+	        System.out.println("L'utilisateur n'est pas connecté.");
+	    }
+	}
+//--------------------------------------------------------
+	
 	public AccountViewModel getAccountVM() {
 		return accountVM;
 	}
@@ -81,4 +103,11 @@ public class AccountControllerBean implements Serializable {
 		this.accountDao = accountDao;
 	}
 
+//----------------------------------------------------------
+	
+	public boolean isUserTravelPlanner(Long userId) {
+        RoleUser userRole = accountDao.getUserRoleById(userId);
+        return userRole == RoleUser.TravelPlanner;
+    }
+	
 }

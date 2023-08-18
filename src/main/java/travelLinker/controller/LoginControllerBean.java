@@ -116,14 +116,6 @@ public class LoginControllerBean implements Serializable {
 		return "signIn"; // Rediriger vers la page de connexion
 	}
 
-	public void deleteAccount() {
-
-	}
-
-	public void editAccount() {
-
-	}
-
 	public String getUserFirstName() {
 		return SessionUtils.getUserFirstName();
 	}

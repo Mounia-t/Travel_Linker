@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -7,13 +6,13 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <head>
-<title>Formulaire de Voyage</title>
-<style>
-/* Votre CSS personnalisé ici */
-</style>
+    <title>Formulaire de Voyage</title>
+    <style>
+        /* Votre CSS personnalisé ici */
+    </style>
 </head>
 <body>
-	<h:form>
+        <h:form enctype="multipart/form-data">
 		<h2>Proposez votre voyage</h2>
 
 		<div class="form-group">
@@ -44,24 +43,34 @@
 		<div class="form-group">
 
 			<h:outputLabel value="Date de Début du Voyage:" />
-			<h:inputText id="startDate" value="#{journeyControllerBean.journeyVM.startDate}"
-				required="true">
+			<h:inputText id="startDate"
+				value="#{journeyControllerBean.journeyVM.startDate}" required="true">
 				<f:convertDateTime pattern="dd/MM/yyyy" />
 			</h:inputText>
 
 			<h:outputLabel value="Date de Fin du Voyage:" />
-			<h:inputText id="endDate" value="#{journeyControllerBean.journeyVM.endDate}"
-				required="true">
+			<h:inputText id="endDate"
+				value="#{journeyControllerBean.journeyVM.endDate}" required="true">
 				<f:convertDateTime pattern="dd/MM/yyyy" />
 			</h:inputText>
 
+			
+			 <div class="form-group">
+        <label for="imageFile">Sélectionnez une image :</label>
+        <h:inputFile id="imageFile" value="#{journeyControllerBean.imageFile}" accept="image/*" />
+    </div>
+    
+
 		</div>
-		
-		<h:commandButton action="#{journeyControllerBean.clear()}" value="Clear" />
+		<h:commandButton action="#{journeyControllerBean.clear()}"
+			value="Clear" />
 
 		<div class="form-group">
-			<h:commandButton action="#{journeyControllerBean.addJourney()}" value="Create"/>
+			<h:commandButton action="#{journeyControllerBean.addJourney()}"
+				value="Create" />
 		</div>
+
+
 	</h:form>
 </body>
 </html>

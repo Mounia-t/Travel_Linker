@@ -4,12 +4,12 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import travelLinker.dao.AccountDao;
+import travelLinker.entity.Account;
 import travelLinker.entity.RoleUser;
 
 public class SessionUtils {
-
-	public SessionUtils() {
-	}
+	public SessionUtils() {}
 
 	// Récupère la session HTTP actuelle
 	public static HttpSession getSession() {
@@ -30,7 +30,7 @@ public class SessionUtils {
 		getSession().setAttribute("role", role);
 		getSession().setAttribute("lastName", lastName);
 		getSession().setAttribute("firstName", firstName);
-	
+
 	}
 	public static void writeInSessionTP(String phoneNumber, String siret, String companyName) {
 		getSession().setAttribute("siret", siret);
@@ -38,6 +38,7 @@ public class SessionUtils {
 		getSession().setAttribute("phoneNumber", phoneNumber);
 	
 	}
+
 
 
 	// Récupère l'email de l'utilisateur à partir de la session
@@ -83,5 +84,5 @@ public class SessionUtils {
 		HttpSession session = getSession();
 		return session.getAttribute("companyName").toString();
 	}
-	
+
 }

@@ -1,0 +1,318 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<!-- 	<ui:composition template=""> -->
+<!-- 	</ui:composition> -->
+
+<h:head>
+	<title>Services</title>
+</h:head>
+
+<h:body>
+	<h:form>
+
+		<!-- List of Restaurants -->
+
+		<h2>Restaurants</h2>
+
+		<h:dataTable value="#{serviceControllerBean.restaurants}"
+			var="restaurant">
+
+			<h:column>
+				<f:facet name="header">Nom</f:facet>
+        		#{restaurant.name}
+    		</h:column>
+
+			<h:column>
+				<f:facet name="header">Type</f:facet>
+       			 #{restaurant.type}
+    		</h:column>
+
+			<h:column>
+				<f:facet name="header">Country</f:facet>
+        		#{restaurant.country}
+    		</h:column>
+
+			<h:column>
+				<f:facet name="header">Location</f:facet>
+        		#{restaurant.location}
+    		</h:column>
+
+			<h:column>
+				<f:facet name="header">Check-in Date</f:facet>
+        		#{restaurant.startDate}
+    		</h:column>
+
+			<h:column>
+				<f:facet name="header">Check-out Date</f:facet>
+        		#{restaurant.endDate}
+    		</h:column>
+
+			<h:column>
+				<f:facet name="header">Description</f:facet>
+        		#{restaurant.description}
+    		</h:column>
+
+			<h:column>
+				<f:facet name="header">Type of Restaurant</f:facet>
+        		#{restaurant.typeOfRestaurant}
+    		</h:column>
+
+			<h:column>
+				<f:facet name="header">Actions</f:facet>
+				<h:commandButton value="Delete"
+					action="#{serviceControllerBean.deleteRestaurant(restaurant.id)}" />
+				<h:commandButton value="Edit"
+					action="#{serviceControllerBean.setRestaurantVm(restaurant)}"
+					update=":editFormRestaurant" />
+			</h:column>
+		</h:dataTable>
+
+		<!-- List of Accomodations -->
+
+		<h2>Accommodations</h2>
+
+		<h:dataTable value="#{serviceControllerBean.accomodations}"
+			var="accomodation">
+			<h:column>
+				<f:facet name="header">Nom</f:facet>
+            #{accomodation.name}
+        </h:column>
+			<h:column>
+				<f:facet name="header">Type</f:facet>
+            #{accomodation.type}
+        </h:column>
+			<h:column>
+				<f:facet name="header">Country</f:facet>
+            #{accomodation.country}
+        </h:column>
+			<h:column>
+				<f:facet name="header">Location</f:facet>
+            #{accomodation.location}
+        </h:column>
+			<h:column>
+				<f:facet name="header">Check-in Date</f:facet>
+        #{accomodation.startDate}
+        </h:column>
+			<h:column>
+				<f:facet name="header">Check-out Date</f:facet>
+        #{accomodation.endDate}
+        </h:column>
+			<h:column>
+				<f:facet name="header">Description</f:facet>
+        #{accomodation.description}
+        </h:column>
+			<h:column>
+				<f:facet name="header">Type of Accomodation</f:facet>
+        #{accomodation.typeOfAccomodation}
+        </h:column>
+			<h:column>
+				<f:facet name="header">Actions</f:facet>
+				<h:commandButton value="Delete"
+					action="#{serviceControllerBean.deleteAccomodation(accomodation.id)}" />
+				<h:commandButton value="Edit"
+					action="#{serviceControllerBean.setAccomodationVm(accomodation)}"
+					update=":editFormAccomodation" />
+			</h:column>
+
+		</h:dataTable>
+
+		<!-- List of Transports -->
+
+		<h2>Transports</h2>
+
+		<h:dataTable value="#{serviceControllerBean.transports}"
+			var="transport">
+			<h:column>
+				<f:facet name="header">Name</f:facet>
+        		#{transport.name}
+    		</h:column>
+			<h:column>
+				<f:facet name="header">Type</f:facet>
+        		#{transport.type}
+    		</h:column>
+			<h:column>
+				<f:facet name="header">Country</f:facet>
+        		#{transport.country}
+    		</h:column>
+			<h:column>
+				<f:facet name="header">Location</f:facet>
+        		#{transport.location}
+    		</h:column>
+			<h:column>
+				<f:facet name="header">Departure Date</f:facet>
+        		#{transport.startDate}
+    		</h:column>
+			<h:column>
+				<f:facet name="header">Arrival Date</f:facet>
+        		#{transport.endDate}
+    		</h:column>
+			<h:column>
+				<f:facet name="header">Description</f:facet>
+        		#{transport.description}
+    		</h:column>
+			<h:column>
+				<f:facet name="header">Mode of Transport</f:facet>
+        		#{transport.modeOfTransport}
+    		</h:column>
+			<h:column>
+				<f:facet name="header">Actions</f:facet>
+				<h:commandButton value="Delete"
+					action="#{serviceControllerBean.deleteTransport(transport.id)}" />
+				<h:commandButton value="Edit"
+					action="#{serviceControllerBean.setTransportVm(transport)}"
+					update=":editFormTransport" />
+			</h:column>
+		</h:dataTable>
+
+		<h:panelGrid id="editFormRestaurant"
+			rendered="#{serviceControllerBean.showRestaurantForm}">
+			<h:outputLabel id="nameLabelRestaurant" value="Name : " />
+			<h:inputText id="nameTxtRestaurant" size="30"
+				value="#{serviceControllerBean.restaurantVm.name}" />
+
+			<h:outputLabel id="typeLabelRestaurant" value="Type : " />
+			<h:inputText id="typeTxtRestaurant" size="30"
+				value="#{serviceControllerBean.restaurantVm.type}" />
+
+			<h:outputLabel id="priceLabelRestaurant" value="Price : " />
+			<h:inputText id="priceTxtRestaurant" size="30"
+				value="#{serviceControllerBean.restaurantVm.price}" />
+
+			<h:outputLabel id="countryLabelRestaurant" value="Country : " />
+			<h:inputText id="countryTxtRestaurant" size="30"
+				value="#{serviceControllerBean.restaurantVm.country}" />
+
+			<h:outputLabel id="locationLabelRestaurant" value="Location : " />
+			<h:inputText id="locationTxtRestaurant" size="30"
+				value="#{serviceControllerBean.restaurantVm.location}" />
+
+			<h:outputLabel id="startDateLabelRestaurant" value="Check-in Date : " />
+			<h:inputText id="startDateTxtRestaurant" size="30"
+				value="#{serviceControllerBean.restaurantVm.startDate}">
+				<f:convertDateTime pattern="dd/MM/yyyy" />
+			</h:inputText>
+
+			<h:outputLabel id="endDateLabelRestaurant" value="Check-out Date : " />
+			<h:inputText id="endDateTxtRestaurant" size="30"
+				value="#{serviceControllerBean.restaurantVm.endDate}">
+				<f:convertDateTime pattern="dd/MM/yyyy" />
+			</h:inputText>
+
+			<h:outputLabel id="descriptionLabelRestaurant" value="Description : " />
+			<h:inputText id="descriptionTxtRestaurant" size="100"
+				value="#{serviceControllerBean.restaurantVm.description}" />
+
+			<h:outputLabel id="typeOfRestaurantLabel"
+				value="Type of restaurant : " />
+			<h:inputText id="typeOfRestaurantTxt" size="30"
+				value="#{serviceControllerBean.restaurantVm.typeOfRestaurant}" />
+
+			<h:commandButton value="Save"
+				action="#{serviceControllerBean.modifyRestaurant}"
+				update=":editFormRestaurant" />
+		</h:panelGrid>
+
+		<h:panelGrid id="editFormAccomodation"
+			rendered="#{serviceControllerBean.showAccomodationForm}">
+			<h:outputLabel id="nameLabelAccomodation" value="Name : " />
+			<h:inputText id="nameTxtAccomodation" size="30"
+				value="#{serviceControllerBean.accomodationVm.name}" />
+
+			<h:outputLabel id="typeLabelAccomodation" value="Type : " />
+			<h:inputText id="typeTxtAccomodation" size="30"
+				value="#{serviceControllerBean.accomodationVm.type}" />
+
+			<h:outputLabel id="priceLabelAccomodation" value="Price : " />
+			<h:inputText id="priceTxtAccomodation" size="30"
+				value="#{serviceControllerBean.accomodationVm.price}" />
+
+			<h:outputLabel id="countryLabelAccomodation" value="Country : " />
+			<h:inputText id="countryTxtAccomodation" size="30"
+				value="#{serviceControllerBean.accomodationVm.country}" />
+
+			<h:outputLabel id="locationLabelAccomodation" value="Location : " />
+			<h:inputText id="locationTxtAccomodation" size="30"
+				value="#{serviceControllerBean.accomodationVm.location}" />
+
+			<h:outputLabel id="startDateLabelAccomodation" value="Check-in Date : " />
+			<h:inputText id="startDateTxtAccomodation" size="30"
+				value="#{serviceControllerBean.accomodationVm.startDate}">
+				<f:convertDateTime pattern="dd/MM/yyyy" />
+			</h:inputText>
+
+			<h:outputLabel id="endDateLabelAccomodation" value="Check-out Date : " />
+			<h:inputText id="endDateTxtAccomodation" size="30"
+				value="#{serviceControllerBean.accomodationVm.endDate}">
+				<f:convertDateTime pattern="dd/MM/yyyy" />
+			</h:inputText>
+
+			<h:outputLabel id="descriptionLabelAccomodation" value="Description : " />
+			<h:inputText id="descriptionTxtAccomodation" size="100"
+				value="#{serviceControllerBean.accomodationVm.description}" />
+
+			<h:outputLabel id="typeOfAccomodationLabel"
+				value="Type of accomodation : " />
+			<h:inputText id="typeOfAccomodationTxt" size="30"
+				value="#{serviceControllerBean.accomodationVm.typeOfAccomodation}" />
+
+			<h:commandButton value="Save"
+				action="#{serviceControllerBean.modifyAccomodation}"
+				update=":editFormAccomodation" />
+		</h:panelGrid>
+
+		<h:panelGrid id="editFormTransport"
+			rendered="#{serviceControllerBean.showTransportForm}">
+			<h:outputLabel id="nameLabelTransport" value="Name : " />
+			<h:inputText id="nameTxtTransport" size="30"
+				value="#{serviceControllerBean.transportVm.name}" />
+
+			<h:outputLabel id="typeLabelTransport" value="Type : " />
+			<h:inputText id="typeTxtTransport" size="30"
+				value="#{serviceControllerBean.transportVm.type}" />
+
+			<h:outputLabel id="priceLabelTransport" value="Price : " />
+			<h:inputText id="priceTxtTransport" size="30"
+				value="#{serviceControllerBean.transportVm.price}" />
+
+			<h:outputLabel id="countryLabelTransport" value="Country : " />
+			<h:inputText id="countryTxtTransport" size="30"
+				value="#{serviceControllerBean.transportVm.country}" />
+
+			<h:outputLabel id="locationLabelTransport" value="Location : " />
+			<h:inputText id="locationTxtTransport" size="30"
+				value="#{serviceControllerBean.transportVm.location}" />
+
+			<h:outputLabel id="startDateLabelTransport" value="Departure Date : " />
+			<h:inputText id="startDateTxtTransport" size="30"
+				value="#{serviceControllerBean.transportVm.startDate}">
+				<f:convertDateTime pattern="dd/MM/yyyy" />
+			</h:inputText>
+
+			<h:outputLabel id="endDateLabelTransport" value="Arrival Date : " />
+			<h:inputText id="endDateTxtTransport" size="30"
+				value="#{serviceControllerBean.transportVm.endDate}">
+				<f:convertDateTime pattern="dd/MM/yyyy" />
+			</h:inputText>
+
+			<h:outputLabel id="descriptionLabelTransport" value="Description : " />
+			<h:inputText id="descriptionTxtTransport" size="100"
+				value="#{serviceControllerBean.transportVm.description}" />
+
+			<h:outputLabel id="modeOfTransportLabelTransport"
+				value="Mode of transport : " />
+			<h:inputText id="modeOfTransportTxt" size="30"
+				value="#{serviceControllerBean.transportVm.modeOfTransport}" />
+
+			<h:commandButton value="Save"
+				action="#{serviceControllerBean.modifyTransport}"
+				update=":editFormTransport" />
+		</h:panelGrid>
+
+	</h:form>
+</h:body>
+</html>
