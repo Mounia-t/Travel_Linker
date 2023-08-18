@@ -12,6 +12,7 @@ import javax.persistence.TypedQuery;
 
 import travelLinker.entity.Account;
 import travelLinker.entity.RoleUser;
+import travelLinker.entity.TravelPlanner;
 import travelLinker.utils.PasswordUtils;
 import travelLinker.viewModel.AccountViewModel;
 
@@ -21,7 +22,7 @@ public class LoginDao {
     @PersistenceContext
     private EntityManager entityManager;
 
-    private Account findAccountByEmail(String email) {
+    public Account findAccountByEmail(String email) {
         try {
             TypedQuery<Account> query = entityManager.createQuery(
                 "SELECT a FROM Account a WHERE a.email = :email", Account.class)
@@ -33,27 +34,7 @@ public class LoginDao {
             return null; // Ou lancez une exception appropriée
         }
     }
-//------------------------------------------------------
-    public Long getAccountIdByEmail(String email) {
-        try {
-            TypedQuery<Long> query = entityManager.createQuery("SELECT a.id FROM AccountBean a WHERE a.email = :email", Long.class);
-            query.setParameter("email", email);
-            return query.getSingleResult();
-            
-        } catch (NoResultException e) {
-            // Si aucun compte ne correspond à l'adresse e-mail, retourner null ou une valeur par défaut appropriée.
-            return null;
-            
-        } catch (NonUniqueResultException e) {
-            // Si plusieurs comptes correspondent à l'adresse e-mail (ce qui ne devrait pas arriver), gérer l'exception ici
-            System.out.println("Plusieurs comptes trouvés pour l'adresse e-mail : " + email);
-            return null;
-        } catch (Exception e) {
-            // Gére les exception lors de l'exécution de la requête
-            return null;
-        }
-    }
-//------------------------------------------------------------
+
 
     public boolean validate(AccountViewModel accountVM) {
         Account accountBean = findAccountByEmail(accountVM.getEmail());
@@ -75,6 +56,19 @@ public class LoginDao {
             return null; // Ou lancez une exception appropriée
         }
     
+    }
+    
+    public TravelPlanner findTravelPlanner(String email) {
+        try {
+            TypedQuery<TravelPlanner> query = entityManager.createQuery(
+                "SELECT tp FROM TravelPlanner tp WHERE tp.email = :email", TravelPlanner.class)
+                .setParameter("email", email);
+
+            return query.getSingleResult();
+        } catch (NoResultException ex) {
+            System.out.println("Utilisateur non trouvé dans la base de données");
+            return null; // Ou lancez une exception appropriée
+        }
     }
 
     }

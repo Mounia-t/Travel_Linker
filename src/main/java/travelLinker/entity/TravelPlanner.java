@@ -23,7 +23,7 @@ public class TravelPlanner{
 	private String email;
 
 
-	private double phoneNumber;
+	private String phoneNumber;
 	private String siret;
 	private String companyName;
 	@OneToOne
@@ -64,10 +64,10 @@ public class TravelPlanner{
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public double getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
-	public void setPhoneNumber(double phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 	public String getSiret() {

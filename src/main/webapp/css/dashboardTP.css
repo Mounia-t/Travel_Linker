@@ -405,7 +405,196 @@ main .recent-orders a {
     margin: 1rem auto;
     color: var(--color-primary);
 }
+/*---------------------------- Zone pop up container --------------------------*/
 
+.popup-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: all 0.3s ease;
+}
+
+.popup-content {
+    position: relative;
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.popup-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.popup-answer-btn {
+    font-size: 16px;
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.popup-close-btn {
+    position: absolute;
+    top: -50px;
+    right: 0;
+    margin-top: 10px;
+    padding: 5px 10px;
+    transform: scale(1.4);
+    background-color: transparent;
+    color: #fff;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.popup-close-btn:hover {
+    transform: scale(1.1);
+}
+
+.popup-answer-btn:hover {
+    transform: scale(1.1);
+}
+
+.expDateZone,
+.objectZone {
+    display: flex;
+    border-bottom: 1px solid var(--color-info-dark);
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    overflow-x: auto;
+    text-align: start;
+}
+
+.expDateZone {
+    justify-content: space-between;
+}
+
+.expZone {
+    display: flex;
+}
+
+.msgZone {
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    width: 500px;
+    height: 200px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+
+/*---------------------------- Zone popup Answer container --------------------------*/
+
+.popup-answer-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: all 0.3s ease;
+}
+
+.popup-answer-content {
+    position: relative;
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.popup-send-btn {
+    font-size: 16px;
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.popup-close-btn {
+    position: absolute;
+    top: -50px;
+    right: 0;
+    margin-top: 10px;
+    padding: 5px 10px;
+    transform: scale(1.4);
+    background-color: transparent;
+    color: #fff;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.popup-send-btn:hover {
+    transform: scale(1.1);
+}
+
+.destDateZone,
+.objectZone {
+    display: flex;
+    border-bottom: 1px solid var(--color-info-dark);
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    overflow-x: auto;
+    text-align: start;
+}
+
+.destDateZone {
+    justify-content: space-between;
+}
+
+.destZone {
+    display: flex;
+}
+
+.recapZone {
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    height: 100px;
+    overflow-y: auto;
+    border-bottom: 1px solid var(--color-info-dark);
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    overflow-y: auto;
+}
+
+#msgZoneTA {
+    margin-top: 10px;
+    border: 1px solid lightgrey;
+    border-radius: 25px;
+    padding: 12px;
+}
 /*---------------------------- Zone main Messages ---------------------------*/
 
 #mainMessages .messages .analyse {
@@ -505,19 +694,58 @@ main .recent-orders a {
     box-shadow: none;
 }
 
-#showUnreadMessagesBtn {
-    margin-top: 20px;
-    border: 1px solid white;
-    border-radius: 25px;
-    background-color: white;
-    padding: 10px 20px;
-    cursor: pointer;
-    box-shadow: var(--box-shadow);
-    transition: all 0.3s ease;
+/*--------------Nouvelle modif writeMsgSection------------------------*/
+#writeMsgSection {
+    width: 100%;
 }
 
-#showUnreadMessagesBtn:hover {
-    box-shadow: none;
+#writeMsgSection,
+#writeMsgSection h2 {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#writeMsgSection h2 {
+    text-align: start;
+}
+
+#writeMsgSection .radio-inputs {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 25px;
+    background-color: white;
+    box-sizing: border-box;
+    box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.06);
+    padding: 0.25rem;
+    width: 400px;
+    font-size: 14px;
+}
+
+#writeMsgSection .radio-inputs .radio {
+    flex: 1 1 auto;
+    text-align: center;
+}
+
+#writeMsgSection .radio-inputs .radio input {
+    display: none;
+}
+
+#writeMsgSection .radio-inputs .radio .name {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    border-radius: 25px;
+    border: none;
+    padding: .5rem 0;
+    color: rgba(51, 65, 85, 1);
+    transition: all .15s ease-in-out;
+}
+
+#writeMsgSection .radio-inputs .radio input:checked+.name {
+    background-color: var(--color-light);
+    font-weight: 600;
 }
 
 /*---------------------------- Zone All Messages ---------------------------*/
@@ -716,7 +944,6 @@ main .recent-orders a {
     box-shadow: none;
 }
 
-
 /*---------------------------- Zone main Add ---------------------------*/
 
 #mainAdd .analyse {
@@ -768,7 +995,7 @@ main .recent-orders a {
     margin-top: 20px;
     border: 1px solid white;
     border-radius: 25px;
-    background-color: red;
+    background-color: white;
     padding: 10px 20px;
     cursor: pointer;
     box-shadow: var(--box-shadow);
@@ -779,16 +1006,132 @@ main .recent-orders a {
 #createAdmin:hover {
     box-shadow: none;
 }
-.deleteBtnProfile {
-	margin-top: 20px;
-    border: 1px solid red;
+
+/*------------------------------------Zone Création de service------------------------------*/
+
+#mainAddServices .user-listMessages input {
+    width: 100%;
+    border: 1px solid lightgrey;
     border-radius: 25px;
-    background-color: red;
-    padding: 10px 20px;
+    padding: 10px;
+    margin-top: 15px;
+}
+
+#mainAddServices .user-listMessages #inputMessageDetails {
+    height: 180px;
+}
+
+#mainAddServices .user-listMessages:hover {
+    box-shadow: none;
+}
+
+/*------------------------------------Zone radioButtons service-----------------------------*/
+.flexingRB {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
+
+.radio-inputs {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 25px;
+    background-color: white;
+    box-sizing: border-box;
+    box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.06);
+    padding: 0.25rem;
+    width: 300px;
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+.radio-inputs .radio {
+    flex: 1 1 auto;
+    text-align: center;
+}
+
+.radio-inputs .radio input {
+    display: none;
+}
+
+.radio-inputs .radio .name {
+    display: flex;
     cursor: pointer;
-    box-shadow: var(--box-shadow);
-    width: fit-content;
-    transition: all 0.3s ease; }
+    align-items: center;
+    justify-content: center;
+    border-radius: 25px;
+    border: none;
+    padding: .5rem 0;
+    color: rgba(51, 65, 85, 1);
+    transition: all .15s ease-in-out;
+}
+
+.radio-inputs .radio input:checked+.name {
+    background-color: var(--color-light);
+    font-weight: 600;
+}
+
+/*----------------------------Zone table Historique voyage------------------------*/
+
+#mainListServices .deleteBtn {
+    margin-top: 30px;
+}
+
+.table-container {
+    max-height: 600px;
+    /* Par exemple, définissez la hauteur maximale souhaitée */
+    overflow-y: auto;
+    /* Permet le scroll vertical si nécessaire */
+    margin-top: 30px;
+}
+
+.table-container {}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    background-color: #ffffff;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 25px;
+}
+
+tr:first-child th {
+    background-color: #ffffff;
+    border-radius: 25px;
+    border-bottom: 4px solid var(--color-background);
+}
+
+th,
+td {
+    padding: 12px 20px;
+    text-align: left;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.fourthTD {
+    max-width: 100px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+tr {
+    cursor: pointer;
+    overflow: hidden;
+}
+
+tr:not(:first-child):hover th,
+tr:hover td {
+    transform: scale(.95);
+}
+
 
 /*------------------------------------Zone right Section------------------------------------*/
 .right-section {
