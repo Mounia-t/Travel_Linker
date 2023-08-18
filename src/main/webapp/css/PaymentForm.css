@@ -1,0 +1,138 @@
+
+#zonePaiement {
+    margin-top: 20px;
+    height: 88vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#paiementCard {
+    z-index: 1;
+    height: 200px;
+    width: 350px;
+    border-radius: 25px;
+    background: radial-gradient(circle, white 0%, #d5d5d5 100%);
+    box-shadow: 3px 3px 17px 0px rgba(0, 0, 0, 0.55);
+    padding: 10px;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    animation: rotateCB 4s ease-in-out infinite;
+}
+
+@keyframes rotateCB {
+     0% {
+        transform: translateY(15px);
+    }
+
+    50% {
+        transform: translateY(0px);
+    }
+
+    100% {
+        transform: translateY(15px);
+    }
+} 
+
+#cardBody {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+#cbBodyInfo {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+#cbNumber {
+    font-size: 22px;
+}
+#owner {
+    font-size: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+#bodyInfo {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+}
+#bodyInfo img {
+    width: 70px;
+    margin-bottom: 20px;
+}
+#bodyCvv {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
+#ownerCvvDiv {
+    display: flex;
+    justify-content: space-between;
+}
+#cvvValue {
+    margin-left: 60px;
+}
+
+#cbBodyInfo {
+    display: flex;
+}
+
+#cbLogo img{
+    height: 70px;
+}
+
+/*-------------------Paiementform-----------------------*/
+
+#paiementForm {
+    height: 400px;
+    width: 500px;
+    border-radius: 25px;
+    background-color: rgba(255, 255, 255, 0.074);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(20px); /* Ajout de l'effet de flou */
+    opacity: 0.9;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#paiementForm .inputForm{
+    border: 1px solid grey;
+    border-radius: 25px;
+    background: none;
+    padding: 10px;
+    margin-top: 30px;
+    width: 94%;
+    outline: none;
+}
+#paiementForm .inputForm:focus{
+    border-color: green;
+}
+#paiementForm .paymentBtn{
+    margin-top: 20px;
+    font-size: 20px;
+    border: 2px solid black;
+    border-radius: 25px;
+    background-color: black;
+    color: white;
+    padding: 10px 40px;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    cursor: pointer;
+}
+#paiementForm .paymentBtn:hover{
+    border-radius: 25px;
+    background-color: black;
+    color: white;
+    padding: 10px 60px;
+}
+
+#dateCvvDiv {
+    display: flex;
+    justify-content: space-between;
+}
