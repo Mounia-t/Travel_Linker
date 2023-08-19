@@ -46,17 +46,23 @@ import travelLinker.viewModel.JourneyViewModel;
 		public void addJourney() {
 		    try {
 		        if (imageFile != null) {
-		            // Traitement de l'upload de l'image
-		            String uploadsDir = FacesContext.getCurrentInstance().getExternalContext().getRealPath("C:\\Users\\33665\\P3Repo\\Travel_Linker\\src\\main\\webapp\\images");
+		            // Obtenez le chemin absolu vers le répertoire de déploiement de l'application
+		            String deploymentPath = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");
+		            
+		            // Chemin relatif vers le répertoire d'images
+		            String relativeImagePath = "images/";
+
 		            String fileName = "journey_" + System.currentTimeMillis() + "_" + FilenameUtils.getBaseName(imageFile.getSubmittedFileName()) + "."
 		                    + FilenameUtils.getExtension(imageFile.getSubmittedFileName());
-		            String filePath = Paths.get(uploadsDir, fileName).toString();
+
+		            // Chemin complet du fichier
+		            String filePath = Paths.get(deploymentPath, relativeImagePath, fileName).toString();
 
 		            try (InputStream input = imageFile.getInputStream(); OutputStream output = new FileOutputStream(filePath)) {
 		                IOUtils.copy(input, output);
 		            }
 
-		            journeyVM.setImagePath("C:\\Users\\33665\\P3Repo\\Travel_Linker\\src\\main\\webapp\\images" + fileName); // Utilisez le chemin relatif de l'image
+		            journeyVM.setImagePath(relativeImagePath + fileName);
 		        }
 
 		        // Appel à la méthode de la couche de persistance pour ajouter le voyage
@@ -68,8 +74,6 @@ import travelLinker.viewModel.JourneyViewModel;
 		        e.printStackTrace(); // Gérez l'exception selon vos besoins
 		    }
 		}
-
-		
 
 			                
 		public void clear() {
