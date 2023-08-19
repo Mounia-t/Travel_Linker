@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+    <title>Abonnement</title>
+</h:head>
+<h:body>
+    <h1>Page d'Abonnement</h1>
+
+    <!-- Formulaire pour souscrire un nouvel abonnement -->
+    <h:form>
+        <h2>Souscrire un nouvel abonnement</h2>
+        <p:inputText value="#{subscriptionController.newSubscription.price}" label="Prix" />
+         
+        <p:calendar value="#{subscriptionController.newSubscription.endDate}" label="Date de fin" />
+        <p:inputText value="#{subscriptionController.newSubscription.type}" label="Type" />
+
+        
+        <p:commandButton value="Souscrire" action="#{subscriptionController.createSubscription}" />
+    </h:form>
+
+    
+
+</h:body>
+</html>
