@@ -1,0 +1,864 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<head>
+<meta charset="UTF-8" />
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+	href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
+	rel="stylesheet" />
+<link rel="stylesheet" href="./css/dashboardTP.css" />
+<title>Dashboard</title>
+</head>
+
+<body>
+
+	<div class="container">
+		<!-- Sidebar Section -->
+		<aside>
+			<div class="toggle">
+				<div class="logo">
+					<img src="images/PHOTO-2023-07-03-17-06-30.jpg" />
+					<h2></h2>
+				</div>
+				<div class="close" id="close-btn">
+					<span class="material-icons-sharp"> close </span>
+				</div>
+			</div>
+			<div class="sidebar">
+				<a href="#" id="dashboardBtn" class="active"> <span
+					class="material-icons-sharp"> dashboard </span>
+					<h3>Dashboard</h3>
+				</a> <a href="#" id="profileBtn"> <span class="material-icons-sharp">
+						person_outline </span>
+					<h3>Mon profil</h3>
+				</a> <a href="#" id="usersBtn"> <span class="material-icons-sharp">
+						group </span>
+					<h3>Partenaires</h3>
+				</a> <a href="#" id="managedResaBtn"> <span
+					class="material-icons-sharp"> flight </span>
+					<h3>Mes voyages</h3>
+				</a> <a href="#" id="historyBtn"> <span class="material-icons-sharp">
+						event </span>
+					<h3>Réservations</h3>
+				</a> <a href="#" id="analyticsBtn"> <span
+					class="material-icons-sharp"> insights </span>
+					<h3>Analytics</h3>
+				</a> <a href="#" id="messagesBtn"> <span
+					class="material-icons-sharp"> mail </span>
+					<h3>Messages</h3>
+				</a>
+				<h:form>
+					<a href="#"> <span class="material-icons-sharp"> logout
+					</span>
+						<h3>
+							<h:commandButton value="Déconnexion"
+								action="#{loginControllerBean.logout()}" />
+						</h3>
+
+					</a>
+				</h:form>
+			</div>
+		</aside>
+		<!-- End of Sidebar Section -->
+		<!-- Main content Dashboard -->
+		<main id="mainDashboard">
+			<h1>Dashboard</h1>
+			<!-- Analyses -->
+			<div class="analyse fade-in-bottom">
+				<div class="sales">
+					<div class="status">
+						<div class="info">
+							<h3>Ventes totales</h3>
+							<h1>1M</h1>
+						</div>
+					</div>
+				</div>
+				<div class="visits">
+					<div class="status">
+						<div class="info">
+							<h3>Nombre d'abonnement</h3>
+							<h1>24k</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- End of Analyses -->
+
+			<!-- New Users Section -->
+			<div class="new-users fade-in-bottom">
+				<h2>Nouveaux travel planners</h2>
+				<div class="user-list">
+					<div class="user">
+						<img src="images/profile-2.jpg" />
+						<h2>Jack</h2>
+						<p>54 Min Ago</p>
+					</div>
+					<div class="user">
+						<img src="images/profile-3.jpg" />
+						<h2>Amir</h2>
+						<p>3 Hours Ago</p>
+					</div>
+					<div class="user">
+						<img src="images/profile-4.jpg" />
+						<h2>Ember</h2>
+						<p>6 Hours Ago</p>
+					</div>
+					<div class="user">
+						<img src="images/plus.png" />
+						<h2>More</h2>
+						<p>New User</p>
+					</div>
+				</div>
+			</div>
+			<!-- End of New Users Section -->
+
+			<!-- Recent Orders Table -->
+
+			<!-- End of Recent Orders -->
+
+		</main>
+		<!-- Main Content -->
+		<main id="mainAnalytics" style="display: none;">
+			<h1>Analytics</h1>
+			<!-- Analyses -->
+			<div class="analyse">
+				<div class="sales">
+					<div class="status">
+						<div class="info">
+							<h3>Ventes totales</h3>
+							<h1>1M€</h1>
+						</div>
+					</div>
+				</div>
+				<div class="visits">
+					<div class="status">
+						<div class="info">
+							<h3>Type d'abonnement</h3>
+							<h1>Premium</h1>
+						</div>
+					</div>
+				</div>
+				<div class="sales">
+					<div class="status">
+						<div class="info">
+							<h3>Nombre de réservations</h3>
+							<h1>42</h1>
+						</div>
+					</div>
+				</div>
+				<div class="visits">
+					<div class="status">
+						<div class="info">
+							<h3>Nombre de partenaires</h3>
+							<h1>
+								<h:outputText
+									value="#{accountControllerBean.countTotalPartners()}" />
+							</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- End of Analyses -->
+
+			<!-- New Users Section -->
+			<div class="new-users">
+				<h2>Nouve</h2>
+				<div class="user-list">
+					<div class="user">
+						<img src="images/profile-2.jpg" />
+						<h2>Jack</h2>
+						<p>54 Min Ago</p>
+					</div>
+					<div class="user">
+						<img src="images/profile-3.jpg" />
+						<h2>Amir</h2>
+						<p>3 Hours Ago</p>
+					</div>
+					<div class="user">
+						<img src="images/profile-4.jpg" />
+						<h2>Ember</h2>
+						<p>6 Hours Ago</p>
+					</div>
+					<div class="user">
+						<img src="images/plus.png" />
+						<h2>More</h2>
+						<p>New User</p>
+					</div>
+				</div>
+			</div>
+			<!-- End of New Users Section -->
+
+			<!-- Recent Orders Table -->
+
+
+		</main>
+
+		<!-- End of MainAnalytics Content -->
+
+		<!-- Start of MainMessages Content -->
+		<main id="mainMessages" style="display: none;">
+			<div class="messages">
+				<h1>Messages</h1>
+				<div class="analyse">
+					<div class="sales">
+						<div class="status">
+							<div class="info">
+								<h3>Nombre de messages non lus</h3>
+								<h1>5</h1>
+							</div>
+						</div>
+					</div>
+					<div class="visits">
+						<div class="status">
+							<div class="info">
+								<h3>Nombre de messages totals</h3>
+								<h1>2</h1>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="new-users flexingRB">
+				<div class="radio-inputs">
+					<label class="radio"> <input type="radio" name="radio"
+						id="allMsg" /> <span class="name">Tous</span>
+					</label> <label class="radio"> <input type="radio" name="radio"
+						id="readMsg" /> <span class="name">Lus</span>
+					</label> <label class="radio"> <input type="radio" name="radio"
+						id="unreadMsg" /> <span class="name">Non lus</span>
+					</label> <label class="radio"> <input type="radio" name="radio"
+						id="sentMsg" /> <span class="name">Envoyés</span>
+					</label> <label class="radio"> <input type="radio" name="radio"
+						id="writeMsg" /> <span class="name">Écrire</span>
+					</label>
+				</div>
+				<div id="allMsgSection">
+
+					<div class="table-container">
+						<table>
+							<thead>
+								<tr>
+									<th>Expéditeur</th>
+									<th>Objet</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<ui:repeat
+									value="#{conversationController.getReceivedMessages()}"
+									var="message">
+									<tr>
+										<td>#{message.senderEmail}</td>
+										<td>#{message.messageResume}</td>
+										<td><h:form>
+												<h:commandButton class="readBtn" value="Lire"
+													id="readAllMsgBtn"
+													action="#{conversationController.selectMessage(message)}">
+												</h:commandButton>
+											</h:form></td>
+									</tr>
+								</ui:repeat>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<div id="readMsgSection">
+					<div class="table-container">
+						<table>
+							<thead>
+								<tr>
+									<th>Expéditeur</th>
+									<th>Objet</th>
+									<th>Résumé</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Le Gourmet Parisien</td>
+									<td>Restaurant</td>
+									<td>Restaurant français raffiné au cœur de Paris</td>
+									<td>
+										<button class="readBtn">Lire</button>
+									</td>
+								</tr>
+								<tr>
+									<td>Étoile Hôtel</td>
+									<td>Hébergement</td>
+									<td>Hôtel de luxe cinq étoiles avec vue panoramique</td>
+									<td>
+										<button class="readBtn">Lire</button>
+									</td>
+								</tr>
+								<tr>
+									<td>Airport Shuttle</td>
+									<td>Transport</td>
+									<td>Service de navette entre l'aéroport et le centre-ville</td>
+									<td>
+										<button class="readBtn">Lire</button>
+									</td>
+								</tr>
+								<tr>
+									<td>Sakura Sushi</td>
+									<td>Restaurant</td>
+									<td>Restaurant japonais spécialisé dans les sushis</td>
+									<td>
+										<button class="readBtn">Lire</button>
+									</td>
+								</tr>
+								<tr>
+									<td>Mountain Lodge</td>
+									<td>Hébergement</td>
+									<td>Charmante auberge de montagne pour les amoureux de la
+										nature</td>
+									<td>
+										<button class="readBtn">Lire</button>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<div id="unreadMsgSection">
+					<div class="table-container">
+						<table>
+							<thead>
+								<tr>
+									<th>Expéditeur</th>
+									<th>Objet</th>
+									<th>Résumé</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Le Gourmet Parisien</td>
+									<td>Restaurant</td>
+									<td>Restaurant français raffiné au cœur de Paris</td>
+									<td>
+										<button class="readBtn">Lire</button>
+									</td>
+								</tr>
+								<tr>
+									<td>Étoile Hôtel</td>
+									<td>Hébergement</td>
+									<td>Hôtel de luxe cinq étoiles avec vue panoramique</td>
+									<td>
+										<button class="readBtn">Lire</button>
+									</td>
+								</tr>
+								<tr>
+									<td>Airport Shuttle</td>
+									<td>Transport</td>
+									<td>Service de navette entre l'aéroport et le centre-ville</td>
+									<td>
+										<button class="readBtn">Lire</button>
+									</td>
+								</tr>
+								<tr>
+									<td>Sakura Sushi</td>
+									<td>Restaurant</td>
+									<td>Restaurant japonais spécialisé dans les sushis</td>
+									<td>
+										<button class="readBtn">Lire</button>
+									</td>
+								</tr>
+								<tr>
+									<td>Mountain Lodge</td>
+									<td>Hébergement</td>
+									<td>Charmante auberge de montagne pour les amoureux de la
+										nature</td>
+									<td>
+										<button class="readBtn">Lire</button>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<div id="sentMsgSection">
+					<div class="table-container">
+						<table>
+							<thead>
+								<tr>
+									<th>Destinataire</th>
+									<th>Objet</th>
+
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<ui:repeat value="#{conversationController.getSentMessages()}"
+									var="message">
+									<tr>
+										<td>#{message.recipientEmail}</td>
+
+										<td>#{message.messageResume}</td>
+										<td><h:commandButton class="readBtn" value="Lire"
+												id="readSentMsgBtn"
+												action="#{conversationController.selectMessage(message)}">
+											</h:commandButton></td>
+
+									</tr>
+								</ui:repeat>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<div id="writeMsgSection">
+					<div class="new-users-messages flexingBtnMessages">
+						<h2>Ecrire un message</h2>
+						<div class="user-listMessages" style="display: block;">
+							<div class="radio-inputs">
+								<label class="radio"> <input type="radio" name="radio"
+									id="allMsg" /> <span class="name">Partenaire</span>
+								</label> <label class="radio"> <input type="radio" name="radio"
+									id="readMsg" /> <span class="name">Travel planner</span>
+								</label> <label class="radio"> <input type="radio" name="radio"
+									id="unreadMsg" /> <span class="name">Client</span>
+								</label> <label class="radio"> <input type="radio" name="radio"
+									id="sentMsg" /> <span class="name">Administration</span>
+								</label>
+							</div>
+							<h:form>
+								<h:inputText id="inputMessageDest"
+									placeholder="Choisir un destinataire..." required="true"
+									value="#{conversationController.accVM.recepientEmail}" />
+								<h:inputText id="inputMessageResume"
+									placeholder="Écrire un titre..." required="true"
+									value="#{conversationController.accVM.messageResume}" />
+								<h:inputText value="#{conversationController.accVM.content}"
+									id="inputMessageDetails"
+									placeholder="Écrire le corps du message..." required="true" />
+
+
+
+								<h:commandButton
+									action="#{conversationController.sendMessage()}"
+									value="Envoyer" />
+							</h:form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+
+		<!-- Start of mainProfile Content -->
+
+		<main id="mainProfile" style="display: none;">
+			<div class="messages">
+				<h1>Mon profil</h1>
+				<div class="analyse">
+					<div class="sales">
+						<div class="status">
+							<div class="info logo">
+								<img src="images/IMG_0434.jpg" />
+								<h1>Frédéric Dupin</h1>
+							</div>
+						</div>
+						<span class="material-icons-sharp"> upload </span>
+					</div>
+				</div>
+			</div>
+			<div class="new-users">
+				<h2>Mes informations personnelles</h2>
+				<h:form action="post">
+					<div class="user-listMessages" style="display: block;">
+						<h:inputText id="inputName"
+							value="#{loginControllerBean.userLastName}" />
+						<h:inputText id="inputFirstName"
+							value="#{loginControllerBean.userFirstName}" />
+						<h:inputText id="inputMail"
+							value="#{loginControllerBean.userEmail}" />
+
+					</div>
+					<div class="new-usersButton">
+						<h:commandButton action="#{accountControllerBean.deleteAccount()}"
+							value="Supprimer" id="createAdmin" />
+						<button type="button" id="saveInfos">Enregistrer</button>
+					</div>
+				</h:form>
+			</div>
+		</main>
+
+		<!-- Start of mainUsers Content -->
+
+		<main id="mainUsers" style="display: none;">
+			<h1>Les partenaires</h1>
+			<!-- Analyses -->
+			<div class="analyse">
+				<div class="sales">
+					<div class="status">
+						<div class="info">
+							<h3>Nombre de partenaire</h3>
+							<h1>
+								<h:outputText
+									value="#{accountControllerBean.countTotalPartners()}" />
+							</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="new-users">
+				<h2>Tous les partenaires</h2>
+				<h:form>
+					<div id="searchUsersZone">
+						<h:inputText value="#{accountControllerBean.searchKeyword}"
+							placeholder="Rechercher un partenaire..." />
+						<h:commandButton value="">
+							<span class="material-icons-sharp">search</span>
+							<f:ajax execute="@form" render="userList"
+								listener="#{accountControllerBean.searchPartners}" />
+						</h:commandButton>
+					</div>
+				</h:form>
+				<div class="user-list">
+					<ui:repeat id="userList" value="#{accountControllerBean.partners}"
+						var="partner">
+						<div class="user">
+							<img src="images/profile-2.jpg" />
+							<h2>#{partner.firstName}</h2>
+							<p>#{partner.lastName}</p>
+							<!-- Autres informations sur le partenaire à afficher dans la carte -->
+						</div>
+					</ui:repeat>
+				</div>
+			</div>
+
+
+		</main>
+
+		<main id="mainManagedResa" style="display: none;">
+			<div class="messages">
+				<h1>Gestion des voyages</h1>
+				<div class="new-users flexingRB">
+					<div class="radio-inputs">
+						<label class="radio"> <input type="radio" name="radio"
+							id="listTravel" /> <span class="name">Liste</span>
+						</label> <label class="radio"> <input type="radio" name="radio"
+							id="createTravel" /> <span class="name">Créer</span>
+						</label>
+					</div>
+					<div id="ListTravelSection">
+						<div class="lTSContainer">
+							<ui:repeat value="#{journeyControllerBean.allJourneys}"
+								var="journey">
+								<div class="lTSContainer">
+									<div class="tPCard">
+										<img src="#{journey.imagePath}" alt="Image du Voyage"
+											style="max-width: 100%;" />
+										<div class="infoTPCard">
+											<h2>#{journey.name}</h2>
+											<h3>#{journey.country}</h3>
+										</div>
+										<div class="infoSupTPCard">
+											<h3>Description: #{journey.description}</h3>
+											<!-- Autres détails à afficher -->
+										</div>
+									</div>
+									<div class="lTSBtnContainer">
+										<h:commandButton value="Supprimer"
+											action="#{journeyControllerBean.deleteJourney(journey.id)}" />
+										<!-- Ajoutez le bouton Modifier si nécessaire -->
+									</div>
+								</div>
+							</ui:repeat>
+						</div>
+					</div>
+					<div id="createTravelSection">
+						<div class="user-listMessages">
+							<h:form enctype="multipart/form-data">
+								<h2>Proposez votre voyage</h2>
+
+								<div class="form-group">
+									<h:outputLabel value="Pays:" />
+									<h:inputText value="#{journeyControllerBean.journeyVM.country}"
+										required="true" />
+								</div>
+								<div class="form-group">
+									<h:outputLabel value="Titre:" />
+									<h:inputText value="#{journeyControllerBean.journeyVM.name}"
+										required="true" />
+								</div>
+
+								<div class="form-group">
+									<h:outputLabel value="Adresse" />
+									<h:inputText
+										value="#{journeyControllerBean.journeyVM.location}"
+										required="true" />
+								</div>
+
+								<div class="form-group">
+									<h:outputLabel value="Prix" />
+									<h:inputText value="#{journeyControllerBean.journeyVM.price}"
+										required="true" />
+								</div>
+
+								<div class="form-group">
+									<h:outputLabel value="Nombres de voyageurs acceptés" />
+									<h:inputText
+										value="#{journeyControllerBean.journeyVM.numberOfTravellers}"
+										required="true" />
+								</div>
+
+								<div class="form-group">
+
+									<h:outputLabel value="Date de Début du Voyage:" />
+									<h:inputText id="startDate"
+										value="#{journeyControllerBean.journeyVM.startDate}"
+										required="true">
+										<f:convertDateTime pattern="dd/MM/yyyy" />
+									</h:inputText>
+
+									<h:outputLabel value="Date de Fin du Voyage:" />
+									<h:inputText id="endDate"
+										value="#{journeyControllerBean.journeyVM.endDate}"
+										required="true">
+										<f:convertDateTime pattern="dd/MM/yyyy" />
+									</h:inputText>
+
+
+									<div class="form-group">
+										<label for="imageFile">Sélectionnez une image :</label>
+										<h:inputFile id="imageFile"
+											value="#{journeyControllerBean.imageFile}" accept="image/*" />
+									</div>
+
+
+								</div>
+								<h:commandButton action="#{journeyControllerBean.clear()}"
+									value="Clear" />
+
+								<div class="form-group">
+									<h:commandButton action="#{journeyControllerBean.addJourney()}"
+										value="Create" />
+								</div>
+
+
+							</h:form>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</main>
+
+		<!-- Start of mainHistory Content -->
+
+		<main id="mainHistory" style="display: none;">
+			<div class="messages">
+				<h1>Historique des réservations</h1>
+				<div class="table-container">
+					<table>
+						<thead>
+							<tr>
+								<th>N° réservation</th>
+								<th>Destination</th>
+								<th>Client</th>
+								<th>Prix</th>
+								<th>Statut de paiement</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>125</td>
+								<td>Paris</td>
+								<td>John Doe</td>
+								<td>$1000</td>
+								<td>Payé</td>
+							</tr>
+							<tr>
+								<td>1252</td>
+								<td>Tokyo</td>
+								<td>Jane Smith</td>
+								<td>$1500</td>
+								<td>En attente</td>
+							</tr>
+							<tr>
+								<td>Voyage 3</td>
+								<td>London</td>
+								<td>Michael Johnson</td>
+								<td>$1200</td>
+								<td>Payé</td>
+							</tr>
+							<tr>
+								<td>1854</td>
+								<td>Rome</td>
+								<td>Emily Brown</td>
+								<td>$1300</td>
+								<td>En attente</td>
+							</tr>
+							<tr>
+								<td>965</td>
+								<td>Sydney</td>
+								<td>Liam Davis</td>
+								<td>$1800</td>
+								<td>Payé</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</main>
+
+		<!-- Right Section -->
+		<div class="right-section">
+			<div class="nav">
+				<button id="menu-btn">
+					<span class="material-icons-sharp"> menu </span>
+				</button>
+				<div class="dark-mode">
+					<span class="material-icons-sharp active"> light_mode </span> <span
+						class="material-icons-sharp"> dark_mode </span>
+				</div>
+
+			</div>
+			<!-- End of Nav -->
+
+			<div class="user-profile">
+				<div class="logo">
+					<img src="images/IMG_0434.jpg" />
+					<h3>
+						Bonjour, <b><h:outputText
+								value="#{loginControllerBean.userFirstName}" /></b>
+					</h3>
+				</div>
+			</div>
+
+			<div class="reminders">
+				<div class="header">
+					<h2>Notes</h2>
+					<span class="material-icons-sharp"> notifications_none </span>
+					<div id="rightNotifNumber" style="display: none;">
+						<h4>1</h4>
+					</div>
+				</div>
+				<div id="rightContainerNotif">
+					<div class="notification">
+						<div class="icon">
+							<span class="material-icons-sharp"> priority_high </span>
+						</div>
+						<div class="content">
+							<div class="info">
+								<h3>Tâches à faire</h3>
+								<small class="text_muted"> Gestion du remboursement </small>
+							</div>
+							<span class="material-icons-sharp closeCrossNotes"> close
+							</span>
+						</div>
+					</div>
+
+					<div class="notification deactive">
+						<div class="icon">
+							<span class="material-icons-sharp"> priority_high </span>
+						</div>
+						<div class="content">
+							<div class="info">
+								<h3>Tâches à faire</h3>
+								<small class="text_muted"> Suppression d'un utilisateur
+								</small>
+							</div>
+							<span class="material-icons-sharp closeCrossNotes"> close
+							</span>
+						</div>
+					</div>
+
+					<div class="notification-add add-reminder">
+						<div>
+							<span class="material-icons-sharp"> add </span>
+							<h3>Ajouter une note</h3>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+
+	</div>
+	<div class="popup-container" id="popupContainer">
+		<div class="popup-content">
+			<!-- <span class="popup-close" id="popupCloseBtn">&times;</span> -->
+			<div class="expDateZone">
+				<div class="expZone">
+					<h2>Expéditeur :</h2>
+
+					<h:outputText
+						value="#{conversationController.selectedMessage.senderEmail}" />
+
+				</div>
+				<div class="dateTimeMsg">
+					<h3>{DateTime}</h3>
+				</div>
+			</div>
+			<div class="objectZone">
+				<h2>Objet :</h2>
+
+				<h:outputText
+					value="#{conversationController.selectedMessage.messageResume}" />
+
+			</div>
+			<div class="msgZone">
+				<h2>Message :</h2>
+
+				<h:outputText
+					value="#{conversationController.selectedMessage.content}" />
+
+			</div>
+			<button class="popup-close-btn" id="popupCloseButton">
+				<span class="material-icons-sharp"> highlight_off </span>
+			</button>
+		</div>
+		<button class="popup-answer-btn" id="popupAnswerButton">Répondre</button>
+	</div>
+
+	<div class="popup-answer-container" id="popupAnswerContainer">
+		<div class="popup-answer-content">
+			<div class="destDateZone">
+				<div class="destZone">
+					<h2>Destinataire :</h2>
+					<h2>{User(rôle)}</h2>
+				</div>
+				<div class="dateTimeMsg">
+					<h3>{DateTime}</h3>
+				</div>
+			</div>
+			<div class="objectZone">
+				<h2>Objet :</h2>
+				<h2>{Objet}</h2>
+			</div>
+			<div class="recapZone">
+				<h2>Récapitulatif :</h2>
+				<h3>{Récapitulatif du message auquel on répond}</h3>
+			</div>
+			<div class="msgZone">
+				<h2>Message :</h2>
+				<textarea name="msgZoneTA" id="msgZoneTA" cols="100" rows="13"
+					placeholder="Écrire le corps du message..."></textarea>
+			</div>
+			<button class="popup-close-btn" id="popupCloseAnswerButton">
+				<span class="material-icons-sharp"> highlight_off </span>
+			</button>
+		</div>
+		<button class="popup-send-btn" id="popupSendButton">Envoyer</button>
+	</div>
+	<script src="./js/dashboardTP.js"></script>
+</body>
+
+</html>
