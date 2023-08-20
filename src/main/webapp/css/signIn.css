@@ -330,8 +330,8 @@ main {
     cursor: pointer;
     top: 5px;
     right: 10px;
-    display: none;
-    fill: grey;
+    font-size: 19px;
+    color: grey;
 }
 
 .eye-open {
@@ -356,7 +356,8 @@ main {
     top: 5px;
     right: 10px;
     display: none;
-    fill: grey;
+    font-size: 19px;
+    color: grey;
 }
 
 .eye-openCustomer {
@@ -381,7 +382,8 @@ main {
     top: 5px;
     right: 10px;
     display: none;
-    fill: grey;
+    font-size: 19px;
+    color: grey;
 }
 
 .eye-openPartner {
@@ -406,7 +408,8 @@ main {
     top: 5px;
     right: 10px;
     display: none;
-    fill: grey;
+    font-size: 19px;
+    color: grey;
 }
 
 .eye-openTP {
