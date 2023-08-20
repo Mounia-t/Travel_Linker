@@ -22,49 +22,48 @@ import travelLinker.viewModel.AccountViewModel;
 @ManagedBean
 @SessionScoped
 public class AccountControllerBean implements Serializable {
-	
-	private static final long serialVersionUID = 1L;
-	
-	
-	private AccountViewModel accountVM=new AccountViewModel();
-	private Long accountId;
- 
-    @Inject
-    private AccountDao accountDao;
 
- 
-    public AccountControllerBean() {
-	
+	private static final long serialVersionUID = 1L;
+
+	private AccountViewModel accountVM = new AccountViewModel();
+	@Inject
+	private AccountDao accountDao;
+
+	public AccountControllerBean() {
+
 	}
 
 	public void addAccount() {
-    	Long id=accountDao.insert(accountVM);
+		Long id = accountDao.insert(accountVM);
 
-        //accounts.add();
-        // Appeler la méthode insert pour enregistrer l'objet dans la base de données
-        	//accountDao.insert(accountbean);
-        	accountVM=new AccountViewModel();
+		// accounts.add();
+		// Appeler la méthode insert pour enregistrer l'objet dans la base de données
+		// accountDao.insert(accountbean);
+		accountVM = new AccountViewModel();
 
-    }
-
-	public List<Partner> getPartners() {
-        return accountDao.displayPartners();
-    }
+	}
 
 //---------------------------------------------------	
 	public void deleteAccount() {
-        // Vérifier si l'utilisateur est connecté (authentifié)
-        Long accountId = SessionUtils.getUserId();
-        
-        if (accountId != null) {
-            // On appelle la méthode de suppression dans le DAO pour supprimer le compte
-            accountDao.delete(accountId);
-        } else {
-            System.out.println("L'utilisateur n'est pas connecté.");
-        }
-    }	
-		
+		// Vérifier si l'utilisateur est connecté (authentifié)
+		Long accountId = SessionUtils.getUserId();
+	if (accountId != null) {
+			// On appelle la méthode de suppression dans le DAO pour supprimer le compte
+			accountDao.delete(accountId);
+		} else {
+			System.out.println("L'utilisateur n'est pas connecté.");
+		}
+	}
+
 //----------------------------------------------------------	
+	public int countTotalPartners() {
+		return accountDao.getTotalPartnersCount();
+
+	}
+
+	public List<Partner> getPartners() {
+		return accountDao.displayPartners();
+	}
 
 	public void updateAccount() {
 	    // Vérifier si l'utilisateur est connecté (authentifié)
@@ -88,9 +87,6 @@ public class AccountControllerBean implements Serializable {
 	}
 //--------------------------------------------------------
 	
-	
-	
-	
 	public AccountViewModel getAccountVM() {
 		return accountVM;
 	}
@@ -106,11 +102,19 @@ public class AccountControllerBean implements Serializable {
 	public void setAccountDao(AccountDao accountDao) {
 		this.accountDao = accountDao;
 	}
+
 //----------------------------------------------------------
-	
 	public boolean isUserTravelPlanner(Long userId) {
         RoleUser userRole = accountDao.getUserRoleById(userId);
+        if (userRole == null) {
+            // Le rôle de l'utilisateur n'a pas été trouvé
+            return false;
+        }
+        
         return userRole == RoleUser.TravelPlanner;
+   
     }
 	
 }
+
+	

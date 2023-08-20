@@ -22,6 +22,8 @@ public class JourneyDao {
 		journeybean.setCountry(journeyVM.getCountry());
 		journeybean.setStartDate(journeyVM.getStartDate());
 		journeybean.setEndDate(journeyVM.getEndDate());
+		journeybean.setName(journeyVM.getName());
+		journeybean.setDescription(journeyVM.getDescription());
 		journeybean.setImageFile(journeyVM.getImage());
 
 		entityManager.persist(journeybean);
