@@ -37,6 +37,8 @@ public class LoginControllerBean implements Serializable {
 		boolean valid = loginDao.validate(accountVM);
 		Account account = loginDao.findAccountByEmailAndPassword(accountVM, accountVM.getEmail(),
 				accountVM.getPassword());
+		System.out.println(accountVM.getEmail());
+		System.out.println(accountVM.getPassword());
 		//TravelPlanner tp = loginDao.findTravelPlanner(accountVM.getEmail());
 
 		// Si les informations de connexion sont valides
@@ -63,7 +65,7 @@ public class LoginControllerBean implements Serializable {
 					"Email ou Mot de pass incorrectes", "Merci de saisir les bons identifiants"));
 			ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
 			try {
-				ec.redirect("Login.xhtml");
+				ec.redirect("signIn.xhtml");
 			} catch (IOException e) {
 				// Gérer l'exception en cas d'erreur de redirection
 				e.printStackTrace();
@@ -99,13 +101,13 @@ public class LoginControllerBean implements Serializable {
 				redirectionUrl = "index.xhtml"; // Remplacez "default-dashboard.xhtml" par l'URL de la page de tableau
 												// de bord par défaut
 			}
-
+System.out.println(role);
 			return redirectionUrl;
 		} else {
 			// Compte non trouvé dans la base de données
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
 					"Email ou Mot de pass incorrectes", "Merci de saisir les bons identifiants"));
-			return "Login.xhtml";
+			return "signIn.xhtml";
 		}
 	}
 

@@ -5,9 +5,11 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import travelLinker.dao.TaskDao;
 import travelLinker.entity.Task;
+import travelLinker.utils.SessionUtils;
 import travelLinker.viewModel.AccountViewModel;
 
 @ManagedBean
@@ -32,9 +34,14 @@ public class TaskControllerBean implements Serializable{
 		AccountViewModel accVM = new AccountViewModel();
 	}
 	
-	public List<Task> getAllTasks(Long accountId){
-		return taskDao.getAllTasks(accountId);
+	public List<Task> getAllTasks(){
+		return taskDao.getAllTasks();
 		
+	}
+	public void deleteTask(Long id) {
+
+		taskDao.deleteTask(id);
+		System.out.println("task deleted with id : " + id);
 	}
 
 	public AccountViewModel getAccVM() {

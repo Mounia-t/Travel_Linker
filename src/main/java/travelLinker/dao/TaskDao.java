@@ -6,6 +6,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import travelLinker.entity.Accomodation;
 import travelLinker.entity.Journey;
 import travelLinker.entity.Task;
 import travelLinker.utils.SessionUtils;
@@ -36,11 +37,19 @@ public class TaskDao {
 	    }
 		
 }
-	public List<Task> getAllTasks(Long accountId) {
+	public List<Task> getAllTasks() {
+		Long accountId = SessionUtils.getUserId();
 	    return entityManager.createQuery("SELECT t FROM Task t WHERE t.accountId = :accountId", Task.class)
 	            .setParameter("accountId", accountId)
 	            .getResultList();
 	}
+	 public void deleteTask(Long id) {
+				Task task = entityManager.find(Task.class, id);
+				if (task != null) {
+					entityManager.remove(task);
+				}
+			}
+	 
 
 	
 	public EntityManager getEntityManager() {
