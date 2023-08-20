@@ -138,12 +138,25 @@ public class AccountDao {
 	}
 //---------------------------------------------------
 
-	public RoleUser getUserRoleById(Long userId) {
-		Account account = getAccountById(userId);
-		if (account != null) {
-			return account.getRole();
-		}
-		return null;
 
-	}
+public RoleUser getUserRoleById(Long userId) {
+    Account account = getAccountById(userId);
+    if (account != null) {
+        return account.getRole();
+    }
+    return null;
 }
+
+
+
+}
+
+
+
+
+
+    /*public void persist(AccountViewModel accountVM) {
+        this.entityManager.persist(accountVM);
+        this.entityManager.flush();
+    }*/
+

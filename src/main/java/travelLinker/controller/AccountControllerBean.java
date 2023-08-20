@@ -104,10 +104,17 @@ public class AccountControllerBean implements Serializable {
 	}
 
 //----------------------------------------------------------
-	
 	public boolean isUserTravelPlanner(Long userId) {
         RoleUser userRole = accountDao.getUserRoleById(userId);
+        if (userRole == null) {
+            // Le rôle de l'utilisateur n'a pas été trouvé
+            return false;
+        }
+        
         return userRole == RoleUser.TravelPlanner;
+   
     }
 	
 }
+
+	
