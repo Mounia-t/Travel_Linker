@@ -23,7 +23,7 @@ public class Partner {
 	private String email;
 
 	
-	private double phoneNumber;
+	private String phoneNumber;
 	private String siret;
 	@OneToOne
 	@JoinColumn(name = "account_id")
@@ -60,11 +60,11 @@ public class Partner {
 		this.email = email;
 	}
 	
-	public double getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
 
-	public void setPhoneNumber(double phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 

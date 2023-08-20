@@ -38,14 +38,28 @@ public class AccountControllerBean implements Serializable {
 
 	}
 
-	public void addAccount() {
+	/*public void addAccount() {
 		Long id = accountDao.insert(accountVM);
 
 		// accounts.add();
 		// Appeler la méthode insert pour enregistrer l'objet dans la base de données
 		// accountDao.insert(accountbean);
-		accountVM = new AccountViewModel();
+		accountVM = new AccountViewModel();*/
 
+	
+	public void addPartner() {
+		accountDao.createPartner(accountVM);
+		accountVM = new AccountViewModel();
+	}
+	
+	public void addCustomer() {
+		accountDao.createCustomer(accountVM);
+		accountVM = new AccountViewModel();
+	}
+	
+	public void addTravelP() {
+		accountDao.createTravelPlanner(accountVM);
+		accountVM = new AccountViewModel();
 	}
 
 //---------------------------------------------------	

@@ -1,6 +1,5 @@
 package travelLinker.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -23,11 +22,10 @@ public class AccountDao {
 
 	@PersistenceContext(unitName = "travelLinker")
 	private EntityManager entityManager;
-	private List<Partner> partners = new ArrayList<>();
-
+	
 	public AccountDao() {
 	}
-
+/*
 	public Long insert(AccountViewModel accountVM) {
 		try {
 			Account accountbean = new Account();
@@ -74,7 +72,97 @@ public class AccountDao {
 			return null;
 		}
 	}
+*/
+	public Long insert(AccountViewModel accountVM) {
+	    try {
+	        Account accountbean = createAccount(accountVM);
 
+	        if (accountVM.getRole() == RoleUser.Customer) {
+	            Customer customer = createCustomer(accountVM);
+	            customer.setAccount(accountbean);
+	            entityManager.persist(customer);
+	        } else if (accountVM.getRole() == RoleUser.TravelPlanner) {
+	            TravelPlanner travelPlanner = createTravelPlanner(accountVM);
+	            travelPlanner.setAccount(accountbean);
+	            entityManager.persist(travelPlanner);
+	        } else if (accountVM.getRole() == RoleUser.Partner) {
+	            Partner partner = createPartner(accountVM);
+	            partner.setAccount(accountbean);
+	            entityManager.persist(partner);
+	        }
+
+	        entityManager.persist(accountbean);
+	        entityManager.flush(); // Flush to synchronize changes
+
+	        return accountbean.getId();
+	    } catch (Exception e) {
+	        e.printStackTrace(); // Handle exceptions 
+	        return null;
+	    }
+	}
+
+	public Account createAccount(AccountViewModel accountVM) {
+	    Account accountbean = new Account();
+	    accountbean.setEmail(accountVM.getEmail());
+	    // Hash the password before storing it in the database
+	    String hashedPassword = PasswordUtils.hashPassword(accountVM.getPassword());
+	    accountbean.setPassword(hashedPassword);
+	    accountbean.setRole(accountVM.getRole());
+	    accountbean.setLastName(accountVM.getLastName());
+	    accountbean.setFirstName(accountVM.getFirstName());
+	    entityManager.persist(accountbean);
+        entityManager.flush();
+	    return accountbean;
+	    
+	}
+
+	public Customer createCustomer(AccountViewModel accountVM) {
+		  
+	    Customer customer = new Customer();
+	    customer.setEmail(accountVM.getEmail());
+	    customer.setLastName(accountVM.getLastName());
+	    customer.setFirstName(accountVM.getFirstName());
+	    customer.setAddress(accountVM.getAddress());
+	    Account accountbean = createAccount(accountVM);
+	    
+	    accountbean.setRole(RoleUser.Customer);
+	    customer.setAccount(accountbean);
+	    entityManager.persist(customer);
+        entityManager.flush();
+		return customer;
+	}
+
+	public TravelPlanner createTravelPlanner(AccountViewModel accountVM) {
+		 
+	    TravelPlanner travelPlanner = new TravelPlanner();
+	    travelPlanner.setEmail(accountVM.getEmail());
+	    travelPlanner.setLastName(accountVM.getLastName());
+	    travelPlanner.setFirstName(accountVM.getFirstName());
+	    travelPlanner.setPhoneNumber(accountVM.getPhoneNumber());
+	    Account accountbean = createAccount(accountVM);
+	    accountbean.setRole(RoleUser.TravelPlanner);
+	    travelPlanner.setAccount(accountbean);
+	    entityManager.persist(travelPlanner);
+	    return travelPlanner;
+	}
+
+	public Partner createPartner(AccountViewModel accountVM) {
+		  
+	    Partner partner = new Partner();
+	    partner.setFirstName(accountVM.getFirstName());
+	    partner.setLastName(accountVM.getLastName());
+	    partner.setEmail(accountVM.getEmail());
+	    partner.setPhoneNumber(accountVM.getPhoneNumber());
+	    partner.setAddress(accountVM.getAddress());
+	    partner.setSiret(accountVM.getSiret());
+	    Account accountbean = createAccount(accountVM);
+	    accountbean.setRole(RoleUser.Partner);
+	    partner.setAccount(accountbean);
+	    entityManager.persist(accountbean);
+	    return partner;
+	}
+
+	
 	public List<Partner> displayPartners() {
 		try {
 			TypedQuery<Partner> query = entityManager.createQuery("SELECT p FROM Partner p", Partner.class);

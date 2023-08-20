@@ -17,7 +17,7 @@ public class AccountViewModel {
 	private RoleUser role;
 	private String lastName;
 	private String firstName;
-	private double phoneNumber;
+	private String phoneNumber;
 	private String siret;
 	private String companyName;
 	private String address;
@@ -67,11 +67,11 @@ public class AccountViewModel {
 		this.address = adress;
 	}
 
-	public double getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
 
-	public void setPhoneNumber(double phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 
