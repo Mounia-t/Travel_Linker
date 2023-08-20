@@ -568,13 +568,13 @@
 										</div>
 										<div class="infoSupTPCard">
 											<h3>Description: #{journey.description}</h3>
-											<!-- Autres détails à afficher -->
+											
 										</div>
 									</div>
 									<div class="lTSBtnContainer">
 										<h:commandButton value="Supprimer"
 											action="#{journeyControllerBean.deleteJourney(journey.id)}" />
-										<!-- Ajoutez le bouton Modifier si nécessaire -->
+										
 									</div>
 								</div>
 							</ui:repeat>
@@ -743,55 +743,50 @@
 			<div class="reminders">
 				<div class="header">
 					<h2>Notes</h2>
-					<span class="material-icons-sharp"> notifications_none </span>
+					<span class="material-icons-sharp">notifications_none</span>
 					<div id="rightNotifNumber" style="display: none;">
 						<h4>1</h4>
 					</div>
 				</div>
 				<div id="rightContainerNotif">
-					<div class="notification">
-						<div class="icon">
-							<span class="material-icons-sharp"> priority_high </span>
-						</div>
-						<div class="content">
-							<div class="info">
-								<h3>Tâches à faire</h3>
-								<small class="text_muted"> Gestion du remboursement </small>
+					<ui:repeat value="#{taskControllerBean.getAllTasks()}" var="task">
+						<div class="notification">
+							<div class="icon">
+								<span class="material-icons-sharp">priority_high</span>
 							</div>
-							<span class="material-icons-sharp closeCrossNotes"> close
-							</span>
-						</div>
-					</div>
-
-					<div class="notification deactive">
-						<div class="icon">
-							<span class="material-icons-sharp"> priority_high </span>
-						</div>
-						<div class="content">
-							<div class="info">
-								<h3>Tâches à faire</h3>
-								<small class="text_muted"> Suppression d'un utilisateur
-								</small>
+							<div class="content">
+								<div class="info">
+									<h3>Tâche à faire</h3>
+									<small class="text_muted"> #{task.taskContent} </small>
+								</div>
+								<span class="material-icons-sharp closeCrossNotes">close</span>
 							</div>
-							<span class="material-icons-sharp closeCrossNotes"> close
-							</span>
 						</div>
-					</div>
+					</ui:repeat>
 
 					<div class="notification-add add-reminder">
 						<div>
-							<span class="material-icons-sharp"> add </span>
-							<h3>Ajouter une note</h3>
+							<span class="material-icons-sharp">add</span>
+							<h:form>
+							<div>
+								<h:inputText value="#{taskControllerBean.accVM.taskContent}" />
+								</div>
+								<div>
+								<h:commandButton value="Ajouter une note"
+									action="#{taskControllerBean.addTask()}" />
+								</div>
+							</h:form>
+							
 						</div>
+					
 					</div>
+					
 				</div>
-
 			</div>
 
 		</div>
-
-
 	</div>
+
 	<div class="popup-container" id="popupContainer">
 		<div class="popup-content">
 			<!-- <span class="popup-close" id="popupCloseBtn">&times;</span> -->

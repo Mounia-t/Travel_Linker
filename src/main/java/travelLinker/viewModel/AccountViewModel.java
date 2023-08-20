@@ -24,7 +24,7 @@ public class AccountViewModel {
 	private String recepientEmail;
 	private String senderEmail;
 	private String messageResume;
-
+	private String taskContent;
 	public String getContent() {
 		return content;
 	}
@@ -161,4 +161,11 @@ public class AccountViewModel {
 		this.messageResume = messageResume;
 	}
 
+	public String getTaskContent() {
+		return taskContent;
+	}
+
+	public void setTaskContent(String taskContent) {
+		this.taskContent = taskContent;
+	}
 }

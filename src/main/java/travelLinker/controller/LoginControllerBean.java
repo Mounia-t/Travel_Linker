@@ -2,6 +2,7 @@ package travelLinker.controller;
 
 import java.io.IOException;
 import java.io.Serializable;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
@@ -12,7 +13,6 @@ import javax.servlet.http.HttpSession;
 import travelLinker.dao.LoginDao;
 import travelLinker.entity.Account;
 import travelLinker.entity.RoleUser;
-import travelLinker.entity.TravelPlanner;
 import travelLinker.utils.SessionUtils;
 import travelLinker.viewModel.AccountViewModel;
 

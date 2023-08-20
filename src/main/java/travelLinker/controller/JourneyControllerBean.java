@@ -57,13 +57,17 @@ import travelLinker.viewModel.JourneyViewModel;
 
 		            // Chemin complet du fichier
 		            String filePath = Paths.get(deploymentPath, relativeImagePath, fileName).toString();
-
+		            System.out.println("Deployment Path: " + deploymentPath);
+		            System.out.println("Relative Image Path: " + relativeImagePath);
+		            System.out.println("File Name: " + fileName);
+		            System.out.println("File Path: " + filePath);
 		            try (InputStream input = imageFile.getInputStream(); OutputStream output = new FileOutputStream(filePath)) {
 		                IOUtils.copy(input, output);
 		            }
 
 		            journeyVM.setImagePath(relativeImagePath + fileName);
 		        }
+		        
 
 		        // Appel à la méthode de la couche de persistance pour ajouter le voyage
 		        Long id = journeyDao.insert(journeyVM);
@@ -74,6 +78,8 @@ import travelLinker.viewModel.JourneyViewModel;
 		        e.printStackTrace(); // Gérez l'exception selon vos besoins
 		    }
 		}
+
+
 
 			                
 		public void clear() {
