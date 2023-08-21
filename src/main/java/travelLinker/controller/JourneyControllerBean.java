@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
@@ -36,6 +38,9 @@ import travelLinker.viewModel.JourneyViewModel;
 		
 		@Inject
 		private JourneyDao journeyDao;
+		
+		@Inject
+		private DashboardController dashController;
 		
 		@Lob
 		@Basic(fetch = FetchType.LAZY)
@@ -74,14 +79,12 @@ import travelLinker.viewModel.JourneyViewModel;
 
 		        System.out.println("Journey created with id : " + id);
 		        clear();
+		        dashController.updateLastMainSection("mainManagedResa");
 		    } catch (IOException e) {
 		        e.printStackTrace(); // Gérez l'exception selon vos besoins
 		    }
 		}
-
-
-
-			                
+	                
 		public void clear() {
 			journeyVM = new JourneyViewModel();
 		}

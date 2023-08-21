@@ -1,11 +1,5 @@
 package travelLinker.viewModel;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-
 import travelLinker.entity.Account;
 import travelLinker.entity.RoleUser;
 

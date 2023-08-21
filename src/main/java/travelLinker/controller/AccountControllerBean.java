@@ -34,10 +34,10 @@ public class AccountControllerBean implements Serializable {
     private List<Partner> filteredPartners;
     private String searchKeyword;
 
-	public AccountControllerBean() {
+	/*public AccountControllerBean() {
 
 	}
-
+*/
 	/*public void addAccount() {
 		Long id = accountDao.insert(accountVM);
 
@@ -104,6 +104,10 @@ public class AccountControllerBean implements Serializable {
 	        System.out.println("L'utilisateur n'est pas connecté.");
 	    }
 	}
+	public List<Partner>getNewPartner(){
+		return accountDao.getLatestRegisteredPartners(4);
+		
+	}
 //--------------------------------------------------------
 	
 	public AccountViewModel getAccountVM() {
@@ -144,11 +148,6 @@ public class AccountControllerBean implements Serializable {
 		this.partners = partners;
 	}
 
-	public boolean isUserTravelPlanner(Long userId) {
-        RoleUser userRole = accountDao.getUserRoleById(userId);
-        return userRole == RoleUser.TravelPlanner;
-    }
-	
 
 public void searchPartners() {
     filteredPartners = new ArrayList<>();
