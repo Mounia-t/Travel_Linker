@@ -42,7 +42,4 @@ public class TemplateControllerBean {
 	public void setSelectedTemplate(Template selectedTemplate) {
 		this.selectedTemplate = selectedTemplate;
 	}
-    
-    
-    
 }
