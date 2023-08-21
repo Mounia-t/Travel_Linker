@@ -2,14 +2,12 @@ package travelLinker.viewModel;
 
 import java.util.Date;
 
-import travelLinker.entity.SubscriptionPack;
-
 
 public class SubscriptionViewModel {
 	private int price;
     private Date startDate;
     private Date endDate;
-    private SubscriptionPack type;
+    private String type;
 	
 	public int getPrice() {
 		return price;
@@ -29,10 +27,10 @@ public class SubscriptionViewModel {
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
-	public SubscriptionPack getType() {
+	public String getType() {
 		return type;
 	}
-	public void setType(SubscriptionPack type) {
+	public void setType(String type) {
 		this.type = type;
 	}
     

@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+
+<head>
+    <title>Liste des Voyages</title>
+    <style>
+        /* Votre CSS personnalisé ici */
+    </style>
+</head>
+<body>
+    <h2>Liste des Voyages</h2>
+
+    <ui:repeat value="#{journeyControllerBean.allJourneys}" var="journey">
+        <div class="lTSContainer">
+            <div class="tPCard">
+                <img src="#{journey.imagePath}" alt="Image du Voyage" style="max-width: 100%;" />
+                <div class="infoTPCard">
+                    <h2>#{journey.name}</h2>
+                    <h3>#{journey.country}</h3>
+                </div>
+                <div class="infoSupTPCard">
+                    <h3>Description: #{journey.description}</h3>
+                    <!-- Autres détails à afficher -->
+                </div>
+            </div>
+            <div class="lTSBtnContainer">
+                <h:commandButton value="Supprimer" action="#{journeyControllerBean.deleteJourney(journey.id)}" />
+               
+            </div>
+        </div>
+    </ui:repeat>
+
+</body>
+</html>

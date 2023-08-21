@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
@@ -9,18 +8,17 @@
 <head>
 <meta charset="UTF-8" />
 
-
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link
 	href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
 	rel="stylesheet" />
 <link rel="stylesheet" href="./css/dashboardTP.css" />
 <title>Dashboard</title>
+
 </head>
 
 <body>
-
+<h:inputHidden id="defaultSection" value="#{dashboardController.section}" />
 	<div class="container">
 		<!-- Sidebar Section -->
 		<aside>
@@ -254,13 +252,15 @@
 								</tr>
 							</thead>
 							<tbody>
-								<ui:repeat value="#{conversationController.displayMessages()}"
+								<ui:repeat
+									value="#{conversationController.getReceivedMessages()}"
 									var="message">
 									<tr>
 										<td>#{message.senderEmail}</td>
 										<td>#{message.messageResume}</td>
 										<td><h:form>
-												<h:commandButton class="readBtn" value="Lire" id="readAllMsgBtn"
+												<h:commandButton class="readBtn" value="Lire"
+													id="readAllMsgBtn"
 													action="#{conversationController.selectMessage(message)}">
 												</h:commandButton>
 											</h:form></td>
@@ -405,7 +405,8 @@
 										<td>#{message.recipientEmail}</td>
 
 										<td>#{message.messageResume}</td>
-										<td><h:commandButton class="readBtn" value="Lire" id="readSentMsgBtn"
+										<td><h:commandButton class="readBtn" value="Lire"
+												id="readSentMsgBtn"
 												action="#{conversationController.selectMessage(message)}">
 											</h:commandButton></td>
 
@@ -513,15 +514,20 @@
 
 			<div class="new-users">
 				<h2>Tous les partenaires</h2>
-				<div id="searchUsersZone">
-					<input type="search" placeholder="Rechercher un partenaire..."
-						id="searchUsers" />
-					<button type="submit">
-						<span class="material-icons-sharp"> search </span>
-					</button>
-				</div>
+				<h:form>
+					<div id="searchUsersZone">
+						<h:inputText value="#{accountControllerBean.searchKeyword}"
+							placeholder="Rechercher un partenaire..." />
+						<h:commandButton value="">
+							<span class="material-icons-sharp">search</span>
+							<f:ajax execute="@form" render="userList"
+								listener="#{accountControllerBean.searchPartners}" />
+						</h:commandButton>
+					</div>
+				</h:form>
 				<div class="user-list">
-					<ui:repeat value="#{accountControllerBean.partners}" var="partner">
+					<ui:repeat id="userList" value="#{accountControllerBean.partners}"
+						var="partner">
 						<div class="user">
 							<img src="images/profile-2.jpg" />
 							<h2>#{partner.firstName}</h2>
@@ -532,9 +538,10 @@
 				</div>
 			</div>
 
+
 		</main>
 
-		<main id="mainManagedResa" style="display: none;">
+		<main id="mainManagedResa">
 			<div class="messages">
 				<h1>Gestion des voyages</h1>
 				<div class="new-users flexingRB">
@@ -547,90 +554,105 @@
 					</div>
 					<div id="ListTravelSection">
 						<div class="lTSContainer">
-							<div class="tPCard">
-								<img src="images/bosnia-2058087_1920.jpg" alt=""
-									class="imgTravelCard" />
-								<div class="infoTPCard">
-									<h2>Je suis un voyage</h2>
-									<h3>Je suis une destination</h3>
+							<ui:repeat value="#{journeyControllerBean.allJourneys}"
+								var="journey">
+								<div class="lTSContainer">
+									<div class="tPCard">
+										<img src="#{journey.imagePath}" alt="Image du Voyage"
+											style="max-width: 100%;" />
+										<div class="infoTPCard">
+											<h2>#{journey.name}</h2>
+											<h3>#{journey.country}</h3>
+										</div>
+										<div class="infoSupTPCard">
+											<h3>Description: #{journey.description}</h3>
+											
+										</div>
+									</div>
+									<div class="lTSBtnContainer">
+										<h:form><h:commandButton value="Supprimer"
+											action="#{journeyControllerBean.deleteJourney(journey.id)}" />
+										</h:form>
+									</div>
 								</div>
-								<div class="infoSupTPCard">
-									<h3>Voici du détail</h3>
-									<h4>Encore du détail</h4>
-									<h4>Encore du détail</h4>
-								</div>
-							</div>
-							<div class="lTSBtnContainer">
-								<button class="deleteBtn">Supprimer</button>
-								<button class="modifyBtn">Modifier</button>
-							</div>
+							</ui:repeat>
 						</div>
+					</div>
+					<div id="createTravelSection">
+						<div class="user-listMessages">
+							<h:form enctype="multipart/form-data">
+								<h2>Proposez votre voyage</h2>
 
-						<div class="lTSContainer">
-							<div class="tPCard">
-								<img src="images/bosnia-2058087_1920.jpg" alt=""
-									class="imgTravelCard" />
-								<div class="infoTPCard">
-									<h2>Je suis un voyage</h2>
-									<h3>Je suis une destination</h3>
+								<div class="inputFormLabel">
+									<h:outputLabel value="Pays:" styleClass="placeholder label"/>
+									<h:inputText value="#{journeyControllerBean.journeyVM.country}"
+										required="true" class="inputForm"/>
 								</div>
-								<div class="infoSupTPCard">
-									<h3>Voici du détail</h3>
-									<h4>Encore du détail</h4>
-									<h4>Encore du détail</h4>
+								<div class="inputFormLabel">
+									<h:outputLabel value="Titre:" styleClass="placeholder label"/>
+									<h:inputText value="#{journeyControllerBean.journeyVM.name}"
+										required="true" class="inputForm" />
 								</div>
-							</div>
-							<div class="lTSBtnContainer">
-								<button class="deleteBtn">Supprimer</button>
-								<button class="modifyBtn">Modifier</button>
-							</div>
-						</div>
 
-						<div class="lTSContainer">
-							<div class="tPCard">
-								<img src="images/bosnia-2058087_1920.jpg" alt=""
-									class="imgTravelCard" />
-								<div class="infoTPCard">
-									<h2>Je suis un voyage</h2>
-									<h3>Je suis une destination</h3>
+								<div class="inputFormLabel">
+									<h:outputLabel value="Adresse" styleClass="placeholder label" />
+									<h:inputText
+										value="#{journeyControllerBean.journeyVM.location}"
+										required="true" class="inputForm" />
 								</div>
-								<div class="infoSupTPCard">
-									<h3>Voici du détail</h3>
-									<h4>Encore du détail</h4>
-									<h4>Encore du détail</h4>
+
+								<div class="inputFormLabel">
+									<h:outputLabel value="Prix" styleClass="placeholder label"/>
+									<h:inputText value="#{journeyControllerBean.journeyVM.price}"
+										required="true"  class="inputForm"/>
 								</div>
-							</div>
-							<div class="lTSBtnContainer">
-								<button class="deleteBtn">Supprimer</button>
-								<button class="modifyBtn">Modifier</button>
-							</div>
+
+								<div class="inputFormLabel">
+									<h:outputLabel value="Nombres de voyageurs acceptés" styleClass="placeholder label" />
+									<h:inputText
+										value="#{journeyControllerBean.journeyVM.numberOfTravellers}"
+										required="true"  class="inputForm"/>
+								</div>
+
+								<div class="inputFormLabel">
+
+									<h:outputLabel value="Date de Début du Voyage:" />
+									<h:inputText id="startDate"
+										value="#{journeyControllerBean.journeyVM.startDate}"
+										required="true">
+										<f:convertDateTime pattern="dd/MM/yyyy" />
+									</h:inputText>
+
+									<h:outputLabel value="Date de Fin du Voyage:" />
+									<h:inputText id="endDate"
+										value="#{journeyControllerBean.journeyVM.endDate}"
+										required="true">
+										<f:convertDateTime pattern="dd/MM/yyyy" />
+									</h:inputText>
+
+
+									<div class="inputFormLabel">
+										<label for="imageFile">Sélectionnez une image :</label>
+										<h:inputFile id="imageFile"
+											value="#{journeyControllerBean.imageFile}" accept="image/*" />
+									</div>
+
+
+								</div>
+								<h:commandButton action="#{journeyControllerBean.clear()}"
+									value="Clear" />
+
+								<div class="form-group">
+									<h:commandButton action="#{journeyControllerBean.addJourney()}"
+								
+										value="Create" />
+								</div>
+
+
+							</h:form>
 						</div>
 					</div>
 
-					<h:form action="post" id="createTravelSection">
-						<div class="user-listMessages">
-							<h:inputText id="inputName"
-								value="#{journeyControllerBean.journeyVM.name}"
-								placeholder="Nom..." />
-							<h:inputText id="inputFirstName" placeholder="Pays..."
-								value="#{journeyControllerBean.journeyVM.country}" />
-							<h:inputText id="inputAddress" placeholder="Adresse..."
-								value="#{journeyControllerBean.journeyVM.location}" />
-							<h:inputText id="inputPhoneNum" placeholder="Date de Départ..."
-								value="#{journeyControllerBean.journeyVM.startDate}" />
-							<h:inputText id="inputSiret" placeholder="Date de retour..."
-								value="#{journeyControllerBean.journeyVM.endDate}" />
-							<h:inputText id="inputPhoneNumber" placeholder="Description..."
-								value="#{journeyControllerBean.journeyVM.description}" />
-
-						</div>
-						<div class="new-usersButton">
-							<h:commandButton id="createAdmin" value="Vider les champs"
-								action="#{journeyControllerBean.clear()}" />
-							<h:commandButton id="saveInfos" value="Créer l'hébergement"
-								action="#{journeyControllerBean.addJourney()}" />
-						</div>
-					</h:form>
 				</div>
 			</div>
 		</main>
@@ -720,55 +742,50 @@
 			<div class="reminders">
 				<div class="header">
 					<h2>Notes</h2>
-					<span class="material-icons-sharp"> notifications_none </span>
+					<span class="material-icons-sharp">notifications_none</span>
 					<div id="rightNotifNumber" style="display: none;">
 						<h4>1</h4>
 					</div>
 				</div>
 				<div id="rightContainerNotif">
-					<div class="notification">
-						<div class="icon">
-							<span class="material-icons-sharp"> priority_high </span>
-						</div>
-						<div class="content">
-							<div class="info">
-								<h3>Tâches à faire</h3>
-								<small class="text_muted"> Gestion du remboursement </small>
+					<ui:repeat value="#{taskControllerBean.getAllTasks()}" var="task">
+						<div class="notification">
+							<div class="icon">
+								<span class="material-icons-sharp">priority_high</span>
 							</div>
-							<span class="material-icons-sharp closeCrossNotes"> close
-							</span>
-						</div>
-					</div>
-
-					<div class="notification deactive">
-						<div class="icon">
-							<span class="material-icons-sharp"> priority_high </span>
-						</div>
-						<div class="content">
-							<div class="info">
-								<h3>Tâches à faire</h3>
-								<small class="text_muted"> Suppression d'un utilisateur
-								</small>
+							<div class="content">
+								<div class="info">
+									<h3>Tâche à faire</h3>
+									<small class="text_muted"> #{task.taskContent} </small>
+								</div>
+								<span class="material-icons-sharp closeCrossNotes">close</span>
 							</div>
-							<span class="material-icons-sharp closeCrossNotes"> close
-							</span>
 						</div>
-					</div>
+					</ui:repeat>
 
 					<div class="notification-add add-reminder">
 						<div>
-							<span class="material-icons-sharp"> add </span>
-							<h3>Ajouter une note</h3>
+							<span class="material-icons-sharp">add</span>
+							<h:form>
+							<div>
+								<h:inputText value="#{taskControllerBean.accVM.taskContent}" />
+								</div>
+								<div>
+								<h:commandButton value="Ajouter une note"
+									action="#{taskControllerBean.addTask()}" />
+								</div>
+							</h:form>
+							
 						</div>
+					
 					</div>
+					
 				</div>
-
 			</div>
 
 		</div>
-
-
 	</div>
+
 	<div class="popup-container" id="popupContainer">
 		<div class="popup-content">
 			<!-- <span class="popup-close" id="popupCloseBtn">&times;</span> -->

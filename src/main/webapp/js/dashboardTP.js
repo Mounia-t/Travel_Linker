@@ -63,6 +63,7 @@ const mainAdd = document.getElementById('mainAdd');
 const mainProfile = document.getElementById('mainProfile');
 const mainDashboard = document.getElementById('mainDashboard')
 const mainManagedResa = document.getElementById('mainManagedResa')
+var defaultSection =document.getElementById(document.getElementById('defaultSection').value)
 
 // Fonction pour masquer tous les contenus
 function hideMainContent() {
@@ -75,12 +76,17 @@ function hideMainContent() {
 // Fonction pour afficher un contenu spécifique
 function showMainContent(cible) {
     hideMainContent();
+if(cible==null){
+	cible=mainDashboard;
+}
     cible.style.display = 'block';
     cible.classList.add('fade-in-bottom'); // Ajout de la classe pour l'animation fade-in
 }
 
 // Par défaut, afficher le contenu "Dashboard"
-showMainContent(mainDashboard);
+showMainContent(defaultSection);
+//alert("shownameSection"+document.getElementById('defaultSection').value);
+//alert("showSection"+document.getElementById(document.getElementById('defaultSection').value));
 
 // Gestion des événements de clic
 usersBtn.addEventListener('click', () => {
@@ -110,6 +116,7 @@ dashboardBtn.addEventListener('click', () => {
 managedBtn.addEventListener('click', () => {
     showMainContent(mainManagedResa);
 });
+
 
 /*---------------------------------------Zone de glisser déposer ---------------------------------------------*/
 

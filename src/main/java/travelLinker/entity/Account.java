@@ -1,6 +1,8 @@
 package travelLinker.entity;
 
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -8,6 +10,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 
 
@@ -25,6 +29,8 @@ public class Account {
 	private String lastName; 
 	@Enumerated(EnumType.STRING)
 	private RoleUser role;
+	@Temporal(TemporalType.TIMESTAMP)
+    private Date registrationDate;
 	
 	
 	public Account(String email, String password) {
@@ -75,5 +81,12 @@ public class Account {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}	
+	public Date getRegistrationDate() {
+        return registrationDate;
+    }
+
+    public void setRegistrationDate(Date registrationDate) {
+        this.registrationDate = registrationDate;
+    }
 
 }

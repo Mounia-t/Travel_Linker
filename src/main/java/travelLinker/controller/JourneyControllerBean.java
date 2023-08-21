@@ -1,11 +1,17 @@
 package travelLinker.controller;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -13,6 +19,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Lob;
 import javax.servlet.http.Part;
 
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 
 import travelLinker.dao.JourneyDao;
@@ -32,33 +39,52 @@ import travelLinker.viewModel.JourneyViewModel;
 		@Inject
 		private JourneyDao journeyDao;
 		
+		@Inject
+		private DashboardController dashController;
+		
 		@Lob
 		@Basic(fetch = FetchType.LAZY)
 		@Column(columnDefinition = "BLOB")
 		private Part imageFile;
 		
 		public List<Journey> journeys;
-
 		public void addJourney() {
+		    try {
+		        if (imageFile != null) {
+		            // Obtenez le chemin absolu vers le répertoire de déploiement de l'application
+		            String deploymentPath = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");
+		            
+		            // Chemin relatif vers le répertoire d'images
+		            String relativeImagePath = "images/";
 
-			if (imageFile != null) {
-	            try {
-	                InputStream imageInputStream = imageFile.getInputStream();
-	                byte[] imageFile = IOUtils.toByteArray(imageInputStream);
+		            String fileName = "journey_" + System.currentTimeMillis() + "_" + FilenameUtils.getBaseName(imageFile.getSubmittedFileName()) + "."
+		                    + FilenameUtils.getExtension(imageFile.getSubmittedFileName());
 
-	                // Utilisez l'objet journeyVM existant pour stocker les données de l'image
-	                journeyVM.setImage(imageFile);
-	            } catch (IOException e) {
-	                e.printStackTrace();
-	                // Gérez l'exception selon vos besoins
-	            }
-	            System.out.println("Image created" + imageFile);
-	        }
-			Long id= journeyDao.insert(journeyVM);
-			System.out.println("Journey created with id : " + id);
-			clear();
+		            // Chemin complet du fichier
+		            String filePath = Paths.get(deploymentPath, relativeImagePath, fileName).toString();
+		            System.out.println("Deployment Path: " + deploymentPath);
+		            System.out.println("Relative Image Path: " + relativeImagePath);
+		            System.out.println("File Name: " + fileName);
+		            System.out.println("File Path: " + filePath);
+		            try (InputStream input = imageFile.getInputStream(); OutputStream output = new FileOutputStream(filePath)) {
+		                IOUtils.copy(input, output);
+		            }
+
+		            journeyVM.setImagePath(relativeImagePath + fileName);
+		        }
+		        
+
+		        // Appel à la méthode de la couche de persistance pour ajouter le voyage
+		        Long id = journeyDao.insert(journeyVM);
+
+		        System.out.println("Journey created with id : " + id);
+		        clear();
+		        dashController.updateLastMainSection("mainManagedResa");
+		    } catch (IOException e) {
+		        e.printStackTrace(); // Gérez l'exception selon vos besoins
+		    }
 		}
-			                
+	                
 		public void clear() {
 			journeyVM = new JourneyViewModel();
 		}
@@ -103,7 +129,10 @@ import travelLinker.viewModel.JourneyViewModel;
 		public void setJourneys(List<Journey> journeys) {
 			this.journeys = journeys;
 		}
-		
+		public List<Journey> getAllJourneys(){
+			return journeyDao.getAllJourneys();
+			
+		}
 		
 		
 
