@@ -21,4 +21,8 @@ public class TemplateDao {
         return entityManager.find(Template.class, id);
     }
     
+    public void updateTemplate(Template template) {
+        entityManager.merge(template);
+    }
+    
 }
