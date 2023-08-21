@@ -113,7 +113,7 @@ b {
     color: var(--color-warning);
 }
 
-/*--------------------------------Zone fade in et visible------------------------------------*/
+/*--------------------------------Zone fade in et visible ainsi que fade Out------------------------------------*/
 .fade-in-bottom {
     transform: translateY(50px);
     /* Déplacez-les vers le bas de 50px */
@@ -134,6 +134,29 @@ b {
         opacity: 1;
         transform: translateY(0);
         /* Fin de l'animation : opacité à 1 et pas de décalage en Y */
+    }
+}
+
+.fade-out-bottom {
+    transform: translateY(50px);
+    /* Déplacez-les vers le bas de 50px */
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    /* Ajoutez une transition de 0.5s avec une courbe d'accélération pour une apparence fluide */
+    animation: fadeOutBottom 0.8s ease forwards;
+    /* Utilisez l'animation fadeInBottom pour contrôler l'opacité */
+}
+
+@keyframes fadeOutBottom {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+        /* Fin de l'animation : opacité à 1 et pas de décalage en Y */
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(50px);
+        /* Début de l'animation : opacité à 0 et décalage vers le bas de 50px */
     }
 }
 
@@ -818,6 +841,48 @@ main .recent-orders a {
     box-shadow: none;
 }
 
+/*----------------------------Zone formulaire-------------------------------------*/
+
+.inputFormLabel {
+    position: relative;
+    margin-bottom: 20px;
+    transition: 0.2s ease all;
+}
+
+.inputForm {
+    border: 1px solid grey;
+    border-radius: 25px;
+    background: none;
+    padding: 10px;
+    margin-top: 30px;
+    width: 94%;
+    outline: none;
+}
+
+.inputForm:focus {
+    border-color: green;
+}
+
+.placeholder {
+    position: absolute;
+    pointer-events: none;
+    left: 14px;
+    top: 20px;
+    transition: 0.2s ease all;
+    font-size: 15px;
+    color: #999;
+}
+
+.inputForm:focus+.placeholder,
+.inputForm:not(:placeholder-shown)+.placeholder,
+.inputForm:not(:valid)+.placeholder {
+    top: 2px;
+    font-size: 13px;
+    color: #333;
+    padding: 2px 5px;
+    background-color: var(--color-background);
+}
+
 /*------------------------------------Zone Création de service------------------------------*/
 
 #mainAddServices .user-listMessages input {
@@ -890,6 +955,14 @@ main .recent-orders a {
     margin-top: 30px;
 }
 
+#mainListServices .messages {
+    text-align: center;
+}
+
+#mainListServices h1 {
+    text-align: start;
+}
+
 .table-container {
     max-height: 600px;
     /* Par exemple, définissez la hauteur maximale souhaitée */
@@ -897,8 +970,6 @@ main .recent-orders a {
     /* Permet le scroll vertical si nécessaire */
     margin-top: 30px;
 }
-
-.table-container {}
 
 table {
     border-collapse: collapse;
@@ -943,6 +1014,284 @@ tr:hover td {
     transform: scale(.95);
 }
 
+/*---------------------------- Zone pop up container --------------------------*/
+
+.popup-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: all 0.3s ease;
+}
+
+.popup-content {
+    position: relative;
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.popup-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.popup-answer-btn {
+    font-size: 16px;
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.popup-close-btn {
+    position: absolute;
+    top: -50px;
+    right: 0;
+    margin-top: 10px;
+    padding: 5px 10px;
+    transform: scale(1.4);
+    background-color: transparent;
+    color: #fff;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.popup-close-btn:hover {
+    transform: scale(1.1);
+}
+
+.popup-answer-btn:hover {
+    transform: scale(1.1);
+}
+
+.expDateZone,
+.objectZone {
+    display: flex;
+    border-bottom: 1px solid var(--color-info-dark);
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    overflow-x: auto;
+    text-align: start;
+}
+
+.expDateZone {
+    justify-content: space-between;
+}
+
+.expZone {
+    display: flex;
+}
+
+.msgZone {
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    width: 500px;
+    height: 200px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+
+/*---------------------------- Zone popup Answer container --------------------------*/
+
+.popup-answer-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: all 0.3s ease;
+}
+
+.popup-answer-content {
+    position: relative;
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.popup-send-btn {
+    font-size: 16px;
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.popup-close-btn {
+    position: absolute;
+    top: -50px;
+    right: 0;
+    margin-top: 10px;
+    padding: 5px 10px;
+    transform: scale(1.4);
+    background-color: transparent;
+    color: #fff;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.popup-send-btn:hover {
+    transform: scale(1.1);
+}
+
+.destDateZone,
+.objectZone {
+    display: flex;
+    border-bottom: 1px solid var(--color-info-dark);
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    overflow-x: auto;
+    text-align: start;
+}
+
+.destDateZone {
+    justify-content: space-between;
+}
+
+.destZone {
+    display: flex;
+}
+
+.recapZone {
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    height: 100px;
+    overflow-y: auto;
+    border-bottom: 1px solid var(--color-info-dark);
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    overflow-y: auto;
+}
+
+#msgZoneTA {
+    margin-top: 10px;
+    border: 1px solid lightgrey;
+    border-radius: 25px;
+    padding: 12px;
+}
+
+
+/*---------------------------- Zone popup modif container --------------------------*/
+
+.popup-modif-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+    transition: all 0.3s ease;
+}
+
+.popup-modif-content {
+    position: relative;
+    width: 600px;
+    height: auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.popup-modif-container .user-listMessages {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.popup-modif-container .user-listMessages input {
+    margin: 10px 0;
+    border: 1px solid lightgrey;
+    border-radius: 25px;
+    padding: 10px;
+}
+
+.popup-modif-btn {
+    font-size: 16px;
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.popup-close-modif-btn {
+    position: absolute;
+    top: -50px;
+    right: 0;
+    margin-top: 10px;
+    padding: 5px 10px;
+    transform: scale(1.4);
+    background-color: transparent;
+    color: #fff;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.popup-modif-btn:hover {
+    transform: scale(1.1);
+}
+
+.modifListBtn {
+    border: 1px solid rgb(29, 179, 29);
+    border-radius: 25px;
+    background-color: rgb(29, 179, 29);
+    padding: 10px 20px;
+    margin-right: 5px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.modifListBtn:hover {
+    transform: scale(1.1);
+}
 
 /*------------------------------------Zone right Section------------------------------------*/
 .right-section {
