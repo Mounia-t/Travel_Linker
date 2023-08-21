@@ -583,38 +583,38 @@
 							<h:form enctype="multipart/form-data">
 								<h2>Proposez votre voyage</h2>
 
-								<div class="form-group">
-									<h:outputLabel value="Pays:" />
+								<div class="inputFormLabel">
+									<h:outputLabel value="Pays:" styleClass="placeholder label"/>
 									<h:inputText value="#{journeyControllerBean.journeyVM.country}"
-										required="true" />
+										required="true" class="inputForm"/>
 								</div>
-								<div class="form-group">
-									<h:outputLabel value="Titre:" />
+								<div class="inputFormLabel">
+									<h:outputLabel value="Titre:" styleClass="placeholder label"/>
 									<h:inputText value="#{journeyControllerBean.journeyVM.name}"
-										required="true" />
+										required="true" class="inputForm" />
 								</div>
 
-								<div class="form-group">
-									<h:outputLabel value="Adresse" />
+								<div class="inputFormLabel">
+									<h:outputLabel value="Adresse" styleClass="placeholder label" />
 									<h:inputText
 										value="#{journeyControllerBean.journeyVM.location}"
-										required="true" />
+										required="true" class="inputForm" />
 								</div>
 
-								<div class="form-group">
-									<h:outputLabel value="Prix" />
+								<div class="inputFormLabel">
+									<h:outputLabel value="Prix" styleClass="placeholder label"/>
 									<h:inputText value="#{journeyControllerBean.journeyVM.price}"
-										required="true" />
+										required="true"  class="inputForm"/>
 								</div>
 
-								<div class="form-group">
-									<h:outputLabel value="Nombres de voyageurs acceptés" />
+								<div class="inputFormLabel">
+									<h:outputLabel value="Nombres de voyageurs acceptés" styleClass="placeholder label" />
 									<h:inputText
 										value="#{journeyControllerBean.journeyVM.numberOfTravellers}"
-										required="true" />
+										required="true"  class="inputForm"/>
 								</div>
 
-								<div class="form-group">
+								<div class="inputFormLabel">
 
 									<h:outputLabel value="Date de Début du Voyage:" />
 									<h:inputText id="startDate"
@@ -631,7 +631,7 @@
 									</h:inputText>
 
 
-									<div class="form-group">
+									<div class="inputFormLabel">
 										<label for="imageFile">Sélectionnez une image :</label>
 										<h:inputFile id="imageFile"
 											value="#{journeyControllerBean.imageFile}" accept="image/*" />
