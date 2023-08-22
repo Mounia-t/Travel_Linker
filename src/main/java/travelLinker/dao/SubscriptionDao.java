@@ -47,7 +47,7 @@ public class SubscriptionDao{
     }
     
     public List<Subscription> getAllSubscriptions() {
-    	 addSubscriptionPacks(); 
+    	// addSubscriptionPacks(); 
         TypedQuery<Subscription> query = entityManager.createQuery("SELECT s FROM Subscription s", Subscription.class);
         return query.getResultList();
     }

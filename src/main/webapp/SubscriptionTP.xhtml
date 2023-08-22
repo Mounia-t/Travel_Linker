@@ -36,9 +36,9 @@
 								#{subscription.duration}
 							</h4>
 							<h:commandButton class="btn" value="souscrire"
-								action="#{subscriptionController.createSubscription(subscription)}" />
+								action="#{subscriptionController.dispSelectedSubsPack(subscription.type)}" 
+								outcome="PaymentForm.xhtml"/>
 						</div>
-
 
 					</div>
 					</div>

@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -31,6 +32,7 @@ import travelLinker.dao.AccountDao;
 import travelLinker.entity.Account;
 import travelLinker.entity.Partner;
 import travelLinker.entity.RoleUser;
+import travelLinker.entity.TravelPlanner;
 import travelLinker.utils.SessionUtils;
 
 import travelLinker.viewModel.AccountViewModel;
@@ -50,18 +52,7 @@ public class AccountControllerBean implements Serializable {
     private List<Partner> filteredPartners;
     private String searchKeyword;
 
-	/*public AccountControllerBean() {
-
-	}
-*/
-	/*public void addAccount() {
-		Long id = accountDao.insert(accountVM);
-
-		// accounts.add();
-		// Appeler la méthode insert pour enregistrer l'objet dans la base de données
-		// accountDao.insert(accountbean);
-		accountVM = new AccountViewModel();*/
-
+	
 	
 	public void addPartner() {
 		accountDao.createPartner(accountVM);
@@ -73,11 +64,14 @@ public class AccountControllerBean implements Serializable {
 		accountVM = new AccountViewModel();
 	}
 	
-	public void addTravelP() {
-		accountDao.createTravelPlanner(accountVM);
-		accountVM = new AccountViewModel();
+	public String addTravelP() {
+	    ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+	    TravelPlanner createdTravelPlanner = accountDao.createTravelPlanner(accountVM, externalContext);
+	    accountVM = new AccountViewModel(); // Clear the accountVM
+	    return null; // Return null to indicate that navigation is handled externally
 	}
 
+	
 //---------------------------------------------------	
 	public void deleteAccount() {
 		// Vérifier si l'utilisateur est connecté (authentifié)

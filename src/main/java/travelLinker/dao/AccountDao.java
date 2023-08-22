@@ -1,11 +1,15 @@
 package travelLinker.dao;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.faces.application.NavigationHandler;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -27,7 +31,7 @@ public class AccountDao {
 	private EntityManager entityManager;
 
 
-	public Long insert(AccountViewModel accountVM) {
+	/*public Long insert(AccountViewModel accountVM) {
 		try {
 			Account accountbean = createAccount(accountVM);
 
@@ -36,7 +40,7 @@ public class AccountDao {
 				customer.setAccount(accountbean);
 				entityManager.persist(customer);
 			} else if (accountVM.getRole() == RoleUser.TravelPlanner) {
-				TravelPlanner travelPlanner = createTravelPlanner(accountVM);
+				TravelPlanner travelPlanner = createTravelPlanner(accountVM, null);
 				travelPlanner.setAccount(accountbean);
 				entityManager.persist(travelPlanner);
 			} else if (accountVM.getRole() == RoleUser.Partner) {
@@ -53,7 +57,7 @@ public class AccountDao {
 			e.printStackTrace(); // Handle exceptions
 			return null;
 		}
-	}
+	}*/
 
 	public Account createAccount(AccountViewModel accountVM) {
 		Account accountbean = new Account();
@@ -86,20 +90,32 @@ public class AccountDao {
 		entityManager.flush();
 		return customer;
 	}
+	
 
-	public TravelPlanner createTravelPlanner(AccountViewModel accountVM) {
+	public TravelPlanner createTravelPlanner(AccountViewModel accountVM, ExternalContext externalContext) {
+	    TravelPlanner travelPlanner = new TravelPlanner();
+	    travelPlanner.setEmail(accountVM.getEmail());
+	    travelPlanner.setLastName(accountVM.getLastName());
+	    travelPlanner.setFirstName(accountVM.getFirstName());
+	    travelPlanner.setPhoneNumber(accountVM.getPhoneNumber());
 
-		TravelPlanner travelPlanner = new TravelPlanner();
-		travelPlanner.setEmail(accountVM.getEmail());
-		travelPlanner.setLastName(accountVM.getLastName());
-		travelPlanner.setFirstName(accountVM.getFirstName());
-		travelPlanner.setPhoneNumber(accountVM.getPhoneNumber());
-		Account accountbean = createAccount(accountVM);
-		accountbean.setRole(RoleUser.TravelPlanner);
-		travelPlanner.setAccount(accountbean);
-		entityManager.persist(travelPlanner);
-		return travelPlanner;
+	    Account accountbean = createAccount(accountVM);
+	    accountbean.setRole(RoleUser.TravelPlanner);
+	    travelPlanner.setAccount(accountbean);
+
+	    entityManager.persist(travelPlanner); // Persist the entity
+
+	    try {
+	        // Redirect to subscriptionTP.xhtml
+	        externalContext.redirect("SubscriptionTP.xhtml");
+	    } catch (IOException e) {
+	        // Handle the exception if redirection fails
+	        e.printStackTrace();
+	    }
+
+	    return travelPlanner;
 	}
+
 
 	public Partner createPartner(AccountViewModel accountVM) {
 

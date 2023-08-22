@@ -12,10 +12,12 @@ import travelLinker.viewModel.SubscriptionViewModel;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +41,7 @@ public class SubscriptionController implements Serializable {
     @Inject
     private AccountControllerBean accountControllerBean;
     
-
+    private String selectedSubscription;
     
     private List<SubscriptionPack> pack;
     private SubscriptionViewModel newSubscription = new SubscriptionViewModel();
@@ -78,7 +80,27 @@ public class SubscriptionController implements Serializable {
        return subsDao.getAllSubscriptions();
     }
 
-	
+	public String dispSelectedSubsPack(String type) {
+		 selectedSubscription =type;
+		 ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+		 try {
+		        // Redirect to subscriptionTP.xhtml
+		        externalContext.redirect("PaymentForm.xhtml");
+		    } catch (IOException e) {
+		        // Handle the exception if redirection fails
+		        e.printStackTrace();
+		    }
+		 System.out.println(selectedSubscription);
+		 return selectedSubscription;
+	}
+
+	public String getSelectedSubscription() {
+		return selectedSubscription;
+	}
+
+	public void setSelectedSubscription(String selectedSubscription) {
+		this.selectedSubscription = selectedSubscription;
+	}
     
    
 }

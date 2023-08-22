@@ -10,6 +10,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
@@ -32,6 +34,9 @@ public class Account {
 	@Temporal(TemporalType.TIMESTAMP)
     private Date registrationDate;
 	private String imagePath;
+	@OneToOne
+	@JoinColumn(name ="subscription_id")
+	private Subscription subscription;
 	
 	
 	public Account(String email, String password) {
@@ -94,6 +99,12 @@ public class Account {
 	}
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
+	}
+	public Subscription getSubscription() {
+		return subscription;
+	}
+	public void setSubscription(Subscription subscription) {
+		this.subscription = subscription;
 	}
     
 
