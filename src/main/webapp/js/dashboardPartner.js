@@ -49,7 +49,6 @@ if (activeLink) {
 /*------------------------Zone affichage main----------------------------*/
 
 // Récupération des éléments de navigation
-const usersBtn = document.getElementById('usersBtn');
 const addServicesBtn = document.getElementById('addServicesBtn');
 const analyticsBtn = document.getElementById('analyticsBtn');
 const messagesBtn = document.getElementById('messagesBtn');
@@ -58,9 +57,7 @@ const profileBtn = document.getElementById('profileBtn');
 const dashboardBtn = document.getElementById('dashboardBtn')
 
 // Récupération des éléments de contenu
-const mainAnalytics = document.getElementById('mainAnalytics');
 const mainMessages = document.getElementById('mainMessages');
-const mainUsers = document.getElementById('mainUsers');
 const mainProfile = document.getElementById('mainProfile');
 const mainDashboard = document.getElementById('mainDashboard')
 const mainAddServices = document.getElementById('mainAddServices');
@@ -68,7 +65,7 @@ const mainListServices = document.getElementById('mainListServices')
 
 // Fonction pour masquer tous les contenus
 function hideMainContent() {
-    const contenus = [mainAnalytics, mainMessages, mainUsers, mainProfile, mainListServices, mainAddServices, mainDashboard];
+    const contenus = [mainMessages, mainProfile, mainListServices, mainAddServices, mainDashboard];
     contenus.forEach(contenu => {
         contenu.style.display = 'none';
     });
@@ -85,9 +82,6 @@ function showMainContent(cible) {
 showMainContent(mainDashboard);
 
 // Gestion des événements de clic
-usersBtn.addEventListener('click', () => {
-    showMainContent(mainUsers);
-});
 
 listServicesBtn.addEventListener('click', () => {
     showMainContent(mainListServices);
@@ -95,10 +89,6 @@ listServicesBtn.addEventListener('click', () => {
 
 addServicesBtn.addEventListener('click', () => {
     showMainContent(mainAddServices);
-});
-
-analyticsBtn.addEventListener('click', () => {
-    showMainContent(mainAnalytics);
 });
 
 messagesBtn.addEventListener('click', () => {
@@ -268,6 +258,12 @@ document.addEventListener('DOMContentLoaded', function () {
     // Par défaut, masquer tous les formulaires
     hideAllForms();
 
+    function showFormActive() {
+        showForm(creationFormRest);
+        rbRestaurant.checked = true;
+    }
+    showFormActive();
+
     // Gestion des événements de clic sur les radios
     rbRestaurant.addEventListener('click', () => {
         showForm(creationFormRest);
@@ -279,6 +275,55 @@ document.addEventListener('DOMContentLoaded', function () {
 
     rbTrans.addEventListener('click', () => {
         showForm(creationFormTrans);
+    });
+});
+
+/*----------------------Zone radioButton liste service------------------------*/
+
+document.addEventListener('DOMContentLoaded', function () {
+    const rbRestaurantList = document.getElementById('rbRestaurantList');
+    const rbAccomoList = document.getElementById('rbAccomoList');
+    const rbTransList = document.getElementById('rbTransList');
+
+    const listServicesRest = document.getElementById('listServicesRest');
+    const listServicesAccomo = document.getElementById('listServicesAccomo');
+    const listServicesTrans = document.getElementById('listServicesTrans');
+
+    // Fonction pour masquer tous les formulaires
+    function hideAllForms() {
+        const forms = [listServicesRest, listServicesAccomo, listServicesTrans];
+        forms.forEach(form => {
+            form.style.display = 'none';
+        });
+    }
+
+    // Fonction pour afficher un formulaire spécifique
+    function showForm(form) {
+        hideAllForms();
+        form.style.display = 'block';
+        form.classList.add('fade-in-bottom'); // Ajout de la classe pour l'animation fade-in
+    }
+
+    // Par défaut, masquer tous les formulaires
+    hideAllForms();
+
+    function showFormActive() {
+        showForm(listServicesRest);
+        rbRestaurantList.checked = true;
+    }
+    showFormActive();
+
+    // Gestion des événements de clic sur les radios
+    rbRestaurantList.addEventListener('click', () => {
+        showForm(listServicesRest);
+    });
+
+    rbAccomoList.addEventListener('click', () => {
+        showForm(listServicesAccomo);
+    });
+
+    rbTransList.addEventListener('click', () => {
+        showForm(listServicesTrans);
     });
 });
 
@@ -315,6 +360,13 @@ document.addEventListener('DOMContentLoaded', function () {
     // Par défaut, masquer tous les formulaires
     hideAllSections();
 
+    // Fonction d'affichage par défaut de AllMsg
+    function showSectionActive() {
+        showSection(allMsgSection);
+        allMsg.checked = true;
+    }
+    showSectionActive();
+
     // Gestion des événements de clic sur les radios
     allMsg.addEventListener('click', () => {
         showSection(allMsgSection);
@@ -330,6 +382,206 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     writeMsg.addEventListener('click', () => {
         showSection(writeMsgSection);
+    });
+});
+
+
+/*--------------------------------Zone de suppression des tr du tableau---------------------------------*/
+
+document.addEventListener('DOMContentLoaded', function () {
+    const deleteAllMsgBtn = document.getElementById('deleteAllMsg');
+    const deleteSelectedAllMsgBtn = document.getElementById('deleteSelectedAllMsg');
+    const deleteCheckboxesAllMsg = document.querySelectorAll('.deleteCheckboxAllMsg');
+
+    const deleteReadMsgBtn = document.getElementById('deleteReadMsg');
+    const deleteSelectedReadMsgBtn = document.getElementById('deleteSelectedReadMsg');
+    const deleteCheckboxesReadMsg = document.querySelectorAll('.deleteCheckboxReadMsg');
+
+    const deleteUnreadMsgBtn = document.getElementById('deleteUnreadMsg');
+    const deleteSelectedUnreadMsgBtn = document.getElementById('deleteSelectedUnreadMsg');
+    const deleteCheckboxesUnreadMsg = document.querySelectorAll('.deleteCheckboxUnreadMsg');
+
+    const deleteSentMsgBtn = document.getElementById('deleteSentMsg');
+    const deleteSelectedSentMsgBtn = document.getElementById('deleteSelectedSentMsg');
+    const deleteCheckboxesSentMsg = document.querySelectorAll('.deleteCheckboxSentMsg');
+
+    const deleteListMsgBtn = document.getElementById('deleteListMsg');
+    const deleteSelectedListMsg = document.getElementById('deleteSelectedListMsg');
+    const deleteCheckboxModifMsg = document.querySelectorAll('.deleteCheckboxModifMsg');
+
+    function updateSelectAllButtonState(button, checkboxes) {
+        const allChecked = Array.from(checkboxes).every(checkbox => checkbox.checked);
+
+        if (allChecked) {
+            button.textContent = "Tout désélectionner";
+        } else {
+            button.textContent = "Tout sélectionner";
+        }
+
+        // Vérifie si au moins une checkbox est cochée
+        const atLeastOneChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+
+        if (!atLeastOneChecked) {
+            button.textContent = "Tout sélectionner";
+        }
+    }
+
+    deleteAllMsgBtn.addEventListener('click', () => {
+        // Supprime toutes les lignes avec des cases à cocher cochées
+        deleteCheckboxesAllMsg.forEach(checkbox => {
+            if (checkbox.checked) {
+                checkbox.closest('tr').remove();
+            }
+        });
+    });
+
+    deleteSelectedAllMsgBtn.addEventListener('click', () => {
+        // Inverser l'état des checkboxes
+        deleteCheckboxesAllMsg.forEach(checkbox => {
+            checkbox.checked = !checkbox.checked;
+        });
+        updateSelectAllButtonState(deleteSelectedAllMsgBtn, deleteCheckboxesAllMsg);
+    });
+
+
+    deleteReadMsgBtn.addEventListener('click', () => {
+        // Supprimer toutes les lignes avec des cases à cocher cochées
+        deleteCheckboxesReadMsg.forEach(checkbox => {
+            if (checkbox.checked) {
+                checkbox.closest('tr').remove();
+            }
+        });
+    });
+
+    deleteSelectedReadMsgBtn.addEventListener('click', () => {
+        // Inverser l'état des checkboxes
+        deleteCheckboxesReadMsg.forEach(checkbox => {
+            checkbox.checked = !checkbox.checked;
+        });
+
+        updateSelectAllButtonState(deleteSelectedReadMsgBtn, deleteCheckboxesReadMsg);
+    });
+
+    deleteUnreadMsgBtn.addEventListener('click', () => {
+        // Supprimer toutes les lignes avec des cases à cocher cochées
+        deleteCheckboxesUnreadMsg.forEach(checkbox => {
+            if (checkbox.checked) {
+                checkbox.closest('tr').remove();
+            }
+        });
+    });
+
+    deleteSelectedUnreadMsgBtn.addEventListener('click', () => {
+        // Inverser l'état des checkboxes
+        deleteCheckboxesUnreadMsg.forEach(checkbox => {
+            checkbox.checked = !checkbox.checked;
+        });
+
+        updateSelectAllButtonState(deleteSelectedUnreadMsgBtn, deleteCheckboxesUnreadMsg);
+    });
+
+    deleteSentMsgBtn.addEventListener('click', () => {
+        // Supprimer toutes les lignes avec des cases à cocher cochées
+        deleteCheckboxesSentMsg.forEach(checkbox => {
+            if (checkbox.checked) {
+                checkbox.closest('tr').remove();
+            }
+        });
+    });
+
+    deleteSelectedSentMsgBtn.addEventListener('click', () => {
+        // Inverser l'état des checkboxes
+        deleteCheckboxesSentMsg.forEach(checkbox => {
+            checkbox.checked = !checkbox.checked;
+        });
+
+        updateSelectAllButtonState(deleteSelectedSentMsgBtn, deleteCheckboxesSentMsg);
+    });
+
+    deleteListMsgBtn.addEventListener('click', () => {
+        // Supprime toutes les lignes avec des cases à cocher cochées
+        deleteCheckboxModifMsg.forEach(checkbox => {
+            if (checkbox.checked) {
+                checkbox.closest('tr').remove();
+            }
+        });
+    });
+
+    deleteSelectedListMsg.addEventListener('click', () => {
+        // Inverser l'état des checkboxes
+        deleteCheckboxModifMsg.forEach(checkbox => {
+            checkbox.checked = !checkbox.checked;
+        });
+        updateSelectAllButtonState(deleteSelectedListMsg, deleteCheckboxModifMsg);
+    });
+});
+
+
+/*--------------------------------Zone de Lecture des tr du tableau avec popupContainer---------------------------------*/
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    const readButtons = document.querySelectorAll('.readBtn');
+    const popupContainer = document.getElementById('popupContainer');
+    const popupCloseButton = document.getElementById('popupCloseButton');
+    const popupContent = document.querySelector('.popup-content');
+
+    readButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            popupContainer.style.display = 'flex';
+            popupContent.classList.add('fade-in-bottom');
+        });
+    });
+
+    popupCloseButton.addEventListener('click', () => {
+        popupContainer.style.display = 'none';
+    });
+});
+
+/*--------------------------------Zone de réponse des tr du tableau avec popupAnswerContainer---------------------------------*/
+
+
+document.addEventListener('DOMContentLoaded', function () {
+
+    const popupAnswerButton = document.getElementById('popupAnswerButton');
+    const popupAnswerContainer = document.getElementById('popupAnswerContainer');
+    const popupCloseAnswerButton = document.getElementById('popupCloseAnswerButton');
+    const popupContainer = document.getElementById('popupContainer');
+    const popupAnswerContent = document.querySelector('.popup-answer-content');
+
+    // Fonction pour afficher la div avec l'id "popupAnswerContainer"
+    function showPopupAnswerContainer() {
+        popupAnswerContainer.style.display = 'flex';
+        popupAnswerContent.classList.add('fade-in-bottom');
+    }
+
+    // Gestionnaire d'événements pour le bouton "Répondre"
+    popupAnswerButton.addEventListener('click', showPopupAnswerContainer);
+
+    popupCloseAnswerButton.addEventListener('click', () => {
+        popupAnswerContainer.style.display = 'none';
+        popupContainer.style.display = 'none';
+    });
+
+});
+
+/*--------------------------------Zone d'ouverture de modif avec popupModifContainer---------------------------------*/
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    const modifListBtn = document.getElementById('modifListBtn');
+    const popupModifContainer = document.getElementById('popupModifContainer');
+    const popupModifContent = document.querySelector('.popup-modif-content');
+
+    modifListBtn.addEventListener('click', () => {
+        popupModifContainer.style.display = 'flex';
+        popupModifContent.classList.add('fade-in-bottom');
+    });
+
+    // Ajoutez également un gestionnaire d'événements pour le bouton de fermeture du popup
+    const popupCloseModifButton = document.getElementById('popupCloseModifButton');
+    popupCloseModifButton.addEventListener('click', () => {
+        popupModifContainer.style.display = 'none';
     });
 });
 
