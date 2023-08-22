@@ -388,7 +388,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 /*--------------------------------Zone de suppression des tr du tableau---------------------------------*/
 
-document.addEventListener('DOMContentLoaded', function () {
+/*document.addEventListener('DOMContentLoaded', function () {
     const deleteAllMsgBtn = document.getElementById('deleteAllMsg');
     const deleteSelectedAllMsgBtn = document.getElementById('deleteSelectedAllMsg');
     const deleteCheckboxesAllMsg = document.querySelectorAll('.deleteCheckboxAllMsg');
@@ -515,7 +515,7 @@ document.addEventListener('DOMContentLoaded', function () {
         updateSelectAllButtonState(deleteSelectedListMsg, deleteCheckboxModifMsg);
     });
 });
-
+*/
 
 /*--------------------------------Zone de Lecture des tr du tableau avec popupContainer---------------------------------*/
 

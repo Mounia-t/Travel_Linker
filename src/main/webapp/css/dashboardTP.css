@@ -1557,20 +1557,16 @@ tr:hover td {
     .right-section .nav button span {
         font-size: 2rem;
     }
-.inputFormLabel {
+.trash {
+	color: red;
+}
+
+.edit {
+	color: green;
+} .inputFormLabel {
     position: relative;
     margin-bottom: 20px;
     transition: 0.2s ease all;
-}
-
-.placeholder {
-    position: absolute;
-    pointer-events: none;
-    left: 14px;
-    top: 38px;
-    transition: 0.2s ease all;
-    font-size: 17px;
-    color: #999;
 }
 
 .inputForm {
@@ -1587,14 +1583,34 @@ tr:hover td {
     border-color: green;
 }
 
+.placeholder {
+    position: absolute;
+    pointer-events: none;
+    left: 14px;
+    top: 20px;
+    transition: 0.2s ease all;
+    font-size: 15px;
+    color: #999;
+}
+
 .inputForm:focus+.placeholder,
 .inputForm:not(:placeholder-shown)+.placeholder,
 .inputForm:not(:valid)+.placeholder {
-    top: 20px;
-    font-size: 15px;
+    top: 2px;
+    font-size: 13px;
     color: #333;
     padding: 2px 5px;
-    background-color: white;
+    background-color: #fff;
+}
+.user-listMessages {
+	position: relative;
+    background-color: var(--color-white);
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    margin-top: 1rem;
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 }

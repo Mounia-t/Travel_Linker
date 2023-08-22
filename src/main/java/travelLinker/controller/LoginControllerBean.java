@@ -37,9 +37,6 @@ public class LoginControllerBean implements Serializable {
 		boolean valid = loginDao.validate(accountVM);
 		Account account = loginDao.findAccountByEmailAndPassword(accountVM, accountVM.getEmail(),
 				accountVM.getPassword());
-		System.out.println(accountVM.getEmail());
-		System.out.println(accountVM.getPassword());
-		//TravelPlanner tp = loginDao.findTravelPlanner(accountVM.getEmail());
 
 		// Si les informations de connexion sont valides
 		if (valid) {
@@ -92,7 +89,7 @@ public class LoginControllerBean implements Serializable {
 				// Redirection vers le tableau de bord des clients
 				redirectionUrl = "DashboardCustomer.xhtml"; // Remplacez "dashboard-customer.xhtml" par l'URL du tableau
 															// de bord des clients
-			} else if (role == RoleUser.TravelPlanner) {
+			} else if (role == RoleUser.TravelPlanner && account.getSubscription()!=null) {
 
 				// Redirection vers le tableau de bord des clients
 				redirectionUrl = "dashboardTP.xhtml";

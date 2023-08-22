@@ -29,13 +29,8 @@
         
 </h:head>
 
-
-    
-
-    
-
-
 <h:body>
+
 	<h:inputHidden id="defaultSection"
 		value="#{dashboardController.section}" />
 	<div class="container">
@@ -134,28 +129,17 @@
 
 			<!-- New Users Section -->
 			<div class="new-users fade-in-bottom">
-				<h2>Nouveaux travel planners</h2>
+				<h2>Nouveaux Partenaires</h2>
 				<div class="user-list">
-					<div class="user">
-						<img src="images/profile-2.jpg" />
-						<h2>Jack</h2>
-						<p>54 Min Ago</p>
-					</div>
-					<div class="user">
-						<img src="images/profile-3.jpg" />
-						<h2>Amir</h2>
-						<p>3 Hours Ago</p>
-					</div>
-					<div class="user">
-						<img src="images/profile-4.jpg" />
-						<h2>Ember</h2>
-						<p>6 Hours Ago</p>
-					</div>
-					<div class="user">
-						<img src="images/plus.png" />
-						<h2>More</h2>
-						<p>New User</p>
-					</div>
+					<ui:repeat value="#{accountControllerBean.newPartner}"
+						var="partner">
+						<div class="user">
+							<img src="images/profile-2.jpg" />
+							<h2>#{partner.firstName}</h2>
+							<p>#{partner.lastName}</p>
+							<p>#{partner.phoneNumber}</p>
+						</div>
+					</ui:repeat>
 				</div>
 			</div>
 			<!-- End of New Users Section -->
@@ -506,10 +490,17 @@
 						<div class="status">
 							<div class="info logo">
 								<img src="images/IMG_0434.jpg" />
+
 								<h1>Frédéric Dupin</h1>
 							</div>
 						</div>
-						<span class="material-icons-sharp"> upload </span>
+						<span class="material-icons-sharp"> <h:form
+								id="profileImageForm" enctype="multipart/form-data">
+								<input type="file" id="newProfileImage" name="newProfileImage"
+									style="display: none;" onchange="submitForm()" />
+								<label for="newProfileImage">update</label>
+							</h:form>
+						</span>
 					</div>
 				</div>
 			</div>
@@ -626,9 +617,12 @@
 								<h2>Proposez votre voyage</h2>
 
 								<div class="inputFormLabel">
-									<h:outputLabel value="Pays:" styleClass="placeholder label" />
-									<h:inputText value="#{journeyControllerBean.journeyVM.country}"
-										required="true" class="inputForm" />
+
+
+									<h:inputText type="text" id="inputName"
+										value="#{journeyControllerBean.journeyVM.country}"
+										required="true" />
+
 								</div>
 								<div class="inputFormLabel">
 									<h:outputLabel value="Titre:" styleClass="placeholder label" />
@@ -778,6 +772,7 @@
 						Bonjour, <b><h:outputText
 								value="#{loginControllerBean.userFirstName}" /></b>
 					</h3>
+
 				</div>
 			</div>
 

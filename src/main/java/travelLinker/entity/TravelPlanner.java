@@ -28,6 +28,7 @@ public class TravelPlanner {
 	@JoinColumn(name = "account_id")
 	private Account account;
 
+
 	@OneToOne
 	@JoinColumn(name = "template_fk_id")
 	private Template template;
@@ -39,6 +40,12 @@ public class TravelPlanner {
 	public void setTemplate(Template template) {
 		this.template = template;
 	}
+
+	
+	@OneToOne
+	@JoinColumn(name="subscription_id")
+	private Subscription subcription;
+	
 
 	public Long getId() {
 		return id;
@@ -107,5 +114,19 @@ public class TravelPlanner {
 	public void setAccount(Account account) {
 		this.account = account;
 	}
+
+
+
+	public Subscription getSubcription() {
+		return subcription;
+	}
+
+
+	public void setSubcription(Subscription subcription) {
+		this.subcription = subcription;
+	}	
+	
+	
+
 
 }

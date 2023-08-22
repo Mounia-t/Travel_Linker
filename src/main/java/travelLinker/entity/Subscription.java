@@ -5,7 +5,10 @@ package travelLinker.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,13 +23,25 @@ public class Subscription {
     private Long id;
     
     @ManyToOne
-    private Account account; // Utilisateur lié à l'abonnement (partenaire ou organisateur de voyage)
+    private Account account; // Utilisateur lié à l'abonnement 
    
+    @Column(unique =true)
     private int price;
     private Date startDate;
     private Date endDate;
-    private String type;
+    private int duration;
+	public int getDuration() {
+		return duration;
+	}
+	public void setDuration(int duration) {
+		this.duration = duration;
+	}
+
+	@Enumerated(EnumType.STRING)
+    private SubscriptionPack type;
     
+    
+
 	
 	public Long getId() {
 		return id;
@@ -58,13 +73,13 @@ public class Subscription {
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
-	public String getType() {
+	public SubscriptionPack getType() {
 		return type;
 	}
-	public void setType(String type) {
+	
+	public void setType(SubscriptionPack type) {
 		this.type = type;
 	}
-    
     
     
 
