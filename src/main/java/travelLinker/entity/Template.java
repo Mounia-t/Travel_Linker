@@ -5,18 +5,28 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Entity
 public class Template {
-	
+
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
 	private String nom;
-	
+
 	private String htmlCssContent;
+
+	@Column(name = "background_color")
+	private String backgroundColor;
+
+	public String getBackgroundColor() {
+		return backgroundColor;
+	}
+
+	public void setBackgroundColor(String backgroundColor) {
+		this.backgroundColor = backgroundColor;
+	}
 
 	public String getNom() {
 		return nom;
@@ -37,9 +47,4 @@ public class Template {
 	public Long getId() {
 		return id;
 	}
- 
-	
-
-    
-    
 }

@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<!-- 	<ui:composition template=""> -->
+<!-- 	</ui:composition> -->
+<h:body
+	style="background-color: #{templateControllerBean.selectedTemplate.backgroundColor};">
+	<h1>naber</h1>
+	<h:form>
+
+		<h:selectOneMenu value="#{templateControllerBean.selectedTemplate}">
+			<f:selectItems value="#{templateControllerBean.allTemplates}"
+				var="template" itemLabel="#{template.nom}" itemValue="#{template}" />
+		</h:selectOneMenu>
+
+		<h:commandButton value="Appliquer le modèle"
+			action="#{templateControllerBean.selectTemplate}" />
+	</h:form>
+</h:body>
+</html>
