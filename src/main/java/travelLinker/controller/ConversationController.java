@@ -22,7 +22,8 @@ public class ConversationController implements Serializable {
 
 	@Inject
 	private ConversationDao conversationDao;
-
+	@Inject
+	private DashboardController dashController;
 	public void sendMessage() {
 		conversationDao.sendMessage(accVM);
 	}
@@ -46,7 +47,7 @@ public class ConversationController implements Serializable {
 		HttpSession session = SessionUtils.getSession();
 		String senderEmail = (String) session.getAttribute("email");
 		String recipientEmail = (String) session.getAttribute("recipientEmail");
-
+		dashController.updateLastMainSection("mainMessages");
 		return conversationDao.getAllMessages(senderEmail, recipientEmail);
 	}
 

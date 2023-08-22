@@ -31,6 +31,7 @@ public class Account {
 	private RoleUser role;
 	@Temporal(TemporalType.TIMESTAMP)
     private Date registrationDate;
+	private String imagePath;
 	
 	
 	public Account(String email, String password) {
@@ -88,5 +89,12 @@ public class Account {
     public void setRegistrationDate(Date registrationDate) {
         this.registrationDate = registrationDate;
     }
+	public String getImagePath() {
+		return imagePath;
+	}
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+    
 
 }

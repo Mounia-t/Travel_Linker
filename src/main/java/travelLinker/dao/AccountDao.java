@@ -1,6 +1,7 @@
 package travelLinker.dao;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 
@@ -25,46 +26,7 @@ public class AccountDao {
 	@PersistenceContext(unitName = "travelLinker")
 	private EntityManager entityManager;
 
-	public AccountDao() {
-	}
 
-	/*
-	 * public Long insert(AccountViewModel accountVM) { try { Account accountbean =
-	 * new Account(); accountbean.setEmail(accountVM.getEmail()); // Hash the
-	 * password before storing it in the database String hashedPassword =
-	 * PasswordUtils.hashPassword(accountVM.getPassword());
-	 * accountbean.setPassword(hashedPassword);
-	 * accountbean.setRole(accountVM.getRole());
-	 * accountbean.setLastName(accountVM.getLastName());
-	 * accountbean.setFirstName(accountVM.getFirstName());
-	 * 
-	 * if (accountVM.getRole() == RoleUser.Customer) { Customer customer = new
-	 * Customer(); customer.setEmail(accountVM.getEmail());
-	 * customer.setLastName(accountVM.getLastName());
-	 * customer.setFirstName(accountVM.getFirstName());
-	 * customer.setAccount(accountbean); // Set the account relationship
-	 * entityManager.persist(customer); } else if (accountVM.getRole() ==
-	 * RoleUser.TravelPlanner) { TravelPlanner travelPlanner = new TravelPlanner();
-	 * travelPlanner.setEmail(accountVM.getEmail());
-	 * travelPlanner.setLastName(accountVM.getLastName());
-	 * travelPlanner.setFirstName(accountVM.getFirstName());
-	 * travelPlanner.setAccount(accountbean); // Set the account relationship
-	 * entityManager.persist(travelPlanner); } else if (accountVM.getRole() ==
-	 * RoleUser.Partner) { Partner partner = new Partner();
-	 * partner.setFirstName(accountVM.getFirstName());
-	 * partner.setLastName(accountVM.getLastName());
-	 * partner.setEmail(accountVM.getEmail());
-	 * partner.setPhoneNumber(accountVM.getPhoneNumber());
-	 * partner.setAddress(accountVM.getAddress());
-	 * partner.setSiret(accountVM.getSiret()); partner.setAccount(accountbean); //
-	 * Set the account relationship entityManager.persist(partner); }
-	 * 
-	 * entityManager.persist(accountbean); entityManager.flush(); // Flush to
-	 * synchronize changes
-	 * 
-	 * return accountbean.getId(); } catch (Exception e) { e.printStackTrace(); //
-	 * Handle exceptions appropriately return null; } }
-	 */
 	public Long insert(AccountViewModel accountVM) {
 		try {
 			Account accountbean = createAccount(accountVM);
@@ -103,6 +65,7 @@ public class AccountDao {
 		accountbean.setLastName(accountVM.getLastName());
 		accountbean.setFirstName(accountVM.getFirstName());
 		accountbean.setRegistrationDate(new Date());
+		accountbean.setImagePath(accountVM.getImagePath());
 		entityManager.persist(accountbean);
 		entityManager.flush();
 		return accountbean;
@@ -198,6 +161,7 @@ public class AccountDao {
 			existingAccount.setLastName(updatedAccount.getLastName());
 			existingAccount.setPassword(updatedAccount.getPassword());
 			existingAccount.setRole(updatedAccount.getRole());
+			existingAccount.setImagePath(updatedAccount.getImagePath());
 
 			// Enregistrer les modifications dans la base de données
 			entityManager.merge(existingAccount);
@@ -219,14 +183,27 @@ public class AccountDao {
 
 //---------------------------------------------------
 	public List<Partner> getLatestRegisteredPartners(int count) {
+	    LocalDate threeDaysAgo = LocalDate.now().minusDays(3);
+	    Date threeDaysAgoDate = Date.from(threeDaysAgo.atStartOfDay(ZoneId.systemDefault()).toInstant());
 
-		LocalDate threeDaysAgo = LocalDate.now().minusDays(3);
-		TypedQuery<Partner> query = entityManager.createQuery(
-				"SELECT a FROM Partner p WHERE p.registrationDate >= :threeDaysAgo ORDER BY a.registrationDate DESC",
-				Partner.class);
-		query.setParameter("threeDaysAgo", threeDaysAgo);
-		query.setMaxResults(count);
-		return query.getResultList();
+	    TypedQuery<Partner> query = entityManager.createQuery(
+	        "SELECT p FROM Partner p WHERE p.registrationDate >= :threeDaysAgoDate ORDER BY p.registrationDate DESC",
+	        Partner.class);
+	    query.setParameter("threeDaysAgoDate", threeDaysAgoDate);
+	    query.setMaxResults(count);
+	    return query.getResultList();
+	}
+	public Account loadAccountFromDataSource(Long accountId) {
+	    // Remplacez "accountId" par l'identifiant de l'utilisateur connecté
+	    return entityManager.find(Account.class, accountId);
+	}
+	
+	public RoleUser getUserRoleById(Long userId) {
+	    Account account = getAccountById(userId);
+	    if (account != null) {
+	        return account.getRole();
+	    }
+	    return null;
 	}
 
 }

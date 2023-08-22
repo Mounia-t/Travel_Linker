@@ -1,29 +1,56 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:c="http://java.sun.com/jsp/jstl/core"
-      xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
-<h:head>
-    <title>Abonnement</title>
-</h:head>
-<h:body>
-    <h1>Page d'Abonnement</h1>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+	href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
+	rel="stylesheet" />
 
-    <!-- Formulaire pour souscrire un nouvel abonnement -->
-    <h:form>
-        <h2>Souscrire un nouvel abonnement</h2>
-        <p:inputText value="#{subscriptionController.newSubscription.price}" label="Prix" />
-         
-        <p:calendar value="#{subscriptionController.newSubscription.endDate}" label="Date de fin" />
-        <p:inputText value="#{subscriptionController.newSubscription.type}" label="Type" />
+<title>Travel Linker</title>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+<link rel="stylesheet" href="css/subscriptionTP.css" />
+</head>
 
-        
-        <p:commandButton value="Souscrire" action="#{subscriptionController.createSubscription}" />
-    </h:form>
+<body>
+	<h2>Nos Abonnements</h2>
+	<h:form>
+		<div class="carousel">
+			<ui:repeat value="#{subscriptionController.allSubscriptions}"
+				var="subscription">
+				<div class="carousel-item">
+					<div class="card">
+						<div class="img-area" style="background-image: url(img/1.jpg);"></div>
+						<div class="container">
 
-    
 
-</h:body>
+							<h2>#{subscription.type}</h2>
+							<h3>#{subscription.price}</h3>
+							<h4>
+								#{subscription.duration}
+							</h4>
+							<h:commandButton class="btn" value="souscrire"
+								action="#{subscriptionController.createSubscription(subscription)}" />
+						</div>
+
+
+					</div>
+					</div>
+			</ui:repeat>
+		</div>
+
+
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+		<script src="js/subsScript.js"></script>
+	</h:form>
+</body>
 </html>
