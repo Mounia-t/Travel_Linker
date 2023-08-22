@@ -708,6 +708,20 @@ main .recent-orders a {
 #saveInfos:hover {
     box-shadow: none;
 }
+.saveInfos {
+    margin-top: 20px;
+    border: 1px solid white;
+    border-radius: 25px;
+    background-color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    box-shadow: var(--box-shadow);
+    transition: all 0.3s ease;
+}
+
+.saveInfos:hover {
+    box-shadow: none;
+}
 
 /*---------------------------- Zone main Users ---------------------------*/
 
@@ -841,8 +855,33 @@ main .recent-orders a {
     box-shadow: none;
 }
 
-/*----------------------------Zone formulaire-------------------------------------*/
+.createAdmin {
+    margin-top: 20px;
+    border: 1px solid white;
+    border-radius: 25px;
+    background-color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    box-shadow: var(--box-shadow);
+    width: fit-content;
+    transition: all 0.3s ease;
+}
 
+.createAdmin:hover {
+    box-shadow: none;
+}
+
+/*----------------------------Zone formulaire-------------------------------------*/
+.user-listMessages {
+	position: relative;
+    background-color: var(--color-white);
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    margin-top: 1rem;
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
 .inputFormLabel {
     position: relative;
     margin-bottom: 20px;
@@ -862,7 +901,10 @@ main .recent-orders a {
 .inputForm:focus {
     border-color: green;
 }
-
+.deleteButtons {
+	display: flex;
+	justify-content: space-evenly;
+}
 .placeholder {
     position: absolute;
     pointer-events: none;
@@ -880,7 +922,7 @@ main .recent-orders a {
     font-size: 13px;
     color: #333;
     padding: 2px 5px;
-    background-color: var(--color-background);
+    background-color: #fff;
 }
 
 /*------------------------------------Zone Création de service------------------------------*/
@@ -906,9 +948,33 @@ main .recent-orders a {
     display: flex;
     flex-direction: column;
     text-align: center;
-    align-items: center;
+    /* align-items: center; */
 }
 
+.textAreaMsgZone {
+	border-radius: 25px;
+	border: 1px solid lightgrey;
+	margin-top: 20px;
+	padding: 10px;
+	width: 100%;
+}
+
+.rbWMSGS {
+	border: 1px solid lightgrey;
+}
+.trash {
+	color: red;
+	transition: 0.2s ease all;
+}
+
+.edit {
+	color: green;
+	transition: 0.2s ease all;
+}
+
+.trash:hover, .edit:hover {
+	transform: scale(1.2);
+}
 .radio-inputs {
     position: relative;
     display: flex;
@@ -1011,7 +1077,7 @@ tr {
 
 tr:not(:first-child):hover th,
 tr:hover td {
-    transform: scale(.95);
+    border-bottom: 1px solid lightgrey;
 }
 
 /*---------------------------- Zone pop up container --------------------------*/
