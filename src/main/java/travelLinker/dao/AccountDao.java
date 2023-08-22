@@ -12,11 +12,9 @@ import javax.persistence.TypedQuery;
 import travelLinker.entity.Account;
 import travelLinker.entity.Customer;
 import travelLinker.entity.Partner;
-
 import travelLinker.entity.RoleUser;
 import travelLinker.entity.TravelPlanner;
 import travelLinker.utils.PasswordUtils;
-
 import travelLinker.viewModel.AccountViewModel;
 
 @Stateless
@@ -136,6 +134,10 @@ public class AccountDao {
 		travelPlanner.setAccount(accountbean);
 		entityManager.persist(travelPlanner);
 		return travelPlanner;
+	}
+
+	public void updateTravelPlanner(TravelPlanner travelPlanner) {
+		entityManager.merge(travelPlanner);
 	}
 
 	public Partner createPartner(AccountViewModel accountVM) {
