@@ -2,14 +2,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet"/>
-    <link rel="stylesheet" href="./css/dashboardPartner.css"/>
-    <title>Dashboard</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+	href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
+	rel="stylesheet" />
+<link rel="stylesheet" href="./css/dashboardPartner.css" />
+<title>Dashboard</title>
 </head>
 
 <body>
@@ -478,7 +481,7 @@
 					<div class="new-users-messages flexingBtnMessages">
 						<h2>Ecrire un message</h2>
 						<div class="user-listMessages" style="display: block;">
-							<div class="radio-inputs">
+							<div class="radio-inputs rbWMSGS">
 								<label class="radio"> <input type="radio" name="radio"
 									id="allMsg" /><span class="name">Partenaire</span>
 								</label> <label class="radio"> <input type="radio" name="radio"
@@ -494,7 +497,8 @@
 							<input type="text" id="inputMessageResume"
 								placeholder="Écrire un titre..." required="required" />
 							<textarea name="writeMsgZoneTA" id="inputMessageDetails"
-								cols="100" rows="13" placeholder="Écrire le corps du message..."></textarea>
+								class="textAreaMsgZone" cols="100" rows="13"
+								placeholder="Écrire le corps du message..."></textarea>
 						</div>
 						<button id="saveInfos">Envoyer</button>
 					</div>
@@ -522,26 +526,75 @@
 			</div>
 			<div class="new-users">
 				<h2>Mes informations personnelles</h2>
-				<form action="post">
+				<h:form action="post">
 					<div class="user-listMessages" style="display: block;">
-						<input type="text" id="inputName" placeholder="Dupin..." /> <input
-							type="text" id="inputFirstName" placeholder="Frédéric..." /> <input
-							type="text" id="inputAddress"
-							placeholder="2 rue de la liberté, 75017 paris, France" /> <input
-							type="text" id="inputMail"
-							placeholder="frederic.dupin@gmail.com..." /> <input
-							type="password" id="inputPwd"
-							placeholder="Rentrez votre nouveau mot de passe..." /> <input
-							type="text" id="inputPhoneNumber" placeholder="0601020304" /> <input
-							type="text" id="inputSiret" placeholder="362 521 879 00034" />
+							
+							
+							<div class="inputFormLabel">
+								<h:inputText id="nom"
+									value="#{serviceControllerBean.restaurantVm.name}"
+									class="inputForm"/>
+								<h:outputLabel value="Nom" for="nom"
+									styleClass="placeholder label" />
+							</div>
+
+
+							<div class="inputFormLabel">
+								<h:inputText id="firstname"
+									value="#{serviceControllerBean.restaurantVm.type}"
+									class="inputForm" />
+								<h:outputLabel value="Prénom" for="firstname"
+									styleClass="placeholder label" />
+							</div>
+
+							<div class="inputFormLabel">
+								<h:inputText id="adresse"
+									value="#{serviceControllerBean.restaurantVm.price}"
+									class="inputForm" />
+								<h:outputLabel value="Adresse" for="adresse"
+									styleClass="placeholder label" />
+							</div>
+
+							<div class="inputFormLabel">
+								<h:inputText id="mail"
+									value="#{serviceControllerBean.restaurantVm.location}"
+									class="inputForm" />
+								<h:outputLabel value="Email" for="mail"
+									styleClass="placeholder label" />
+							</div>
+
+							<div class="inputFormLabel">
+								<h:inputSecret id="password"
+									value="#{serviceControllerBean.restaurantVm.description}"
+									class="inputForm" />
+								<h:outputLabel value="Mot de passe" for="password"
+									styleClass="placeholder label" />
+							</div>
+
+							<div class="inputFormLabel">
+								<h:inputText id="telephone"
+									value="#{serviceControllerBean.restaurantVm.typeOfRestaurant}"
+									class="inputForm" />
+								<h:outputLabel value="Téléphone"
+									for="telephone" styleClass="placeholder label" />
+							</div>
+							<div class="inputFormLabel">
+								<h:inputText id="siret"
+									value="#{serviceControllerBean.restaurantVm.typeOfRestaurant}"
+									class="inputForm" />
+								<h:outputLabel value="Siret"
+									for="siret" styleClass="placeholder label" />
+							</div>
+							
+							
 					</div>
 
 					<div class="new-usersButton">
-						<button type=" button" id="createAdmin">Changer mot de
-							passe</button>
-						<button type="button" id="saveInfos">Enregistrer</button>
+						<h:commandButton type=" button" class="createAdmin">Changer mot de
+							passe</h:commandButton>
+						<h:commandButton type="button" class="saveInfos">Enregistrer</h:commandButton>
 					</div>
-				</form>
+				</h:form>
 			</div>
 		</main>
 
@@ -550,7 +603,7 @@
 		<main id="mainAddServices" style="display: none;">
 			<div class="messages">
 				<h1>Création de service</h1>
-				<div class="new-users flexingRB">
+				<div class="new-users flexingRB newFlexRB">
 					<div class="radio-inputs">
 						<label class="radio"> <input type="radio" name="radio"
 							id="rbRestaurant" /><span class="name">Restaurant</span>
@@ -567,7 +620,7 @@
 							<div class="inputFormLabel">
 								<h:inputText id="nom"
 									value="#{serviceControllerBean.restaurantVm.name}"
-									class="inputForm" a:placeholder="" />
+									class="inputForm" />
 								<h:outputLabel value="Nom" for="nom"
 									styleClass="placeholder label" />
 							</div>
@@ -576,7 +629,7 @@
 							<div class="inputFormLabel">
 								<h:inputText id="serviceType"
 									value="#{serviceControllerBean.restaurantVm.type}"
-									class="inputForm" a:placeholder="" />
+									class="inputForm" />
 								<h:outputLabel value="Type de service" for="serviceType"
 									styleClass="placeholder label" />
 							</div>
@@ -584,7 +637,7 @@
 							<div class="inputFormLabel">
 								<h:inputText id="servicePrice"
 									value="#{serviceControllerBean.restaurantVm.price}"
-									class="inputForm" a:placeholder="" />
+									class="inputForm" />
 								<h:outputLabel value="Prix du service" for="servicePrice"
 									styleClass="placeholder label" />
 							</div>
@@ -592,7 +645,7 @@
 							<div class="inputFormLabel">
 								<h:inputText id="serviceLocalisation"
 									value="#{serviceControllerBean.restaurantVm.location}"
-									class="inputForm" a:placeholder="" />
+									class="inputForm" />
 								<h:outputLabel value="Localisation" for="serviceLocalisation"
 									styleClass="placeholder label" />
 							</div>
@@ -600,7 +653,7 @@
 							<div class="inputFormLabel">
 								<h:inputText id="serviceDescription"
 									value="#{serviceControllerBean.restaurantVm.description}"
-									class="inputForm" a:placeholder="" />
+									class="inputForm" />
 								<h:outputLabel value="Description" for="serviceDescription"
 									styleClass="placeholder label" />
 							</div>
@@ -608,19 +661,19 @@
 							<div class="inputFormLabel">
 								<h:inputText id="typeOfRestaurantTxt"
 									value="#{serviceControllerBean.restaurantVm.typeOfRestaurant}"
-									class="inputForm" a:placeholder="" />
+									class="inputForm" />
 								<h:outputLabel value="Type de restaurant"
 									for="typeOfRestaurantTxt" styleClass="placeholder label" />
 							</div>
 						</div>
 						<div class="new-usersButton">
 							<!-- Clear Button -->
-							<h:commandButton id="createAdmin"
+							<h:commandButton id="createAdmin" class="createAdmin"
 								action="#{serviceControllerBean.clear()}"
 								value="Vider les champs" />
 
 							<!-- Create Restaurant Button -->
-							<h:commandButton id="saveInfos"
+							<h:commandButton id="saveInfos" class="saveInfos"
 								action="#{serviceControllerBean.createRestaurant()}"
 								value="Créer le restaurant" />
 						</div>
@@ -631,7 +684,7 @@
 							<div class="inputFormLabel">
 								<h:inputText id="nameTxtAccom"
 									value="#{serviceControllerBean.accomodationVm.name}"
-									class="inputForm" a:placeholder="" />
+									class="inputForm" />
 								<h:outputLabel value="Nom" for="nameTxtAccom"
 									styleClass="placeholder label" />
 							</div>
@@ -639,7 +692,7 @@
 							<div class="inputFormLabel">
 								<h:inputText id="typeTxtAccom"
 									value="#{serviceControllerBean.accomodationVm.type}"
-									class="inputForm" a:placeholder="" />
+									class="inputForm" />
 								<h:outputLabel value="Type de service" for="typeTxtAccom"
 									styleClass="placeholder label" />
 							</div>
@@ -647,7 +700,7 @@
 							<div class="inputFormLabel">
 								<h:inputText id="priceTxtAccom"
 									value="#{serviceControllerBean.accomodationVm.price}"
-									class="inputForm" a:placeholder="" />
+									class="inputForm" />
 								<h:outputLabel value="Prix du service" for="priceTxtAccom"
 									styleClass="placeholder label" />
 							</div>
@@ -655,7 +708,7 @@
 							<div class="inputFormLabel">
 								<h:inputText id="locationTxtAccom"
 									value="#{serviceControllerBean.accomodationVm.location}"
-									class="inputForm" a:placeholder="" />
+									class="inputForm" />
 								<h:outputLabel value="Localisation" for="locationTxtAccom"
 									styleClass="placeholder label" />
 							</div>
@@ -663,7 +716,7 @@
 							<div class="inputFormLabel">
 								<h:inputText id="descriptionTxtAccom"
 									value="#{serviceControllerBean.accomodationVm.description}"
-									class="inputForm" a:placeholder="" />
+									class="inputForm" />
 								<h:outputLabel value="Description" for="descriptionTxtAccom"
 									styleClass="placeholder label" />
 							</div>
@@ -671,19 +724,19 @@
 							<div class="inputFormLabel">
 								<h:inputText id="typeOfAccomTxt"
 									value="#{serviceControllerBean.accomodationVm.typeOfAccomodation}"
-									class="inputForm" a:placeholder="" />
+									class="inputForm" />
 								<h:outputLabel value="Type de l'hébergement"
 									for="typeOfAccomTxt" styleClass="placeholder label" />
 							</div>
 						</div>
 						<div class="new-usersButton">
 							<!-- Clear Button -->
-							<h:commandButton id="createAdmin"
+							<h:commandButton id="createAdmin" class="createAdmin"
 								action="#{serviceControllerBean.clear()}"
 								value="Vider les champs" />
 
 							<!-- Create Hebergement Button -->
-							<h:commandButton id="saveInfos"
+							<h:commandButton id="saveInfos" class="saveInfos"
 								action="#{serviceControllerBean.createAccomodation()}"
 								value="Créer le l'hébergement" />
 						</div>
@@ -696,7 +749,7 @@
 							<div class="inputFormLabel">
 								<h:inputText id="nameTxtTrans"
 									value="#{serviceControllerBean.transportVm.name}"
-									class="inputForm" a:placeholder="" />
+									class="inputForm" />
 								<h:outputLabel value="Nom" for="nameTxtTrans"
 									styleClass="placeholder label" />
 							</div>
@@ -705,7 +758,7 @@
 							<div class="inputFormLabel">
 								<h:inputText id="typeTxtTrans"
 									value="#{serviceControllerBean.transportVm.type}"
-									class="inputForm" a:placeholder="" />
+									class="inputForm" />
 								<h:outputLabel value="Type de service" for="typeTxtTrans"
 									styleClass="placeholder label" />
 							</div>
@@ -714,7 +767,7 @@
 							<div class="inputFormLabel">
 								<h:inputText id="priceTxtTrans"
 									value="#{serviceControllerBean.transportVm.price}"
-									class="inputForm" a:placeholder="" />
+									class="inputForm" />
 								<h:outputLabel value="Prix du service" for="priceTxtTrans"
 									styleClass="placeholder label" />
 							</div>
@@ -723,8 +776,7 @@
 							<div class="inputFormLabel">
 								<h:inputText id="locationTxtTrans"
 									value="#{serviceControllerBean.transportVm.location}"
-									class="inputForm"
-									a:placeholder=""/>
+									class="inputForm" />
 								<h:outputLabel value="Localisation" for="locationTxtTrans"
 									styleClass="placeholder label" />
 							</div>
@@ -733,7 +785,7 @@
 							<div class="inputFormLabel">
 								<h:inputText id="descriptionTxtTrans"
 									value="#{serviceControllerBean.transportVm.description}"
-									class="inputForm" a:placeholder="" />
+									class="inputForm" />
 								<h:outputLabel value="Description" for="descriptionTxtTrans"
 									styleClass="placeholder label" />
 							</div>
@@ -742,7 +794,7 @@
 							<div class="inputFormLabel">
 								<h:inputText id="typeOfTransTxt"
 									value="#{serviceControllerBean.transportVm.modeOfTransport}"
-									class="inputForm" a:placeholder="" />
+									class="inputForm" />
 								<h:outputLabel value="Type de transport" for="typeOfTransTxt"
 									styleClass="placeholder label" />
 							</div>
@@ -750,12 +802,12 @@
 						</div>
 						<div class="new-usersButton">
 							<!-- Clear Button -->
-							<h:commandButton id="createAdmin"
+							<h:commandButton id="createAdmin" class="createAdmin"
 								action="#{serviceControllerBean.clear()}"
 								value="Vider les champs" />
 
 							<!-- Create Transport Button -->
-							<h:commandButton id="saveInfos"
+							<h:commandButton id="saveInfos" class="saveInfos"
 								action="#{serviceControllerBean.createTransport()}"
 								value="Créer le transport" />
 						</div>
@@ -786,11 +838,7 @@
 								<h:dataTable value="#{serviceControllerBean.restaurants}"
 									var="restaurant" styleClass="table">
 									<!-- Nom du restaurant -->
-									<h:column>
-										<f:facet name="header"><h:selectBooleanCheckbox class="deleteCheckboxModifMsg"/></f:facet>
-                        
-                    </h:column>
-									
+
 									<h:column>
 										<f:facet name="header">Nom du restaurant</f:facet>
                         #{restaurant.name}
@@ -814,24 +862,24 @@
 
 
 									<h:column>
+
+										<f:facet name="header">Actions</f:facet>
 										<div class="deleteButtons">
-											<f:facet name="header">Actions</f:facet>
-											<h:commandButton value="Supprimer"
-												action="#{serviceControllerBean.deleteRestaurant(restaurant.id)}" />
-											<h:commandButton value="Edit"
+											<h:commandLink styleClass="material-icons-sharp edit"
 												action="#{serviceControllerBean.setRestaurantVm(restaurant)}"
-												update=":editFormRestaurant" />
+												update=":editFormRestaurant">
+            edit
+        </h:commandLink>
+											<h:commandLink styleClass="material-icons-sharp trash"
+												action="#{serviceControllerBean.deleteRestaurant(restaurant.id)}">
+            delete_outline
+        </h:commandLink>
 										</div>
 									</h:column>
 								</h:dataTable>
 							</div>
 
-							<div class="deleteButtons">
-								<button class="deleteBtn" id="deleteSelectedListMsg">Tout
-									sélectionner</button>
-								<h:commandButton value="Supprimer"
-									action="#{serviceControllerBean.deleteRestaurant(restaurant.id)}" />
-							</div>
+
 						</div>
 					</h:form>
 					<h:form>
@@ -863,23 +911,26 @@
 
 
 									<h:column>
+
+										<f:facet name="header">Actions</f:facet>
 										<div class="deleteButtons">
-											<f:facet name="header">Actions</f:facet>
-											<h:commandButton value="Supprimer"
-												action="#{serviceControllerBean.deleteAccomodation(accomodation.id)}" />
-											<h:commandButton value="Edit"
+
+
+
+											<h:commandLink styleClass="material-icons-sharp edit"
 												action="#{serviceControllerBean.setAccomodationVm(accomodation)}"
-												update=":editFormAccomodation" />
+												update=":editFormAccomodation">
+            edit
+        </h:commandLink>
+											<h:commandLink styleClass="material-icons-sharp trash"
+												action="#{serviceControllerBean.deleteAccomodation(accomodation.id)}">
+            delete_outline
+        </h:commandLink>
 										</div>
 									</h:column>
 								</h:dataTable>
 							</div>
 
-							<div class="deleteButtons">
-								<button class="deleteBtn" id="deleteSelectedListMsg">Tout
-									sélectionner</button>
-								<button class="deleteBtn" id="deleteListMsg">Supprimer</button>
-							</div>
 						</div>
 					</h:form>
 
@@ -912,13 +963,20 @@
 
 
 									<h:column>
+
+										<f:facet name="header">Actions</f:facet>
 										<div class="deleteButtons">
-											<f:facet name="header">Actions</f:facet>
-											<h:commandButton value="Supprimer"
-												action="#{serviceControllerBean.deleteTransport(transport.id)}" />
-											<h:commandButton value="Edit"
+
+
+											<h:commandLink styleClass="material-icons-sharp edit"
 												action="#{serviceControllerBean.setTransportVm(transport)}"
-												update=":editFormTransport" />
+												update=":editFormTransport">
+            edit
+        </h:commandLink>
+											<h:commandLink styleClass="material-icons-sharp trash"
+												action="#{serviceControllerBean.deleteTransport(transport.id)}">
+            delete_outline
+        </h:commandLink>
 										</div>
 									</h:column>
 								</h:dataTable>
@@ -926,85 +984,84 @@
 						</div>
 					</h:form>
 
-					<div class="deleteButtons">
-						<button class="deleteBtn" id="deleteSelectedListMsg">Tout
-							sélectionner</button>
-						<button class="deleteBtn" id="deleteListMsg">Supprimer</button>
+
+				</div>
+			</div>
+
+		</main>
+
+		<!-- Right Section -->
+		<div class="right-section">
+			<div class="nav">
+				<button id="menu-btn">
+					<span class="material-icons-sharp"> menu </span>
+				</button>
+				<div class="dark-mode">
+					<span class="material-icons-sharp active"> light_mode </span> <span
+						class="material-icons-sharp"> dark_mode </span>
+				</div>
+
+			</div>
+			<!-- End of Nav -->
+
+			<div class="user-profile">
+				<div class="logo">
+					<img src="images/IMG_0434.jpg" />
+					<h3>
+						Bonjour, <b>{User}</b>
+					</h3>
+				</div>
+			</div>
+
+			<div class="reminders">
+				<div class="header">
+					<h2>Notes</h2>
+					<span class="material-icons-sharp"> notifications_none </span>
+					<div id="rightNotifNumber" style="display: none;">
+						<h4>1</h4>
 					</div>
 				</div>
-				</div>
-
-	</main>
-
-	<!-- Right Section -->
-	<div class="right-section">
-		<div class="nav">
-			<button id="menu-btn">
-				<span class="material-icons-sharp"> menu </span>
-			</button>
-			<div class="dark-mode">
-				<span class="material-icons-sharp active"> light_mode </span> <span
-					class="material-icons-sharp"> dark_mode </span>
-			</div>
-
-		</div>
-		<!-- End of Nav -->
-
-		<div class="user-profile">
-			<div class="logo">
-				<img src="images/IMG_0434.jpg" />
-				<h3>
-					Bonjour, <b>{User}</b>
-				</h3>
-			</div>
-		</div>
-
-		<div class="reminders">
-			<div class="header">
-				<h2>Notes</h2>
-				<span class="material-icons-sharp"> notifications_none </span>
-				<div id="rightNotifNumber" style="display: none;">
-					<h4>1</h4>
-				</div>
-			</div>
-			<div id="rightContainerNotif">
-				<div class="notification">
-					<div class="icon">
-						<span class="material-icons-sharp"> priority_high </span>
-					</div>
-					<div class="content">
-						<div class="info">
-							<h3>Tâches à faire</h3>
-							<small class="text_muted"> Gestion du remboursement </small>
+				<div id="rightContainerNotif">
+					<div class="notification">
+						<div class="icon">
+							<span class="material-icons-sharp"> priority_high </span>
 						</div>
-						<span class="material-icons-sharp closeCrossNotes"> close </span>
-					</div>
-				</div>
-
-				<div class="notification deactive">
-					<div class="icon">
-						<span class="material-icons-sharp"> priority_high </span>
-					</div>
-					<div class="content">
-						<div class="info">
-							<h3>Tâches à faire</h3>
-							<small class="text_muted"> Suppression d'un utilisateur </small>
+						<div class="content">
+							<div class="info">
+								<h3>Tâches à faire</h3>
+								<small class="text_muted"> Gestion du remboursement </small>
+							</div>
+							<span class="material-icons-sharp closeCrossNotes"> close
+							</span>
 						</div>
-						<span class="material-icons-sharp closeCrossNotes"> close </span>
+					</div>
+
+					<div class="notification deactive">
+						<div class="icon">
+							<span class="material-icons-sharp"> priority_high </span>
+						</div>
+						<div class="content">
+							<div class="info">
+								<h3>Tâches à faire</h3>
+								<small class="text_muted"> Suppression d'un utilisateur
+								</small>
+							</div>
+							<span class="material-icons-sharp closeCrossNotes"> close
+							</span>
+						</div>
+					</div>
+
+					<div class="notification-add add-reminder">
+						<div>
+							<span class="material-icons-sharp"> add </span>
+							<h3>Ajouter une note</h3>
+						</div>
 					</div>
 				</div>
 
-				<div class="notification-add add-reminder">
-					<div>
-						<span class="material-icons-sharp"> add </span>
-						<h3>Ajouter une note</h3>
-					</div>
-				</div>
 			</div>
 
 		</div>
-
-	</div>
 
 
 	</div>
@@ -1056,8 +1113,8 @@
 			</div>
 			<div class="msgZone">
 				<h2>Message :</h2>
-				<textarea name="msgZoneTA" id="msgZoneTA" cols="100" rows="13"
-					placeholder="Écrire le corps du message..."></textarea>
+				<h:inputTextarea name="msgZoneTA" id="msgZoneTA" cols="100"
+					rows="13" placeholder="Écrire le corps du message..."></h:inputTextarea>
 			</div>
 			<button class="popup-close-btn" id="popupCloseAnswerButton">
 				<span class="material-icons-sharp"> highlight_off </span>
