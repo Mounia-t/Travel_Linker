@@ -6,52 +6,55 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link
-	href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
-	rel="stylesheet" />
-
-<title>Travel Linker</title>
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
-<link rel="stylesheet" href="css/subscriptionTP.css" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
+    
+    <title>Travel Linker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>
+    <link rel="stylesheet" href="css/subscriptionTP.css"/>
 </head>
-
+   
 <body>
-	<h2>Nos Abonnements</h2>
-	<h:form>
-		<div class="carousel">
-			<ui:repeat value="#{subscriptionController.allSubscriptions}"
-				var="subscription">
-				<div class="carousel-item">
-					<div class="card">
-						<div class="img-area" style="background-image: url(img/1.jpg);"></div>
-						<div class="container">
-
-
-							<h2>#{subscription.type}</h2>
-							<h3>#{subscription.price}</h3>
-							<h4>
-								#{subscription.duration}
-							</h4>
-							<h:commandButton class="btn" value="souscrire"
-								action="#{subscriptionController.createSubscription(subscription)}" />
-						</div>
-
-
-					</div>
-					</div>
-			</ui:repeat>
-		</div>
-
-
-		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-		<script src="js/subsScript.js"></script>
-	</h:form>
+    <h2>Nos Abonnements</h2>
+    <h:form>
+        <div class="carousel">
+            <div class="carousel-item">
+                <div class="card">
+                    <div class="img-area" style="background-image: url(img/1.jpg);"></div>
+                    <div class="container">
+                        <h4>Essentiel</h4>
+                        <p><i>Avantage...</i></p>
+                        <p>prix</p>
+                        <h:commandButton class="btn" value="souscrire"  action="#{subscriptionController.subscribeToFormule(newSubscription)}"/>
+                    </div>
+                </div>
+            </div>
+           <div class="carousel-item">
+            <div class="card">
+                <div class="img-area" style="background-image: url(img/2.jpg);"></div>
+                <div class="container">
+                    <h4>Extra</h4>
+                    <p><i>Avantages</i></p>
+                    <p>prixxx</p><h:commandButton class="btn" value="souscrire"   action="#{subscriptionController.subscribeToFormule(newSubscription)}"/>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="card">
+                <div class="img-area" style="background-image: url(img/3.jpg);"></div>
+                <div class="container">
+                    <h4><b>Premium</b></h4>
+                    <p><i>Avantages</i></p>
+                    <p>prixxx</p><h:commandButton class="btn" value="souscrire"   action="#{subscriptionController.subscribeToFormule(newSubscription)}"/>
+                </div>
+            </div>
+        </div> 
+           </div> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="js/subsScript.js"></script>
+    </h:form>
 </body>
 </html>
 

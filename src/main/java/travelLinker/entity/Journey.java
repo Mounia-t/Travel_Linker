@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Journey {
@@ -22,7 +24,10 @@ public class Journey {
 	private Date startDate;
 	private Date endDate;
 	private byte[] imageFile;
-
+	@OneToOne
+	@JoinColumn(name = "account_id")
+	private Account account;
+	private String imagePath;
 
 
 	public Journey (){
@@ -100,6 +105,27 @@ public class Journey {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+
+	public byte[] getImageFile() {
+		return imageFile;
+	}
+
+	public String getImagePath() {
+		return imagePath;
+	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
 	}
 
 }

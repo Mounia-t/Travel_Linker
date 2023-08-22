@@ -7,57 +7,49 @@ window.addEventListener('load', function () {
 });
 
 // Création des constantes
-const inscriptionButtonTP = document.querySelectorAll('.tpButton');
-const inscriptionButtonPartner = document.querySelectorAll('.partnerButton');
-const inscriptionButtonCustomer = document.querySelectorAll('.customerButton');
-const connexionButton = document.querySelector('[id$="connexionButton"]');
-const inscriptionSectionCustomer = document.querySelector('[id$="leftContainer"]');
-const inscriptionSectionTP = document.querySelector('[id$="leftContainerSecond"]');
-const inscriptionSectionPartner = document.querySelector('[id$="leftContainerThird"]');
-
+const inscriptionButtonTP = document.getElementsByClassName('tpButton');
+const inscriptionButtonPartner = document.getElementsByClassName('partnerButton');
+const inscriptionButtonCustomer = document.getElementsByClassName('customerButton');
+const connexionButton = document.getElementById('connexionButton');
+const inscriptionSectionCustomer = document.getElementById('leftContainer');
+const inscriptionSectionTP = document.getElementById('leftContainerSecond');
+const inscriptionSectionPartner = document.getElementById('leftContainerThird');
 
 // Afficher par défaut la section d'inscription pour les clients
-setDisplay('customer');
+inscriptionSectionCustomer.style.display = 'flex';
+inscriptionSectionTP.style.display = 'none';
+inscriptionSectionPartner.style.display = 'none';
 
 // Gestionnaire d'événements pour les boutons d'inscription
-function setButtonListeners(buttons, sectionType) {
-    for (const button of buttons) {
-        button.addEventListener('click', function() {
-            setDisplay(sectionType);
-        });
-    }
+for (const button of inscriptionButtonTP) {
+    button.addEventListener('click', function () {
+        inscriptionSectionTP.style.display = 'flex';
+        inscriptionSectionCustomer.style.display = 'none';
+        inscriptionSectionPartner.style.display = 'none';
+    });
 }
 
-setButtonListeners(inscriptionButtonTP, 'tp');
-setButtonListeners(inscriptionButtonPartner, 'partner');
-setButtonListeners(inscriptionButtonCustomer, 'customer');
+for (const button of inscriptionButtonPartner) {
+    button.addEventListener('click', function () {
+        inscriptionSectionTP.style.display = 'none';
+        inscriptionSectionCustomer.style.display = 'none';
+        inscriptionSectionPartner.style.display = 'flex';
+    });
+}
 
-function setDisplay(type) {
-    switch (type) {
-        case 'tp':
-            inscriptionSectionTP.style.display = 'flex';
-            inscriptionSectionCustomer.style.display = 'none';
-            inscriptionSectionPartner.style.display = 'none';
-            break;
-        case 'partner':
-            inscriptionSectionTP.style.display = 'none';
-            inscriptionSectionCustomer.style.display = 'none';
-            inscriptionSectionPartner.style.display = 'flex';
-            break;
-        case 'customer':
-        default:
-            inscriptionSectionTP.style.display = 'none';
-            inscriptionSectionCustomer.style.display = 'flex';
-            inscriptionSectionPartner.style.display = 'none';
-            break;
-    }
+for (const button of inscriptionButtonCustomer) {
+    button.addEventListener('click', function () {
+        inscriptionSectionTP.style.display = 'none';
+        inscriptionSectionCustomer.style.display = 'flex';
+        inscriptionSectionPartner.style.display = 'none';
+    });
 }
 
 // Création des constantes pour le premier formulaire (Client)
-const showPasswordInputCustomer = document.querySelector('[id$="passwordInputCustomer"]');
-const showPasswordInputPartner = document.querySelector('[id$="passwordInputPartner"]');
-const showPasswordInputTP = document.querySelector('[id$="passwordInputTP"]');
-const showPasswordInput = document.querySelector('[id$="passwordInput"]');
+const showPasswordInputCustomer = document.getElementById('passwordInputCustomer');
+const showPasswordInputPartner = document.getElementById('passwordInputPartner');
+const showPasswordInputTP = document.getElementById('passwordInputTP');
+const showPasswordInput = document.getElementById('passwordInput');
 const eyeOpenIconCustomer = document.querySelector(".eye-openCustomer");
 const eyeClosedIconCustomer = document.querySelector(".eye-closedCustomer");
 const eyeOpenIconPartner = document.querySelector(".eye-openPartner");
@@ -66,7 +58,6 @@ const eyeOpenIconTP = document.querySelector(".eye-openTP");
 const eyeClosedIconTP = document.querySelector(".eye-closedTP");
 const eyeOpenIcon = document.querySelector(".eye-open");
 const eyeClosedIcon = document.querySelector(".eye-closed");
-
 
 
 eyeOpenIconCustomer.addEventListener("click", () => {

@@ -1,11 +1,9 @@
 package travelLinker.viewModel;
 
-
-	import java.util.Date;
-
+import java.util.Date;
 
 public class JourneyViewModel {
-	
+
 	private Long id;
 	private String country;
 	private int numberOfTravellers;
@@ -15,9 +13,9 @@ public class JourneyViewModel {
 	private Date endDate;
 	private String name;
 	private String description;
-	private byte []imageFile;
+	private byte[] imageFile;
+	private String imagePath;
 
-	
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -36,40 +34,51 @@ public class JourneyViewModel {
 		builder.append("]");
 		return builder.toString();
 	}
-	
+
 	public String getCountry() {
 		return country;
 	}
+
 	public int getNumberOfTravellers() {
 		return numberOfTravellers;
 	}
+
 	public float getPrice() {
 		return price;
 	}
+
 	public String getLocation() {
 		return location;
 	}
+
 	public Date getStartDate() {
 		return startDate;
 	}
+
 	public Date getEndDate() {
 		return endDate;
 	}
+
 	public void setCountry(String country) {
 		this.country = country;
 	}
+
 	public void setNumberOfTravellers(int numberOfTravellers) {
 		this.numberOfTravellers = numberOfTravellers;
 	}
+
 	public void setPrice(float price) {
 		this.price = price;
 	}
+
 	public void setLocation(String location) {
 		this.location = location;
 	}
+
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
+
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
@@ -89,7 +98,7 @@ public class JourneyViewModel {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
 	public byte[] getImage() {
 		return imageFile;
 	}
@@ -106,5 +115,12 @@ public class JourneyViewModel {
 		this.id = id;
 	}
 
-}
+	public String getImagePath() {
+		return imagePath;
+	}
 
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+
+}

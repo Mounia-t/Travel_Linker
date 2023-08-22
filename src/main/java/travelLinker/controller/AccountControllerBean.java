@@ -29,18 +29,37 @@ public class AccountControllerBean implements Serializable {
 	@Inject
 	private AccountDao accountDao;
 
-	public AccountControllerBean() {
+
+    private List<Partner> partners;
+    private List<Partner> filteredPartners;
+    private String searchKeyword;
+
+	/*public AccountControllerBean() {
 
 	}
-
-	public void addAccount() {
+*/
+	/*public void addAccount() {
 		Long id = accountDao.insert(accountVM);
 
 		// accounts.add();
 		// Appeler la méthode insert pour enregistrer l'objet dans la base de données
 		// accountDao.insert(accountbean);
-		accountVM = new AccountViewModel();
+		accountVM = new AccountViewModel();*/
 
+	
+	public void addPartner() {
+		accountDao.createPartner(accountVM);
+		accountVM = new AccountViewModel();
+	}
+	
+	public void addCustomer() {
+		accountDao.createCustomer(accountVM);
+		accountVM = new AccountViewModel();
+	}
+	
+	public void addTravelP() {
+		accountDao.createTravelPlanner(accountVM);
+		accountVM = new AccountViewModel();
 	}
 
 //---------------------------------------------------	
@@ -85,6 +104,10 @@ public class AccountControllerBean implements Serializable {
 	        System.out.println("L'utilisateur n'est pas connecté.");
 	    }
 	}
+	public List<Partner>getNewPartner(){
+		return accountDao.getLatestRegisteredPartners(4);
+		
+	}
 //--------------------------------------------------------
 	
 	public AccountViewModel getAccountVM() {
@@ -104,17 +127,33 @@ public class AccountControllerBean implements Serializable {
 	}
 
 //----------------------------------------------------------
-	public boolean isUserTravelPlanner(Long userId) {
-        RoleUser userRole = accountDao.getUserRoleById(userId);
-        if (userRole == null) {
-            // Le rôle de l'utilisateur n'a pas été trouvé
-            return false;
-        }
-        
-        return userRole == RoleUser.TravelPlanner;
-   
-    }
 	
-}
+	public List<Partner> getFilteredPartners() {
+		return filteredPartners;
+	}
 
-	
+	public void setFilteredPartners(List<Partner> filteredPartners) {
+		this.filteredPartners = filteredPartners;
+	}
+
+	public String getSearchKeyword() {
+		return searchKeyword;
+	}
+
+	public void setSearchKeyword(String searchKeyword) {
+		this.searchKeyword = searchKeyword;
+	}
+
+	public void setPartners(List<Partner> partners) {
+		this.partners = partners;
+	}
+
+
+public void searchPartners() {
+    filteredPartners = new ArrayList<>();
+    for (Partner partner : partners) {
+        if (partner.getFirstName().toLowerCase().contains(searchKeyword.toLowerCase())) {
+            filteredPartners.add(partner);
+        }
+    }
+}}

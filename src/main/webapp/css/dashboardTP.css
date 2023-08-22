@@ -1557,5 +1557,44 @@ tr:hover td {
     .right-section .nav button span {
         font-size: 2rem;
     }
+.inputFormLabel {
+    position: relative;
+    margin-bottom: 20px;
+    transition: 0.2s ease all;
+}
+
+.placeholder {
+    position: absolute;
+    pointer-events: none;
+    left: 14px;
+    top: 38px;
+    transition: 0.2s ease all;
+    font-size: 17px;
+    color: #999;
+}
+
+.inputForm {
+    border: 1px solid grey;
+    border-radius: 25px;
+    background: none;
+    padding: 10px;
+    margin-top: 30px;
+    width: 94%;
+    outline: none;
+}
+
+.inputForm:focus {
+    border-color: green;
+}
+
+.inputForm:focus+.placeholder,
+.inputForm:not(:placeholder-shown)+.placeholder,
+.inputForm:not(:valid)+.placeholder {
+    top: 20px;
+    font-size: 15px;
+    color: #333;
+    padding: 2px 5px;
+    background-color: white;
+}
 
 }

@@ -1,11 +1,5 @@
 package travelLinker.viewModel;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-
 import travelLinker.entity.Account;
 import travelLinker.entity.RoleUser;
 
@@ -17,14 +11,14 @@ public class AccountViewModel {
 	private RoleUser role;
 	private String lastName;
 	private String firstName;
-	private double phoneNumber;
+	private String phoneNumber;
 	private String siret;
 	private String companyName;
 	private String address;
 	private String recepientEmail;
 	private String senderEmail;
 	private String messageResume;
-
+	private String taskContent;
 	public String getContent() {
 		return content;
 	}
@@ -67,11 +61,11 @@ public class AccountViewModel {
 		this.address = adress;
 	}
 
-	public double getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
 
-	public void setPhoneNumber(double phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 
@@ -161,4 +155,11 @@ public class AccountViewModel {
 		this.messageResume = messageResume;
 	}
 
+	public String getTaskContent() {
+		return taskContent;
+	}
+
+	public void setTaskContent(String taskContent) {
+		this.taskContent = taskContent;
+	}
 }
