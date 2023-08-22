@@ -37,18 +37,12 @@
 				</a> <a href="#" id="profileBtn"> <span class="material-icons-sharp">
 						person_outline </span>
 					<h3>Mon profil</h3>
-				</a> <a href="#" id="usersBtn"> <span class="material-icons-sharp">
-						group </span>
-					<h3>Mes services</h3>
 				</a> <a href="#" id="listServicesBtn"> <span
 					class="material-icons-sharp"> format_list_bulleted </span>
-					<h3>Liste</h3>
+					<h3>Liste services</h3>
 				</a> <a href="#" id="addServicesBtn"> <span
 					class="material-icons-sharp"> add_circle_outline </span>
 					<h3>Créer</h3>
-				</a> <a href="#" id="analyticsBtn"> <span
-					class="material-icons-sharp"> insights </span>
-					<h3>Analytics</h3>
 				</a> <a href="#" id="messagesBtn"> <span
 					class="material-icons-sharp"> mail </span>
 					<h3>Messages</h3>
@@ -77,6 +71,38 @@
 						<div class="info">
 							<h3>Nombre d'abonnement</h3>
 							<h1>24k</h1>
+						</div>
+					</div>
+				</div>
+				<div class="sales">
+					<div class="status">
+						<div class="info">
+							<h3>Chiffre d'affaire total</h3>
+							<h1>1M€</h1>
+						</div>
+					</div>
+				</div>
+				<div class="visits">
+					<div class="status">
+						<div class="info">
+							<h3>Type d'abonnement</h3>
+							<h1>Premium</h1>
+						</div>
+					</div>
+				</div>
+				<div class="sales">
+					<div class="status">
+						<div class="info">
+							<h3>Nombre de réservations</h3>
+							<h1>42</h1>
+						</div>
+					</div>
+				</div>
+				<div class="visits">
+					<div class="status">
+						<div class="info">
+							<h3>Nombre de partenaires</h3>
+							<h1>283</h1>
 						</div>
 					</div>
 				</div>
@@ -116,78 +142,6 @@
 			<!-- End of Recent Orders -->
 
 		</main>
-		<!-- Main Content -->
-		<main id="mainAnalytics" style="display: none;">
-			<h1>Analytics</h1>
-			<!-- Analyses -->
-			<div class="analyse">
-				<div class="sales">
-					<div class="status">
-						<div class="info">
-							<h3>Chiffre d'affaire total</h3>
-							<h1>1M€</h1>
-						</div>
-					</div>
-				</div>
-				<div class="visits">
-					<div class="status">
-						<div class="info">
-							<h3>Type d'abonnement</h3>
-							<h1>Premium</h1>
-						</div>
-					</div>
-				</div>
-				<div class="sales">
-					<div class="status">
-						<div class="info">
-							<h3>Nombre de réservations</h3>
-							<h1>42</h1>
-						</div>
-					</div>
-				</div>
-				<div class="visits">
-					<div class="status">
-						<div class="info">
-							<h3>Nombre de partenaires</h3>
-							<h1>283</h1>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- End of Analyses -->
-
-			<!-- New Users Section -->
-			<div class="new-users">
-				<h2>Nouve</h2>
-				<div class="user-list">
-					<div class="user">
-						<img src="images/profile-2.jpg" />
-						<h2>Jack</h2>
-						<p>54 Min Ago</p>
-					</div>
-					<div class="user">
-						<img src="images/profile-3.jpg" />
-						<h2>Amir</h2>
-						<p>3 Hours Ago</p>
-					</div>
-					<div class="user">
-						<img src="images/profile-4.jpg" />
-						<h2>Ember</h2>
-						<p>6 Hours Ago</p>
-					</div>
-					<div class="user">
-						<img src="images/plus.png" />
-						<h2>More</h2>
-						<p>New User</p>
-					</div>
-				</div>
-			</div>
-			<!-- End of New Users Section -->
-
-			<!-- Recent Orders Table -->
-
-
-		</main>
 
 		<!-- End of MainAnalytics Content -->
 
@@ -219,23 +173,24 @@
 			<div class="new-users flexingRB">
 				<div class="radio-inputs">
 					<label class="radio"> <input type="radio" name="radio"
-						id="allMsg" /> <span class="name">Tous</span>
+						id="allMsg" /><span class="name">Tous</span>
 					</label> <label class="radio"> <input type="radio" name="radio"
-						id="readMsg" /> <span class="name">Lus</span>
+						id="readMsg" /><span class="name">Lus</span>
 					</label> <label class="radio"> <input type="radio" name="radio"
-						id="unreadMsg" /> <span class="name">Non lus</span>
+						id="unreadMsg" /><span class="name">Non lus</span>
 					</label> <label class="radio"> <input type="radio" name="radio"
-						id="sentMsg" /> <span class="name">Envoyés</span>
+						id="sentMsg" /><span class="name">Envoyés</span>
 					</label> <label class="radio"> <input type="radio" name="radio"
-						id="writeMsg" /> <span class="name">Écrire</span>
+						id="writeMsg" /><span class="name">Écrire</span>
 					</label>
 				</div>
-				<div id="allMsgSection">
 
+				<div id="allMsgSection">
 					<div class="table-container">
 						<table>
 							<thead>
 								<tr>
+									<th></th>
 									<th>Expéditeur</th>
 									<th>Objet</th>
 									<th>Résumé</th>
@@ -245,6 +200,7 @@
 							</thead>
 							<tbody>
 								<tr>
+									<td><input type="checkbox" class="deleteCheckboxAllMsg" /></td>
 									<td>Le Gourmet Parisien</td>
 									<td>Restaurant</td>
 									<td>Restaurant français raffiné au cœur de Paris</td>
@@ -254,6 +210,7 @@
 									</td>
 								</tr>
 								<tr>
+									<td><input type="checkbox" class="deleteCheckboxAllMsg" /></td>
 									<td>Étoile Hôtel</td>
 									<td>Hébergement</td>
 									<td>Hôtel de luxe cinq étoiles avec vue panoramique</td>
@@ -263,6 +220,7 @@
 									</td>
 								</tr>
 								<tr>
+									<td><input type="checkbox" class="deleteCheckboxAllMsg" /></td>
 									<td>Airport Shuttle</td>
 									<td>Transport</td>
 									<td>Service de navette entre l'aéroport et le centre-ville</td>
@@ -272,6 +230,7 @@
 									</td>
 								</tr>
 								<tr>
+									<td><input type="checkbox" class="deleteCheckboxAllMsg" /></td>
 									<td>Sakura Sushi</td>
 									<td>Restaurant</td>
 									<td>Restaurant japonais spécialisé dans les sushis</td>
@@ -281,6 +240,7 @@
 									</td>
 								</tr>
 								<tr>
+									<td><input type="checkbox" class="deleteCheckboxAllMsg" /></td>
 									<td>Mountain Lodge</td>
 									<td>Hébergement</td>
 									<td>Charmante auberge de montagne pour les amoureux de la
@@ -291,6 +251,7 @@
 									</td>
 								</tr>
 								<tr>
+									<td><input type="checkbox" class="deleteCheckboxAllMsg" /></td>
 									<td>Mountain Lodge</td>
 									<td>Hébergement</td>
 									<td>Charmante auberge de montagne pour les amoureux de la
@@ -302,6 +263,11 @@
 								</tr>
 							</tbody>
 						</table>
+					</div>
+					<div class="deleteButtons">
+						<button class="deleteBtn" id="deleteSelectedAllMsg">Tout
+							sélectionner</button>
+						<button class="deleteBtn" id="deleteAllMsg">Supprimer</button>
 					</div>
 				</div>
 
@@ -310,6 +276,7 @@
 						<table>
 							<thead>
 								<tr>
+									<th></th>
 									<th>Expéditeur</th>
 									<th>Objet</th>
 									<th>Résumé</th>
@@ -318,6 +285,7 @@
 							</thead>
 							<tbody>
 								<tr>
+									<td><input type="checkbox" class="deleteCheckboxReadMsg" /></td>
 									<td>Le Gourmet Parisien</td>
 									<td>Restaurant</td>
 									<td>Restaurant français raffiné au cœur de Paris</td>
@@ -326,6 +294,7 @@
 									</td>
 								</tr>
 								<tr>
+									<td><input type="checkbox" class="deleteCheckboxReadMsg" /></td>
 									<td>Étoile Hôtel</td>
 									<td>Hébergement</td>
 									<td>Hôtel de luxe cinq étoiles avec vue panoramique</td>
@@ -334,6 +303,7 @@
 									</td>
 								</tr>
 								<tr>
+									<td><input type="checkbox" class="deleteCheckboxReadMsg" /></td>
 									<td>Airport Shuttle</td>
 									<td>Transport</td>
 									<td>Service de navette entre l'aéroport et le centre-ville</td>
@@ -342,6 +312,7 @@
 									</td>
 								</tr>
 								<tr>
+									<td><input type="checkbox" class="deleteCheckboxReadMsg" /></td>
 									<td>Sakura Sushi</td>
 									<td>Restaurant</td>
 									<td>Restaurant japonais spécialisé dans les sushis</td>
@@ -350,6 +321,7 @@
 									</td>
 								</tr>
 								<tr>
+									<td><input type="checkbox" class="deleteCheckboxReadMsg" /></td>
 									<td>Mountain Lodge</td>
 									<td>Hébergement</td>
 									<td>Charmante auberge de montagne pour les amoureux de la
@@ -360,6 +332,11 @@
 								</tr>
 							</tbody>
 						</table>
+					</div>
+					<div class="deleteButtons">
+						<button class="deleteBtn" id="deleteSelectedReadMsg">Tout
+							sélectionner</button>
+						<button class="deleteBtn" id="deleteReadMsg">Supprimer</button>
 					</div>
 				</div>
 
@@ -368,6 +345,7 @@
 						<table>
 							<thead>
 								<tr>
+									<th></th>
 									<th>Expéditeur</th>
 									<th>Objet</th>
 									<th>Résumé</th>
@@ -376,6 +354,7 @@
 							</thead>
 							<tbody>
 								<tr>
+									<td><input type="checkbox" class="deleteCheckboxUnreadMsg" /></td>
 									<td>Le Gourmet Parisien</td>
 									<td>Restaurant</td>
 									<td>Restaurant français raffiné au cœur de Paris</td>
@@ -384,6 +363,7 @@
 									</td>
 								</tr>
 								<tr>
+									<td><input type="checkbox" class="deleteCheckboxUnreadMsg" /></td>
 									<td>Étoile Hôtel</td>
 									<td>Hébergement</td>
 									<td>Hôtel de luxe cinq étoiles avec vue panoramique</td>
@@ -392,6 +372,7 @@
 									</td>
 								</tr>
 								<tr>
+									<td><input type="checkbox" class="deleteCheckboxUnreadMsg" /></td>
 									<td>Airport Shuttle</td>
 									<td>Transport</td>
 									<td>Service de navette entre l'aéroport et le centre-ville</td>
@@ -400,6 +381,7 @@
 									</td>
 								</tr>
 								<tr>
+									<td><input type="checkbox" class="deleteCheckboxUnreadMsg" /></td>
 									<td>Sakura Sushi</td>
 									<td>Restaurant</td>
 									<td>Restaurant japonais spécialisé dans les sushis</td>
@@ -408,6 +390,7 @@
 									</td>
 								</tr>
 								<tr>
+									<td><input type="checkbox" class="deleteCheckboxUnreadMsg" /></td>
 									<td>Mountain Lodge</td>
 									<td>Hébergement</td>
 									<td>Charmante auberge de montagne pour les amoureux de la
@@ -418,6 +401,11 @@
 								</tr>
 							</tbody>
 						</table>
+					</div>
+					<div class="deleteButtons">
+						<button class="deleteBtn" id="deleteSelectedUnreadMsg">Tout
+							sélectionner</button>
+						<button class="deleteBtn" id="deleteUnreadMsg">Supprimer</button>
 					</div>
 				</div>
 
@@ -426,6 +414,7 @@
 						<table>
 							<thead>
 								<tr>
+									<th></th>
 									<th>Destinataire</th>
 									<th>Objet</th>
 									<th>Résumé</th>
@@ -434,6 +423,7 @@
 							</thead>
 							<tbody>
 								<tr>
+									<td><input type="checkbox" class="deleteCheckboxSentMsg" /></td>
 									<td>Le Gourmet Parisien</td>
 									<td>Restaurant</td>
 									<td>Restaurant français raffiné au cœur de Paris</td>
@@ -442,6 +432,7 @@
 									</td>
 								</tr>
 								<tr>
+									<td><input type="checkbox" class="deleteCheckboxSentMsg" /></td>
 									<td>Étoile Hôtel</td>
 									<td>Hébergement</td>
 									<td>Hôtel de luxe cinq étoiles avec vue panoramique</td>
@@ -450,6 +441,7 @@
 									</td>
 								</tr>
 								<tr>
+									<td><input type="checkbox" class="deleteCheckboxSentMsg" /></td>
 									<td>Airport Shuttle</td>
 									<td>Transport</td>
 									<td>Service de navette entre l'aéroport et le centre-ville</td>
@@ -458,6 +450,7 @@
 									</td>
 								</tr>
 								<tr>
+									<td><input type="checkbox" class="deleteCheckboxSentMsg" /></td>
 									<td>Sakura Sushi</td>
 									<td>Restaurant</td>
 									<td>Restaurant japonais spécialisé dans les sushis</td>
@@ -466,6 +459,7 @@
 									</td>
 								</tr>
 								<tr>
+									<td><input type="checkbox" class="deleteCheckboxSentMsg" /></td>
 									<td>Mountain Lodge</td>
 									<td>Hébergement</td>
 									<td>Charmante auberge de montagne pour les amoureux de la
@@ -477,36 +471,40 @@
 							</tbody>
 						</table>
 					</div>
+					<div class="deleteButtons">
+						<button class="deleteBtn" id="deleteSelectedSentMsg">Tout
+							sélectionner</button>
+						<button class="deleteBtn" id="deleteSentMsg">Supprimer</button>
+					</div>
 				</div>
 
 				<div id="writeMsgSection">
-					<div class="new-users-messages">
+					<div class="new-users-messages flexingBtnMessages">
 						<h2>Ecrire un message</h2>
 						<div class="user-listMessages" style="display: block;">
 							<div class="radio-inputs">
 								<label class="radio"> <input type="radio" name="radio"
-									id="allMsg" /> <span class="name">Partenaire</span>
+									id="allMsg" /><span class="name">Partenaire</span>
 								</label> <label class="radio"> <input type="radio" name="radio"
-									id="readMsg" /> <span class="name">Travel planner</span>
+									id="readMsg" /><span class="name">Travel planner</span>
 								</label> <label class="radio"> <input type="radio" name="radio"
-									id="unreadMsg" /> <span class="name">Client</span>
+									id="unreadMsg" /><span class="name">Client</span>
 								</label> <label class="radio"> <input type="radio" name="radio"
-									id="sentMsg" /> <span class="name">Administration</span>
+									id="sentMsg" /><span class="name">Administration</span>
 								</label>
 							</div>
 							<input type="text" id="inputMessageDest"
 								placeholder="Choisir un destinataire..." required="required" />
 							<input type="text" id="inputMessageResume"
-								placeholder="Écrire un titre..." required="required" /> <input
-								type="text" id="inputMessageDetails"
-								placeholder="Écrire le corps du message..." required="required" />
-
+								placeholder="Écrire un titre..." required="required" />
+							<textarea name="writeMsgZoneTA" id="inputMessageDetails"
+								cols="100" rows="13" placeholder="Écrire le corps du message..."></textarea>
 						</div>
+						<button id="saveInfos">Envoyer</button>
 					</div>
+
 				</div>
 			</div>
-
-
 		</main>
 
 		<!-- Start of mainProfile Content -->
@@ -541,6 +539,7 @@
 							type="text" id="inputPhoneNumber" placeholder="0601020304" /> <input
 							type="text" id="inputSiret" placeholder="362 521 879 00034" />
 					</div>
+
 					<div class="new-usersButton">
 						<button type=" button" id="createAdmin">Changer mot de
 							passe</button>
@@ -548,57 +547,6 @@
 					</div>
 				</form>
 			</div>
-		</main>
-
-		<!-- Start of mainUsers Content -->
-
-		<main id="mainUsers" style="display: none;">
-			<h1>Mes services</h1>
-			<!-- Analyses -->
-			<div class="analyse">
-				<div class="sales">
-					<div class="status">
-						<div class="info">
-							<h3>Nombre de partenaire</h3>
-							<h1>608</h1>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="new-users">
-				<h2>Tous mes services</h2>
-				<div id="searchUsersZone">
-					<input type="search" placeholder="Rechercher un service..."
-						id="searchUsers" />
-					<button type="submit">
-						<span class="material-icons-sharp"> search </span>
-					</button>
-				</div>
-				<div class="user-list">
-					<div class="user">
-						<img src="images/profile-2.jpg" />
-						<h2>Jack</h2>
-						<p>54 Min Ago</p>
-					</div>
-					<div class="user">
-						<img src="images/profile-3.jpg" />
-						<h2>Amir</h2>
-						<p>3 Hours Ago</p>
-					</div>
-					<div class="user">
-						<img src="images/profile-4.jpg" />
-						<h2>Ember</h2>
-						<p>6 Hours Ago</p>
-					</div>
-					<div class="user">
-						<img src="images/plus.png" />
-						<h2>More</h2>
-						<p>New User</p>
-					</div>
-				</div>
-			</div>
-
 		</main>
 
 		<!-- Start of mainHistory Content -->
@@ -609,63 +557,65 @@
 				<div class="new-users flexingRB">
 					<div class="radio-inputs">
 						<label class="radio"> <input type="radio" name="radio"
-							id="rbRestaurant" /> <span class="name">Restaurant</span>
+							id="rbRestaurant" /><span class="name">Restaurant</span>
 						</label> <label class="radio"> <input type="radio" name="radio"
-							id="rbAccomo" /> <span class="name">Hébergement</span>
+							id="rbAccomo" /><span class="name">Hébergement</span>
 						</label> <label class="radio"> <input type="radio" name="radio"
-							id="rbTrans" /> <span class="name">Transport</span>
+							id="rbTrans" /><span class="name">Transport</span>
 						</label>
 					</div>
-					<h:form id="creationFormRest">
+
+					<h:form action="post" id="creationFormRest">
 						<div class="user-listMessages">
-							<!-- Name -->
-							<h:inputText id="nameTxtRestaurant"
-								value="#{serviceControllerBean.restaurantVm.name}" size="30"
-								a:placeholder="Nom..." />
 
-							<!-- Type -->
-							<h:inputText id="typeTxtRestaurant"
-								value="#{serviceControllerBean.restaurantVm.type}" size="30"
-								a:placeholder="Type de service..." />
+							<div class="inputFormLabel">
+								<h:inputText id="nom"
+									value="#{serviceControllerBean.restaurantVm.name}"
+									class="inputForm" a:placeholder="" />
+								<h:outputLabel value="Nom" for="nom"
+									styleClass="placeholder label" />
+							</div>
 
-							<!-- Price -->
-							<h:inputText id="priceTxtRestaurant"
-								value="#{serviceControllerBean.restaurantVm.price}" size="30"
-								a:placeholder="Prix du service..." />
 
-							<!-- Country -->
-							<h:inputText id="countryTxtRestaurant"
-								value="#{serviceControllerBean.restaurantVm.country}" size="30"
-								a:placeholder="Pays..." />
+							<div class="inputFormLabel">
+								<h:inputText id="serviceType"
+									value="#{serviceControllerBean.restaurantVm.type}"
+									class="inputForm" a:placeholder="" />
+								<h:outputLabel value="Type de service" for="serviceType"
+									styleClass="placeholder label" />
+							</div>
 
-							<!-- Location -->
-							<h:inputText id="locationTxtRestaurant"
-								value="#{serviceControllerBean.restaurantVm.location}" size="30"
-								a:placeholder="Localisation..." />
+							<div class="inputFormLabel">
+								<h:inputText id="servicePrice"
+									value="#{serviceControllerBean.restaurantVm.price}"
+									class="inputForm" a:placeholder="" />
+								<h:outputLabel value="Prix du service" for="servicePrice"
+									styleClass="placeholder label" />
+							</div>
 
-							<!-- Check-in Date -->
-							<h:inputText id="startDateTxtRestaurant"
-								value="#{serviceControllerBean.restaurantVm.startDate}"
-								size="30" a:placeholder="Date d'arrivée...">
-								<f:convertDateTime pattern="dd/MM/yyyy" />
-							</h:inputText>
+							<div class="inputFormLabel">
+								<h:inputText id="serviceLocalisation"
+									value="#{serviceControllerBean.restaurantVm.location}"
+									class="inputForm" a:placeholder="" />
+								<h:outputLabel value="Localisation" for="serviceLocalisation"
+									styleClass="placeholder label" />
+							</div>
 
-							<!-- Check-out Date -->
-							<h:inputText id="endDateTxtRestaurant"
-								value="#{serviceControllerBean.restaurantVm.endDate}" size="30"
-								a:placeholder="Date de départ...">
-								<f:convertDateTime pattern="dd/MM/yyyy" />
-							</h:inputText>
+							<div class="inputFormLabel">
+								<h:inputText id="serviceDescription"
+									value="#{serviceControllerBean.restaurantVm.description}"
+									class="inputForm" a:placeholder="" />
+								<h:outputLabel value="Description" for="serviceDescription"
+									styleClass="placeholder label" />
+							</div>
 
-							<!-- Description -->
-							<h:inputText id="descriptionTxtRestaurant"
-								value="#{serviceControllerBean.restaurantVm.description}"
-								size="100" a:placeholder="Description..." />
-
-							<!-- Type of restaurant -->
-							<h:inputText id="typeOfRestaurantTxt"
-								value="#{serviceControllerBean.restaurantVm.typeOfRestaurant}"
-								size="30" a:placeholder="Type de restaurant..." />
+							<div class="inputFormLabel">
+								<h:inputText id="typeOfRestaurantTxt"
+									value="#{serviceControllerBean.restaurantVm.typeOfRestaurant}"
+									class="inputForm" a:placeholder="" />
+								<h:outputLabel value="Type de restaurant"
+									for="typeOfRestaurantTxt" styleClass="placeholder label" />
+							</div>
 						</div>
 						<div class="new-usersButton">
 							<!-- Clear Button -->
@@ -678,296 +628,466 @@
 								action="#{serviceControllerBean.createRestaurant()}"
 								value="Créer le restaurant" />
 						</div>
-
 					</h:form>
 
-					<h:form id="creationFormAccom">
+					<h:form action="post" id="creationFormAccom">
 						<div class="user-listMessages">
-							<!-- Name -->
-							<h:inputText id="nameTxtAccom"
-								value="#{serviceControllerBean.accomodationVm.name}" size="30"
-								a:placeholder="Nom..." />
+							<div class="inputFormLabel">
+								<h:inputText id="nameTxtAccom"
+									value="#{serviceControllerBean.accomodationVm.name}"
+									class="inputForm" a:placeholder="" />
+								<h:outputLabel value="Nom" for="nameTxtAccom"
+									styleClass="placeholder label" />
+							</div>
 
-							<!-- Type -->
-							<h:inputText id="typeTxtAccom"
-								value="#{serviceControllerBean.accomodationVm.type}" size="30"
-								a:placeholder="Type de service..." />
+							<div class="inputFormLabel">
+								<h:inputText id="typeTxtAccom"
+									value="#{serviceControllerBean.accomodationVm.type}"
+									class="inputForm" a:placeholder="" />
+								<h:outputLabel value="Type de service" for="typeTxtAccom"
+									styleClass="placeholder label" />
+							</div>
 
-							<!-- Price -->
-							<h:inputText id="priceTxtAccom"
-								value="#{serviceControllerBean.accomodationVm.price}" size="30"
-								a:placeholder="Prix du service..." />
+							<div class="inputFormLabel">
+								<h:inputText id="priceTxtAccom"
+									value="#{serviceControllerBean.accomodationVm.price}"
+									class="inputForm" a:placeholder="" />
+								<h:outputLabel value="Prix du service" for="priceTxtAccom"
+									styleClass="placeholder label" />
+							</div>
 
-							<!-- Country -->
-							<h:inputText id="countryTxtAccom"
-								value="#{serviceControllerBean.accomodationVm.country}"
-								size="30" a:placeholder="Pays..." />
+							<div class="inputFormLabel">
+								<h:inputText id="locationTxtAccom"
+									value="#{serviceControllerBean.accomodationVm.location}"
+									class="inputForm" a:placeholder="" />
+								<h:outputLabel value="Localisation" for="locationTxtAccom"
+									styleClass="placeholder label" />
+							</div>
 
-							<!-- Location -->
-							<h:inputText id="locationTxtAccom"
-								value="#{serviceControllerBean.accomodationVm.location}"
-								size="30" a:placeholder="Localisation..." />
+							<div class="inputFormLabel">
+								<h:inputText id="descriptionTxtAccom"
+									value="#{serviceControllerBean.accomodationVm.description}"
+									class="inputForm" a:placeholder="" />
+								<h:outputLabel value="Description" for="descriptionTxtAccom"
+									styleClass="placeholder label" />
+							</div>
 
-							<!-- Check-in Date -->
-							<h:inputText id="startDateTxtAccom"
-								value="#{serviceControllerBean.accomodationVm.startDate}"
-								size="30" a:placeholder="Date d'arrivée...">
-								<f:convertDateTime pattern="dd/MM/yyyy" />
-							</h:inputText>
-
-							<!-- Check-out Date -->
-							<h:inputText id="endDateTxtAccom"
-								value="#{serviceControllerBean.accomodationVm.endDate}"
-								size="30" a:placeholder="Date de départ...">
-								<f:convertDateTime pattern="dd/MM/yyyy" />
-							</h:inputText>
-
-							<!-- Description -->
-							<h:inputText id="descriptionTxtAccom"
-								value="#{serviceControllerBean.accomodationVm.description}"
-								size="100" a:placeholder="Description..." />
-
-							<!-- Type of accomodation -->
-							<h:inputText id="typeOfAccomTxt"
-								value="#{serviceControllerBean.accomodationVm.typeOfAccomodation}"
-								size="30" a:placeholder="Type de restaurant..." />
+							<div class="inputFormLabel">
+								<h:inputText id="typeOfAccomTxt"
+									value="#{serviceControllerBean.accomodationVm.typeOfAccomodation}"
+									class="inputForm" a:placeholder="" />
+								<h:outputLabel value="Type de l'hébergement"
+									for="typeOfAccomTxt" styleClass="placeholder label" />
+							</div>
 						</div>
-
 						<div class="new-usersButton">
 							<!-- Clear Button -->
 							<h:commandButton id="createAdmin"
 								action="#{serviceControllerBean.clear()}"
 								value="Vider les champs" />
 
-							<!-- Create Restaurant Button -->
+							<!-- Create Hebergement Button -->
 							<h:commandButton id="saveInfos"
 								action="#{serviceControllerBean.createAccomodation()}"
 								value="Créer le l'hébergement" />
 						</div>
-
 					</h:form>
 
-
-					<h:form id="creationFormTrans">
+					<h:form action="post" id="creationFormTrans">
 						<div class="user-listMessages">
-							<!-- Name -->
-							<h:inputText id="nameTxtTrans"
-								value="#{serviceControllerBean.transportVm.name}" size="30"
-								a:placeholder="Nom..." />
 
-							<!-- Type -->
-							<h:inputText id="typeTxtTrans"
-								value="#{serviceControllerBean.transportVm.type}" size="30"
-								a:placeholder="Type de service..." />
+							<!-- Nom -->
+							<div class="inputFormLabel">
+								<h:inputText id="nameTxtTrans"
+									value="#{serviceControllerBean.transportVm.name}"
+									class="inputForm" a:placeholder="" />
+								<h:outputLabel value="Nom" for="nameTxtTrans"
+									styleClass="placeholder label" />
+							</div>
 
-							<!-- Price -->
-							<h:inputText id="priceTxtTrans"
-								value="#{serviceControllerBean.transportVm.price}" size="30"
-								a:placeholder="Prix du service..." />
+							<!-- Type de service -->
+							<div class="inputFormLabel">
+								<h:inputText id="typeTxtTrans"
+									value="#{serviceControllerBean.transportVm.type}"
+									class="inputForm" a:placeholder="" />
+								<h:outputLabel value="Type de service" for="typeTxtTrans"
+									styleClass="placeholder label" />
+							</div>
 
-							<!-- Country -->
-							<h:inputText id="countryTxtTrans"
-								value="#{serviceControllerBean.transportVm.country}" size="30"
-								a:placeholder="Pays..." />
+							<!-- Prix du service -->
+							<div class="inputFormLabel">
+								<h:inputText id="priceTxtTrans"
+									value="#{serviceControllerBean.transportVm.price}"
+									class="inputForm" a:placeholder="" />
+								<h:outputLabel value="Prix du service" for="priceTxtTrans"
+									styleClass="placeholder label" />
+							</div>
 
-							<!-- Location -->
-							<h:inputText id="locationTxtTrans"
-								value="#{serviceControllerBean.transportVm.location}" size="30"
-								a:placeholder="Localisation..." />
-
-							<!-- Check-in Date -->
-							<h:inputText id="startDateTxtTrans"
-								value="#{serviceControllerBean.transportVm.startDate}" size="30"
-								a:placeholder="Date d'arrivée...">
-								<f:convertDateTime pattern="dd/MM/yyyy" />
-							</h:inputText>
-
-							<!-- Check-out Date -->
-							<h:inputText id="endDateTxtTrans"
-								value="#{serviceControllerBean.transportVm.endDate}" size="30"
-								a:placeholder="Date de départ...">
-								<f:convertDateTime pattern="dd/MM/yyyy" />
-							</h:inputText>
+							<!-- Localisation -->
+							<div class="inputFormLabel">
+								<h:inputText id="locationTxtTrans"
+									value="#{serviceControllerBean.transportVm.location}"
+									class="inputForm"
+									a:placeholder=""/>
+								<h:outputLabel value="Localisation" for="locationTxtTrans"
+									styleClass="placeholder label" />
+							</div>
 
 							<!-- Description -->
-							<h:inputText id="descriptionTxtTrans"
-								value="#{serviceControllerBean.transportVm.description}"
-								size="100" a:placeholder="Description..." />
+							<div class="inputFormLabel">
+								<h:inputText id="descriptionTxtTrans"
+									value="#{serviceControllerBean.transportVm.description}"
+									class="inputForm" a:placeholder="" />
+								<h:outputLabel value="Description" for="descriptionTxtTrans"
+									styleClass="placeholder label" />
+							</div>
 
-							<!-- Type of transport -->
-							<h:inputText id="typeOfTransTxt"
-								value="#{serviceControllerBean.transportVm.modeOfTransport}"
-								size="30" a:placeholder="Type de transport" />
+							<!-- Type de transport -->
+							<div class="inputFormLabel">
+								<h:inputText id="typeOfTransTxt"
+									value="#{serviceControllerBean.transportVm.modeOfTransport}"
+									class="inputForm" a:placeholder="" />
+								<h:outputLabel value="Type de transport" for="typeOfTransTxt"
+									styleClass="placeholder label" />
+							</div>
+
 						</div>
-
 						<div class="new-usersButton">
 							<!-- Clear Button -->
 							<h:commandButton id="createAdmin"
 								action="#{serviceControllerBean.clear()}"
 								value="Vider les champs" />
 
-							<!-- Create Restaurant Button -->
+							<!-- Create Transport Button -->
 							<h:commandButton id="saveInfos"
 								action="#{serviceControllerBean.createTransport()}"
 								value="Créer le transport" />
 						</div>
-
 					</h:form>
-
 				</div>
 			</div>
 		</main>
 
 
 		<!-- Start of mainHistory Content -->
-		
+
 		<main id="mainListServices" style="display: none;">
-        <div class="messages">
-            <h1>Liste des Restaurants</h1>
-            <div class="table-container">
-                <h:dataTable value="#{serviceControllerBean.restaurants}" var="restaurant" styleClass="table">
-                    <!-- Nom du restaurant -->
-                    <h:column>
-                        <f:facet name="header">Nom du restaurant</f:facet>
+			<div class="messages">
+				<h1>Liste des services</h1>
+				<div class="new-users flexingRB">
+					<div class="radio-inputs">
+						<label class="radio"> <input type="radio" name="radio"
+							id="rbRestaurantList" /><span class="name">Restaurant</span>
+						</label> <label class="radio"> <input type="radio" name="radio"
+							id="rbAccomoList" /><span class="name">Hébergement</span>
+						</label> <label class="radio"> <input type="radio" name="radio"
+							id="rbTransList" /><span class="name">Transport</span>
+						</label>
+					</div>
+					<h:form>
+						<div id="listServicesRest">
+							<div class="table-container">
+								<h:dataTable value="#{serviceControllerBean.restaurants}"
+									var="restaurant" styleClass="table">
+									<!-- Nom du restaurant -->
+									<h:column>
+										<f:facet name="header"><h:selectBooleanCheckbox class="deleteCheckboxModifMsg"/></f:facet>
+                        
+                    </h:column>
+									
+									<h:column>
+										<f:facet name="header">Nom du restaurant</f:facet>
                         #{restaurant.name}
                     </h:column>
 
-                    <!-- Type de restaurant -->
-                    <h:column>
-                        <f:facet name="header">Type de restaurant</f:facet>
+
+									<h:column>
+										<f:facet name="header">Type de restaurant</f:facet>
                         #{restaurant.type}
                     </h:column>
 
-                    <!-- Description -->
-                    <h:column>
-                        <f:facet name="header">Description</f:facet>
+
+									<h:column>
+										<f:facet name="header">Description</f:facet>
                         #{restaurant.description}
                     </h:column>
-
-                    <!-- Prix (J'ai ajouté cette colonne, car elle était dans votre HTML initial, mais pas dans la section JSF) -->
-                    <h:column>
-                        <f:facet name="header">Prix</f:facet>
+									<h:column>
+										<f:facet name="header">Prix</f:facet>
                         #{restaurant.price}
                     </h:column>
 
-                    <!-- Type of Restaurant -->
-                    <h:column>
-                        <f:facet name="header">Type</f:facet>
-                        #{restaurant.typeOfRestaurant}
+
+									<h:column>
+										<div class="deleteButtons">
+											<f:facet name="header">Actions</f:facet>
+											<h:commandButton value="Supprimer"
+												action="#{serviceControllerBean.deleteRestaurant(restaurant.id)}" />
+											<h:commandButton value="Edit"
+												action="#{serviceControllerBean.setRestaurantVm(restaurant)}"
+												update=":editFormRestaurant" />
+										</div>
+									</h:column>
+								</h:dataTable>
+							</div>
+
+							<div class="deleteButtons">
+								<button class="deleteBtn" id="deleteSelectedListMsg">Tout
+									sélectionner</button>
+								<h:commandButton value="Supprimer"
+									action="#{serviceControllerBean.deleteRestaurant(restaurant.id)}" />
+							</div>
+						</div>
+					</h:form>
+					<h:form>
+						<div id="listServicesAccomo">
+							<div class="table-container">
+								<h:dataTable value="#{serviceControllerBean.accomodations}"
+									var="accomodation" styleClass="table">
+
+									<h:column>
+										<f:facet name="header">Nom de l'hébergement</f:facet>
+                        #{accomodation.name}
                     </h:column>
 
-                    <!-- Actions -->
-                    <h:column>
-                        <f:facet name="header">Actions</f:facet>
-                        <h:commandButton value="Delete" action="#{serviceControllerBean.deleteRestaurant(restaurant.id)}" />
-                        <h:commandButton value="Edit" action="#{serviceControllerBean.setRestaurantVm(restaurant)}" update=":editFormRestaurant" />
+
+									<h:column>
+										<f:facet name="header">Type de l'hébergement</f:facet>
+                        #{accomodation.type}
                     </h:column>
-                </h:dataTable>
-            </div>
-            <button class="deleteBtn">Supprimer</button>
-        </div>
-    </main>
 
-<!-- 		<main id="mainListServices" style="display: none;"> -->
-<!-- 			<div class="messages"> -->
-<!-- 				<h1>Liste des services</h1> -->
-<!-- 				<div class="table-container"> -->
-<!-- 					<table> -->
-<!-- 						<thead> -->
-<!-- 							<tr> -->
-<!-- 								<th></th> -->
-<!-- 								<th>Nom du service</th> -->
-<!-- 								<th>Type de service</th> -->
-<!-- 								<th>Description</th> -->
-<!-- 								<th>Prix</th> -->
-<!-- 								<th>Action</th> -->
-<!-- 							</tr> -->
-<!-- 						</thead> -->
-<!-- 						<tbody> -->
-<!-- 						</tbody> -->
-<!-- 					</table> -->
-<!-- 				</div> -->
-<!-- 				<button class="deleteBtn">Supprimer</button> -->
-<!-- 			</div> -->
-<!-- 		</main> -->
 
-		<!-- Right Section -->
-		<div class="right-section">
-			<div class="nav">
-				<button id="menu-btn">
-					<span class="material-icons-sharp"> menu </span>
-				</button>
-				<div class="dark-mode">
-					<span class="material-icons-sharp active"> light_mode </span> <span
-						class="material-icons-sharp"> dark_mode </span>
-				</div>
+									<h:column>
+										<f:facet name="header">Description</f:facet>
+                        #{accomodation.description}
+                    </h:column>
+									<h:column>
+										<f:facet name="header">Prix</f:facet>
+                        #{accomodation.price}
+                    </h:column>
 
-			</div>
-			<!-- End of Nav -->
 
-			<div class="user-profile">
-				<div class="logo">
-					<img src="images/IMG_0434.jpg" />
-					<h3>
-						Bonjour, <b>{User}</b>
-					</h3>
-				</div>
-			</div>
-
-			<div class="reminders">
-				<div class="header">
-					<h2>Notes</h2>
-					<span class="material-icons-sharp"> notifications_none </span>
-					<div id="rightNotifNumber" style="display: none;">
-						<h4>1</h4>
-					</div>
-				</div>
-				<div id="rightContainerNotif">
-					<div class="notification">
-						<div class="icon">
-							<span class="material-icons-sharp"> priority_high </span>
-						</div>
-						<div class="content">
-							<div class="info">
-								<h3>Tâches à faire</h3>
-								<small class="text_muted"> Gestion du remboursement </small>
+									<h:column>
+										<div class="deleteButtons">
+											<f:facet name="header">Actions</f:facet>
+											<h:commandButton value="Supprimer"
+												action="#{serviceControllerBean.deleteAccomodation(accomodation.id)}" />
+											<h:commandButton value="Edit"
+												action="#{serviceControllerBean.setAccomodationVm(accomodation)}"
+												update=":editFormAccomodation" />
+										</div>
+									</h:column>
+								</h:dataTable>
 							</div>
-							<span class="material-icons-sharp closeCrossNotes"> close
-							</span>
-						</div>
-					</div>
 
-					<div class="notification deactive">
-						<div class="icon">
-							<span class="material-icons-sharp"> priority_high </span>
-						</div>
-						<div class="content">
-							<div class="info">
-								<h3>Tâches à faire</h3>
-								<small class="text_muted"> Suppression d'un utilisateur
-								</small>
+							<div class="deleteButtons">
+								<button class="deleteBtn" id="deleteSelectedListMsg">Tout
+									sélectionner</button>
+								<button class="deleteBtn" id="deleteListMsg">Supprimer</button>
 							</div>
-							<span class="material-icons-sharp closeCrossNotes"> close
-							</span>
 						</div>
-					</div>
+					</h:form>
 
-					<div class="notification-add add-reminder">
-						<div>
-							<span class="material-icons-sharp"> add </span>
-							<h3>Ajouter une note</h3>
+					<h:form>
+						<div id="listServicesTrans">
+							<div class="table-container">
+								<h:dataTable value="#{serviceControllerBean.transports}"
+									var="transport" styleClass="table">
+
+									<h:column>
+										<f:facet name="header">Nom de transport</f:facet>
+                        #{transport.name}
+                    </h:column>
+
+
+									<h:column>
+										<f:facet name="header">Type de transport</f:facet>
+                        #{transport.type}
+                    </h:column>
+
+
+									<h:column>
+										<f:facet name="header">Description</f:facet>
+                        #{transport.description}
+                    </h:column>
+									<h:column>
+										<f:facet name="header">Prix</f:facet>
+                        #{transport.price}
+                    </h:column>
+
+
+									<h:column>
+										<div class="deleteButtons">
+											<f:facet name="header">Actions</f:facet>
+											<h:commandButton value="Supprimer"
+												action="#{serviceControllerBean.deleteTransport(transport.id)}" />
+											<h:commandButton value="Edit"
+												action="#{serviceControllerBean.setTransportVm(transport)}"
+												update=":editFormTransport" />
+										</div>
+									</h:column>
+								</h:dataTable>
+							</div>
 						</div>
+					</h:form>
+
+					<div class="deleteButtons">
+						<button class="deleteBtn" id="deleteSelectedListMsg">Tout
+							sélectionner</button>
+						<button class="deleteBtn" id="deleteListMsg">Supprimer</button>
+					</div>
+				</div>
+				</div>
+
+	</main>
+
+	<!-- Right Section -->
+	<div class="right-section">
+		<div class="nav">
+			<button id="menu-btn">
+				<span class="material-icons-sharp"> menu </span>
+			</button>
+			<div class="dark-mode">
+				<span class="material-icons-sharp active"> light_mode </span> <span
+					class="material-icons-sharp"> dark_mode </span>
+			</div>
+
+		</div>
+		<!-- End of Nav -->
+
+		<div class="user-profile">
+			<div class="logo">
+				<img src="images/IMG_0434.jpg" />
+				<h3>
+					Bonjour, <b>{User}</b>
+				</h3>
+			</div>
+		</div>
+
+		<div class="reminders">
+			<div class="header">
+				<h2>Notes</h2>
+				<span class="material-icons-sharp"> notifications_none </span>
+				<div id="rightNotifNumber" style="display: none;">
+					<h4>1</h4>
+				</div>
+			</div>
+			<div id="rightContainerNotif">
+				<div class="notification">
+					<div class="icon">
+						<span class="material-icons-sharp"> priority_high </span>
+					</div>
+					<div class="content">
+						<div class="info">
+							<h3>Tâches à faire</h3>
+							<small class="text_muted"> Gestion du remboursement </small>
+						</div>
+						<span class="material-icons-sharp closeCrossNotes"> close </span>
 					</div>
 				</div>
 
+				<div class="notification deactive">
+					<div class="icon">
+						<span class="material-icons-sharp"> priority_high </span>
+					</div>
+					<div class="content">
+						<div class="info">
+							<h3>Tâches à faire</h3>
+							<small class="text_muted"> Suppression d'un utilisateur </small>
+						</div>
+						<span class="material-icons-sharp closeCrossNotes"> close </span>
+					</div>
+				</div>
+
+				<div class="notification-add add-reminder">
+					<div>
+						<span class="material-icons-sharp"> add </span>
+						<h3>Ajouter une note</h3>
+					</div>
+				</div>
 			</div>
 
 		</div>
 
-
 	</div>
 
+
+	</div>
+	<div class="popup-container" id="popupContainer">
+		<div class="popup-content">
+			<!-- <span class="popup-close" id="popupCloseBtn">&times;</span> -->
+			<div class="expDateZone">
+				<div class="expZone">
+					<h2>Expéditeur :</h2>
+					<h2>{User(rôle)}</h2>
+				</div>
+				<div class="dateTimeMsg">
+					<h3>{DateTime}</h3>
+				</div>
+			</div>
+			<div class="objectZone">
+				<h2>Objet :</h2>
+				<h2>{Objet}</h2>
+			</div>
+			<div class="msgZone">
+				<h2>Message :</h2>
+				<h3>{Message}</h3>
+			</div>
+			<button class="popup-close-btn" id="popupCloseButton">
+				<span class="material-icons-sharp"> highlight_off </span>
+			</button>
+		</div>
+		<button class="popup-answer-btn" id="popupAnswerButton">Répondre</button>
+	</div>
+
+	<div class="popup-answer-container" id="popupAnswerContainer">
+		<div class="popup-answer-content">
+			<div class="destDateZone">
+				<div class="destZone">
+					<h2>Destinataire :</h2>
+					<h2>{User(rôle)}</h2>
+				</div>
+				<div class="dateTimeMsg">
+					<h3>{DateTime}</h3>
+				</div>
+			</div>
+			<div class="objectZone">
+				<h2>Objet :</h2>
+				<h2>{Objet}</h2>
+			</div>
+			<div class="recapZone">
+				<h2>Récapitulatif :</h2>
+				<h3>{Récapitulatif du message auquel on répond}</h3>
+			</div>
+			<div class="msgZone">
+				<h2>Message :</h2>
+				<textarea name="msgZoneTA" id="msgZoneTA" cols="100" rows="13"
+					placeholder="Écrire le corps du message..."></textarea>
+			</div>
+			<button class="popup-close-btn" id="popupCloseAnswerButton">
+				<span class="material-icons-sharp"> highlight_off </span>
+			</button>
+		</div>
+		<button class="popup-send-btn" id="popupSendButton">Envoyer</button>
+	</div>
+
+	<div class="popup-modif-container" id="popupModifContainer">
+		<form action="">
+			<div class="popup-modif-content">
+				<div class="user-listMessages">
+					<input type="text" class="inputName"
+						placeholder="Nom du service..." /><input type="text"
+						class="inputMail" placeholder="Type de service..." /><input
+						type="text" class="inputFirstName" placeholder="Description..." /><input
+						type="number" class="inputAddress"
+						placeholder="Prix du service..." />
+				</div>
+				<button class="popup-close-modif-btn" id="popupCloseModifButton">
+					<span class="material-icons-sharp"> highlight_off </span>
+				</button>
+			</div>
+			<button class="popup-modif-btn" id="popupModifButton">Modifier</button>
+		</form>
+	</div>
 	<script src="./js/dashboardPartner.js"></script>
 </body>
-
 </html>

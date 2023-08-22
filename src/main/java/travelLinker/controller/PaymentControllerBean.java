@@ -1,9 +1,13 @@
 package travelLinker.controller;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
 import travelLinker.dao.CartDao;
@@ -13,6 +17,8 @@ import travelLinker.entity.Item;
 import travelLinker.entity.Payment;
 import travelLinker.entity.PaymentStatus;
 
+@ManagedBean
+@SessionScoped
 public class PaymentControllerBean implements Serializable {
 
 	/**
@@ -26,9 +32,15 @@ public class PaymentControllerBean implements Serializable {
 	@Inject
 	private CartDao cartDao;
 
-	public void makePayment(Long cartId, long cardNumber, Date cardDate, int numberCvv) {
+	private Payment payment = new Payment();
+
+	private Long cartId;
+
+	private String ownerName;
+
+	public void makePayment() {
 		try {
-			if (!validateCardDetails(cardNumber, cardDate, numberCvv)) {
+			if (!validateCardDetails(payment.getCardNumber(), payment.getCardDate(), payment.getNumberCvv())) {
 				return;
 			}
 
@@ -44,11 +56,8 @@ public class PaymentControllerBean implements Serializable {
 				payment.setCart(cart);
 				payment.setAmount(totalAmount);
 				payment.setPaymentDate(new Date());
-				payment.setCardNumber(cardNumber);
-				payment.setCardDate(cardDate);
-				payment.setNumberCvv(numberCvv);
 
-				if (processPayment(cardNumber, cardDate, totalAmount)) {
+				if (processPayment(payment.getCardNumber(), payment.getCardDate(), totalAmount)) {
 					payment.setPaymentStatus(PaymentStatus.PAID);
 				} else {
 					payment.setPaymentStatus(PaymentStatus.FAILED);
@@ -62,26 +71,35 @@ public class PaymentControllerBean implements Serializable {
 		}
 	}
 
-	private boolean validateCardDetails(long cardNumber, Date cardDate, int numberCvv) {
+	private boolean validateCardDetails(long cardNumber, String cardDate, int numberCvv) {
 		String cardNumberStr = Long.toString(cardNumber);
 		if (cardNumberStr.length() != 16) {
 			return false;
 		}
+
+		SimpleDateFormat format = new SimpleDateFormat("MMyy");
+		Date dateFromCard;
+		try {
+			dateFromCard = format.parse(cardDate);
+		} catch (ParseException e) {
+			return false;
+		}
+
 		Calendar calendar = Calendar.getInstance();
 		Date currentDate = calendar.getTime();
 
-		if (cardDate.before(currentDate)) {
+		if (dateFromCard.before(currentDate)) {
 			return false;
 		}
+
 		String cvvStr = Integer.toString(numberCvv);
 		if (cvvStr.length() < 3 || cvvStr.length() > 4) {
-			return false; //
+			return false;
 		}
-
 		return true;
 	}
 
-	private boolean processPayment(long cardNumber, Date cardDate, float totalAmount) {
+	private boolean processPayment(long cardNumber, String cardDate, float totalAmount) {
 		double randomValue = Math.random();
 
 		if (randomValue < 0.9) {
@@ -89,6 +107,30 @@ public class PaymentControllerBean implements Serializable {
 		} else {
 			return false;
 		}
+	}
+
+	public Payment getPayment() {
+		return payment;
+	}
+
+	public void setPayment(Payment payment) {
+		this.payment = payment;
+	}
+
+	public Long getCartId() {
+		return cartId;
+	}
+
+	public void setCartId(Long cartId) {
+		this.cartId = cartId;
+	}
+
+	public String getOwnerName() {
+		return ownerName;
+	}
+
+	public void setOwnerName(String ownerName) {
+		this.ownerName = ownerName;
 	}
 
 }

@@ -40,37 +40,42 @@
 				<h:form>
 					<!-- <label for="nom">Nom complet:</label> -->
 					<div class="inputFormLabel">
-						<h:inputText type="text" id="nom" name="nom" value=""
-							class="inputForm" />
+						<h:inputText type="text" id="nom" name="nom"
+							value="#{paymentControllerBean.ownerName}" class="inputForm" />
 						<h:outputLabel value="Nom" for="nom"
 							styleClass="placeholder label" />
 					</div>
 
 					<div class="inputFormLabel">
 						<h:inputText type="text" id="numeroCarte" name="numeroCarte"
-							value="" maxlength="16" class="inputForm" />
+							value="#{paymentControllerBean.payment.cardNumber}"
+							maxlength="16" class="inputForm" />
 						<h:outputLabel value="Numéro de carte" for="numeroCarte"
 							styleClass="placeholder label" />
 					</div>
 					<div id="dateCvvDiv" class="inputFormContainer">
 						<h:inputText type="text" id="expirationDate" name="expirationDate"
-							value="" maxlength="5" class="inputForm" />
+							value="#{paymentControllerBean.payment.cardDate}" maxlength="5"
+							class="inputForm" />
 						<h:outputLabel value="09/23" for="expirationDate"
 							styleClass="placeholder label" />
 
-						<h:inputText type="text" id="cvv" name="cvv" value=""
-							maxlength="3" class="inputForm" />
+						<h:inputText type="text" id="cvv" name="cvv"
+							value="#{paymentControllerBean.payment.numberCvv}" maxlength="3"
+							class="inputForm" />
 						<h:outputLabel value="CVV" for="cvv"
 							styleClass="placeholder label cvv" />
 					</div>
 
 
-					<h:commandButton type="submit" value="Payer" class="paymentBtn"></h:commandButton>
+					<h:commandButton type="submit" value="Payer" class="paymentBtn"
+						action="#{paymentControllerBean.makePayment()}"></h:commandButton>
 				</h:form>
 			</div>
-			<script src="./js/paymentForm.js"></script>
+			
 		</section>
 	</main>
+	<script src="./js/paymentForm.js"></script>
 </body>
 
 </html>

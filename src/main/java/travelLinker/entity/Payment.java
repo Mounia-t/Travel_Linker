@@ -43,7 +43,7 @@ public class Payment {
 
 	private long cardNumber;
 
-	private Date cardDate;
+	private String cardDate;
 
 	private int numberCvv;
 
@@ -55,11 +55,11 @@ public class Payment {
 		this.cardNumber = cardNumber;
 	}
 
-	public Date getCardDate() {
+	public String getCardDate() {
 		return cardDate;
 	}
 
-	public void setCardDate(Date cardDate) {
+	public void setCardDate(String cardDate) {
 		this.cardDate = cardDate;
 	}
 
