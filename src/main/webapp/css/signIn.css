@@ -330,8 +330,8 @@ main {
     cursor: pointer;
     top: 5px;
     right: 10px;
-    font-size: 19px;
-    color: grey;
+    display: none;
+    fill: grey;
 }
 
 .eye-open {
@@ -356,8 +356,7 @@ main {
     top: 5px;
     right: 10px;
     display: none;
-    font-size: 19px;
-    color: grey;
+    fill: grey;
 }
 
 .eye-openCustomer {
@@ -382,8 +381,7 @@ main {
     top: 5px;
     right: 10px;
     display: none;
-    font-size: 19px;
-    color: grey;
+    fill: grey;
 }
 
 .eye-openPartner {
@@ -408,8 +406,7 @@ main {
     top: 5px;
     right: 10px;
     display: none;
-    font-size: 19px;
-    color: grey;
+    fill: grey;
 }
 
 .eye-openTP {
@@ -431,4 +428,4 @@ main {
 .inputTest {
     border: 1px solid lightgrey;
     border-radius: 25px;
-}/*----------------------------------------------------------------------*/
+}

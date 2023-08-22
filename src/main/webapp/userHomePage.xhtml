@@ -3,12 +3,17 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html">
 <h:head>
     <title>User Home Page</title>
-    <style>
-        #{templateControllerBean.selectedTemplate.htmlCssContent}
-    </style>
+
 </h:head>
 <h:body>
     <h1>Welcome to Your Personalized Home Page</h1>
     <!-- Le contenu spécifique au template sera rendu ici -->
+    
+<h:form>
+    <h:inputText id="nom" value="#{templateControllerBean.selectedTemplate.nom}" />
+    <h:inputTextarea id="htmlCssContent" rows="10" cols="80" value="#{templateControllerBean.selectedTemplate.htmlCssContent}" />
+    <h:commandButton value="Enregistrer" action="#{templateControllerBean.saveTemplate}" />
+</h:form>
+
 </h:body>
 </html>

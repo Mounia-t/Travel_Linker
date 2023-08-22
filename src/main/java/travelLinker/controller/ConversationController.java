@@ -2,14 +2,9 @@ package travelLinker.controller;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Map;
-
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
-
 import travelLinker.dao.ConversationDao;
 import travelLinker.entity.Message;
 import travelLinker.utils.SessionUtils;
@@ -50,17 +45,16 @@ public class ConversationController implements Serializable {
 	public List<Message> displayMessages() {
 		HttpSession session = SessionUtils.getSession();
 		String senderEmail = (String) session.getAttribute("email");
-		String recipientEmail = (String) session.getAttribute("recipientEmail"); 
-	
+		String recipientEmail = (String) session.getAttribute("recipientEmail");
 
 		return conversationDao.getAllMessages(senderEmail, recipientEmail);
 	}
 
-	  public void markMessageAsRead(Long messageId) {
-	      
-	        conversationDao.markMessageAsRead(messageId);
-	    }
-	 
+	public void markMessageAsRead(Long messageId) {
+
+		conversationDao.markMessageAsRead(messageId);
+	}
+
 	public void deleteMessage(Long id) {
 
 		conversationDao.deleteMessage(id);
@@ -98,15 +92,15 @@ public class ConversationController implements Serializable {
 	public void setSelectedMessageId(Long selectedMessageId) {
 		this.selectedMessageId = selectedMessageId;
 	}
+
 	public void selectMessage(Message message) {
-	    selectedMessage = clearSelectedMessage();
-	    selectedMessage = message;
-	    System.out.println(selectedMessage);
+		selectedMessage = clearSelectedMessage();
+		selectedMessage = message;
+		System.out.println(selectedMessage);
 	}
 
-
-	 public Message clearSelectedMessage() {
-		   Message selectedMessage = new Message();
+	public Message clearSelectedMessage() {
+		Message selectedMessage = new Message();
 		return selectedMessage;
-		}
+	}
 }

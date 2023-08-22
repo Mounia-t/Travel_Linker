@@ -15,22 +15,27 @@ public class JourneyDao {
 	private EntityManager entityManager;
 
 	public Long insert(JourneyViewModel journeyVM) {
-		Journey journeybean = new Journey();
-		journeybean.setNumberOfTravellers(journeyVM.getNumberOfTravellers());
-		journeybean.setPrice(journeyVM.getPrice());
-		journeybean.setLocation(journeyVM.getLocation());
-		journeybean.setCountry(journeyVM.getCountry());
-		journeybean.setStartDate(journeyVM.getStartDate());
-		journeybean.setEndDate(journeyVM.getEndDate());
-		journeybean.setName(journeyVM.getName());
-		journeybean.setDescription(journeyVM.getDescription());
-		journeybean.setImageFile(journeyVM.getImage());
+	    try {
+	        Journey journeybean = new Journey();
+	        journeybean.setNumberOfTravellers(journeyVM.getNumberOfTravellers());
+	        journeybean.setPrice(journeyVM.getPrice());
+	        journeybean.setLocation(journeyVM.getLocation());
+	        journeybean.setCountry(journeyVM.getCountry());
+	        journeybean.setStartDate(journeyVM.getStartDate());
+	        journeybean.setEndDate(journeyVM.getEndDate());
+	        journeybean.setName(journeyVM.getName());
+	        journeybean.setDescription(journeyVM.getDescription());
+	        journeybean.setImagePath(journeyVM.getImagePath()); // Utilisez le chemin de l'image
 
-		entityManager.persist(journeybean);
-		entityManager.flush();
-		return journeybean.getId();
+	        entityManager.persist(journeybean);
+	        entityManager.flush();
+	        return journeybean.getId();
+	    } catch (Exception e) {
+	        e.printStackTrace(); // Handle exceptions appropriately
+	        return null;
+	    }
 	}
-	
+
 	public void deleteJourney(Long id) {
 	Journey journey = entityManager.find(Journey.class, id);
 		if (journey != null) {
@@ -43,6 +48,7 @@ public class JourneyDao {
 		if (journey != null) {
 
 			journey.setNumberOfTravellers(journeyViewModel.getNumberOfTravellers());
+			journey.setName(journeyViewModel.getName());
 			journey.setImageFile(journeyViewModel.getImage());
 			journey.setPrice(journeyViewModel.getPrice());
 			journey.setCountry(journeyViewModel.getCountry());

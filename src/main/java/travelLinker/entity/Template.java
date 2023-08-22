@@ -14,8 +14,8 @@ public class Template {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-	
 	private String nom;
+	
 	private String htmlCssContent;
 
 	public String getNom() {
@@ -37,4 +37,9 @@ public class Template {
 	public Long getId() {
 		return id;
 	}
+ 
+	
+
+    
+    
 }
