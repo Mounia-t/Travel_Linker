@@ -1786,9 +1786,6 @@ tr:hover td {
     .right-section .nav button span {
         font-size: 2rem;
     }
-}
-
-
 
 #mainProfile .inputFormLabel .placeholder{
     position: absolute;
@@ -1836,7 +1833,7 @@ tr:hover td {
     font-size: 14px;
     color: #999;
     background-color: white;
-}
+  }
 
 #writeMsgSection .textAreaWriteMSG {
 	width: 100%;

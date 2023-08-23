@@ -19,6 +19,8 @@ public class AccountViewModel {
 	private String senderEmail;
 	private String messageResume;
 	private String taskContent;
+	private String imagePath;
+	
 	public String getContent() {
 		return content;
 	}
@@ -162,4 +164,13 @@ public class AccountViewModel {
 	public void setTaskContent(String taskContent) {
 		this.taskContent = taskContent;
 	}
+
+	public String getImagePath() {
+		return imagePath;
+	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+	
 }
