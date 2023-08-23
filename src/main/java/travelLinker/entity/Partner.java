@@ -1,6 +1,8 @@
 package travelLinker.entity;
 
 
+import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Partner {
@@ -21,9 +25,11 @@ public class Partner {
 	private String address;
 	@Column(unique = true)
 	private String email;
-
+	@Temporal(TemporalType.TIMESTAMP)
+    private Date registrationDate;
 	
-	private double phoneNumber;
+	
+	private String phoneNumber;
 	private String siret;
 	@OneToOne
 	@JoinColumn(name = "account_id")
@@ -60,11 +66,11 @@ public class Partner {
 		this.email = email;
 	}
 	
-	public double getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
 
-	public void setPhoneNumber(double phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 
@@ -84,5 +90,12 @@ public class Partner {
 		this.account = account;
 	}
 	
+	public Date getRegistrationDate() {
+        return registrationDate;
+    }
+
+    public void setRegistrationDate(Date registrationDate) {
+        this.registrationDate = registrationDate;
+    }
 
 }

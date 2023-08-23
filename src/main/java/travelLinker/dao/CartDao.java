@@ -2,6 +2,7 @@ package travelLinker.dao;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 import travelLinker.entity.Cart;
@@ -65,6 +66,15 @@ public class CartDao {
 			}
 			cart.getItems().clear();
 			entityManager.merge(cart);
+		}
+	}
+
+	public Cart findByCartId(Long cartId) {
+		try {
+			return entityManager.createQuery("SELECT c FROM Cart c WHERE c.id = :cartId", Cart.class)
+					.setParameter("cartId", cartId).getSingleResult();
+		} catch (NoResultException e) {
+			return null;
 		}
 	}
 

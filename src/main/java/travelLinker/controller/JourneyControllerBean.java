@@ -1,18 +1,13 @@
 package travelLinker.controller;
-
-import java.io.ByteArrayInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.Serializable;
-import java.sql.SQLException;
-import java.util.ArrayList;
+import java.nio.file.Paths;
 import java.util.List;
-import java.util.Optional;
-
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.persistence.Basic;
@@ -20,11 +15,8 @@ import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.persistence.Lob;
 import javax.servlet.http.Part;
-
-import org.apache.commons.fileupload.RequestContext;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
-import org.primefaces.model.DefaultStreamedContent;
-import org.primefaces.model.StreamedContent;
 
 import travelLinker.dao.JourneyDao;
 import travelLinker.entity.Journey;
@@ -46,27 +38,54 @@ import travelLinker.viewModel.JourneyViewModel;
 		@Inject
 		private JourneyDao journeyDao;
 		
+
+		@Inject
+		private DashboardController dashController;
+		
+		@Lob
+		@Basic(fetch = FetchType.LAZY)
+		@Column(columnDefinition = "BLOB")
+		private Part imageFile;
+		
 		public List<Journey> journeys;
-		
-		
-		
 		public void addJourney() {
-		    
-		    Long id = journeyDao.insert(journeyVM);
-		    System.out.println("Journey created with id : " + id);
-		    
+		    try {
+		        if (imageFile != null) {
+		            // Obtenez le chemin absolu vers le répertoire de déploiement de l'application
+		            String deploymentPath = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");
+		            
+		            // Chemin relatif vers le répertoire d'images
+		            String relativeImagePath = "images/";
 
-		}
-		
-		public List<Journey> getjourneys (){
-			return journeyDao.getAllJourneys();
-			
-		}
+		            String fileName = "journey_" + System.currentTimeMillis() + "_" + FilenameUtils.getBaseName(imageFile.getSubmittedFileName()) + "."
+		                    + FilenameUtils.getExtension(imageFile.getSubmittedFileName());
 
-		  public JourneyControllerBean() {
-		        journeys = new ArrayList<>();
+		            // Chemin complet du fichier
+		            String filePath = Paths.get(deploymentPath, relativeImagePath, fileName).toString();
+		            System.out.println("Deployment Path: " + deploymentPath);
+		            System.out.println("Relative Image Path: " + relativeImagePath);
+		            System.out.println("File Name: " + fileName);
+		            System.out.println("File Path: " + filePath);
+		            try (InputStream input = imageFile.getInputStream(); OutputStream output = new FileOutputStream(filePath)) {
+		                IOUtils.copy(input, output);
+		            }
+
+		            journeyVM.setImagePath(relativeImagePath + fileName);
+		        }
+		        
+
+		        // Appel à la méthode de la couche de persistance pour ajouter le voyage
+		        Long id = journeyDao.insert(journeyVM);
+
+		        System.out.println("Journey created with id : " + id);
+		        clear();
+		        dashController.updateLastMainSection("mainManagedResa");
+		    } catch (IOException e) {
+		        e.printStackTrace(); // Gérez l'exception selon vos besoins
 		    }
-		 
+		}
+	                
+
 		public void clear() {
 			journeyVM = new JourneyViewModel();
 		}
@@ -74,6 +93,11 @@ import travelLinker.viewModel.JourneyViewModel;
 		public void deleteJourney (Long id) {
 			journeyDao.deleteJourney(id);
 			System.out.println("Journey deleted with id " + id);
+		}
+		
+		public List<Journey> getAllJourneys(){
+			return journeyDao.getAllJourneys();
+			
 		}
 
 		public JourneyDao getJourneyDao() {
@@ -100,6 +124,9 @@ import travelLinker.viewModel.JourneyViewModel;
 		public void setJourneys(List<Journey> journeys) {
 			this.journeys = journeys;
 		}
+
+
+		
 
 	}
 

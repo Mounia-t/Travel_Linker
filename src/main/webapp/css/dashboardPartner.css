@@ -1,0 +1,1787 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --color-primary: #6C9BCF;
+    --color-danger: #FF0060;
+    --color-classic: black;
+    --color-warning: #F7D060;
+    --color-white: #fff;
+    --color-info-dark: #7d8da1;
+    --color-dark: #363949;
+    --color-light: rgba(132, 139, 200, 0.18);
+    --color-dark-variant: #677483;
+    --color-background: #f6f6f9;
+
+    --card-border-radius: 25px;
+    --border-radius-1: 25px;
+    --border-radius-2: 25px;
+
+    --card-padding: 1.8rem;
+    --padding-1: 1.2rem;
+
+    --box-shadow: 0 2rem 3rem var(--color-light);
+}
+
+.dark-mode-variables {
+    --color-background: #181a1e;
+    --color-white: #202528;
+    --color-dark: #edeffd;
+    --color-dark-variant: #a3bdcc;
+    --color-light: rgba(0, 0, 0, 0.4);
+    --box-shadow: 0 2rem 3rem var(--color-light);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    appearance: 0;
+    border: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 14px;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.88rem;
+    user-select: none;
+    overflow-x: hidden;
+    color: var(--color-dark);
+    background-color: var(--color-background);
+}
+
+a {
+    color: var(--color-dark);
+}
+
+img {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+}
+
+h1 {
+    font-weight: 800;
+    font-size: 1.8rem;
+}
+
+h2 {
+    font-weight: 600;
+    font-size: 1.4rem;
+}
+
+h3 {
+    font-weight: 500;
+    font-size: 0.87rem;
+}
+
+small {
+    font-size: 0.76rem;
+}
+
+p {
+    color: var(--color-dark-variant);
+}
+
+b {
+    color: var(--color-dark);
+}
+
+.text-muted {
+    color: var(--color-info-dark);
+}
+
+.primary {
+    color: var(--color-primary);
+}
+
+.danger {
+    color: var(--color-danger);
+}
+
+.success {
+    color: var(--color-success);
+}
+
+.warning {
+    color: var(--color-warning);
+}
+
+/*--------------------------------Zone fade in et visible ainsi que fade Out------------------------------------*/
+.fade-in-bottom {
+    transform: translateY(50px);
+    /* Déplacez-les vers le bas de 50px */
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    /* Ajoutez une transition de 0.5s avec une courbe d'accélération pour une apparence fluide */
+    animation: fadeInBottom 0.8s ease forwards;
+    /* Utilisez l'animation fadeInBottom pour contrôler l'opacité */
+}
+
+@keyframes fadeInBottom {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+        /* Début de l'animation : opacité à 0 et décalage vers le bas de 50px */
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        /* Fin de l'animation : opacité à 1 et pas de décalage en Y */
+    }
+}
+
+.fade-out-bottom {
+    transform: translateY(50px);
+    /* Déplacez-les vers le bas de 50px */
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    /* Ajoutez une transition de 0.5s avec une courbe d'accélération pour une apparence fluide */
+    animation: fadeOutBottom 0.8s ease forwards;
+    /* Utilisez l'animation fadeInBottom pour contrôler l'opacité */
+}
+
+@keyframes fadeOutBottom {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+        /* Fin de l'animation : opacité à 1 et pas de décalage en Y */
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(50px);
+        /* Début de l'animation : opacité à 0 et décalage vers le bas de 50px */
+    }
+}
+
+/*--------------------------------------------------------------------*/
+.container {
+    display: grid;
+    position: relative;
+    width: 96%;
+    margin: 0 auto;
+    gap: 1.8rem;
+    grid-template-columns: 12rem auto 23rem;
+}
+
+aside {
+    height: 100vh;
+}
+
+aside .toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.4rem;
+}
+
+aside .toggle .logo {
+    display: flex;
+    gap: 0.5rem;
+}
+
+aside .toggle .logo img {
+    width: 2rem;
+    height: 2rem;
+}
+
+aside .toggle .close {
+    padding-right: 1rem;
+    display: none;
+}
+
+aside .sidebar {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-white);
+    box-shadow: var(--box-shadow);
+    border-radius: 25px;
+    height: 88vh;
+    position: relative;
+    overflow: hidden;
+    top: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+aside .sidebar:hover {
+    box-shadow: none;
+}
+
+aside .sidebar a {
+    display: flex;
+    align-items: center;
+    color: var(--color-info-dark);
+    height: 3.7rem;
+    gap: 1rem;
+    position: relative;
+    margin-left: 2rem;
+    transition: all 0.3s ease;
+}
+
+aside .sidebar a span {
+    font-size: 1.6rem;
+    transition: all 0.3s ease;
+}
+
+aside .sidebar a:last-child {
+    position: absolute;
+    bottom: 2rem;
+    width: 100%;
+}
+
+aside .sidebar a.active {
+    width: 100%;
+    color: var(--color-primary);
+    background-color: var(--color-light);
+    margin-left: 0;
+    padding-left: 28px;
+}
+
+aside .sidebar a:hover {
+    color: var(--color-primary);
+}
+
+aside .sidebar a:hover span {
+    margin-left: 0.6rem;
+}
+
+aside .sidebar .message-count {
+    background-color: var(--color-danger);
+    padding: 2px 6px;
+    color: var(--color-white);
+    font-size: 11px;
+    border-radius: var(--border-radius-1);
+}
+
+/*-------------------------- Zone main analyse -------------------------------*/
+main {
+    margin-top: 1.4rem;
+}
+
+main .analyse {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.6rem;
+}
+
+main .sales h1 {
+    color: #1B9C85;
+}
+
+main .visits h1 {
+    color: #6C9BCF;
+}
+
+main .analyse>div {
+    background-color: var(--color-white);
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    margin-top: 1rem;
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+main .analyse>div:hover {
+    box-shadow: none;
+}
+
+main .analyse>div .status {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+main .analyse h3 {
+    margin-left: 0.6rem;
+    font-size: 1rem;
+}
+
+main .analyse .progresss {
+    position: relative;
+    width: 92px;
+    height: 92px;
+    border-radius: 50%;
+}
+
+main .analyse svg {
+    width: 7rem;
+    height: 7rem;
+}
+
+main .analyse svg circle {
+    fill: none;
+    stroke-width: 10;
+    stroke-linecap: round;
+    transform: translate(5px, 5px);
+}
+
+main .analyse .sales svg circle {
+    stroke: var(--color-success);
+    stroke-dashoffset: -30;
+    stroke-dasharray: 200;
+}
+
+main .analyse .visits svg circle {
+    stroke: var(--color-danger);
+    stroke-dashoffset: -30;
+    stroke-dasharray: 200;
+}
+
+main .analyse .searches svg circle {
+    stroke: var(--color-primary);
+    stroke-dashoffset: -30;
+    stroke-dasharray: 200;
+}
+
+main .analyse .progresss .percentage {
+    position: absolute;
+    top: -3px;
+    left: -1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+main .new-users {
+    margin-top: 1.3rem;
+    transition: all 0.3s ease;
+}
+
+main .new-users .user-list {
+    background-color: var(--color-white);
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    margin-top: 1rem;
+    box-shadow: var(--box-shadow);
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 1.4rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+main .new-users .user-list:hover {
+    box-shadow: none;
+}
+
+main .new-users .user-list .user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+main .new-users .user-list .user img {
+    width: 5rem;
+    height: 5rem;
+    margin-bottom: 0.4rem;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+main .recent-orders {
+    margin-top: 1.3rem;
+}
+
+main .recent-orders h2 {
+    margin-bottom: 0.8rem;
+}
+
+main .recent-orders table {
+    background-color: var(--color-white);
+    width: 100%;
+    padding: var(--card-padding);
+    text-align: center;
+    box-shadow: var(--box-shadow);
+    border-radius: var(--card-border-radius);
+    transition: all 0.3s ease;
+}
+
+main .recent-orders table:hover {
+    box-shadow: none;
+}
+
+main table tbody td {
+    height: 2.8rem;
+    border-bottom: 1px solid var(--color-light);
+    color: var(--color-dark-variant);
+}
+
+main table tbody tr:last-child td {
+    border: none;
+}
+
+main .recent-orders a {
+    text-align: center;
+    display: block;
+    margin: 1rem auto;
+    color: var(--color-primary);
+}
+
+/*---------------------------- Zone main Messages ---------------------------*/
+
+#mainMessages .messages .analyse {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.6rem;
+    transition: all 0.3s ease;
+}
+
+#mainMessages .messages .analyse h1 {
+    color: #6C9BCF;
+}
+
+#mainMessages .new-users-messages .new-usersButton {
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+#mainMessages .new-users-messages .user-list-unreadMessages {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    background-color: var(--color-white);
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    margin-top: 1rem;
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#mainMessages .new-users-messages .user-list-unreadMessages h3 {
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+
+#mainMessages .new-users-messages .user-list-unreadMessages div:not(:last-child) {
+    border-right: 2px solid lightgrey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 20%;
+    transition: all 0.3s ease;
+}
+
+#mainMessages .new-users-messages .user-list-unreadMessages div .unreadMessages-btn {
+    transition: all 0.3s ease;
+}
+
+.readBtn {
+    border: 1px solid rgb(29, 179, 29);
+    border-radius: 25px;
+    background-color: rgb(29, 179, 29);
+    padding: 10px 20px;
+    margin-right: 5px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.deleteBtn {
+    border: 1px solid (237, 59, 59);
+    border-radius: 25px;
+    background-color: rgb(237, 59, 59);
+    padding: 10px 20px;
+    margin-left: 5px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.readBtn:hover {
+    transform: scale(1.1);
+}
+
+.deleteBtn:hover {
+    transform: scale(1.1);
+}
+
+#mainMessages .new-users-messages .user-listMessages input {
+    width: 100%;
+    border: 1px solid lightgrey;
+    border-radius: 25px;
+    padding: 10px;
+    margin-top: 15px;
+}
+
+#mainMessages .new-users-messages .user-listMessages #inputMessageDetails {
+    height: 180px;
+}
+
+#mainMessages .new-users-messages .user-listMessages:hover {
+    box-shadow: none;
+}
+
+/*--------------Nouvelle modif writeMsgSection------------------------*/
+#writeMsgSection {
+    width: 100%;
+}
+
+#writeMsgSection,
+#writeMsgSection h2 {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#writeMsgSection h2 {
+    text-align: start;
+}
+
+#writeMsgSection .radio-inputs {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 25px;
+    background-color: white;
+    box-sizing: border-box;
+    box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.06);
+    padding: 0.25rem;
+    width: 400px;
+    font-size: 14px;
+}
+
+#writeMsgSection .radio-inputs .radio {
+    flex: 1 1 auto;
+    text-align: center;
+}
+
+#writeMsgSection .radio-inputs .radio input {
+    display: none;
+}
+
+#writeMsgSection .radio-inputs .radio .name {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    border-radius: 25px;
+    border: none;
+    padding: .5rem 0;
+    color: rgba(51, 65, 85, 1);
+    transition: all .15s ease-in-out;
+}
+
+#writeMsgSection .radio-inputs .radio input:checked+.name {
+    background-color: var(--color-light);
+    font-weight: 600;
+}
+
+/*---------------------------- Zone All Messages ---------------------------*/
+
+/* #mainMessages .messages .analyse {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.6rem;
+    transition: all 0.3s ease;
+}
+
+#mainMessages .messages .analyse h1 {
+    color: #6C9BCF;
+} */
+
+#mainMessages .new-users-AllMessages .new-usersButton {
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+#mainMessages .new-users-AllMessages .user-list-AllMessages {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    background-color: var(--color-white);
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    margin-top: 1rem;
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#mainMessages .new-users-AllMessages .user-list-AllMessages h3 {
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+
+#mainMessages .new-users-AllMessages .user-list-AllMessages div:not(:last-child) {
+    border-right: 2px solid lightgrey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 20%;
+    transition: all 0.3s ease;
+}
+
+#mainMessages .new-users-AllMessages .user-list-AllMessages div .AllMessages-btn {
+    transition: all 0.3s ease;
+}
+
+#showAllMessagesBtn {
+    margin-top: 20px;
+    border: 1px solid white;
+    border-radius: 25px;
+    background-color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    box-shadow: var(--box-shadow);
+    transition: all 0.3s ease;
+}
+
+#showAllMessagesBtn:hover {
+    box-shadow: none;
+}
+
+/*---------------------------- Zone main profile ---------------------------*/
+
+#mainProfile .messages .analyse {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.6rem;
+    transition: all 0.3s ease;
+}
+
+#mainProfile .messages .analyse h1 {
+    color: grey;
+}
+
+#mainProfile img {
+    width: 13rem;
+    height: 13rem;
+    margin-bottom: 0.8rem;
+    border-radius: 50%;
+}
+
+#mainProfile .new-users .new-usersButton {
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+#mainProfile .new-users .user-listMessages {
+    position: relative;
+    background-color: var(--color-white);
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    margin-top: 1rem;
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#mainProfile .new-users .user-listMessages input {
+    width: 100%;
+    border: 1px solid lightgrey;
+    border-radius: 25px;
+    padding: 10px;
+    margin-top: 15px;
+}
+
+#saveInfos {
+    margin-top: 20px;
+    border: 1px solid white;
+    border-radius: 25px;
+    background-color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    box-shadow: var(--box-shadow);
+    transition: all 0.3s ease;
+}
+
+#saveInfos:hover {
+    box-shadow: none;
+}
+.saveInfos {
+    margin-top: 20px;
+    border: 1px solid white;
+    border-radius: 25px;
+    background-color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    box-shadow: var(--box-shadow);
+    transition: all 0.3s ease;
+}
+
+.saveInfos:hover {
+    box-shadow: none;
+}
+
+/*---------------------------- Zone main Users ---------------------------*/
+
+#mainUsers .analyse {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.6rem;
+    transition: all 0.3s ease;
+}
+
+#mainUsers .analyse h1 {
+    color: #1B9C85;
+}
+
+#mainUsers .new-users .new-usersButton {
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+#mainUsers .new-users .user-listMessages {
+    position: relative;
+    background-color: var(--color-white);
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    margin-top: 1rem;
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#mainUsers .new-users .user-listMessages input {
+    width: 100%;
+    border: 1px solid lightgrey;
+    border-radius: 25px;
+    padding: 10px;
+    margin-top: 15px;
+}
+
+#searchUsersZone {
+    position: relative
+}
+
+#searchUsersZone span {
+    position: absolute;
+    top: 38%;
+    right: 1.5%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#searchUsersZone span:hover {
+    transform: scale(1.1);
+    color: #6C9BCF;
+}
+
+#searchUsers {
+    margin-top: 20px;
+    width: 100%;
+    border: 1px solid white;
+    border-radius: 25px;
+    background-color: white;
+    padding: 10px 20px;
+    box-shadow: var(--box-shadow);
+    transition: all 0.3s ease;
+}
+
+#searchUsers:hover {
+    box-shadow: none;
+}
+
+/*---------------------------- Zone main Add ---------------------------*/
+
+#mainAdd .analyse {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.6rem;
+    transition: all 0.3s ease;
+}
+
+#mainAdd .flexingForm {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#mainAdd .analyse h1 {
+    color: #1B9C85;
+}
+
+#mainAdd .new-users .new-usersButton {
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+#mainAdd .new-users .user-listMessages {
+    position: relative;
+    background-color: var(--color-white);
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    margin-top: 1rem;
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#mainAdd .user-listMessages input {
+    width: 100%;
+    border: 1px solid lightgrey;
+    border-radius: 25px;
+    padding: 10px;
+    margin-top: 15px;
+}
+
+#mainMessages .new-users-messages .user-listMessages #inputMessageDetails {
+    height: 180px;
+}
+
+#createAdmin {
+    margin-top: 20px;
+    border: 1px solid white;
+    border-radius: 25px;
+    background-color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    box-shadow: var(--box-shadow);
+    width: fit-content;
+    transition: all 0.3s ease;
+}
+
+#createAdmin:hover {
+    box-shadow: none;
+}
+
+.createAdmin {
+    margin-top: 20px;
+    border: 1px solid white;
+    border-radius: 25px;
+    background-color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    box-shadow: var(--box-shadow);
+    width: fit-content;
+    transition: all 0.3s ease;
+}
+
+.createAdmin:hover {
+    box-shadow: none;
+}
+
+/*----------------------------Zone formulaire-------------------------------------*/
+.user-listMessages {
+	position: relative;
+    background-color: var(--color-white);
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    margin-top: 1rem;
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.inputFormLabel {
+    position: relative;
+    margin-bottom: 20px;
+    transition: 0.2s ease all;
+}
+
+.inputForm {
+    border: 1px solid grey;
+    border-radius: 25px;
+    background: none;
+    padding: 10px;
+    margin-top: 30px;
+    width: 94%;
+    outline: none;
+}
+
+.inputForm:focus {
+    border-color: green;
+}
+.deleteButtons {
+	display: flex;
+	justify-content: space-evenly;
+}
+.placeholder {
+    position: absolute;
+    pointer-events: none;
+    left: 14px;
+    top: 20px;
+    transition: 0.2s ease all;
+    font-size: 15px;
+    color: #999;
+}
+
+.inputForm:focus+.placeholder,
+.inputForm:not(:placeholder-shown)+.placeholder,
+.inputForm:not(:valid)+.placeholder {
+    top: 2px;
+    font-size: 13px;
+    color: #333;
+    padding: 2px 5px;
+    background-color: #fff;
+}
+
+/*------------------------------------Zone Création de service------------------------------*/
+
+#mainAddServices .user-listMessages input {
+    width: 100%;
+    border: 1px solid lightgrey;
+    border-radius: 25px;
+    padding: 10px;
+    margin-top: 15px;
+}
+
+#mainAddServices .user-listMessages #inputMessageDetails {
+    height: 180px;
+}
+
+#mainAddServices .user-listMessages:hover {
+    box-shadow: none;
+}
+
+/*------------------------------------Zone radioButtons service-----------------------------*/
+.flexingRB {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    /* align-items: center; */
+}
+
+.textAreaMsgZone {
+	border-radius: 25px;
+	border: 1px solid lightgrey;
+	margin-top: 20px;
+	padding: 10px;
+	width: 100%;
+}
+
+.rbWMSGS {
+	border: 1px solid lightgrey;
+}
+.trash {
+	color: red;
+	transition: 0.2s ease all;
+}
+
+.edit {
+	color: green;
+	transition: 0.2s ease all;
+}
+
+.trash:hover, .edit:hover {
+	transform: scale(1.2);
+}
+.radio-inputs {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 25px;
+    background-color: white;
+    box-sizing: border-box;
+    box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.06);
+    padding: 0.25rem;
+    width: 300px;
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+.radio-inputs .radio {
+    flex: 1 1 auto;
+    text-align: center;
+}
+
+.radio-inputs .radio input {
+    display: none;
+}
+
+.radio-inputs .radio .name {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    border-radius: 25px;
+    border: none;
+    padding: .5rem 0;
+    color: rgba(51, 65, 85, 1);
+    transition: all .15s ease-in-out;
+}
+
+.radio-inputs .radio input:checked+.name {
+    background-color: var(--color-light);
+    font-weight: 600;
+}
+
+/*----------------------------Zone table Historique voyage------------------------*/
+
+#mainListServices .deleteBtn {
+    margin-top: 30px;
+}
+
+#mainListServices .messages {
+    text-align: center;
+}
+
+#mainListServices h1 {
+    text-align: start;
+}
+
+.table-container {
+    max-height: 600px;
+    /* Par exemple, définissez la hauteur maximale souhaitée */
+    overflow-y: auto;
+    /* Permet le scroll vertical si nécessaire */
+    margin-top: 30px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    background-color: #ffffff;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 25px;
+}
+
+tr:first-child th {
+    background-color: #ffffff;
+    border-radius: 25px;
+    border-bottom: 4px solid var(--color-background);
+}
+
+th,
+td {
+    padding: 12px 20px;
+    text-align: left;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.fourthTD {
+    max-width: 100px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+tr {
+    cursor: pointer;
+    overflow: hidden;
+}
+
+tr:not(:first-child):hover th,
+tr:hover td {
+    border-bottom: 1px solid lightgrey;
+}
+
+/*---------------------------- Zone pop up container --------------------------*/
+
+.popup-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: all 0.3s ease;
+}
+
+.popup-content {
+    position: relative;
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.popup-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.popup-answer-btn {
+    font-size: 16px;
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.popup-close-btn {
+    position: absolute;
+    top: -50px;
+    right: 0;
+    margin-top: 10px;
+    padding: 5px 10px;
+    transform: scale(1.4);
+    background-color: transparent;
+    color: #fff;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.popup-close-btn:hover {
+    transform: scale(1.1);
+}
+
+.popup-answer-btn:hover {
+    transform: scale(1.1);
+}
+
+.expDateZone,
+.objectZone {
+    display: flex;
+    border-bottom: 1px solid var(--color-info-dark);
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    overflow-x: auto;
+    text-align: start;
+}
+
+.expDateZone {
+    justify-content: space-between;
+}
+
+.expZone {
+    display: flex;
+}
+
+.msgZone {
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    width: 500px;
+    height: 200px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+
+/*---------------------------- Zone popup Answer container --------------------------*/
+
+.popup-answer-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: all 0.3s ease;
+}
+
+.popup-answer-content {
+    position: relative;
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.popup-send-btn {
+    font-size: 16px;
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.popup-close-btn {
+    position: absolute;
+    top: -50px;
+    right: 0;
+    margin-top: 10px;
+    padding: 5px 10px;
+    transform: scale(1.4);
+    background-color: transparent;
+    color: #fff;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.popup-send-btn:hover {
+    transform: scale(1.1);
+}
+
+.destDateZone,
+.objectZone {
+    display: flex;
+    border-bottom: 1px solid var(--color-info-dark);
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    overflow-x: auto;
+    text-align: start;
+}
+
+.destDateZone {
+    justify-content: space-between;
+}
+
+.destZone {
+    display: flex;
+}
+
+.recapZone {
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    height: 100px;
+    overflow-y: auto;
+    border-bottom: 1px solid var(--color-info-dark);
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    overflow-y: auto;
+}
+
+#msgZoneTA {
+    margin-top: 10px;
+    border: 1px solid lightgrey;
+    border-radius: 25px;
+    padding: 12px;
+}
+
+
+/*---------------------------- Zone popup modif container --------------------------*/
+
+.popup-modif-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+    transition: all 0.3s ease;
+}
+
+.popup-modif-content {
+    position: relative;
+    width: 600px;
+    height: auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.popup-modif-container .user-listMessages {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.popup-modif-container .user-listMessages input {
+    margin: 10px 0;
+    border: 1px solid lightgrey;
+    border-radius: 25px;
+    padding: 10px;
+}
+
+.popup-modif-btn {
+    font-size: 16px;
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.popup-close-modif-btn {
+    position: absolute;
+    top: -50px;
+    right: 0;
+    margin-top: 10px;
+    padding: 5px 10px;
+    transform: scale(1.4);
+    background-color: transparent;
+    color: #fff;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.popup-modif-btn:hover {
+    transform: scale(1.1);
+}
+
+.modifListBtn {
+    border: 1px solid rgb(29, 179, 29);
+    border-radius: 25px;
+    background-color: rgb(29, 179, 29);
+    padding: 10px 20px;
+    margin-right: 5px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.modifListBtn:hover {
+    transform: scale(1.1);
+}
+
+/*------------------------------------Zone right Section------------------------------------*/
+.right-section {
+    margin-top: 1.4rem;
+}
+
+.right-section .nav {
+    display: flex;
+    justify-content: end;
+    gap: 2rem;
+}
+
+.right-section .nav button {
+    display: none;
+}
+
+.right-section .dark-mode {
+    background-color: var(--color-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 1.6rem;
+    width: 4.2rem;
+    cursor: pointer;
+    border-radius: var(--border-radius-1);
+}
+
+.right-section .dark-mode span {
+    font-size: 1.2rem;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.right-section .dark-mode span.active {
+    background-color: var(--color-primary);
+    color: white;
+    border-radius: var(--border-radius-1);
+}
+
+.right-section .nav .profile {
+    display: flex;
+    gap: 2rem;
+    text-align: right;
+}
+
+.right-section .nav .profile .profile-photo {
+    width: 2.8rem;
+    height: 2.8rem;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.right-section .user-profile {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 1rem;
+    background-color: var(--color-white);
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.right-section .user-profile:hover {
+    box-shadow: none;
+}
+
+.right-section .user-profile img {
+    width: 11rem;
+    height: 11rem;
+    margin-bottom: 0.8rem;
+    border-radius: 50%;
+}
+
+.right-section .user-profile h2 {
+    margin-bottom: 0.2rem;
+}
+
+.right-section .reminders {
+    margin-top: 2rem;
+}
+
+.right-section .reminders .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    margin-bottom: 0.8rem;
+}
+
+.right-section .reminders .header span {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.right-section .reminders .header span:hover {
+    cursor: pointer;
+    animation: shake 0.3s;
+}
+
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+
+    20% {
+        transform: translateX(-5px);
+    }
+
+    40% {
+        transform: translateX(5px);
+    }
+
+    60% {
+        transform: translateX(-5px);
+    }
+
+    80% {
+        transform: translateX(5px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+#rightNotifNumber {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10px;
+    width: 10px;
+    padding: 8px;
+    font-size: 10px;
+    color: white;
+    background-color: red;
+    border-radius: 50%;
+    right: 0px;
+    top: 0px;
+}
+
+.right-section .reminders .notification {
+    background-color: var(--color-white);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.7rem;
+    padding: 1.4rem var(--card-padding);
+    border-radius: var(--border-radius-2);
+    box-shadow: var(--box-shadow);
+    transition: all 0.3s ease;
+}
+
+.right-section .reminders .notification:hover {
+    box-shadow: none;
+}
+
+.right-section .reminders .notification-add {
+    background-color: var(--color-white);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.7rem;
+    padding: 1.4rem var(--card-padding);
+    border-radius: var(--border-radius-2);
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.right-section .reminders .notification-add textarea {
+    font-size: 0.76rem;
+    color: #363949;
+    font-family: 'Poppins', 'sans-serif';
+    transition: all 0.3s ease;
+}
+
+.right-section .reminders .notification .content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    width: 100%;
+}
+
+.right-section .reminders .notification .icon {
+    padding: 0.6rem;
+    color: var(--color-white);
+    background-color: var(--color-classic);
+    border-radius: 25px;
+    display: flex;
+}
+
+.right-section .reminders .notification.deactive .icon {
+    background-color: var(--color-classic);
+}
+
+.right-section .reminders .add-reminder {
+    background-color: var(--color-white);
+    border: 2px dashed var(--color-primary);
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.right-section .reminders .add-reminder:hover {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.right-section .reminders .add-reminder div {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.closeCrossNotes {
+    color: white;
+    background-color: red;
+    border-radius: 50%;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 3px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.closeCrossNotes:hover {
+    transform: scale(1.2);
+}
+
+/*-------------------------------Zone glisser déposer----------------------------------*/
+
+.notification {
+    cursor: grab;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.notification:active {
+    cursor: grabbing;
+    transform: scale(1.05);
+    z-index: 1;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+
+/*--------------------------------Zone Media screen------------------------------------*/
+
+@media screen and (max-width: 1200px) {
+    .container {
+        width: 95%;
+        grid-template-columns: 7rem auto 23rem;
+    }
+
+    aside .logo h2 {
+        display: none;
+    }
+
+    aside .sidebar h3 {
+        display: none;
+    }
+
+    aside .sidebar a {
+        width: 5.6rem;
+    }
+
+    aside .sidebar a:last-child {
+        position: relative;
+        margin-top: 1.8rem;
+    }
+
+    main .analyse {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    main .new-users .user-list .user {
+        flex-basis: 40%;
+    }
+
+    main .recent-orders {
+        width: 94%;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 2rem 0 0 0.8rem;
+    }
+
+    main .recent-orders table {
+        width: 83vw;
+    }
+
+    main table thead tr th:last-child,
+    main table thead tr th:first-child {
+        display: none;
+    }
+
+    main table tbody tr td:last-child,
+    main table tbody tr td:first-child {
+        display: none;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        width: 100%;
+        grid-template-columns: 1fr;
+        padding: 0 var(--padding-1);
+    }
+
+    aside {
+        position: fixed;
+        background-color: var(--color-white);
+        width: 15rem;
+        z-index: 3;
+        box-shadow: 1rem 3rem 4rem var(--color-light);
+        height: 100vh;
+        left: -100%;
+        display: none;
+        animation: showMenu 0.4s ease forwards;
+    }
+
+    @keyframes showMenu {
+        to {
+            left: 0;
+        }
+    }
+
+    aside .logo {
+        margin-left: 1rem;
+    }
+
+    aside .logo h2 {
+        display: inline;
+    }
+
+    aside .sidebar h3 {
+        display: inline;
+    }
+
+    aside .sidebar a {
+        width: 100%;
+        height: 3.4rem;
+    }
+
+    aside .sidebar a:last-child {
+        position: absolute;
+        bottom: 5rem;
+    }
+
+    aside .toggle .close {
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    main {
+        margin-top: 8rem;
+        padding: 0 1rem;
+    }
+
+    main .new-users .user-list .user {
+        flex-basis: 35%;
+    }
+
+    main .recent-orders {
+        position: relative;
+        margin: 3rem 0 0 0;
+        width: 100%;
+    }
+
+    main .recent-orders table {
+        width: 100%;
+        margin: 0;
+    }
+
+    .right-section {
+        width: 94%;
+        margin: 0 auto 4rem;
+    }
+
+    .right-section .nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        align-items: center;
+        background-color: var(--color-white);
+        padding: 0 var(--padding-1);
+        height: 4.6rem;
+        width: 100%;
+        z-index: 2;
+        box-shadow: 0 1rem 1rem var(--color-light);
+        margin: 0;
+    }
+
+    .right-section .nav .dark-mode {
+        width: 4.4rem;
+        position: absolute;
+        left: 66%;
+    }
+
+    .right-section .profile .info {
+        display: none;
+    }
+
+    .right-section .nav button {
+        display: inline-block;
+        background-color: transparent;
+        cursor: pointer;
+        color: var(--color-dark);
+        position: absolute;
+        left: 1rem;
+    }
+
+    .right-section .nav button span {
+        font-size: 2rem;
+    }
+
+}

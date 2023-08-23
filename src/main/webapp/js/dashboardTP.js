@@ -41,10 +41,6 @@ const activeLink = document.querySelector('.sidebar a.active');
 if (activeLink) {
     activeLink.classList.add('active');
 }
-/*------------------------Zone affichage main----------------------------*/
-
-
-
 
 /*------------------------Zone affichage main----------------------------*/
 
@@ -56,6 +52,7 @@ const messagesBtn = document.getElementById('messagesBtn');
 const addBtn = document.getElementById('addBtn');
 const profileBtn = document.getElementById('profileBtn');
 const dashboardBtn = document.getElementById('dashboardBtn')
+const managedBtn = document.getElementById('managedResaBtn')
 
 // Récupération des éléments de contenu
 const mainAnalytics = document.getElementById('mainAnalytics');
@@ -65,10 +62,12 @@ const mainHistory = document.getElementById('mainHistory');
 const mainAdd = document.getElementById('mainAdd');
 const mainProfile = document.getElementById('mainProfile');
 const mainDashboard = document.getElementById('mainDashboard')
+const mainManagedResa = document.getElementById('mainManagedResa')
+var defaultSection =document.getElementById(document.getElementById('defaultSection').value)
 
 // Fonction pour masquer tous les contenus
 function hideMainContent() {
-    const contenus = [mainAnalytics, mainMessages, mainUsers, mainProfile, mainHistory, mainDashboard];
+    const contenus = [mainAnalytics, mainMessages, mainUsers, mainProfile, mainHistory, mainDashboard, mainManagedResa];
     contenus.forEach(contenu => {
         contenu.style.display = 'none';
     });
@@ -77,12 +76,17 @@ function hideMainContent() {
 // Fonction pour afficher un contenu spécifique
 function showMainContent(cible) {
     hideMainContent();
+if(cible==null){
+	cible=mainDashboard;
+}
     cible.style.display = 'block';
     cible.classList.add('fade-in-bottom'); // Ajout de la classe pour l'animation fade-in
 }
 
 // Par défaut, afficher le contenu "Dashboard"
-showMainContent(mainDashboard);
+showMainContent(defaultSection);
+//alert("shownameSection"+document.getElementById('defaultSection').value);
+//alert("showSection"+document.getElementById(document.getElementById('defaultSection').value));
 
 // Gestion des événements de clic
 usersBtn.addEventListener('click', () => {
@@ -109,95 +113,10 @@ dashboardBtn.addEventListener('click', () => {
     showMainContent(mainDashboard);
 });
 
-/*--------------------------------Zone affihage Messages non lus--------------------------------------*/
+managedBtn.addEventListener('click', () => {
+    showMainContent(mainManagedResa);
+});
 
-// Récupération des éléments
-const userLists = document.querySelectorAll('#mainMessages  .user-list-unreadMessages');
-const showAllButton = document.getElementById('showUnreadMessagesBtn');
-const newUsersDiv = document.querySelector('.new-users');
-let isShowingAll = false;
-
-// Fonction pour afficher uniquement les trois premières div user-list
-function afficherDeuxPremieresDiv() {
-    for (let i = 0; i < userLists.length; i++) {
-        if (i < 2) {
-            userLists[i].style.display = 'flex';
-        } else {
-            userLists[i].style.display = 'none';
-        }
-    }
-}
-
-// Appel de la fonction pour afficher les trois premières div
-afficherDeuxPremieresDiv();
-
-// Fonction pour afficher toutes les div
-function afficherToutesLesDiv() {
-    userLists.forEach(userList => {
-        userList.style.display = 'flex';
-    });
-}
-
-// Fonction pour basculer entre l'affichage des trois premières div et l'affichage de toutes les div
-function toggleAffichageDiv() {
-    if (isShowingAll) {
-        afficherDeuxPremieresDiv();
-        showAllButton.textContent = 'Afficher tout';
-        isShowingAll = false;
-    } else {
-        afficherToutesLesDiv();
-        showAllButton.textContent = 'Retour';
-        isShowingAll = true;
-    }
-}
-
-// Gestionnaire d'événement pour le bouton "Afficher tout / Retour"
-showAllButton.addEventListener('click', toggleAffichageDiv);
-
-/*--------------------------------Zone affihage all Messages--------------------------------------*/
-
-// Récupération des éléments
-const userListsAllMessages = document.querySelectorAll('#mainMessages  .user-list-AllMessages');
-const showAllButtonAllMessages = document.getElementById('showAllMessagesBtn');
-const newUsersDivAllMessages = document.querySelector('.new-users');
-let isShowingAllMessages = false;
-
-// Fonction pour afficher uniquement les trois premières div user-list
-function afficherDeuxPremieresDiv2() {
-    for (let i = 0; i < userListsAllMessages.length; i++) {
-        if (i < 2) {
-            userListsAllMessages[i].style.display = 'flex';
-        } else {
-            userListsAllMessages[i].style.display = 'none';
-        }
-    }
-}
-
-// Appel de la fonction pour afficher les trois premières div
-afficherDeuxPremieresDiv2();
-
-// Fonction pour afficher toutes les div
-function afficherToutesLesDiv2() {
-    userListsAllMessages.forEach(userList => {
-        userList.style.display = 'flex';
-    });
-}
-
-// Fonction pour basculer entre l'affichage des trois premières div et l'affichage de toutes les div
-function toggleAffichageDiv2() {
-    if (isShowingAllMessages) {
-        afficherDeuxPremieresDiv2();
-        showAllButtonAllMessages.textContent = 'Afficher tout';
-        isShowingAllMessages = false;
-    } else {
-        afficherToutesLesDiv2();
-        showAllButtonAllMessages.textContent = 'Retour';
-        isShowingAllMessages = true;
-    }
-}
-
-// Gestionnaire d'événement pour le bouton "Afficher tout / Retour"
-showAllButtonAllMessages.addEventListener('click', toggleAffichageDiv2);
 
 /*---------------------------------------Zone de glisser déposer ---------------------------------------------*/
 
@@ -324,3 +243,308 @@ function setupNotificationDeletion() {
 setupDraggableNotifications();
 setupNotificationAdd();
 setupNotificationDeletion();
+
+
+/*----------------------Zone radioButton Travel------------------------*/
+
+document.addEventListener('DOMContentLoaded', function () {
+    const listTravel = document.getElementById('listTravel');
+    const createTravel = document.getElementById('createTravel');
+
+    const listTravelSection = document.getElementById('ListTravelSection');
+    const createTravelSection = document.getElementById('createTravelSection');
+
+    // Fonction pour masquer tous les sections
+    function hideAllSections() {
+        const sections = [listTravelSection, createTravelSection];
+        sections.forEach(section => {
+            section.style.display = 'none';
+        });
+    }
+
+    // Fonction pour afficher un formulaire spécifique
+    function showSection(section) {
+        hideAllSections();
+        if (listTravelSection) {
+            section.style.display = 'flex';
+        } else if (createTravelSection) {
+            section.style.display = 'block';
+        }
+        section.classList.add('fade-in-bottom'); // Ajout de la classe pour l'animation fade-in
+    }
+
+    // Par défaut, masquer tous les formulaires
+    hideAllSections();
+
+    // Fonction d'affichage par défaut de listTravelSection
+    function showSectionActive() {
+        showSection(listTravelSection);
+        listTravel.checked = true; // Cochez la checkbox
+    }
+    showSectionActive();
+
+
+    // Gestion des événements de clic sur les radios
+    listTravel.addEventListener('click', () => {
+        showSection(listTravelSection);
+    });
+
+    createTravel.addEventListener('click', () => {
+        showSection(createTravelSection);
+    });
+});
+
+/*--------------------------Zone survol des tPCard---------------------------*/
+
+// Récupération de tous les éléments tPCard
+const tPCards = document.querySelectorAll('.tPCard');
+
+// Fonction pour réinitialiser la position de lTSBtnContainer
+function resetBtnContainerPosition(btnContainer) {
+    btnContainer.style.bottom = '30px';
+}
+
+// Ajout des gestionnaires d'événements à chaque tPCard
+tPCards.forEach(tPCard => {
+    const lTSBtnContainer = tPCard.nextElementSibling;
+    let timeoutId;
+
+    // Lorsque la souris survole tPCard
+    tPCard.addEventListener('mouseenter', () => {
+        lTSBtnContainer.style.bottom = '-30px';
+        lTSBtnContainer.style.visibility = 'visible';
+        lTSBtnContainer.style.display = 'flex';
+        clearTimeout(timeoutId); // Efface le délai de réinitialisation
+    });
+
+    // Lorsque la souris quitte tPCard
+    tPCard.addEventListener('mouseleave', () => {
+        // Définit un délai pour réinitialiser la position après 10 secondes
+        timeoutId = setTimeout(() => resetBtnContainerPosition(lTSBtnContainer), 5000);
+    });
+});
+
+/*----------------------Zone radioButton messages------------------------*/
+
+document.addEventListener('DOMContentLoaded', function () {
+    const allMsg = document.getElementById('allMsg');
+    const readMsg = document.getElementById('readMsg');
+    const unreadMsg = document.getElementById('unreadMsg');
+    const sentMsg = document.getElementById('sentMsg');
+    const writeMsg = document.getElementById('writeMsg');
+
+    const allMsgSection = document.getElementById('allMsgSection');
+    const readMsgSection = document.getElementById('readMsgSection');
+    const unreadMsgSection = document.getElementById('unreadMsgSection');
+    const sentMsgSection = document.getElementById('sentMsgSection');
+    const writeMsgSection = document.getElementById('writeMsgSection');
+
+    // Fonction pour masquer tous les sections
+    function hideAllSections() {
+        const sections = [allMsgSection, readMsgSection, unreadMsgSection, sentMsgSection, writeMsgSection];
+        sections.forEach(section => {
+            section.style.display = 'none';
+        });
+    }
+    // Fonction pour afficher un formulaire spécifique
+    function showSection(section) {
+        hideAllSections();
+        section.style.display = 'block';
+        section.classList.add('fade-in-bottom'); // Ajout de la classe pour l'animation fade-in
+    }
+
+    // Par défaut, masquer tous les formulaires
+    hideAllSections();
+
+    // Fonction d'affichage par défaut de AllMsg
+    function showSectionActive() {
+        showSection(allMsgSection);
+        allMsg.checked = true;
+    }
+    showSectionActive();
+
+    // Gestion des événements de clic sur les radios
+    allMsg.addEventListener('click', () => {
+        showSection(allMsgSection);
+    });
+    readMsg.addEventListener('click', () => {
+        showSection(readMsgSection);
+    });
+    unreadMsg.addEventListener('click', () => {
+        showSection(unreadMsgSection);
+    });
+    sentMsg.addEventListener('click', () => {
+        showSection(sentMsgSection);
+    });
+    writeMsg.addEventListener('click', () => {
+        showSection(writeMsgSection);
+    });
+});
+
+
+/*--------------------------------Zone de suppression des tr du tableau---------------------------------*/
+
+document.addEventListener('DOMContentLoaded', function () {
+    const deleteAllMsgBtn = document.getElementById('deleteAllMsg');
+    const deleteSelectedAllMsgBtn = document.getElementById('deleteSelectedAllMsg');
+    const deleteCheckboxesAllMsg = document.querySelectorAll('.deleteCheckboxAllMsg');
+
+    const deleteReadMsgBtn = document.getElementById('deleteReadMsg');
+    const deleteSelectedReadMsgBtn = document.getElementById('deleteSelectedReadMsg');
+    const deleteCheckboxesReadMsg = document.querySelectorAll('.deleteCheckboxReadMsg');
+
+    const deleteUnreadMsgBtn = document.getElementById('deleteUnreadMsg');
+    const deleteSelectedUnreadMsgBtn = document.getElementById('deleteSelectedUnreadMsg');
+    const deleteCheckboxesUnreadMsg = document.querySelectorAll('.deleteCheckboxUnreadMsg');
+
+    const deleteSentMsgBtn = document.getElementById('deleteSentMsg');
+    const deleteSelectedSentMsgBtn = document.getElementById('deleteSelectedSentMsg');
+    const deleteCheckboxesSentMsg = document.querySelectorAll('.deleteCheckboxSentMsg');
+
+
+    function updateSelectAllButtonState(button, checkboxes) {
+        const allChecked = Array.from(checkboxes).every(checkbox => checkbox.checked);
+
+        if (allChecked) {
+            button.textContent = "Tout désélectionner";
+        } else {
+            button.textContent = "Tout sélectionner";
+        }
+
+        // Vérifie si au moins une checkbox est cochée
+        const atLeastOneChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+
+        if (!atLeastOneChecked) {
+            button.textContent = "Tout sélectionner";
+        }
+    }
+
+    deleteAllMsgBtn.addEventListener('click', () => {
+        // Supprime toutes les lignes avec des cases à cocher cochées
+        deleteCheckboxesAllMsg.forEach(checkbox => {
+            if (checkbox.checked) {
+                checkbox.closest('tr').remove();
+            }
+        });
+    });
+
+    deleteSelectedAllMsgBtn.addEventListener('click', () => {
+        // Inverser l'état des checkboxes
+        deleteCheckboxesAllMsg.forEach(checkbox => {
+            checkbox.checked = !checkbox.checked;
+        });
+        updateSelectAllButtonState(deleteSelectedAllMsgBtn, deleteCheckboxesAllMsg);
+    });
+
+
+    deleteReadMsgBtn.addEventListener('click', () => {
+        // Supprimer toutes les lignes avec des cases à cocher cochées
+        deleteCheckboxesReadMsg.forEach(checkbox => {
+            if (checkbox.checked) {
+                checkbox.closest('tr').remove();
+            }
+        });
+    });
+
+    deleteSelectedReadMsgBtn.addEventListener('click', () => {
+        // Inverser l'état des checkboxes
+        deleteCheckboxesReadMsg.forEach(checkbox => {
+            checkbox.checked = !checkbox.checked;
+        });
+
+        updateSelectAllButtonState(deleteSelectedReadMsgBtn, deleteCheckboxesReadMsg);
+    });
+
+    deleteUnreadMsgBtn.addEventListener('click', () => {
+        // Supprimer toutes les lignes avec des cases à cocher cochées
+        deleteCheckboxesUnreadMsg.forEach(checkbox => {
+            if (checkbox.checked) {
+                checkbox.closest('tr').remove();
+            }
+        });
+    });
+
+    deleteSelectedUnreadMsgBtn.addEventListener('click', () => {
+        // Inverser l'état des checkboxes
+        deleteCheckboxesUnreadMsg.forEach(checkbox => {
+            checkbox.checked = !checkbox.checked;
+        });
+
+        updateSelectAllButtonState(deleteSelectedUnreadMsgBtn, deleteCheckboxesUnreadMsg);
+    });
+
+    deleteSentMsgBtn.addEventListener('click', () => {
+        // Supprimer toutes les lignes avec des cases à cocher cochées
+        deleteCheckboxesSentMsg.forEach(checkbox => {
+            if (checkbox.checked) {
+                checkbox.closest('tr').remove();
+            }
+        });
+    });
+
+    deleteSelectedSentMsgBtn.addEventListener('click', () => {
+        // Inverser l'état des checkboxes
+        deleteCheckboxesSentMsg.forEach(checkbox => {
+            checkbox.checked = !checkbox.checked;
+        });
+
+        updateSelectAllButtonState(deleteSelectedSentMsgBtn, deleteCheckboxesSentMsg);
+    });
+});
+
+
+/*--------------------------------Zone de Lecture des tr du tableau avec popupContainer---------------------------------*/
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    const readAllMsgButtons = document.getElementById('readAllMsgBtn');
+	const readSentMsgButtons = document.getElementById('readSentMsgBtn');
+    const popupContainer = document.getElementById('popupContainer');
+    const popupCloseButton = document.getElementById('popupCloseButton');
+    const popupContent = document.querySelector('.popup-content');
+
+    readAllMsgButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            popupContainer.style.display = 'flex';
+            popupContent.classList.add('fade-in-bottom');
+        });
+    });
+
+	readSentMsgButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            popupContainer.style.display = 'flex';
+            popupContent.classList.add('fade-in-bottom');
+        });
+    });
+
+    popupCloseButton.addEventListener('click', () => {
+        popupContainer.style.display = 'none';
+    });
+});
+
+/*--------------------------------Zone de réponse des tr du tableau avec popupAnswerContainer---------------------------------*/
+
+
+document.addEventListener('DOMContentLoaded', function () {
+
+    const popupAnswerButton = document.getElementById('popupAnswerButton');
+    const popupAnswerContainer = document.getElementById('popupAnswerContainer');
+    const popupCloseAnswerButton = document.getElementById('popupCloseAnswerButton');
+    const popupContainer = document.getElementById('popupContainer');
+    const popupAnswerContent = document.querySelector('.popup-answer-content');
+
+    // Fonction pour afficher la div avec l'id "popupAnswerContainer"
+    function showPopupAnswerContainer() {
+        popupAnswerContainer.style.display = 'flex';
+        popupAnswerContent.classList.add('fade-in-bottom');
+    }
+
+    // Gestionnaire d'événements pour le bouton "Répondre"
+    popupAnswerButton.addEventListener('click', showPopupAnswerContainer);
+
+    popupCloseAnswerButton.addEventListener('click', () => {
+        popupAnswerContainer.style.display = 'none';
+        popupContainer.style.display = 'none';
+    });
+
+});

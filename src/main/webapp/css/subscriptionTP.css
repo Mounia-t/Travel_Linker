@@ -1,0 +1,56 @@
+@charset "ISO-8859-1";
+body {
+	margin: 0; 
+	padding: 0;
+	background: #eaefe9; 
+}
+h2 {
+	font-family: 'Bebas Neue', cursive;
+	color: #96e11e;
+	text-align: center;
+	margin: 40px 0 -50px;
+	padding-bottom: 20px;
+	background-image: url(img/border.png);
+	background-repeat: no-repeat;
+	background-position: center bottom;
+}
+.carousel{
+    height: 600px; 
+    perspective: 200px;
+}
+.carousel .carousel-item{
+	width: 640px;
+	height: 400px;
+}
+.card {
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	max-width: 500px;
+	margin: auto;
+	text-align: center;
+	border-radius: 10px;
+	height: 450px;
+  }
+.img-area{
+	border-radius: 10px 10px 0 0;
+	height: 200px;
+	background-size: cover;
+	background-position: center center;
+}
+h4 {
+	font-size: 35px;
+	line-height: 1.5;
+	margin: 15px 0;
+	font-family: 'Bebas Neue', cursive;
+}
+.card p{
+	font-size: 17px;
+}
+
+.container {
+  padding: 2px 16px;
+}
+.btn { 
+    color: rgb(255, 255, 255);
+    background-color: #b4f011;
+
+}

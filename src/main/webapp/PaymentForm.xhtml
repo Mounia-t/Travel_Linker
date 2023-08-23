@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<head>
+<meta charset="UTF-8" />
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="./css/PaymentForm.css" />
+<title>Paiement</title>
+</head>
+
+
+<body>
+	<header></header>
+
+	<main>
+		<section id="zonePaiement">
+			<div id="paiementCard">
+				<div id="cardBody">
+					<div id="cbBodyInfo">
+						<div id="bodyInfo">
+							<img src="./media/images/puce.png" alt="puce" /> <span
+								id="cbNumber">**** **** **** ****</span> <span id="cbDate">09/23</span>
+							<div id="ownerCvvDiv">
+								<span id="owner">John Doe</span> <span id="cvvValue">***</span>
+							</div>
+						</div>
+						<div id="bodyCvv">
+							<span id="cbLogo"><img src="" /></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="paiementForm">
+				<h:form>
+					<!-- <label for="nom">Nom complet:</label> -->
+					<div class="inputFormLabel">
+						<h:inputText type="text" id="nom" name="nom"
+							value="#{paymentControllerBean.ownerName}" class="inputForm" />
+						<h:outputLabel value="Nom" for="nom"
+							styleClass="placeholder label" />
+					</div>
+
+					<div class="inputFormLabel">
+						<h:inputText type="text" id="numeroCarte" name="numeroCarte"
+							value="#{paymentControllerBean.payment.cardNumber}"
+							maxlength="16" class="inputForm" />
+						<h:outputLabel value="Numéro de carte" for="numeroCarte"
+							styleClass="placeholder label" />
+					</div>
+					<div id="dateCvvDiv" class="inputFormContainer">
+						<h:inputText type="text" id="expirationDate" name="expirationDate"
+							value="#{paymentControllerBean.payment.cardDate}" maxlength="5"
+							class="inputForm" />
+						<h:outputLabel value="09/23" for="expirationDate"
+							styleClass="placeholder label" />
+
+						<h:inputText type="text" id="cvv" name="cvv"
+							value="#{paymentControllerBean.payment.numberCvv}" maxlength="3"
+							class="inputForm" />
+						<h:outputLabel value="CVV" for="cvv"
+							styleClass="placeholder label cvv" />
+					</div>
+
+
+					<h:commandButton type="submit" value="Payer" class="paymentBtn"
+						action="#{paymentControllerBean.makePayment()}"></h:commandButton>
+				</h:form>
+			</div>
+			
+		</section>
+	</main>
+	<script src="./js/paymentForm.js"></script>
+</body>
+
+</html>

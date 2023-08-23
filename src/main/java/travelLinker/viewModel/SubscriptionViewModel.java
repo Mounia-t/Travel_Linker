@@ -2,6 +2,7 @@ package travelLinker.viewModel;
 
 import java.util.Date;
 
+
 public class SubscriptionViewModel {
 	private int price;
     private Date startDate;
@@ -32,7 +33,6 @@ public class SubscriptionViewModel {
 	public void setType(String type) {
 		this.type = type;
 	}
-    
     
     
 
