@@ -13,7 +13,6 @@ public class SessionUtils {
 
 	// Récupère la session HTTP actuelle
 	public static HttpSession getSession() {
-		HttpSession session;
 		return (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 	}
 
@@ -25,7 +24,7 @@ public class SessionUtils {
 	// Écrit des informations dans la session
 	public static void writeInSession(Long accountId, String email, RoleUser role, String lastName, String firstName
 			) {
-		getSession().setAttribute(SessionAttributesUtils.CONNECTED_ACCOUNT_ID, accountId);
+		getSession().setAttribute("accountId", accountId);
 		getSession().setAttribute("email", email);
 		getSession().setAttribute("role", role);
 		getSession().setAttribute("lastName", lastName);
@@ -51,7 +50,7 @@ public class SessionUtils {
 	public static Long getUserId() {
 		HttpSession session = getSession();
 		if (session != null)
-			return (Long) session.getAttribute(SessionAttributesUtils.CONNECTED_ACCOUNT_ID);
+			return (Long) session.getAttribute("accountId");
 		else
 			return null;
 	}

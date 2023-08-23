@@ -84,7 +84,6 @@ public class SubscriptionController implements Serializable {
 		 selectedSubscription =type;
 		 ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 		 try {
-		        // Redirect to subscriptionTP.xhtml
 		        externalContext.redirect("PaymentForm.xhtml");
 		    } catch (IOException e) {
 		        // Handle the exception if redirection fails

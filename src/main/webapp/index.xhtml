@@ -22,8 +22,8 @@
 <!--Lien pour les boutons du carousel-->
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-	</link>
-	<!--Lien pour les boutons du carousel-->
+</link>
+<!--Lien pour les boutons du carousel-->
 </head>
 
 <body>
@@ -43,18 +43,23 @@
 
 		<!-- Vidéos en arrière-plan pour le slider -->
 
-			
-<video class="video-slide active" src="media/videos/videoPlage.mp4" autoplay="autoplay" muted="muted" loop="loop"></video>
-<video class="video-slide" src="media/videos/videoMarche.mp4" autoplay="autoplay" muted="muted" loop="loop"></video>
-<video class="video-slide" src="media/videos/videoDesert.mp4" autoplay="autoplay" muted="muted" loop="loop"></video>
-<video class="video-slide" src="media/videos/videoRoute.mp4" autoplay="autoplay" muted="muted" loop="loop"></video>
-<video class="video-slide" src="media/videos/videoNature.mp4" autoplay="autoplay" muted="muted" loop="loop"></video>
+
+		<video class="video-slide active" src="media/videos/videoPlage.mp4"
+			autoplay="autoplay" muted="muted" loop="loop"></video>
+		<video class="video-slide" src="media/videos/videoMarche.mp4"
+			autoplay="autoplay" muted="muted" loop="loop"></video>
+		<video class="video-slide" src="media/videos/videoDesert.mp4"
+			autoplay="autoplay" muted="muted" loop="loop"></video>
+		<video class="video-slide" src="media/videos/videoRoute.mp4"
+			autoplay="autoplay" muted="muted" loop="loop"></video>
+		<video class="video-slide" src="media/videos/videoNature.mp4"
+			autoplay="autoplay" muted="muted" loop="loop"></video>
 
 
 		<!-- Contenu de chaque diapositive -->
 
 		<div class="content active">
-			<img src="media/images/logoTravelLinker2.png" alt="Logo" class="logo"/>
+			<img src="media/images/logoTravelLinker2.png" alt="Logo" class="logo" />
 			<p>Une plateforme de connectivité qui relie les organisateurs de
 				voyage locaux, les partenaires et les clients. C’est l'outil ultime
 				pour les organisateurs de voyage, offrant une gestion complète et
@@ -64,8 +69,7 @@
 		</div>
 		<div class="content">
 			<h1>
-				Vous êtes<br />
-				<span>une agence?</span>
+				Vous êtes<br /> <span>une agence?</span>
 			</h1>
 			<p>Découvrez la révolution dans la gestion de voyages pour les
 				futures agences innovantes. Notre plateforme de connectivité
@@ -76,8 +80,7 @@
 		</div>
 		<div class="content">
 			<h1>
-				Vous êtes<br />
-				<span>un partenaire?</span>
+				Vous êtes<br /> <span>un partenaire?</span>
 			</h1>
 			<p>Plongez dans l'avenir de la collaboration avec notre
 				plateforme conçue spécialement pour nos partenaires privilégiés. En
@@ -88,8 +91,7 @@
 		</div>
 		<div class="content">
 			<h1>
-				Vous êtes<br />
-				<span>un client?</span>
+				Vous êtes<br /> <span>un client?</span>
 			</h1>
 			<p>Prêt à vivre des aventures extraordinaires ? Bienvenue sur
 				notre plateforme de connectivité de voyage. Que vous soyez un
@@ -100,8 +102,7 @@
 		</div>
 		<div class="content">
 			<h1>
-				N'attendez pu<br />
-				<span>essayez !</span>
+				N'attendez pu<br /> <span>essayez !</span>
 			</h1>
 			<p>Notre plateforme n'attend que vous, inscrivez-vous en cliquant
 				sur le bouton "Lire Plus", afin de profiter de tous les avantages
@@ -209,6 +210,27 @@
 				</button>
 			</div>
 		</div>
+		<ui:repeat value="#{journeyControllerBean.allJourneys}" var="journey">
+			<div class="lTSContainer">
+				<div class="tPCard">
+					<img src="#{journey.imagePath}" alt="Image du Voyage"
+						style="max-width: 100%;" />
+					<div class="infoTPCard">
+						<h2>#{journey.name}</h2>
+						<h3>#{journey.country}</h3>
+					</div>
+					<div class="infoSupTPCard">
+						<h3>Description: #{journey.description}</h3>
+						<!-- Autres détails à afficher -->
+					</div>
+				</div>
+				<div class="lTSBtnContainer">
+					<h:commandButton value="Supprimer"
+						action="#{journeyControllerBean.deleteJourney(journey.id)}" />
+
+				</div>
+			</div>
+		</ui:repeat>
 	</section>
 	<!-- FIN DES PACKAGES -->
 	<!-- DEBUT DES AVIS CLIENTS-->
@@ -327,13 +349,14 @@
 				src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2626.8907461958947!2d2.2983450761843427!3d48.82214597132722!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e6705c21f00001%3A0x56cd923a25baed54!2sISIKA%20-%20Formation%20et%20Reconversion%20aux%20M%C3%A9tiers%20du%20Num%C3%A9rique!5e0!3m2!1sfr!2sfr!4v1691145250537!5m2!1sfr!2sfr"
 				allowfullscreen="" loading="lazy"></iframe>
 
-		<form action="">
-        <input type="text" placeholder="Votre nom" class="box-contact" />
-        <input type="email" placeholder="Votre email" class="box-contact" />
-        <input type="tel" placeholder="Sujet" class="box-contact" />
-        <textarea placeholder="Votre message" class="box-contact" cols="30" rows="10"></textarea>
-        <input type="submit" value="SOUMETTRE" class="btn-contact" />
-    </form>
+			<form action="">
+				<input type="text" placeholder="Votre nom" class="box-contact" /> <input
+					type="email" placeholder="Votre email" class="box-contact" /> <input
+					type="tel" placeholder="Sujet" class="box-contact" />
+				<textarea placeholder="Votre message" class="box-contact" cols="30"
+					rows="10"></textarea>
+				<input type="submit" value="SOUMETTRE" class="btn-contact" />
+			</form>
 
 		</div>
 
@@ -343,7 +366,7 @@
 
 	<div class="footer">
 		<div class="logo-footer">
-			<img src="media/images/logoTravelLinker2.png" alt="Logo-footer"/>
+			<img src="media/images/logoTravelLinker2.png" alt="Logo-footer" />
 			<div class="social-icons-footer">
 				<div class="social-icon">
 					<i class="fab fa-facebook-f"></i>
@@ -407,7 +430,7 @@
 				newsletters</div>
 			<div class="subscribe-form">
 				<input type="email" class="subscribe-input"
-					placeholder="Adresse e-mail"/>
+					placeholder="Adresse e-mail" />
 				<button class="subscribe-button">Souscrire</button>
 			</div>
 		</div>

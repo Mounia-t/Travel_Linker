@@ -105,7 +105,7 @@ public class AccountDao {
 
 	    try {
 	        // Redirect to subscriptionTP.xhtml
-	        externalContext.redirect("SubscriptionTP.xhtml");
+	        externalContext.redirect("dashboardTP.xhtml");
 	    } catch (IOException e) {
 	        // Handle the exception if redirection fails
 	        e.printStackTrace();
