@@ -47,7 +47,6 @@ if (activeLink) {
 // Récupération des éléments de navigation
 const usersBtn = document.getElementById('usersBtn');
 const historyBtn = document.getElementById('historyBtn');
-const analyticsBtn = document.getElementById('analyticsBtn');
 const messagesBtn = document.getElementById('messagesBtn');
 const addBtn = document.getElementById('addBtn');
 const profileBtn = document.getElementById('profileBtn');
@@ -55,7 +54,6 @@ const dashboardBtn = document.getElementById('dashboardBtn')
 const managedBtn = document.getElementById('managedResaBtn')
 
 // Récupération des éléments de contenu
-const mainAnalytics = document.getElementById('mainAnalytics');
 const mainMessages = document.getElementById('mainMessages');
 const mainUsers = document.getElementById('mainUsers');
 const mainHistory = document.getElementById('mainHistory');
@@ -67,7 +65,7 @@ var defaultSection =document.getElementById(document.getElementById('defaultSect
 
 // Fonction pour masquer tous les contenus
 function hideMainContent() {
-    const contenus = [mainAnalytics, mainMessages, mainUsers, mainProfile, mainHistory, mainDashboard, mainManagedResa];
+    const contenus = [mainMessages, mainUsers, mainProfile, mainHistory, mainDashboard, mainManagedResa];
     contenus.forEach(contenu => {
         contenu.style.display = 'none';
     });
@@ -95,10 +93,6 @@ usersBtn.addEventListener('click', () => {
 
 historyBtn.addEventListener('click', () => {
     showMainContent(mainHistory);
-});
-
-analyticsBtn.addEventListener('click', () => {
-    showMainContent(mainAnalytics);
 });
 
 messagesBtn.addEventListener('click', () => {
@@ -294,36 +288,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-/*--------------------------Zone survol des tPCard---------------------------*/
-
-// Récupération de tous les éléments tPCard
-const tPCards = document.querySelectorAll('.tPCard');
-
-// Fonction pour réinitialiser la position de lTSBtnContainer
-function resetBtnContainerPosition(btnContainer) {
-    btnContainer.style.bottom = '30px';
-}
-
-// Ajout des gestionnaires d'événements à chaque tPCard
-tPCards.forEach(tPCard => {
-    const lTSBtnContainer = tPCard.nextElementSibling;
-    let timeoutId;
-
-    // Lorsque la souris survole tPCard
-    tPCard.addEventListener('mouseenter', () => {
-        lTSBtnContainer.style.bottom = '-30px';
-        lTSBtnContainer.style.visibility = 'visible';
-        lTSBtnContainer.style.display = 'flex';
-        clearTimeout(timeoutId); // Efface le délai de réinitialisation
-    });
-
-    // Lorsque la souris quitte tPCard
-    tPCard.addEventListener('mouseleave', () => {
-        // Définit un délai pour réinitialiser la position après 10 secondes
-        timeoutId = setTimeout(() => resetBtnContainerPosition(lTSBtnContainer), 5000);
-    });
-});
-
 /*----------------------Zone radioButton messages------------------------*/
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -381,6 +345,55 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+
+/*----------------------Zone radioButton create table services------------------------*/
+
+document.addEventListener('DOMContentLoaded', function () {
+    const rbRestTable = document.getElementById('rbRestTable');
+    const rbAccomoTable = document.getElementById('rbAccomoTable');
+    const rbTransTable = document.getElementById('rbTransTable');
+
+
+    const restTable = document.getElementById('restTable');
+    const accomoTable = document.getElementById('accomoTable');
+    const transTable = document.getElementById('transTable');
+
+
+    // Fonction pour masquer tous les sections
+    function hideAllSections() {
+        const sections = [restTable, accomoTable, transTable];
+        sections.forEach(section => {
+            section.style.display = 'none';
+        });
+    }
+    // Fonction pour afficher un formulaire spécifique
+    function showSection(section) {
+        hideAllSections();
+        section.style.display = 'block';
+        section.classList.add('fade-in-bottom'); // Ajout de la classe pour l'animation fade-in
+    }
+
+    // Par défaut, masquer tous les formulaires
+    hideAllSections();
+
+    // Fonction d'affichage par défaut de AllMsg
+    function showSectionActive() {
+        showSection(restTable);
+        allMsg.checked = true;
+    }
+    showSectionActive();
+
+    // Gestion des événements de clic sur les radios
+    rbRestTable.addEventListener('click', () => {
+        showSection(restTable);
+    });
+    rbAccomoTable.addEventListener('click', () => {
+        showSection(accomoTable);
+    });
+    rbTransTable.addEventListener('click', () => {
+        showSection(transTable);
+    });
+});
 
 /*--------------------------------Zone de suppression des tr du tableau---------------------------------*/
 
