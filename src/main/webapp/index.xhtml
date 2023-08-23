@@ -46,6 +46,20 @@
 
 		<!-- Vidéos en arrière-plan pour le slider -->
 
+<<<<<<< HEAD
+=======
+
+		<video class="video-slide active" src="media/videos/videoPlage.mp4"
+			autoplay="autoplay" muted="muted" loop="loop"></video>
+		<video class="video-slide" src="media/videos/videoMarche.mp4"
+			autoplay="autoplay" muted="muted" loop="loop"></video>
+		<video class="video-slide" src="media/videos/videoDesert.mp4"
+			autoplay="autoplay" muted="muted" loop="loop"></video>
+		<video class="video-slide" src="media/videos/videoRoute.mp4"
+			autoplay="autoplay" muted="muted" loop="loop"></video>
+		<video class="video-slide" src="media/videos/videoNature.mp4"
+			autoplay="autoplay" muted="muted" loop="loop"></video>
+>>>>>>> 7ce9fc1c295264b5af202f3cb3ab858bbd4a1e3b
 
 
 		<video class="video-slide active" src="media/videos/videoPlage.mp4"
@@ -227,6 +241,27 @@
 				</button>
 			</div>
 		</div>
+		<ui:repeat value="#{journeyControllerBean.allJourneys}" var="journey">
+			<div class="lTSContainer">
+				<div class="tPCard">
+					<img src="#{journey.imagePath}" alt="Image du Voyage"
+						style="max-width: 100%;" />
+					<div class="infoTPCard">
+						<h2>#{journey.name}</h2>
+						<h3>#{journey.country}</h3>
+					</div>
+					<div class="infoSupTPCard">
+						<h3>Description: #{journey.description}</h3>
+						<!-- Autres détails à afficher -->
+					</div>
+				</div>
+				<div class="lTSBtnContainer">
+					<h:commandButton value="Supprimer"
+						action="#{journeyControllerBean.deleteJourney(journey.id)}" />
+
+				</div>
+			</div>
+		</ui:repeat>
 	</section>
 
 	<!-- DEBUT DES AVIS CLIENTS-->

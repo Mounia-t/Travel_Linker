@@ -3,10 +3,12 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
-	
-<f:view>
-<h:head>
+
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<head>
+
 <meta charset="UTF-8" />
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -15,6 +17,12 @@
 	rel="stylesheet" />
 <link rel="stylesheet" href="./css/dashboardTP.css" />
 <title>Dashboard</title>
+
+
+</head>
+
+<body>
+
         <style>
             body {
                 background-color: #{sessionBean.getCurrentTravelPlanner().getTemplate().backgroundColor};
@@ -27,9 +35,6 @@
     }
 </script>
         
-</h:head>
-
-<h:body>
 
 	<h:inputHidden id="defaultSection"
 		value="#{dashboardController.section}" />
@@ -62,9 +67,11 @@
 				</a> <a href="#" id="historyBtn"> <span class="material-icons-sharp">
 						event </span>
 					<h3>Réservations</h3>
+
 				</a> <a href="#" id="analyticsBtn"> <span
-					class="material-icons-sharp"> insights </span>
-					<h3>Analytics</h3>
+					class="material-icons-sharp"> attach_money</span>
+					<h3>Services</h3>
+
 				</a> <a href="#" id="messagesBtn"> <span
 					class="material-icons-sharp"> mail </span>
 					<h3>Messages</h3>
@@ -74,11 +81,12 @@
 					<h3>Retour à l'accueil</h3>
 				</a>
 				<h:form>
-					<a href="#"> <span class="material-icons-sharp"> logout
-					</span>
+					<a href="#" class="logoutStyle"> <span
+						class="material-icons-sharp"> logout </span>
 						<h3>
 							<h:commandButton value="Déconnexion"
-								action="#{loginControllerBean.logout()}" />
+								action="#{loginControllerBean.logout()}"
+								class="noBackgroundLogout" />
 						</h3>
 
 					</a>
@@ -102,6 +110,7 @@
 				<div class="visits">
 					<div class="status">
 						<div class="info">
+
 							<h3>Nombre d'abonnement</h3>
 							<h1>24k</h1>
 						</div>
@@ -156,80 +165,20 @@
 		</main>
 		<!-- Main Content -->
 		<main id="mainAnalytics" style="display: none;">
-			<h1>Analytics</h1>
-			<!-- Analyses -->
-			<div class="analyse">
-				<div class="sales">
-					<div class="status">
-						<div class="info">
-							<h3>Ventes totales</h3>
-							<h1>1M€</h1>
-						</div>
-					</div>
+			<h1>Liste des services</h1>
+			<div class="new-users flexingRB">
+				<div class="radio-inputs">
+					<label class="radio"> <input type="radio" name="radio"
+						id="rbRestaurantList" /><span class="name">Restaurant</span>
+					</label> <label class="radio"> <input type="radio" name="radio"
+						id="rbAccomoList" /><span class="name">Hébergement</span>
+					</label> <label class="radio"> <input type="radio" name="radio"
+						id="rbTransList" /><span class="name">Transport</span>
+					</label>
 				</div>
-				<div class="visits">
-					<div class="status">
-						<div class="info">
-							<h3>Type d'abonnement</h3>
-							<h1>Premium</h1>
-						</div>
-					</div>
 				</div>
-				<div class="sales">
-					<div class="status">
-						<div class="info">
-							<h3>Nombre de réservations</h3>
-							<h1>42</h1>
-						</div>
-					</div>
-				</div>
-				<div class="visits">
-					<div class="status">
-						<div class="info">
-							<h3>Nombre de partenaires</h3>
-							<h1>
-								<h:outputText
-									value="#{accountControllerBean.countTotalPartners()}" />
-							</h1>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- End of Analyses -->
-
-			<!-- New Users Section -->
-			<div class="new-users">
-				<h2>Nouve</h2>
-				<div class="user-list">
-					<div class="user">
-						<img src="images/profile-2.jpg" />
-						<h2>Jack</h2>
-						<p>54 Min Ago</p>
-					</div>
-					<div class="user">
-						<img src="images/profile-3.jpg" />
-						<h2>Amir</h2>
-						<p>3 Hours Ago</p>
-					</div>
-					<div class="user">
-						<img src="images/profile-4.jpg" />
-						<h2>Ember</h2>
-						<p>6 Hours Ago</p>
-					</div>
-					<div class="user">
-						<img src="images/plus.png" />
-						<h2>More</h2>
-						<p>New User</p>
-					</div>
-				</div>
-			</div>
-			<!-- End of New Users Section -->
-
-			<!-- Recent Orders Table -->
-
 
 		</main>
-
 		<!-- End of MainAnalytics Content -->
 
 		<!-- Start of MainMessages Content -->
@@ -291,7 +240,7 @@
 										<td><h:form>
 												<h:commandButton class="readBtn" value="Lire"
 													id="readAllMsgBtn"
-													action="#{conversationController.selectMessage(message)}">
+													action="#{conversationController.displaySelectMessage(message)}">
 												</h:commandButton>
 											</h:form></td>
 									</tr>
@@ -437,7 +386,7 @@
 										<td>#{message.messageResume}</td>
 										<td><h:commandButton class="readBtn" value="Lire"
 												id="readSentMsgBtn"
-												action="#{conversationController.selectMessage(message)}">
+												action="#{conversationController.displaySelectMessage(message)}">
 											</h:commandButton></td>
 
 									</tr>
@@ -462,23 +411,36 @@
 									id="sentMsg" /> <span class="name">Administration</span>
 								</label>
 							</div>
-							<h:form>
-								<h:inputText id="inputMessageDest"
-									placeholder="Choisir un destinataire..." required="true"
-									value="#{conversationController.accVM.recepientEmail}" />
-								<h:inputText id="inputMessageResume"
-									placeholder="Écrire un titre..." required="true"
-									value="#{conversationController.accVM.messageResume}" />
-								<h:inputText value="#{conversationController.accVM.content}"
-									id="inputMessageDetails"
-									placeholder="Écrire le corps du message..." required="true" />
+
+							<div class="user-listWriteMSGSection">
+								<h:form>
+
+									<div class="inputFormLabel">
+										<h:outputLabel value="Destinataire"
+											styleClass="placeholder label" />
+										<h:inputText
+											value="#{conversationController.accVM.recepientEmail}"
+											required="true" class="inputForm" />
+									</div>
+
+									<div class="inputFormLabel">
+										<h:outputLabel value="Objet" styleClass="placeholder label" />
+										<h:inputText
+											value="#{conversationController.accVM.messageResume}"
+											required="true" class="inputForm" />
+									</div>
+									<div class="inputFormLabel">
+										<h:outputLabel value="Message"
+											styleClass="placeholderTA label" />
+										<h:inputTextarea rows="5" cols="40" class="textAreaWriteMSG" />
+									</div>
 
 
-
-								<h:commandButton
-									action="#{conversationController.sendMessage()}"
-									value="Envoyer" />
-							</h:form>
+									<h:commandButton
+										action="#{conversationController.sendMessage()}"
+										value="Envoyer" />
+								</h:form>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -513,12 +475,24 @@
 				<h2>Mes informations personnelles</h2>
 				<h:form action="post">
 					<div class="user-listMessages" style="display: block;">
-						<h:inputText id="inputName"
-							value="#{loginControllerBean.userLastName}" />
-						<h:inputText id="inputFirstName"
-							value="#{loginControllerBean.userFirstName}" />
-						<h:inputText id="inputMail"
-							value="#{loginControllerBean.userEmail}" />
+
+
+						<div class="inputFormLabel">
+							<h:outputLabel value="Nom" styleClass="placeholder label" />
+							<h:inputText value="#{loginControllerBean.userLastName}"
+								required="true" class="inputForm" />
+						</div>
+						<div class="inputFormLabel">
+							<h:outputLabel value="Prénom" styleClass="placeholder label" />
+							<h:inputText value="#{loginControllerBean.userFirstName}"
+								required="true" class="inputForm" />
+						</div>
+
+						<div class="inputFormLabel">
+							<h:outputLabel value="Email" styleClass="placeholder label" />
+							<h:inputText value="#{loginControllerBean.userEmail}"
+								required="true" class="inputForm" />
+						</div>
 
 					</div>
 					<div class="new-usersButton">
@@ -553,8 +527,9 @@
 				<h2>Tous les partenaires</h2>
 				<h:form>
 					<div id="searchUsersZone">
-						<h:inputText value="#{accountControllerBean.searchKeyword}"
-							placeholder="Rechercher un partenaire..." />
+						<h:inputText type="search"
+							value="#{accountControllerBean.searchKeyword}"
+							placeholder="Rechercher un partenaire..." class="inputSearch" />
 						<h:commandButton value="">
 							<span class="material-icons-sharp">search</span>
 							<f:ajax execute="@form" render="userList"
@@ -591,46 +566,44 @@
 					</div>
 					<div id="ListTravelSection">
 						<div class="lTSContainer">
-							<ui:repeat value="#{journeyControllerBean.allJourneys}"
+							<ui:repeat value="#{journeyControllerBean.displayTravelPlaJournyes()}"
 								var="journey">
-								<div class="lTSContainer">
-									<div class="tPCard">
-										<img src="#{journey.imagePath}" alt="Image du Voyage"
-											style="max-width: 100%;" />
-										<div class="infoTPCard">
-											<h2>#{journey.name}</h2>
-											<h3>#{journey.country}</h3>
-										</div>
-										<div class="infoSupTPCard">
-											<h3>Description: #{journey.description}</h3>
 
-										</div>
+								<div class="tPCard">
+									<img src="#{journey.imagePath}" alt="Image du Voyage" />
+									<div class="infoTPCard">
+										<h2>#{journey.name}</h2>
+										<h3>#{journey.country}</h3>
 									</div>
-									<div class="lTSBtnContainer">
-										<h:form>
-											<h:commandButton value="Supprimer"
-												action="#{journeyControllerBean.deleteJourney(journey.id)}" />
-										</h:form>
+									<div class="infoSupTPCard">
+										<h3>Description: #{journey.description}</h3>
+
 									</div>
+									<h:form>
+										<h:commandButton value=""
+											action="#{journeyControllerBean.deleteJourney(journey.id)}"
+											class="deleteCrossBtn">
+										</h:commandButton>
+									</h:form>
 								</div>
 							</ui:repeat>
 						</div>
 					</div>
 					<div id="createTravelSection">
-						<div class="user-listMessages">
-							<h:form enctype="multipart/form-data">
+						<h:form enctype="multipart/form-data">
+							<div class="user-listMessages">
+
 								<h2>Proposez votre voyage</h2>
 
 								<div class="inputFormLabel">
 
-
-									<h:inputText type="text" id="inputName"
-										value="#{journeyControllerBean.journeyVM.country}"
-										required="true" />
-
+									<h:outputLabel value="Pays" styleClass="placeholder label" />
+									<h:inputText value="#{journeyControllerBean.journeyVM.country}"
+										required="true" class="inputForm" />
 								</div>
 								<div class="inputFormLabel">
-									<h:outputLabel value="Titre:" styleClass="placeholder label" />
+									<h:outputLabel value="Titre" styleClass="placeholder label" />
+
 									<h:inputText value="#{journeyControllerBean.journeyVM.name}"
 										required="true" class="inputForm" />
 								</div>
@@ -649,7 +622,9 @@
 								</div>
 
 								<div class="inputFormLabel">
-									<h:outputLabel value="Nombres de voyageurs acceptés"
+
+									<h:outputLabel value="Nombres de voyageurs"
+
 										styleClass="placeholder label" />
 									<h:inputText
 										value="#{journeyControllerBean.journeyVM.numberOfTravellers}"
@@ -658,43 +633,269 @@
 
 								<div class="inputFormLabel">
 
-									<h:outputLabel value="Date de Début du Voyage:" />
+									<h:outputLabel value="Date de Début du Voyage"
+										styleClass="placeholder label" />
 									<h:inputText id="startDate"
 										value="#{journeyControllerBean.journeyVM.startDate}"
-										required="true">
+										required="true" class="inputForm">
 										<f:convertDateTime pattern="dd/MM/yyyy" />
 									</h:inputText>
-
-									<h:outputLabel value="Date de Fin du Voyage:" />
-									<h:inputText id="endDate"
-										value="#{journeyControllerBean.journeyVM.endDate}"
-										required="true">
-										<f:convertDateTime pattern="dd/MM/yyyy" />
-									</h:inputText>
-
-
-									<div class="inputFormLabel">
-										<label for="imageFile">Sélectionnez une image :</label>
-										<h:inputFile id="imageFile"
-											value="#{journeyControllerBean.imageFile}" accept="image/*" />
-									</div>
-
 
 								</div>
-								<h:commandButton action="#{journeyControllerBean.clear()}"
-									value="Clear" />
+								<div class="inputFormLabel">
+									<h:outputLabel value="Date de Fin du Voyage"
+										styleClass="placeholder label" />
+									<h:inputText id="endDate" class="inputForm"
+										value="#{journeyControllerBean.journeyVM.endDate}"
+										required="true" label="date de fin">
+										<f:convertDateTime pattern="dd/MM/yyyy" />
+									</h:inputText>
+								</div>
+
+								<div class="inputFormLabel">
+									<h:outputLabel value="Sélectionner une image" for="imageFile"
+										styleClass="placeholder label" />
+									<h:inputFile id="imageFile" class="inputForm"
+										value="#{journeyControllerBean.imageFile}" accept="image/*" />
+								</div>
+
+								<div class="radio-inputs">
+						<label class="radio"> <input type="radio" name="radio"
+							id="rbRestTable" /> <span class="name">Restaurant</span>
+						</label> <label class="radio"> <input type="radio" name="radio"
+							id="rbAccomoTable" /> <span class="name">Hébergement</span>
+						</label> 
+						<label class="radio"> <input type="radio" name="radio"
+							id="rbTransTable" /> <span class="name">Transport</span>
+						</label>
+					</div>
+					
+								<div class="table-container" id="restTable">
+									<table class="createServicesTable">
+										<thead>
+											<tr>
+												<th>Nom du restaurant</th>
+												<th>Type de restaurant</th>
+												<th>Description</th>
+												<th>Prix</th>
+												<th>Action</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>125</td>
+												<td>Paris</td>
+												<td>John Doe</td>
+												<td>$1000</td>
+												<td><h:commandLink styleClass="material-icons-sharp edit"
+												action="#{serviceControllerBean.setRestaurantVm(restaurant)}"
+												update=":editFormRestaurant">
+            add
+        </h:commandLink></td>
+											</tr>
+											<tr>
+												<td>1252</td>
+												<td>Tokyo</td>
+												<td>Jane Smith</td>
+												<td>$1500</td>
+												<td><h:commandLink styleClass="material-icons-sharp edit"
+												action="#{serviceControllerBean.setRestaurantVm(restaurant)}"
+												update=":editFormRestaurant">
+            add
+        </h:commandLink></td>
+											</tr>
+											<tr>
+												<td>Voyage 3</td>
+												<td>London</td>
+												<td>Michael Johnson</td>
+												<td>$1200</td>
+												<td><h:commandLink styleClass="material-icons-sharp edit"
+												action="#{serviceControllerBean.setRestaurantVm(restaurant)}"
+												update=":editFormRestaurant">
+            add
+        </h:commandLink></td>
+											</tr>
+											<tr>
+												<td>1854</td>
+												<td>Rome</td>
+												<td>Emily Brown</td>
+												<td>$1300</td>
+												<td><h:commandLink styleClass="material-icons-sharp edit"
+												action="#{serviceControllerBean.setRestaurantVm(restaurant)}"
+												update=":editFormRestaurant">
+            add
+        </h:commandLink></td>
+											</tr>
+											<tr>
+												<td>965</td>
+												<td>Sydney</td>
+												<td>Liam Davis</td>
+												<td>$1800</td>
+												<td><h:commandLink styleClass="material-icons-sharp edit"
+												action="#{serviceControllerBean.setRestaurantVm(restaurant)}"
+												update=":editFormRestaurant">
+            add
+        </h:commandLink></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								
+								<div class="table-container" id="accomoTable">
+									<table class="createServicesTable">
+										<thead>
+											<tr>
+												<th>Nom de l'hébergement</th>
+												<th>Type d'hébergement</th>
+												<th>Description</th>
+												<th>Prix</th>
+												<th>Action</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>125</td>
+												<td>Paris</td>
+												<td>John Doe</td>
+												<td>$1000</td>
+												<td><h:commandLink styleClass="material-icons-sharp edit"
+												action="#{serviceControllerBean.setRestaurantVm(restaurant)}"
+												update=":editFormRestaurant">
+            add
+        </h:commandLink></td>
+											</tr>
+											<tr>
+												<td>1252</td>
+												<td>Tokyo</td>
+												<td>Jane Smith</td>
+												<td>$1500</td>
+												<td><h:commandLink styleClass="material-icons-sharp edit"
+												action="#{serviceControllerBean.setRestaurantVm(restaurant)}"
+												update=":editFormRestaurant">
+            add
+        </h:commandLink></td>
+											</tr>
+											<tr>
+												<td>Voyage 3</td>
+												<td>London</td>
+												<td>Michael Johnson</td>
+												<td>$1200</td>
+												<td><h:commandLink styleClass="material-icons-sharp edit"
+												action="#{serviceControllerBean.setRestaurantVm(restaurant)}"
+												update=":editFormRestaurant">
+            add
+        </h:commandLink></td>
+											</tr>
+											<tr>
+												<td>1854</td>
+												<td>Rome</td>
+												<td>Emily Brown</td>
+												<td>$1300</td>
+												<td><h:commandLink styleClass="material-icons-sharp edit"
+												action="#{serviceControllerBean.setRestaurantVm(restaurant)}"
+												update=":editFormRestaurant">
+            add
+        </h:commandLink></td>
+											</tr>
+											<tr>
+												<td>965</td>
+												<td>Sydney</td>
+												<td>Liam Davis</td>
+												<td>$1800</td>
+												<td><h:commandLink styleClass="material-icons-sharp edit"
+												action="#{serviceControllerBean.setRestaurantVm(restaurant)}"
+												update=":editFormRestaurant">
+            add
+        </h:commandLink></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								
+								<div class="table-container" id="transTable">
+									<table class="createServicesTable">
+										<thead>
+											<tr>
+												<th>Nom du transporteur</th>
+												<th>Type de transport</th>
+												<th>Description</th>
+												<th>Prix</th>
+												<th>Action</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>125</td>
+												<td>Paris</td>
+												<td>John Doe</td>
+												<td>$1000</td>
+												<td><h:commandLink styleClass="material-icons-sharp edit"
+												action="#{serviceControllerBean.setRestaurantVm(restaurant)}"
+												update=":editFormRestaurant">
+            add
+        </h:commandLink></td>
+											</tr>
+											<tr>
+												<td>1252</td>
+												<td>Tokyo</td>
+												<td>Jane Smith</td>
+												<td>$1500</td>
+												<td><h:commandLink styleClass="material-icons-sharp edit"
+												action="#{serviceControllerBean.setRestaurantVm(restaurant)}"
+												update=":editFormRestaurant">
+            add
+        </h:commandLink></td>
+											</tr>
+											<tr>
+												<td>Voyage 3</td>
+												<td>London</td>
+												<td>Michael Johnson</td>
+												<td>$1200</td>
+												<td><h:commandLink styleClass="material-icons-sharp edit"
+												action="#{serviceControllerBean.setRestaurantVm(restaurant)}"
+												update=":editFormRestaurant">
+            add
+        </h:commandLink></td>
+											</tr>
+											<tr>
+												<td>1854</td>
+												<td>Rome</td>
+												<td>Emily Brown</td>
+												<td>$1300</td>
+												<td><h:commandLink styleClass="material-icons-sharp edit"
+												action="#{serviceControllerBean.setRestaurantVm(restaurant)}"
+												update=":editFormRestaurant">
+            add
+        </h:commandLink></td>
+											</tr>
+											<tr>
+												<td>965</td>
+												<td>Sydney</td>
+												<td>Liam Davis</td>
+												<td>$1800</td>
+												<td><h:commandLink styleClass="material-icons-sharp edit"
+												action="#{serviceControllerBean.setRestaurantVm(restaurant)}"
+												update=":editFormRestaurant">
+            add
+        </h:commandLink></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
 
 								<div class="form-group">
+									<h:commandButton action="#{journeyControllerBean.clear()}"
+										value="Vider les champs" class="createAdmin" />
+
+
 									<h:commandButton action="#{journeyControllerBean.addJourney()}"
-										value="Create" />
+										value="Créer un voyage" class="createAdmin" />
 								</div>
-
-
-							</h:form>
-						</div>
+								</div>
+						</h:form>
 					</div>
-
 				</div>
+
 			</div>
 		</main>
 
@@ -834,10 +1035,7 @@
 			<div class="expDateZone">
 				<div class="expZone">
 					<h2>Expéditeur :</h2>
-
-					<h:outputText
-						value="#{conversationController.selectedMessage.senderEmail}" />
-
+					<h2>#{conversationController.selectedMessage.senderEmail}</h2>
 				</div>
 				<div class="dateTimeMsg">
 					<h3>{DateTime}</h3>
@@ -845,16 +1043,11 @@
 			</div>
 			<div class="objectZone">
 				<h2>Objet :</h2>
-
-				<h:outputText
-					value="#{conversationController.selectedMessage.messageResume}" />
-
+				<h2>#{conversationController.selectedMessage.messageResume}</h2>
 			</div>
 			<div class="msgZone">
 				<h2>Message :</h2>
-
-				<h:outputText
-					value="#{conversationController.selectedMessage.content}" />
+				<h3>#{conversationController.selectedMessage.content}</h3>
 
 			</div>
 			<button class="popup-close-btn" id="popupCloseButton">
@@ -899,7 +1092,6 @@
 
 
 	<script src="./js/dashboardTP.js"></script>
-</h:body>
+</body>
 
-</f:view>
 </html>

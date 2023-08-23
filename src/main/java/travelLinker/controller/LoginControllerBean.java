@@ -95,10 +95,9 @@ public class LoginControllerBean implements Serializable {
 				redirectionUrl = "dashboardTP.xhtml";
 			} else {
 				// Redirection par défaut (par exemple, si le rôle n'est pas géré)
-				redirectionUrl = "index.xhtml"; // Remplacez "default-dashboard.xhtml" par l'URL de la page de tableau
+				redirectionUrl = "SubscriptionTP.xhtml"; // Remplacez "default-dashboard.xhtml" par l'URL de la page de tableau
 												// de bord par défaut
 			}
-System.out.println(role);
 			return redirectionUrl;
 		} else {
 			// Compte non trouvé dans la base de données

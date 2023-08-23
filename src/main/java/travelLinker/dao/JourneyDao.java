@@ -8,6 +8,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import travelLinker.entity.Journey;
+import travelLinker.entity.Service;
+import travelLinker.entity.Task;
+import travelLinker.utils.SessionUtils;
 import travelLinker.viewModel.JourneyViewModel;
 
 @Stateless
@@ -20,6 +23,8 @@ public class JourneyDao {
 
 	    try {
 	        Journey journeybean = new Journey();
+	        Long accountId = SessionUtils.getUserId();
+	        journeybean.setAccountId(accountId);
 	        journeybean.setNumberOfTravellers(journeyVM.getNumberOfTravellers());
 	        journeybean.setPrice(journeyVM.getPrice());
 	        journeybean.setLocation(journeyVM.getLocation());
@@ -81,7 +86,17 @@ public class JourneyDao {
 		return entityManager.createQuery("SELECT j FROM Journey j", Journey.class).getResultList();
 	}
 
-	public Journey getJourneyById(Long journeyId) {
-	    return entityManager.find(Journey.class, journeyId);
+	public List<Journey>getTravelPlannerJourneys(){
+		Long accountId = SessionUtils.getUserId();
+		List<Journey> ListJourney=entityManager.createQuery("SELECT j FROM Journey j WHERE j.accountId = :accountId", Journey.class)
+	            .setParameter("accountId", accountId)
+	            .getResultList();
+		System.out.println(ListJourney);
+	    return ListJourney;
 	}
-}
+	
+		
+	}
+		
+	
+

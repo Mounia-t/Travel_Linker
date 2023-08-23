@@ -24,6 +24,7 @@ public class Journey {
 	private Date startDate;
 	private Date endDate;
 	private String imagePath;
+	
 
 
 
@@ -109,7 +110,6 @@ public class Journey {
 		this.description = description;
 	}
 	
-
 
 }
 
