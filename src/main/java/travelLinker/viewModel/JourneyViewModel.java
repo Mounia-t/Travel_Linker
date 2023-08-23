@@ -11,6 +11,17 @@ public class JourneyViewModel {
 	private String location;
 	private Date startDate;
 	private Date endDate;
+	private String Description;
+	private String imagePath;
+	private String name;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	@Override
 	public String toString() {
@@ -30,6 +41,27 @@ public class JourneyViewModel {
 		builder.append("]");
 		return builder.toString();
 	}
+	
+	public String getImagePath() {
+		return imagePath;
+	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+
+	
+	public String getDescription() {
+		return Description;
+	}
+
+
+
+	public void setDescription(String description) {
+		Description = description;
+	}
+
+
 
 	public String getCountry() {
 		return country;

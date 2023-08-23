@@ -26,7 +26,6 @@ public class JourneyDao {
 	        journeybean.setCountry(journeyVM.getCountry());
 	        journeybean.setStartDate(journeyVM.getStartDate());
 	        journeybean.setEndDate(journeyVM.getEndDate());
-	        journeybean.setName(journeyVM.getName());
 	        journeybean.setDescription(journeyVM.getDescription());
 	        journeybean.setImagePath(journeyVM.getImagePath()); // Utilisez le chemin de l'image
 
@@ -63,7 +62,6 @@ public class JourneyDao {
 		if (journey != null) {
 
 			journey.setNumberOfTravellers(journeyViewModel.getNumberOfTravellers());
-			journey.setName(journeyViewModel.getName());
 			journey.setPrice(journeyViewModel.getPrice());
 			journey.setCountry(journeyViewModel.getCountry());
 			journey.setLocation(journeyViewModel.getLocation());

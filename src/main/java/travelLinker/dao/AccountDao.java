@@ -29,34 +29,6 @@ public class AccountDao {
 	private EntityManager entityManager;
 
 
-	/*public Long insert(AccountViewModel accountVM) {
-		try {
-			Account accountbean = createAccount(accountVM);
-
-			if (accountVM.getRole() == RoleUser.Customer) {
-				Customer customer = createCustomer(accountVM);
-				customer.setAccount(accountbean);
-				entityManager.persist(customer);
-			} else if (accountVM.getRole() == RoleUser.TravelPlanner) {
-				TravelPlanner travelPlanner = createTravelPlanner(accountVM, null);
-				travelPlanner.setAccount(accountbean);
-				entityManager.persist(travelPlanner);
-			} else if (accountVM.getRole() == RoleUser.Partner) {
-				Partner partner = createPartner(accountVM);
-				partner.setAccount(accountbean);
-				entityManager.persist(partner);
-			}
-
-			entityManager.persist(accountbean);
-			entityManager.flush(); // Flush to synchronize changes
-
-			return accountbean.getId();
-		} catch (Exception e) {
-			e.printStackTrace(); // Handle exceptions
-			return null;
-		}
-	}*/
-
 	public Account createAccount(AccountViewModel accountVM) {
 		Account accountbean = new Account();
 		accountbean.setEmail(accountVM.getEmail());
@@ -105,7 +77,7 @@ public class AccountDao {
 
 	    try {
 	        // Redirect to subscriptionTP.xhtml
-	        externalContext.redirect("SubscriptionTP.xhtml");
+	        externalContext.redirect("dashboardTP.xhtml");
 	    } catch (IOException e) {
 	        // Handle the exception if redirection fails
 	        e.printStackTrace();

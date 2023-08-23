@@ -3,9 +3,6 @@ package travelLinker.utils;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
-import travelLinker.dao.AccountDao;
-import travelLinker.entity.Account;
 import travelLinker.entity.RoleUser;
 
 public class SessionUtils {
@@ -58,31 +55,31 @@ public class SessionUtils {
 
 	public static String getUserFirstName() {
 		HttpSession session = getSession();
-		return session.getAttribute("firstName").toString();
+		return (String) session.getAttribute("firstName");
 	}
 
 	public static String getUserLastName() {
 		HttpSession session = getSession();
-		return session.getAttribute("lastName").toString();
+		return (String) session.getAttribute("lastName");
 	}
 
 	public static String getUserAddress() {
 		HttpSession session = getSession();
-		return session.getAttribute("address").toString();
+		return (String) session.getAttribute("address");
 	}
 	
 	public static String getUserPhone() {
 		HttpSession session = getSession();
-		return session.getAttribute("phoneNumber").toString();
+		return (String) session.getAttribute("phoneNumber");
 	}
 	
 	public static String getUserSiret() {
 		HttpSession session = getSession();
-		return session.getAttribute("siret").toString();
+		return (String) session.getAttribute("siret");
 	}
 	public static String getUserCompany() {
 		HttpSession session = getSession();
-		return session.getAttribute("companyName").toString();
+		return (String) session.getAttribute("companyName");
 	}
 
 }

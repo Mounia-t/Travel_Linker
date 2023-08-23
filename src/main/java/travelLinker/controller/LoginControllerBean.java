@@ -89,7 +89,7 @@ public class LoginControllerBean implements Serializable {
 				// Redirection vers le tableau de bord des clients
 				redirectionUrl = "DashboardCustomer.xhtml"; // Remplacez "dashboard-customer.xhtml" par l'URL du tableau
 															// de bord des clients
-			} else if (role == RoleUser.TravelPlanner && account.getSubscription()!=null) {
+			} else if (role == RoleUser.TravelPlanner) {
 
 				// Redirection vers le tableau de bord des clients
 				redirectionUrl = "dashboardTP.xhtml";
