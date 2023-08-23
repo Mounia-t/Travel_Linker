@@ -409,7 +409,7 @@ section{
 }
 .title-package h1 span{
   background: linear-gradient(45deg, #84fab0, #8fd3f4);
-  background-clip: text;
+  -webkit-background-clip: text;
   color: transparent;
  
 }
@@ -637,7 +637,7 @@ text-shadow: 1px 1px 0 rgb(0, 0, 0),
 
 .client span{
   background: linear-gradient(45deg, #84fab0, #8fd3f4);
-  background-clip: text;
+  -webkit-background-clip: text;
   color: transparent;
 }
 
@@ -696,7 +696,7 @@ text-shadow: 1px 1px 0 rgb(0, 0, 0),
 
 .name-client span{
   background: linear-gradient(45deg, #84fab0, #8fd3f4);
-  background-clip: text;
+  -webkit-background-clip: text;
   color: transparent;
   font-weight: bold;
   /* color: #979797; */
@@ -776,7 +776,7 @@ text-shadow: 1px 1px 0 rgb(0, 0, 0),
 
 .contact span{
   background: linear-gradient(45deg, #84fab0, #8fd3f4);
-  background-clip: text;
+  -webkit-background-clip: text;
   color: transparent;
 }
 

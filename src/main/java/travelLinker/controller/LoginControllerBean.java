@@ -5,10 +5,13 @@ import java.io.Serializable;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
+
+import org.hibernate.validator.internal.xml.GetterType;
 
 import travelLinker.dao.LoginDao;
 import travelLinker.entity.Account;
@@ -17,6 +20,7 @@ import travelLinker.utils.SessionUtils;
 import travelLinker.viewModel.AccountViewModel;
 
 @ManagedBean
+@SessionScoped
 
 //Serializable : les instances de cette classe peuvent être sérialisées 
 //(converties en un flux d'octets) pour être stockées dans un flux, tel qu'une session HTTP.
@@ -28,6 +32,7 @@ public class LoginControllerBean implements Serializable {
 	private AccountViewModel accountVM = new AccountViewModel();
 	@Inject
 	private LoginDao loginDao;
+	private boolean connected;
 
 	public LoginControllerBean() {
 	}
@@ -40,11 +45,12 @@ public class LoginControllerBean implements Serializable {
 
 		// Si les informations de connexion sont valides
 		if (valid) {
+			connected=true;
 			// Récupérer l'URL de redirection
 			String redirectionUrl = redirectionDashboard();
 
 			// Recuperer les données de la session
-			SessionUtils.writeInSession(account.getId(), account.getEmail(), account.getRole(), account.getFirstName(),
+			SessionUtils.writeInSession(account.getId(), account.getEmail(), true, account.getRole(), account.getFirstName(),
 					account.getLastName());
 	//	SessionUtils.writeInSessionTP(tp.getSiret(), tp.getPhoneNumber(), tp.getCompanyName());
 			;
@@ -68,6 +74,34 @@ public class LoginControllerBean implements Serializable {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	
+	public void setConnected(boolean isConnected) {
+		this.connected = isConnected;
+	}
+
+	public boolean isConnected() {
+        HttpSession session = SessionUtils.getSession();
+        Boolean connected = (Boolean) session.getAttribute("connected");
+        return connected != null && connected;
+    }
+	 
+	public String logout() {
+	    // Récupérer la session
+	    HttpSession session = SessionUtils.getSession();
+
+	    // Supprimer les informations de session
+	    session.invalidate(); // Invalidate the session
+
+	    // Effectuer la redirection vers la page d'accueil après la déconnexion
+	    return "signIn.xhtml?faces-redirect=true";
+	}
+	
+	public void redirectToDashboard() throws IOException {
+	    String redirectionUrl = redirectionDashboard();
+	    ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+	    ec.redirect(redirectionUrl);
 	}
 
 	public String redirectionDashboard() {
@@ -107,12 +141,7 @@ public class LoginControllerBean implements Serializable {
 		}
 	}
 
-	// Méthode pour se déconnecter, invalider la session
-	public String logout() {
-		HttpSession session = SessionUtils.getSession();
-		session.invalidate();
-		return "signIn"; // Rediriger vers la page de connexion
-	}
+
 
 	public String getUserFirstName() {
 		return SessionUtils.getUserFirstName();
@@ -154,5 +183,6 @@ public class LoginControllerBean implements Serializable {
 	public void setLoginDao(LoginDao loginDao) {
 		this.loginDao = loginDao;
 	}
+	
 
 }

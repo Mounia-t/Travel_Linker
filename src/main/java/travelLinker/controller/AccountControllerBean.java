@@ -1,15 +1,7 @@
 package travelLinker.controller;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+
 import java.io.Serializable;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +22,7 @@ import org.primefaces.event.FileUploadEvent;
 import travelLinker.dao.AccountDao;
 
 import travelLinker.entity.Account;
+import travelLinker.entity.Customer;
 import travelLinker.entity.Partner;
 import travelLinker.entity.RoleUser;
 import travelLinker.entity.TravelPlanner;
@@ -53,14 +46,17 @@ public class AccountControllerBean implements Serializable {
     private String searchKeyword;
 
 	
-	
+
+
 	public void addPartner() {
-		accountDao.createPartner(accountVM);
+		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();	   
+		accountDao.createPartner(accountVM, externalContext);
 		accountVM = new AccountViewModel();
 	}
 	
 	public void addCustomer() {
-		accountDao.createCustomer(accountVM);
+		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();	   
+		accountDao.createCustomer(accountVM, externalContext);
 		accountVM = new AccountViewModel();
 	}
 	
@@ -119,6 +115,8 @@ public class AccountControllerBean implements Serializable {
 		return accountDao.getLatestRegisteredPartners(4);
 		
 	}
+	
+	 
 //--------------------------------------------------------
 	
 	public AccountViewModel getAccountVM() {
@@ -136,6 +134,8 @@ public class AccountControllerBean implements Serializable {
 	public void setAccountDao(AccountDao accountDao) {
 		this.accountDao = accountDao;
 	}
+	
+	
 
 //----------------------------------------------------------
 	

@@ -7,8 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import org.hibernate.type.ImageType;
-
 @Entity
 public class Journey {
 	
@@ -24,6 +22,7 @@ public class Journey {
 	private Date startDate;
 	private Date endDate;
 	private String imagePath;
+	private Long accountId;
 	
 
 
@@ -33,7 +32,7 @@ public class Journey {
 			}
 	
 	public Journey(String country, int numberOfTravellers, float price, String location, Date startDate,
-			Date endDate, String Description, String imagePath) {
+			Date endDate, String Description, String imagePath, Long accountId) {
 		super();
 		this.country = country;
 		this.numberOfTravellers = numberOfTravellers;
@@ -45,6 +44,14 @@ public class Journey {
 		this.imagePath=imagePath;
 	}
 	
+
+	public Long getAccountId() {
+		return accountId;
+	}
+
+	public void setAccountId(Long accountId) {
+		this.accountId = accountId;
+	}
 
 	public String getImagePath() {
 		return imagePath;

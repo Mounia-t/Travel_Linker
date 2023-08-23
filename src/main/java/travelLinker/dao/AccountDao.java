@@ -46,7 +46,7 @@ public class AccountDao {
 
 	}
 
-	public Customer createCustomer(AccountViewModel accountVM) {
+	public Customer createCustomer(AccountViewModel accountVM, ExternalContext externalContext) {
 
 		Customer customer = new Customer();
 		customer.setEmail(accountVM.getEmail());
@@ -58,7 +58,17 @@ public class AccountDao {
 		customer.setAccount(accountbean);
 		entityManager.persist(customer);
 		entityManager.flush();
-		return customer;
+		
+		
+		 try {
+		        // Redirect to subscriptionTP.xhtml
+		        externalContext.redirect("index.xhtml");
+		    } catch (IOException e) {
+		        // Handle the exception if redirection fails
+		        e.printStackTrace();
+		    }
+		 
+		 return customer;
 	}
 	
 
@@ -74,10 +84,11 @@ public class AccountDao {
 	    travelPlanner.setAccount(accountbean);
 
 	    entityManager.persist(travelPlanner); // Persist the entity
+	    entityManager.flush();
 
 	    try {
 	        // Redirect to subscriptionTP.xhtml
-	        externalContext.redirect("dashboardTP.xhtml");
+	        externalContext.redirect("index.xhtml");
 	    } catch (IOException e) {
 	        // Handle the exception if redirection fails
 	        e.printStackTrace();
@@ -91,7 +102,7 @@ public class AccountDao {
 	}
 
 
-	public Partner createPartner(AccountViewModel accountVM) {
+	public Partner createPartner(AccountViewModel accountVM, ExternalContext externalContext) {
 
 		Partner partner = new Partner();
 		partner.setFirstName(accountVM.getFirstName());
@@ -105,6 +116,18 @@ public class AccountDao {
 		accountbean.setRole(RoleUser.Partner);
 		partner.setAccount(accountbean);
 		entityManager.persist(partner);
+		 entityManager.flush();
+
+		    try {
+		        // Redirect to subscriptionTP.xhtml
+		        externalContext.redirect("index.xhtml");
+		    } catch (IOException e) {
+		        // Handle the exception if redirection fails
+		        e.printStackTrace();
+		    }
+
+		    
+		
 		return partner;
 	}
 

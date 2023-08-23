@@ -1,15 +1,11 @@
 package travelLinker.dao;
 
 import java.util.List;
-import java.util.Optional;
-
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
+
 import javax.persistence.PersistenceContext;
 import travelLinker.entity.Journey;
-import travelLinker.entity.Service;
-import travelLinker.entity.Task;
 import travelLinker.utils.SessionUtils;
 import travelLinker.viewModel.JourneyViewModel;
 
@@ -24,7 +20,6 @@ public class JourneyDao {
 	    try {
 	        Journey journeybean = new Journey();
 	        Long accountId = SessionUtils.getUserId();
-	        journeybean.setAccountId(accountId);
 	        journeybean.setNumberOfTravellers(journeyVM.getNumberOfTravellers());
 	        journeybean.setPrice(journeyVM.getPrice());
 	        journeybean.setLocation(journeyVM.getLocation());

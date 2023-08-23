@@ -19,16 +19,18 @@ public class SessionUtils {
 	}
 
 	// Écrit des informations dans la session
-	public static void writeInSession(Long accountId, String email, RoleUser role, String lastName, String firstName
+	public static void writeInSession(Long accountId, String email, boolean connected, RoleUser role, String lastName, String firstName
 			) {
 		getSession().setAttribute("accountId", accountId);
 		getSession().setAttribute("email", email);
 		getSession().setAttribute("role", role);
 		getSession().setAttribute("lastName", lastName);
 		getSession().setAttribute("firstName", firstName);
+		getSession().setAttribute("connected", connected);
 
 	}
 	public static void writeInSessionTP(String phoneNumber, String siret, String companyName) {
+		
 		getSession().setAttribute("siret", siret);
 		getSession().setAttribute("companyName", companyName);
 		getSession().setAttribute("phoneNumber", phoneNumber);

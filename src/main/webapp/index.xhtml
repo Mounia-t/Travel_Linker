@@ -28,16 +28,16 @@
 
 <body>
 	<header>
-		<a href="#" class="brand">Travel linker</a>
+		<a href="index.xhtml" class="brand">Travel linker</a>
 		<div class="menu-btn"></div>
 		<!-- Bouton de menu (hamburger) -->
 		<div class="navigation">
 			<div class="navigation-items">
-				<a href="index.xhtml">Accueil</a> <a href="#">A Propos de nous</a> <a href="#">Services</a>
+				<a href="index.xhtml">Accueil</a> <a href="categorie.xhtml">Nos offres</a> <a href="#{loginControllerBean.redirectionDashboard()}" id="profileLink">Mon profil</a>
 
-				<a href="#contact">Contact</a> <a href="Login.xhtml">Connexion</a>
-				<a href="signIn.xhtml">Inscription</a>
-
+				<a href="#contact">Contact</a> 
+				<a href="signIn.xhtml" action="#{loginControllerBean.connected}">Inscription/Connexion</a>
+				<a href="signIn.xhtml" action="#{loginControllerBean.logout()}">Déconnexion</a>
 			</div>
 		</div>
 	</header>
@@ -46,10 +46,9 @@
 
 		<!-- Vidéos en arrière-plan pour le slider -->
 
-<<<<<<< HEAD
-=======
 
-		<video class="video-slide active" src="media/videos/videoPlage.mp4"
+
+	<!-- <video class="video-slide active" src="media/videos/videoPlage.mp4"
 			autoplay="autoplay" muted="muted" loop="loop"></video>
 		<video class="video-slide" src="media/videos/videoMarche.mp4"
 			autoplay="autoplay" muted="muted" loop="loop"></video>
@@ -58,8 +57,8 @@
 		<video class="video-slide" src="media/videos/videoRoute.mp4"
 			autoplay="autoplay" muted="muted" loop="loop"></video>
 		<video class="video-slide" src="media/videos/videoNature.mp4"
-			autoplay="autoplay" muted="muted" loop="loop"></video>
->>>>>>> 7ce9fc1c295264b5af202f3cb3ab858bbd4a1e3b
+			autoplay="autoplay" muted="muted" loop="loop"></video> -->	
+
 
 
 		<video class="video-slide active" src="media/videos/videoPlage.mp4"
@@ -131,10 +130,9 @@
 		</div>
 		<div class="content">
 			<h1>
-				N'attendez pu<br /> <span>essayez !</span>
+				N'attendez plus<br /> <span>essayez !</span>
 			</h1>
-			<p>Notre plateforme n'attend que vous, inscrivez-vous en cliquant
-				sur le bouton "Lire Plus", afin de profiter de tous les avantages
+			<p>Notre plateforme n'attend que vous, inscrivez-vous afin de profiter de tous les avantages
 				qu'offrent notre site. Vous avez longtemps cherché un moyen rapide
 				et efficace de trouver les meilleurs plans voyages? Nous l'avons
 				fait !</p>
