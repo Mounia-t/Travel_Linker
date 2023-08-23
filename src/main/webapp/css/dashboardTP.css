@@ -211,6 +211,19 @@ aside .sidebar a:last-child {
     bottom: 2rem;
     width: 100%;
 }
+aside .sidebar .logoutStyle {
+	position: absolute;
+	bottom: 2rem;
+	width: 100%
+}
+
+aside .sidebar .noBackgroundLogout {
+	background-color: transparent;
+	color: var(--color-info-dark);
+}
+aside .sidebar a:hover .noBackgroundLogout {
+    color: var(--color-primary);
+}
 
 aside .sidebar a.active {
     width: 100%;
@@ -916,9 +929,21 @@ main .recent-orders a {
     position: relative
 }
 
+#searchUsersZone .inputSearch {
+	width: 100%;
+	padding: 10px;
+	border-radius: 25px;
+	 box-shadow: var(--box-shadow);
+	 transition: all 0.3s ease;
+}
+
+#searchUsersZone .inputSearch:hover {
+	box-shadow: none;
+}
+
 #searchUsersZone span {
     position: absolute;
-    top: 38%;
+    top: 7px;
     right: 1.5%;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -1009,22 +1034,226 @@ main .recent-orders a {
 
 /*------------------------------------Zone Création de service------------------------------*/
 
-#mainAddServices .user-listMessages input {
-    width: 100%;
-    border: 1px solid lightgrey;
-    border-radius: 25px;
-    padding: 10px;
-    margin-top: 15px;
+#mainManagedResa .user-listMessages {
+	position: relative;
+    background-color: var(--color-white);
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    margin-top: 1rem;
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-#mainAddServices .user-listMessages #inputMessageDetails {
-    height: 180px;
-}
-
-#mainAddServices .user-listMessages:hover {
+#mainManagedResa .user-listMessages:hover {
     box-shadow: none;
 }
 
+.createAdmin {
+    margin-top: 20px;
+    border: 1px solid white;
+    border-radius: 25px;
+    background-color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    box-shadow: var(--box-shadow);
+    width: fit-content;
+    transition: all 0.3s ease;
+}
+
+.createAdmin:hover {
+    box-shadow: none;
+}
+
+.inputFormLabel {
+    position: relative;
+    margin-bottom: 20px;
+    transition: 0.2s ease all;
+}
+
+
+.placeholder {
+    position: absolute;
+    pointer-events: none;
+    left: 30px;
+    top: 18px;
+    padding: 2px;
+    transition: 0.2s ease all;
+    font-size: 14px;
+    color: #999;
+    background-color: white;
+}
+
+.inputForm {
+    border: 1px solid grey;
+    border-radius: 25px;
+    background: none;
+    padding: 10px;
+    margin-top: 30px;
+    width: 94%;
+    outline: none;
+}
+
+.inputForm:focus {
+    border-color: green;
+}
+
+.inputForm:focus+.placeholder,
+.inputForm:not(:placeholder-shown)+.placeholder,
+.inputForm:not(:valid)+.placeholder {
+    top: 20px;
+    font-size: 15px;
+    color: #333;
+    padding: 2px 5px;
+    background-color: white;
+}
+
+
+/*-------------------------------Zone card----------------------------------*/
+#ListTravelSection {
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+    justify-content: center;
+}
+
+.lTSContainer {
+    text-align: center;
+    display: flex;
+    position: relative;
+}
+
+.lTSContainer h1,
+.lTSContainer h2,
+.lTSContainer h3,
+.lTSContainer h4 {
+    text-align: start;
+}
+
+
+
+/* .lTSBtnContainer .modifyBtn {
+    border-radius: 25px;
+    background-color: rgb(29, 179, 29);
+    padding: 10px 20px;
+    margin-right: 5px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.lTSBtnContainer .deleteBtn {
+    border-radius: 25px;
+    background-color: rgb(237, 59, 59);
+    width: fit-content;
+    padding: 10px 20px;
+    margin-left: 5px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.readBtn:hover {
+    transform: scale(1.1);
+}
+
+.deleteBtn:hover {
+    transform: scale(1.1);
+} */
+.tPCard {
+	position: relative;
+    display: flex;
+    border-radius: 25px;
+    background-color: rgba(255, 255, 255, 0.074);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(20px);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    height: 400px;
+    width: 300px;
+    margin: 20px 20px;
+    opacity: 0;
+    animation-name: fadeInFromBottom;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.tPCard h2,
+.tPCard h3,
+.tPCard h4 {
+    margin-left: 10px;
+    color: white;
+    filter: drop-shadow(10px 10px 13px #284246);
+}
+
+.tPCard .infoSupTPCard {
+    position: absolute;
+    bottom: -120px;
+    transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
+    opacity: 0;
+}
+
+.tPCard:hover .infoTPCard {
+    bottom: 120px;
+}
+
+.tPCard .infoTPCard {
+    position: absolute;
+    bottom: 20px;
+    transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.tPCard:hover .infoSupTPCard {
+    bottom: 40px;
+    opacity: 1;
+}
+
+.tPCard:hover .imgTravelCard {
+    filter: blur(4px);
+}
+
+@keyframes fadeInFromBottom {
+    from {
+        opacity: 0;
+        transform: translateY(70px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.imgTravelCard {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.crossBtnContainer {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.deleteCrossBtn {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	color: red;
+	background-color: red;
+	padding: 4px 12px;
+	cursor: pointer;
+	border-radius: 50%;
+	transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.deleteCrossBtn:hover {
+	transform: scale(1.2);
+}
 /*------------------------------------Zone radioButtons service-----------------------------*/
 .flexingRB {
     display: flex;
@@ -1557,44 +1786,69 @@ tr:hover td {
     .right-section .nav button span {
         font-size: 2rem;
     }
-.inputFormLabel {
-    position: relative;
-    margin-bottom: 20px;
-    transition: 0.2s ease all;
 }
 
-.placeholder {
+
+
+#mainProfile .inputFormLabel .placeholder{
     position: absolute;
     pointer-events: none;
-    left: 14px;
-    top: 38px;
+    left: 30px;
+    top: 4px;
+    padding: 0 5px;
     transition: 0.2s ease all;
-    font-size: 17px;
+    font-size: 14px;
     color: #999;
-}
-
-.inputForm {
-    border: 1px solid grey;
-    border-radius: 25px;
-    background: none;
-    padding: 10px;
-    margin-top: 30px;
-    width: 94%;
-    outline: none;
-}
-
-.inputForm:focus {
-    border-color: green;
-}
-
-.inputForm:focus+.placeholder,
-.inputForm:not(:placeholder-shown)+.placeholder,
-.inputForm:not(:valid)+.placeholder {
-    top: 20px;
-    font-size: 15px;
-    color: #333;
-    padding: 2px 5px;
     background-color: white;
 }
 
+#writeMsgSection .user-listWriteMSGSection {
+	background-color: var(--color-white);
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    margin-top: 1rem;
+    box-shadow: var(--box-shadow);
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 1.4rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+#writeMsgSection .inputFormLabel .placeholder{
+    position: absolute;
+    pointer-events: none;
+    left: 30px;
+    top: 4px;
+    padding: 0 5px;
+    transition: 0.2s ease all;
+    font-size: 14px;
+    color: #999;
+    background-color: white;
+}
+
+#writeMsgSection .inputFormLabel .placeholderTA{
+    position: absolute;
+    pointer-events: none;
+    left: 30px;
+    top: -11px;
+    padding: 0 5px;
+    transition: 0.2s ease all;
+    font-size: 14px;
+    color: #999;
+    background-color: white;
+}
+
+#writeMsgSection .textAreaWriteMSG {
+	width: 100%;
+	border: 1px solid lightgrey;
+	border-radius: 25px; 
+}
+
+#writeMsgSection .flexingRB {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
+.createServicesTable {
+	box-shadow: none;
 }
