@@ -501,6 +501,12 @@ section{
   opacity: 0;
   animation:showcontent 1s ease-in-out 0.3s 1 forwards
 }
+
+.item-package .price-package{
+  margin:10px 0;
+  opacity: 0;
+  animation:showcontent 1s ease-in-out 0.3s 1 forwards
+}
 .item-package button{
 background: transparent;
 border: 3px solid white;

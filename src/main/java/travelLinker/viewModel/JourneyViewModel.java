@@ -13,8 +13,7 @@ public class JourneyViewModel {
 	private String location;
 	private Date startDate;
 	private Date endDate;
-	private byte []imageFile;
-	
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -71,13 +70,6 @@ public class JourneyViewModel {
 		this.endDate = endDate;
 	}
 
-	public byte[] getImage() {
-		return imageFile;
-	}
-
-	public void setImage(byte[] imageFile) {
-		this.imageFile = imageFile;
-	}
 
 	public Long getId() {
 		return id;

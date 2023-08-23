@@ -1,9 +1,11 @@
 package travelLinker.dao;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import travelLinker.entity.Journey;
 import travelLinker.viewModel.JourneyViewModel;
@@ -15,33 +17,44 @@ public class JourneyDao {
 	private EntityManager entityManager;
 
 	public Long insert(JourneyViewModel journeyVM) {
-		Journey journeybean = new Journey();
-		journeybean.setNumberOfTravellers(journeyVM.getNumberOfTravellers());
-		journeybean.setPrice(journeyVM.getPrice());
-		journeybean.setLocation(journeyVM.getLocation());
-		journeybean.setCountry(journeyVM.getCountry());
-		journeybean.setStartDate(journeyVM.getStartDate());
-		journeybean.setEndDate(journeyVM.getEndDate());
-		journeybean.setImageFile(journeyVM.getImage());
+	    Journey journeybean = new Journey();
+	    journeybean.setNumberOfTravellers(journeyVM.getNumberOfTravellers());
+	    journeybean.setPrice(journeyVM.getPrice());
+	    journeybean.setLocation(journeyVM.getLocation());
+	    journeybean.setCountry(journeyVM.getCountry());
+	    journeybean.setStartDate(journeyVM.getStartDate());
+	    journeybean.setEndDate(journeyVM.getEndDate());
 
-		entityManager.persist(journeybean);
-		entityManager.flush();
-		return journeybean.getId();
+	    entityManager.persist(journeybean);
+	    entityManager.flush();
+	    return journeybean.getId();
 	}
 	
+
 	public void deleteJourney(Long id) {
-	Journey journey = entityManager.find(Journey.class, id);
-		if (journey != null) {
-			entityManager.remove(journey);
-		}
+	    Journey journey = entityManager.find(Journey.class, id);
+	    if (journey != null) {
+	        entityManager.remove(journey);
+	    } else {
+	        System.out.println("Journey introuvable, suppression impossible");
+	    }
 	}
+
 	
+	
+	public EntityManager getEntityManager() {
+		return entityManager;
+	}
+
+	public void setEntityManager(EntityManager entityManager) {
+		this.entityManager = entityManager;
+	}
+
 	public void updateJourney(JourneyViewModel journeyViewModel) {
 		Journey journey = entityManager.find(Journey.class, journeyViewModel.getId());
 		if (journey != null) {
 
 			journey.setNumberOfTravellers(journeyViewModel.getNumberOfTravellers());
-			journey.setImageFile(journeyViewModel.getImage());
 			journey.setPrice(journeyViewModel.getPrice());
 			journey.setCountry(journeyViewModel.getCountry());
 			journey.setLocation(journeyViewModel.getLocation());
@@ -59,5 +72,9 @@ public class JourneyDao {
 	
 	public List<Journey> getAllJourneys() {
 		return entityManager.createQuery("SELECT j FROM Journey j", Journey.class).getResultList();
+	}
+
+	public Journey getJourneyById(Long journeyId) {
+	    return entityManager.find(Journey.class, journeyId);
 	}
 }

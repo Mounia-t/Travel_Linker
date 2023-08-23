@@ -1,11 +1,19 @@
 package travelLinker.controller;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -13,13 +21,19 @@ import javax.persistence.FetchType;
 import javax.persistence.Lob;
 import javax.servlet.http.Part;
 
+import org.apache.commons.fileupload.RequestContext;
 import org.apache.commons.io.IOUtils;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 
 import travelLinker.dao.JourneyDao;
 import travelLinker.entity.Journey;
 import travelLinker.viewModel.JourneyViewModel;
 
-	@ManagedBean
+	
+	
+@ManagedBean
+@RequestScoped
 	public class JourneyControllerBean  implements Serializable{
 		
 		/**
@@ -32,33 +46,27 @@ import travelLinker.viewModel.JourneyViewModel;
 		@Inject
 		private JourneyDao journeyDao;
 		
-		@Lob
-		@Basic(fetch = FetchType.LAZY)
-		@Column(columnDefinition = "BLOB")
-		private Part imageFile;
-		
 		public List<Journey> journeys;
-
+		
+		
+		
 		public void addJourney() {
+		    
+		    Long id = journeyDao.insert(journeyVM);
+		    System.out.println("Journey created with id : " + id);
+		    
 
-			if (imageFile != null) {
-	            try {
-	                InputStream imageInputStream = imageFile.getInputStream();
-	                byte[] imageFile = IOUtils.toByteArray(imageInputStream);
-
-	                // Utilisez l'objet journeyVM existant pour stocker les données de l'image
-	                journeyVM.setImage(imageFile);
-	            } catch (IOException e) {
-	                e.printStackTrace();
-	                // Gérez l'exception selon vos besoins
-	            }
-	            System.out.println("Image created" + imageFile);
-	        }
-			Long id= journeyDao.insert(journeyVM);
-			System.out.println("Journey created with id : " + id);
-			clear();
 		}
-			                
+		
+		public List<Journey> getjourneys (){
+			return journeyDao.getAllJourneys();
+			
+		}
+
+		  public JourneyControllerBean() {
+		        journeys = new ArrayList<>();
+		    }
+		 
 		public void clear() {
 			journeyVM = new JourneyViewModel();
 		}
@@ -84,17 +92,6 @@ import travelLinker.viewModel.JourneyViewModel;
 			this.journeyVM = journeyVM;
 		}
 
-
-
-		public Part getImageFile() {
-			return imageFile;
-		}
-
-
-
-		public void setImageFile(Part imageFile) {
-			this.imageFile = imageFile;
-		}
 		
 		public List<Journey> getJourneys() {
 			return journeys;
@@ -103,10 +100,6 @@ import travelLinker.viewModel.JourneyViewModel;
 		public void setJourneys(List<Journey> journeys) {
 			this.journeys = journeys;
 		}
-		
-		
-		
-
 
 	}
 
