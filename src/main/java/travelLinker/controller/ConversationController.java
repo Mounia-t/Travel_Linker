@@ -94,10 +94,13 @@ public class ConversationController implements Serializable {
 		this.selectedMessageId = selectedMessageId;
 	}
 
-	public void selectMessage(Message message) {
-		selectedMessage = clearSelectedMessage();
+	public Message displaySelectMessage(Message message) {
+		
 		selectedMessage = message;
+		String content=selectedMessage.getContent();
+		System.out.println(content);
 		System.out.println(selectedMessage);
+		return selectedMessage;
 	}
 
 	public Message clearSelectedMessage() {

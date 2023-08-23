@@ -251,7 +251,7 @@
 										<td><h:form>
 												<h:commandButton class="readBtn" value="Lire"
 													id="readAllMsgBtn"
-													action="#{conversationController.selectMessage(message)}">
+													action="#{conversationController.displaySelectMessage(message)}">
 												</h:commandButton>
 											</h:form></td>
 									</tr>
@@ -397,7 +397,7 @@
 										<td>#{message.messageResume}</td>
 										<td><h:commandButton class="readBtn" value="Lire"
 												id="readSentMsgBtn"
-												action="#{conversationController.selectMessage(message)}">
+												action="#{conversationController.displaySelectMessage(message)}">
 											</h:commandButton></td>
 
 									</tr>
@@ -787,71 +787,63 @@
 	</div>
 
 	<div class="popup-container" id="popupContainer">
-		<div class="popup-content">
-			<!-- <span class="popup-close" id="popupCloseBtn">&times;</span> -->
-			<div class="expDateZone">
-				<div class="expZone">
-					<h2>Expéditeur :</h2>
+        <div class="popup-content">
+            <!-- <span class="popup-close" id="popupCloseBtn">&times;</span> -->
+            <div class="expDateZone">
+                <div class="expZone">
+                    <h2>Expéditeur : </h2>
+                    <h2>#{conversationController.selectedMessage.senderEmail}</h2>
+                </div>
+                <div class="dateTimeMsg">
+                    <h3>{DateTime}</h3>
+                </div>
+            </div>
+            <div class="objectZone">
+                <h2>Objet : </h2>
+                <h2>#{conversationController.selectedMessage.messageResume}</h2>
+            </div>
+            <div class="msgZone">
+                 <h2>Message :</h2>
+    <h3>#{conversationController.selectedMessage.content}</h3>
 
-					<h:outputText
-						value="#{conversationController.selectedMessage.senderEmail}" />
+            </div>
+            <button class="popup-close-btn" id="popupCloseButton"><span class="material-icons-sharp">
+                    highlight_off
+                </span></button>
+        </div>
+        <button class="popup-answer-btn" id="popupAnswerButton">Répondre</button>
+    </div>
 
-				</div>
-				<div class="dateTimeMsg">
-					<h3>{DateTime}</h3>
-				</div>
-			</div>
-			<div class="objectZone">
-				<h2>Objet :</h2>
-
-				<h:outputText
-					value="#{conversationController.selectedMessage.messageResume}" />
-
-			</div>
-			<div class="msgZone">
-				<h2>Message :</h2>
-
-				<h:outputText
-					value="#{conversationController.selectedMessage.content}" />
-
-			</div>
-			<button class="popup-close-btn" id="popupCloseButton">
-				<span class="material-icons-sharp"> highlight_off </span>
-			</button>
-		</div>
-		<button class="popup-answer-btn" id="popupAnswerButton">Répondre</button>
-	</div>
-
-	<div class="popup-answer-container" id="popupAnswerContainer">
-		<div class="popup-answer-content">
-			<div class="destDateZone">
-				<div class="destZone">
-					<h2>Destinataire :</h2>
-					<h2>{User(rôle)}</h2>
-				</div>
-				<div class="dateTimeMsg">
-					<h3>{DateTime}</h3>
-				</div>
-			</div>
-			<div class="objectZone">
-				<h2>Objet :</h2>
-				<h2>{Objet}</h2>
-			</div>
-			<div class="recapZone">
-				<h2>Récapitulatif :</h2>
-				<h3>{Récapitulatif du message auquel on répond}</h3>
-			</div>
-			<div class="msgZone">
-				<h2>Message :</h2>
-				<textarea name="msgZoneTA" id="msgZoneTA" cols="100" rows="13"
-					placeholder="Écrire le corps du message..."></textarea>
-			</div>
-			<button class="popup-close-btn" id="popupCloseAnswerButton">
-				<span class="material-icons-sharp"> highlight_off </span>
-			</button>
-		</div>
-		<button class="popup-send-btn" id="popupSendButton">Envoyer</button>
-	</div>
+    <div class="popup-answer-container" id="popupAnswerContainer">
+        <div class="popup-answer-content">
+            <div class="destDateZone">
+                <div class="destZone">
+                    <h2>Destinataire : </h2>
+                    <h2>{User(rôle)}</h2>
+                </div>
+                <div class="dateTimeMsg">
+                    <h3>{DateTime}</h3>
+                </div>
+            </div>
+            <div class="objectZone">
+                <h2>Objet : </h2>
+                <h2>{Objet}</h2>
+            </div>
+            <div class="recapZone">
+                <h2>Récapitulatif : </h2>
+                <h3>{Récapitulatif du message auquel on répond}</h3>
+            </div>
+            <div class="msgZone">
+                <h2>Message : </h2>
+                <textarea name="msgZoneTA" id="msgZoneTA" cols="100" rows="13"
+                    placeholder="Écrire le corps du message..."></textarea>
+            </div>
+            <button class="popup-close-btn" id="popupCloseAnswerButton"><span class="material-icons-sharp">
+                    highlight_off
+                </span></button>
+        </div>
+        <button class="popup-send-btn" id="popupSendButton">Envoyer</button>
+    </div>
 	<script src="./js/dashboardTP.js"></script>
 </body>
 

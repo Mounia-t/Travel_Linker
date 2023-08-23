@@ -492,28 +492,17 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-
 /*--------------------------------Zone de Lecture des tr du tableau avec popupContainer---------------------------------*/
 
 
 document.addEventListener('DOMContentLoaded', function () {
-    const readAllMsgButtons = document.getElementById('readAllMsgBtn');
-	const readSentMsgButtons = document.getElementById('readSentMsgBtn');
+    const readButtons = document.querySelectorAll('.readBtn');
     const popupContainer = document.getElementById('popupContainer');
     const popupCloseButton = document.getElementById('popupCloseButton');
-    const popupContent = document.querySelector('.popup-content');
 
-    readAllMsgButtons.forEach(button => {
+    readButtons.forEach(button => {
         button.addEventListener('click', () => {
             popupContainer.style.display = 'flex';
-            popupContent.classList.add('fade-in-bottom');
-        });
-    });
-
-	readSentMsgButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            popupContainer.style.display = 'flex';
-            popupContent.classList.add('fade-in-bottom');
         });
     });
 
@@ -531,12 +520,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const popupAnswerContainer = document.getElementById('popupAnswerContainer');
     const popupCloseAnswerButton = document.getElementById('popupCloseAnswerButton');
     const popupContainer = document.getElementById('popupContainer');
-    const popupAnswerContent = document.querySelector('.popup-answer-content');
 
     // Fonction pour afficher la div avec l'id "popupAnswerContainer"
     function showPopupAnswerContainer() {
         popupAnswerContainer.style.display = 'flex';
-        popupAnswerContent.classList.add('fade-in-bottom');
     }
 
     // Gestionnaire d'événements pour le bouton "Répondre"
