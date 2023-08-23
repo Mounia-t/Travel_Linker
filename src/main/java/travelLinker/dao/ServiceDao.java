@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 
 import travelLinker.entity.Accomodation;
 import travelLinker.entity.Restaurant;
+import travelLinker.entity.Service;
 import travelLinker.entity.Transport;
 import travelLinker.viewModel.ServiceViewModel;
 
@@ -157,5 +158,11 @@ public class ServiceDao {
 	public Transport findByIdTransport(Long id) {
 		return entityManager.find(Transport.class, id);
 	}
-
+	
+	public List<Service> displayFiltredServices(String country){
+		List<Service> servicesFiltred=  entityManager.createQuery("SELECT s FROM Service s WHERE s.country = :country", Service.class)
+		            .setParameter("country", country)
+		            .getResultList();
+		return servicesFiltred;
+}
 }

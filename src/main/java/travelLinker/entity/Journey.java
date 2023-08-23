@@ -27,7 +27,9 @@ public class Journey {
 	@OneToOne
 	@JoinColumn(name = "account_id")
 	private Account account;
+	private Long accountId;
 	private String imagePath;
+	
 
 
 	public Journey (){
@@ -126,6 +128,14 @@ public class Journey {
 
 	public void setAccount(Account account) {
 		this.account = account;
+	}
+
+	public Long getAccountId() {
+		return accountId;
+	}
+
+	public void setAccountId(Long accountId) {
+		this.accountId = accountId;
 	}
 
 }

@@ -49,8 +49,8 @@
 						event </span>
 					<h3>Réservations</h3>
 				</a> <a href="#" id="analyticsBtn"> <span
-					class="material-icons-sharp"> insights </span>
-					<h3>Analytics</h3>
+					class="material-icons-sharp"> attach_money</span>
+					<h3>Services</h3>
 				</a> <a href="#" id="messagesBtn"> <span
 					class="material-icons-sharp"> mail </span>
 					<h3>Messages</h3>
@@ -116,80 +116,172 @@
 		</main>
 		<!-- Main Content -->
 		<main id="mainAnalytics" style="display: none;">
-			<h1>Analytics</h1>
-			<!-- Analyses -->
-			<div class="analyse">
-				<div class="sales">
-					<div class="status">
-						<div class="info">
-							<h3>Ventes totales</h3>
-							<h1>1M€</h1>
-						</div>
-					</div>
+			<h1>Liste des services</h1>
+			<div class="new-users flexingRB">
+				<div class="radio-inputs">
+					<label class="radio"> <input type="radio" name="radio"
+						id="rbRestaurantList" /><span class="name">Restaurant</span>
+					</label> <label class="radio"> <input type="radio" name="radio"
+						id="rbAccomoList" /><span class="name">Hébergement</span>
+					</label> <label class="radio"> <input type="radio" name="radio"
+						id="rbTransList" /><span class="name">Transport</span>
+					</label>
 				</div>
-				<div class="visits">
-					<div class="status">
-						<div class="info">
-							<h3>Type d'abonnement</h3>
-							<h1>Premium</h1>
+				<h:form>
+					<div id="listServicesRest">
+						<div class="table-container">
+							<h:dataTable value="#{serviceControllerBean.restaurants}"
+								var="restaurant" styleClass="table">
+								<!-- Nom du restaurant -->
+								<h:column>
+									<f:facet name="header">
+										<h:selectBooleanCheckbox class="deleteCheckboxModifMsg" />
+									</f:facet>
+
+								</h:column>
+
+								<h:column>
+									<f:facet name="header">Nom du restaurant</f:facet>
+                        #{restaurant.name}
+                    </h:column>
+
+
+								<h:column>
+									<f:facet name="header">Type de restaurant</f:facet>
+                        #{restaurant.type}
+                    </h:column>
+
+
+								<h:column>
+									<f:facet name="header">Description</f:facet>
+                        #{restaurant.description}
+                    </h:column>
+								<h:column>
+									<f:facet name="header">Prix</f:facet>
+                        #{restaurant.price}
+                    </h:column>
+
+
+								<h:column>
+									<div class="deleteButtons">
+										<f:facet name="header">Actions</f:facet>
+										<h:commandButton value="Supprimer"
+											action="#{serviceControllerBean.deleteRestaurant(restaurant.id)}" />
+										<h:commandButton value="Edit"
+											action="#{serviceControllerBean.setRestaurantVm(restaurant)}"
+											update=":editFormRestaurant" />
+									</div>
+								</h:column>
+							</h:dataTable>
+						</div>
+
+						<div class="deleteButtons">
+							<button class="deleteBtn" id="deleteSelectedListMsg">Tout
+								sélectionner</button>
+							<h:commandButton value="Supprimer"
+								action="#{serviceControllerBean.deleteRestaurant(restaurant.id)}" />
 						</div>
 					</div>
-				</div>
-				<div class="sales">
-					<div class="status">
-						<div class="info">
-							<h3>Nombre de réservations</h3>
-							<h1>42</h1>
+				</h:form>
+				<h:form>
+					<div id="listServicesAccomo">
+						<div class="table-container">
+							<h:dataTable value="#{serviceControllerBean.accomodations}"
+								var="accomodation" styleClass="table">
+
+								<h:column>
+									<f:facet name="header">Nom de l'hébergement</f:facet>
+                        #{accomodation.name}
+                    </h:column>
+
+
+								<h:column>
+									<f:facet name="header">Type de l'hébergement</f:facet>
+                        #{accomodation.type}
+                    </h:column>
+
+
+								<h:column>
+									<f:facet name="header">Description</f:facet>
+                        #{accomodation.description}
+                    </h:column>
+								<h:column>
+									<f:facet name="header">Prix</f:facet>
+                        #{accomodation.price}
+                    </h:column>
+
+
+								<h:column>
+									<div class="deleteButtons">
+										<f:facet name="header">Actions</f:facet>
+										<h:commandButton value="Supprimer"
+											action="#{serviceControllerBean.deleteAccomodation(accomodation.id)}" />
+										<h:commandButton value="Edit"
+											action="#{serviceControllerBean.setAccomodationVm(accomodation)}"
+											update=":editFormAccomodation" />
+									</div>
+								</h:column>
+							</h:dataTable>
+						</div>
+
+						<div class="deleteButtons">
+							<button class="deleteBtn" id="deleteSelectedListMsg">Tout
+								sélectionner</button>
+							<button class="deleteBtn" id="deleteListMsg">Supprimer</button>
 						</div>
 					</div>
-				</div>
-				<div class="visits">
-					<div class="status">
-						<div class="info">
-							<h3>Nombre de partenaires</h3>
-							<h1>
-								<h:outputText
-									value="#{accountControllerBean.countTotalPartners()}" />
-							</h1>
+				</h:form>
+
+				<h:form>
+					<div id="listServicesTrans">
+						<div class="table-container">
+							<h:dataTable value="#{serviceControllerBean.transports}"
+								var="transport" styleClass="table">
+
+								<h:column>
+									<f:facet name="header">Nom de transport</f:facet>
+                        #{transport.name}
+                    </h:column>
+
+
+								<h:column>
+									<f:facet name="header">Type de transport</f:facet>
+                        #{transport.type}
+                    </h:column>
+
+
+								<h:column>
+									<f:facet name="header">Description</f:facet>
+                        #{transport.description}
+                    </h:column>
+								<h:column>
+									<f:facet name="header">Prix</f:facet>
+                        #{transport.price}
+                    </h:column>
+
+
+								<h:column>
+									<div class="deleteButtons">
+										<f:facet name="header">Actions</f:facet>
+										<h:commandButton value="Supprimer"
+											action="#{serviceControllerBean.deleteTransport(transport.id)}" />
+										<h:commandButton value="Edit"
+											action="#{serviceControllerBean.setTransportVm(transport)}"
+											update=":editFormTransport" />
+									</div>
+								</h:column>
+							</h:dataTable>
 						</div>
 					</div>
+				</h:form>
+
+				<div class="deleteButtons">
+					<button class="deleteBtn" id="deleteSelectedListMsg">Tout
+						sélectionner</button>
+					<button class="deleteBtn" id="deleteListMsg">Supprimer</button>
 				</div>
 			</div>
-			<!-- End of Analyses -->
-
-			<!-- New Users Section -->
-			<div class="new-users">
-				<h2>Nouve</h2>
-				<div class="user-list">
-					<div class="user">
-						<img src="images/profile-2.jpg" />
-						<h2>Jack</h2>
-						<p>54 Min Ago</p>
-					</div>
-					<div class="user">
-						<img src="images/profile-3.jpg" />
-						<h2>Amir</h2>
-						<p>3 Hours Ago</p>
-					</div>
-					<div class="user">
-						<img src="images/profile-4.jpg" />
-						<h2>Ember</h2>
-						<p>6 Hours Ago</p>
-					</div>
-					<div class="user">
-						<img src="images/plus.png" />
-						<h2>More</h2>
-						<p>New User</p>
-					</div>
-				</div>
-			</div>
-			<!-- End of New Users Section -->
-
-			<!-- Recent Orders Table -->
-
-
 		</main>
-
 		<!-- End of MainAnalytics Content -->
 
 		<!-- Start of MainMessages Content -->
@@ -551,7 +643,7 @@
 					</div>
 					<div id="ListTravelSection">
 						<div class="lTSContainer">
-							<ui:repeat value="#{journeyControllerBean.allJourneys}"
+							<ui:repeat value="#{journeyControllerBean.displayTravelPlaJournyes()}"
 								var="journey">
 								<div class="lTSContainer">
 									<div class="tPCard">
@@ -636,6 +728,8 @@
 										<h:inputFile id="imageFile"
 											value="#{journeyControllerBean.imageFile}" accept="image/*" />
 									</div>
+									<h:commandButton action="#{journeyControllerBean.filterServicesByCountry()}"
+										value="Ajouter service" />
 
 
 								</div>
@@ -787,63 +881,63 @@
 	</div>
 
 	<div class="popup-container" id="popupContainer">
-        <div class="popup-content">
-            <!-- <span class="popup-close" id="popupCloseBtn">&times;</span> -->
-            <div class="expDateZone">
-                <div class="expZone">
-                    <h2>Expéditeur : </h2>
-                    <h2>#{conversationController.selectedMessage.senderEmail}</h2>
-                </div>
-                <div class="dateTimeMsg">
-                    <h3>{DateTime}</h3>
-                </div>
-            </div>
-            <div class="objectZone">
-                <h2>Objet : </h2>
-                <h2>#{conversationController.selectedMessage.messageResume}</h2>
-            </div>
-            <div class="msgZone">
-                 <h2>Message :</h2>
-    <h3>#{conversationController.selectedMessage.content}</h3>
+		<div class="popup-content">
+			<!-- <span class="popup-close" id="popupCloseBtn">&times;</span> -->
+			<div class="expDateZone">
+				<div class="expZone">
+					<h2>Expéditeur :</h2>
+					<h2>#{conversationController.selectedMessage.senderEmail}</h2>
+				</div>
+				<div class="dateTimeMsg">
+					<h3>{DateTime}</h3>
+				</div>
+			</div>
+			<div class="objectZone">
+				<h2>Objet :</h2>
+				<h2>#{conversationController.selectedMessage.messageResume}</h2>
+			</div>
+			<div class="msgZone">
+				<h2>Message :</h2>
+				<h3>#{conversationController.selectedMessage.content}</h3>
 
-            </div>
-            <button class="popup-close-btn" id="popupCloseButton"><span class="material-icons-sharp">
-                    highlight_off
-                </span></button>
-        </div>
-        <button class="popup-answer-btn" id="popupAnswerButton">Répondre</button>
-    </div>
+			</div>
+			<button class="popup-close-btn" id="popupCloseButton">
+				<span class="material-icons-sharp"> highlight_off </span>
+			</button>
+		</div>
+		<button class="popup-answer-btn" id="popupAnswerButton">Répondre</button>
+	</div>
 
-    <div class="popup-answer-container" id="popupAnswerContainer">
-        <div class="popup-answer-content">
-            <div class="destDateZone">
-                <div class="destZone">
-                    <h2>Destinataire : </h2>
-                    <h2>{User(rôle)}</h2>
-                </div>
-                <div class="dateTimeMsg">
-                    <h3>{DateTime}</h3>
-                </div>
-            </div>
-            <div class="objectZone">
-                <h2>Objet : </h2>
-                <h2>{Objet}</h2>
-            </div>
-            <div class="recapZone">
-                <h2>Récapitulatif : </h2>
-                <h3>{Récapitulatif du message auquel on répond}</h3>
-            </div>
-            <div class="msgZone">
-                <h2>Message : </h2>
-                <textarea name="msgZoneTA" id="msgZoneTA" cols="100" rows="13"
-                    placeholder="Écrire le corps du message..."></textarea>
-            </div>
-            <button class="popup-close-btn" id="popupCloseAnswerButton"><span class="material-icons-sharp">
-                    highlight_off
-                </span></button>
-        </div>
-        <button class="popup-send-btn" id="popupSendButton">Envoyer</button>
-    </div>
+	<div class="popup-answer-container" id="popupAnswerContainer">
+		<div class="popup-answer-content">
+			<div class="destDateZone">
+				<div class="destZone">
+					<h2>Destinataire :</h2>
+					<h2>{User(rôle)}</h2>
+				</div>
+				<div class="dateTimeMsg">
+					<h3>{DateTime}</h3>
+				</div>
+			</div>
+			<div class="objectZone">
+				<h2>Objet :</h2>
+				<h2>{Objet}</h2>
+			</div>
+			<div class="recapZone">
+				<h2>Récapitulatif :</h2>
+				<h3>{Récapitulatif du message auquel on répond}</h3>
+			</div>
+			<div class="msgZone">
+				<h2>Message :</h2>
+				<textarea name="msgZoneTA" id="msgZoneTA" cols="100" rows="13"
+					placeholder="Écrire le corps du message..."></textarea>
+			</div>
+			<button class="popup-close-btn" id="popupCloseAnswerButton">
+				<span class="material-icons-sharp"> highlight_off </span>
+			</button>
+		</div>
+		<button class="popup-send-btn" id="popupSendButton">Envoyer</button>
+	</div>
 	<script src="./js/dashboardTP.js"></script>
 </body>
 
