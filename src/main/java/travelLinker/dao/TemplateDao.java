@@ -23,11 +23,8 @@ public class TemplateDao {
 	}
 
 	public Template loadTemplateForCurrentUser() {
-
 		String currentUserEmail = SessionUtils.getAccount().getEmail();
-
 		TravelPlanner tp = loginDao.findTravelPlanner(currentUserEmail);
-
 		if (tp != null && tp.getTemplate() != null) {
 			return tp.getTemplate();
 		} else {

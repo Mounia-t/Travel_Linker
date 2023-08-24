@@ -37,8 +37,6 @@ public class LoginControllerBean implements Serializable {
 	private TemplateControllerBean templateControllerBean;
 	private boolean loggedIn = false;
 
-	private Account account;
-
 	public LoginControllerBean() {
 	}
 
@@ -129,23 +127,9 @@ public class LoginControllerBean implements Serializable {
 
 	// Méthode pour se déconnecter, sans invalider la session entière
 	public String logout() {
-
 		loginDao.logout();
-
 		return "signIn"; // Rediriger vers la page de connexion
 	}
-
-//	public String logout() {
-//		HttpSession session = SessionUtils.getSession();
-//
-//		if (account.getRole() == RoleUser.TravelPlanner) {
-//			// Supprimez uniquement l'attribut de l'utilisateur connecté
-//			session.removeAttribute("loggedInUser");
-//		} else {
-//			loginDao.logout(); // Ici, je suppose que loginDao.logout() n'invalide pas la session entière.
-//		}
-//		return "signIn"; // Rediriger vers la page de connexion
-//	}
 
 	public Account getConnectedAccount() {
 		HttpSession session = SessionUtils.getSession();
