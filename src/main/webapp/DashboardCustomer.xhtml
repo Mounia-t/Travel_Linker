@@ -443,11 +443,18 @@
 					<div class="sales">
 						<div class="status">
 							<div class="info logo">
-								<img src=".media/images/IMG_0434.jpg"/>
-								<h1>Frédéric Dupin</h1>
-							</div>
+								  <img id="profileImageDisplay" />
+
+                        <h1><b><h:outputText value="#{loginControllerBean.connectedAccount.firstName}" /></b></h1>
+                    </div>
 						</div>
-						<span class="material-icons-sharp"> upload </span>
+						 <span class="material-icons-sharp">
+                    <h:form id="profileImageForm" enctype="multipart/form-data">
+                        <input type="file" id="newProfileImage" name="newProfileImage" style="display: none;" 
+                               onchange="displaySelectedImage(this);" />
+                        <label for="newProfileImage">update</label>
+                    </h:form>
+                </span>
 					</div>
 				</div>
 			</div>
@@ -458,18 +465,18 @@
 					
 						<div class="inputFormLabel">
 							<h:outputLabel value="Nom" styleClass="placeholder label" />
-							<h:inputText value="#{loginControllerBean.userLastName}"
+							<h:inputText value="#{loginControllerBean.connectedAccount.lastName}"
 								required="true" class="inputForm" />
 						</div>
 						<div class="inputFormLabel">
 							<h:outputLabel value="Prénom" styleClass="placeholder label" />
-							<h:inputText value="#{loginControllerBean.userFirstName}"
+							<h:inputText value="#{loginControllerBean.connectedAccount.firstName}"
 								required="true" class="inputForm" />
 						</div>
 
 						<div class="inputFormLabel">
 							<h:outputLabel value="Email" styleClass="placeholder label" />
-							<h:inputText value="#{loginControllerBean.userEmail}"
+							<h:inputText value="#{loginControllerBean.connectedAccount.email}"
 								required="true" class="inputForm" />
 						</div>
 					</div>
@@ -699,14 +706,17 @@
 
 			</div>
 			<!-- End of Nav -->
-
+	
 			<div class="user-profile">
 				<div class="logo">
-					<img src="images/IMG_0434.jpg" />
+				 <a href="index.xhtml">
+					<img src="./media/images/logoTravelLinker.png" />
+					</a>
 					<h3>
-						Bonjour, <b><h:outputText
-								value="#{loginControllerBean.userFirstName}" /></b>
+						Bienvenue, <b><h:outputText
+								value="#{loginControllerBean.connectedAccount.firstName}" /></b>
 					</h3>
+
 				</div>
 			</div>
 
