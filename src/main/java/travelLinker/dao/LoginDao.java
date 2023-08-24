@@ -7,11 +7,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.NonUniqueResultException;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import travelLinker.entity.Account;
-import travelLinker.entity.RoleUser;
 import travelLinker.entity.TravelPlanner;
 import travelLinker.utils.PasswordUtils;
 import travelLinker.viewModel.AccountViewModel;
@@ -41,23 +39,22 @@ public class LoginDao {
 
         if (accountBean != null) {
             return PasswordUtils.checkPassword(accountVM.getPassword(), accountBean.getPassword());
+            
         }
 
         return false;
     }
 
     public Account findAccountByEmailAndPassword(AccountViewModel accountVM, String email, String password) {
-        Account accountBean = findAccountByEmail(accountVM.getEmail());
-
-        if (accountBean != null && PasswordUtils.checkPassword(accountVM.getPassword(), accountBean.getPassword())) {
+        Account accountBean = findAccountByEmail(email);
+       
+        if (PasswordUtils.checkPassword(password, accountBean.getPassword())) {
             return accountBean;
         } else {
-            System.out.println("Mot de passe incorrect");
-            return null; // Ou lancez une exception appropriée
+            throw new  RuntimeException("Authentification échouée en raison de mots de passe incorrects");
         }
-    
     }
-    
+
     public TravelPlanner findTravelPlanner(String email) {
         try {
             TypedQuery<TravelPlanner> query = entityManager.createQuery(
@@ -72,8 +69,3 @@ public class LoginDao {
     }
 
     }
-
-
-
-
-

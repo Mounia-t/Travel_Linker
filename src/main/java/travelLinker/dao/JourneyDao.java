@@ -1,13 +1,15 @@
 package travelLinker.dao;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
+
 import javax.persistence.PersistenceContext;
+
+import travelLinker.entity.Account;
 import travelLinker.entity.Journey;
+import travelLinker.utils.SessionUtils;
 import travelLinker.viewModel.JourneyViewModel;
 
 @Stateless
@@ -20,6 +22,11 @@ public class JourneyDao {
 
 	    try {
 	        Journey journeybean = new Journey();
+
+	        Account account = SessionUtils.getAccount();
+	        Long accountId = account.getId();
+	        journeybean.setAccountId(accountId);
+
 	        journeybean.setNumberOfTravellers(journeyVM.getNumberOfTravellers());
 	        journeybean.setPrice(journeyVM.getPrice());
 	        journeybean.setLocation(journeyVM.getLocation());
@@ -78,10 +85,32 @@ public class JourneyDao {
 	}
 	
 	public List<Journey> getAllJourneys() {
-		return entityManager.createQuery("SELECT j FROM Journey j", Journey.class).getResultList();
+	    List<Journey> journeys = entityManager.createQuery("SELECT j FROM Journey j", Journey.class)
+	                                        .getResultList();
+	    if (journeys == null) {
+	        journeys = new ArrayList<>(); // Retourner une liste vide au lieu de null
+	    }
+	    return journeys;
 	}
 
-	public Journey getJourneyById(Long journeyId) {
-	    return entityManager.find(Journey.class, journeyId);
+
+	public List<Journey> getTravelPlannerJourneys() {
+	    Account account = SessionUtils.getAccount();
+	    Long accountId = account.getId();
+	    List<Journey> listJourney = entityManager.createQuery("SELECT j FROM Journey j WHERE j.accountId = :accountId", Journey.class)
+	                                            .setParameter("accountId", accountId)
+	                                            .getResultList();
+	    
+	    if (listJourney == null) {
+	        listJourney = new ArrayList<>(); // Retourner une liste vide au lieu de null
+	    }
+	    
+	    System.out.println(listJourney);
+	    return listJourney;
+
 	}
-}
+
+	}
+		
+	
+

@@ -41,31 +41,34 @@ const activeLink = document.querySelector('.sidebar a.active');
 if (activeLink) {
     activeLink.classList.add('active');
 }
+/*------------------------Zone affichage main----------------------------*/
+
+
+
 
 /*------------------------Zone affichage main----------------------------*/
 
 // Récupération des éléments de navigation
 const usersBtn = document.getElementById('usersBtn');
-const historyBtn = document.getElementById('historyBtn');
+const addAdminBtn = document.getElementById('addAdminBtn');
+const travelListBtn = document.getElementById('travelListBtn');
 const messagesBtn = document.getElementById('messagesBtn');
-const addBtn = document.getElementById('addBtn');
+const listServicesBtn = document.getElementById('listServicesBtn');
 const profileBtn = document.getElementById('profileBtn');
 const dashboardBtn = document.getElementById('dashboardBtn')
-const managedBtn = document.getElementById('managedResaBtn')
 
 // Récupération des éléments de contenu
+const mainTravelList = document.getElementById('mainTravelList');
 const mainMessages = document.getElementById('mainMessages');
 const mainUsers = document.getElementById('mainUsers');
-const mainHistory = document.getElementById('mainHistory');
-const mainAdd = document.getElementById('mainAdd');
 const mainProfile = document.getElementById('mainProfile');
 const mainDashboard = document.getElementById('mainDashboard')
-const mainManagedResa = document.getElementById('mainManagedResa')
-var defaultSection =document.getElementById(document.getElementById('defaultSection').value)
+const mainAddAdmin = document.getElementById('mainAddAdmin');
+const mainListServices = document.getElementById('mainListServices')
 
 // Fonction pour masquer tous les contenus
 function hideMainContent() {
-    const contenus = [mainMessages, mainUsers, mainProfile, mainHistory, mainDashboard, mainManagedResa];
+    const contenus = [mainTravelList, mainMessages, mainUsers, mainProfile, mainListServices, mainAddAdmin, mainDashboard];
     contenus.forEach(contenu => {
         contenu.style.display = 'none';
     });
@@ -74,25 +77,28 @@ function hideMainContent() {
 // Fonction pour afficher un contenu spécifique
 function showMainContent(cible) {
     hideMainContent();
-if(cible==null){
-	cible=mainDashboard;
-}
     cible.style.display = 'block';
     cible.classList.add('fade-in-bottom'); // Ajout de la classe pour l'animation fade-in
 }
 
 // Par défaut, afficher le contenu "Dashboard"
-showMainContent(defaultSection);
-//alert("shownameSection"+document.getElementById('defaultSection').value);
-//alert("showSection"+document.getElementById(document.getElementById('defaultSection').value));
+showMainContent(mainDashboard);
 
 // Gestion des événements de clic
 usersBtn.addEventListener('click', () => {
     showMainContent(mainUsers);
 });
 
-historyBtn.addEventListener('click', () => {
-    showMainContent(mainHistory);
+listServicesBtn.addEventListener('click', () => {
+    showMainContent(mainListServices);
+});
+
+addAdminBtn.addEventListener('click', () => {
+    showMainContent(mainAddAdmin);
+});
+
+travelListBtn.addEventListener('click', () => {
+    showMainContent(mainTravelList);
 });
 
 messagesBtn.addEventListener('click', () => {
@@ -106,11 +112,6 @@ profileBtn.addEventListener('click', () => {
 dashboardBtn.addEventListener('click', () => {
     showMainContent(mainDashboard);
 });
-
-managedBtn.addEventListener('click', () => {
-    showMainContent(mainManagedResa);
-});
-
 
 /*---------------------------------------Zone de glisser déposer ---------------------------------------------*/
 
@@ -238,56 +239,6 @@ setupDraggableNotifications();
 setupNotificationAdd();
 setupNotificationDeletion();
 
-
-/*----------------------Zone radioButton Travel------------------------*/
-
-document.addEventListener('DOMContentLoaded', function () {
-    const listTravel = document.getElementById('listTravel');
-    const createTravel = document.getElementById('createTravel');
-
-    const listTravelSection = document.getElementById('ListTravelSection');
-    const createTravelSection = document.getElementById('createTravelSection');
-
-    // Fonction pour masquer tous les sections
-    function hideAllSections() {
-        const sections = [listTravelSection, createTravelSection];
-        sections.forEach(section => {
-            section.style.display = 'none';
-        });
-    }
-
-    // Fonction pour afficher un formulaire spécifique
-    function showSection(section) {
-        hideAllSections();
-        if (listTravelSection) {
-            section.style.display = 'flex';
-        } else if (createTravelSection) {
-            section.style.display = 'block';
-        }
-        section.classList.add('fade-in-bottom'); // Ajout de la classe pour l'animation fade-in
-    }
-
-    // Par défaut, masquer tous les formulaires
-    hideAllSections();
-
-    // Fonction d'affichage par défaut de listTravelSection
-    function showSectionActive() {
-        showSection(listTravelSection);
-        listTravel.checked = true; // Cochez la checkbox
-    }
-    showSectionActive();
-
-
-    // Gestion des événements de clic sur les radios
-    listTravel.addEventListener('click', () => {
-        showSection(listTravelSection);
-    });
-
-    createTravel.addEventListener('click', () => {
-        showSection(createTravelSection);
-    });
-});
-
 /*----------------------Zone radioButton messages------------------------*/
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -310,6 +261,7 @@ document.addEventListener('DOMContentLoaded', function () {
             section.style.display = 'none';
         });
     }
+
     // Fonction pour afficher un formulaire spécifique
     function showSection(section) {
         hideAllSections();
@@ -345,27 +297,25 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-
-/*----------------------Zone radioButton create table services------------------------*/
+/*----------------------Zone radioButton utilisateurs------------------------*/
 
 document.addEventListener('DOMContentLoaded', function () {
-    const rbRestTable = document.getElementById('rbRestTable');
-    const rbAccomoTable = document.getElementById('rbAccomoTable');
-    const rbTransTable = document.getElementById('rbTransTable');
+    const radioCustomerBtn = document.getElementById('radioCustomerBtn');
+    const radioTPBtn = document.getElementById('radioTPBtn');
+    const radioPartner = document.getElementById('radioPartner');
 
-
-    const restTable = document.getElementById('restTable');
-    const accomoTable = document.getElementById('accomoTable');
-    const transTable = document.getElementById('transTable');
-
+    const customerSection = document.getElementById('customerSection');
+    const tPSection = document.getElementById('tPSection');
+    const partnerSection = document.getElementById('partnerSection');
 
     // Fonction pour masquer tous les sections
     function hideAllSections() {
-        const sections = [restTable, accomoTable, transTable];
+        const sections = [customerSection, tPSection, partnerSection];
         sections.forEach(section => {
             section.style.display = 'none';
         });
     }
+
     // Fonction pour afficher un formulaire spécifique
     function showSection(section) {
         hideAllSections();
@@ -376,125 +326,22 @@ document.addEventListener('DOMContentLoaded', function () {
     // Par défaut, masquer tous les formulaires
     hideAllSections();
 
-    // Gestion des événements de clic sur les radios
-    rbRestTable.addEventListener('click', () => {
-        showSection(restTable);
-    });
-    rbAccomoTable.addEventListener('click', () => {
-        showSection(accomoTable);
-    });
-    rbTransTable.addEventListener('click', () => {
-        showSection(transTable);
-    });
-});
-
-/*--------------------------------Zone de suppression des tr du tableau---------------------------------*/
-
-document.addEventListener('DOMContentLoaded', function () {
-    const deleteAllMsgBtn = document.getElementById('deleteAllMsg');
-    const deleteSelectedAllMsgBtn = document.getElementById('deleteSelectedAllMsg');
-    const deleteCheckboxesAllMsg = document.querySelectorAll('.deleteCheckboxAllMsg');
-
-    const deleteReadMsgBtn = document.getElementById('deleteReadMsg');
-    const deleteSelectedReadMsgBtn = document.getElementById('deleteSelectedReadMsg');
-    const deleteCheckboxesReadMsg = document.querySelectorAll('.deleteCheckboxReadMsg');
-
-    const deleteUnreadMsgBtn = document.getElementById('deleteUnreadMsg');
-    const deleteSelectedUnreadMsgBtn = document.getElementById('deleteSelectedUnreadMsg');
-    const deleteCheckboxesUnreadMsg = document.querySelectorAll('.deleteCheckboxUnreadMsg');
-
-    const deleteSentMsgBtn = document.getElementById('deleteSentMsg');
-    const deleteSelectedSentMsgBtn = document.getElementById('deleteSelectedSentMsg');
-    const deleteCheckboxesSentMsg = document.querySelectorAll('.deleteCheckboxSentMsg');
-
-
-    function updateSelectAllButtonState(button, checkboxes) {
-        const allChecked = Array.from(checkboxes).every(checkbox => checkbox.checked);
-
-        if (allChecked) {
-            button.textContent = "Tout désélectionner";
-        } else {
-            button.textContent = "Tout sélectionner";
-        }
-
-        // Vérifie si au moins une checkbox est cochée
-        const atLeastOneChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
-
-        if (!atLeastOneChecked) {
-            button.textContent = "Tout sélectionner";
-        }
+    // Fonction d'affichage par défaut de AllMsg
+    function showSectionActive() {
+        showSection(customerSection);
+        radioCustomerBtn.checked = true;
     }
+    showSectionActive();
 
-    deleteAllMsgBtn.addEventListener('click', () => {
-        // Supprime toutes les lignes avec des cases à cocher cochées
-        deleteCheckboxesAllMsg.forEach(checkbox => {
-            if (checkbox.checked) {
-                checkbox.closest('tr').remove();
-            }
-        });
+    // Gestion des événements de clic sur les radios
+    radioCustomerBtn.addEventListener('click', () => {
+        showSection(customerSection);
     });
-
-    deleteSelectedAllMsgBtn.addEventListener('click', () => {
-        // Inverser l'état des checkboxes
-        deleteCheckboxesAllMsg.forEach(checkbox => {
-            checkbox.checked = !checkbox.checked;
-        });
-        updateSelectAllButtonState(deleteSelectedAllMsgBtn, deleteCheckboxesAllMsg);
+    radioTPBtn.addEventListener('click', () => {
+        showSection(tPSection);
     });
-
-
-    deleteReadMsgBtn.addEventListener('click', () => {
-        // Supprimer toutes les lignes avec des cases à cocher cochées
-        deleteCheckboxesReadMsg.forEach(checkbox => {
-            if (checkbox.checked) {
-                checkbox.closest('tr').remove();
-            }
-        });
-    });
-
-    deleteSelectedReadMsgBtn.addEventListener('click', () => {
-        // Inverser l'état des checkboxes
-        deleteCheckboxesReadMsg.forEach(checkbox => {
-            checkbox.checked = !checkbox.checked;
-        });
-
-        updateSelectAllButtonState(deleteSelectedReadMsgBtn, deleteCheckboxesReadMsg);
-    });
-
-    deleteUnreadMsgBtn.addEventListener('click', () => {
-        // Supprimer toutes les lignes avec des cases à cocher cochées
-        deleteCheckboxesUnreadMsg.forEach(checkbox => {
-            if (checkbox.checked) {
-                checkbox.closest('tr').remove();
-            }
-        });
-    });
-
-    deleteSelectedUnreadMsgBtn.addEventListener('click', () => {
-        // Inverser l'état des checkboxes
-        deleteCheckboxesUnreadMsg.forEach(checkbox => {
-            checkbox.checked = !checkbox.checked;
-        });
-
-        updateSelectAllButtonState(deleteSelectedUnreadMsgBtn, deleteCheckboxesUnreadMsg);
-    });
-
-    deleteSentMsgBtn.addEventListener('click', () => {
-        // Supprimer toutes les lignes avec des cases à cocher cochées
-        deleteCheckboxesSentMsg.forEach(checkbox => {
-            if (checkbox.checked) {
-                checkbox.closest('tr').remove();
-            }
-        });
-    });
-
-    deleteSelectedSentMsgBtn.addEventListener('click', () => {
-        // Inverser l'état des checkboxes
-        deleteCheckboxesSentMsg.forEach(checkbox => {
-            checkbox.checked = !checkbox.checked;
-        });
-
-        updateSelectAllButtonState(deleteSelectedSentMsgBtn, deleteCheckboxesSentMsg);
+    radioPartner.addEventListener('click', () => {
+        showSection(partnerSection);
     });
 });
 
@@ -505,10 +352,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const readButtons = document.querySelectorAll('.readBtn');
     const popupContainer = document.getElementById('popupContainer');
     const popupCloseButton = document.getElementById('popupCloseButton');
+    const popupContent = document.querySelector('.popup-content');
 
     readButtons.forEach(button => {
         button.addEventListener('click', () => {
             popupContainer.style.display = 'flex';
+            popupContent.classList.add('fade-in-bottom');
         });
     });
 
@@ -526,10 +375,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const popupAnswerContainer = document.getElementById('popupAnswerContainer');
     const popupCloseAnswerButton = document.getElementById('popupCloseAnswerButton');
     const popupContainer = document.getElementById('popupContainer');
+    const popupAnswerContent = document.querySelector('.popup-answer-content');
 
     // Fonction pour afficher la div avec l'id "popupAnswerContainer"
     function showPopupAnswerContainer() {
         popupAnswerContainer.style.display = 'flex';
+        popupAnswerContent.classList.add('fade-in-bottom');
     }
 
     // Gestionnaire d'événements pour le bouton "Répondre"
@@ -539,5 +390,23 @@ document.addEventListener('DOMContentLoaded', function () {
         popupAnswerContainer.style.display = 'none';
         popupContainer.style.display = 'none';
     });
-
 });
+
+/*--------------------------------Zone d'ouverture de modif avec popupModifContainer---------------------------------*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

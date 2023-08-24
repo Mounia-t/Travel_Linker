@@ -28,23 +28,51 @@
 
 <body>
 	<header>
-		<a href="#" class="brand">Travel linker</a>
+		<a href="index.xhtml" class="brand">Travel linker</a>
 		<div class="menu-btn"></div>
 		<!-- Bouton de menu (hamburger) -->
 		<div class="navigation">
 			<div class="navigation-items">
-				<a href="index.xhtml">Accueil</a> <a href="#">A Propos de nous</a> <a href="#">Services</a>
 
-				<a href="#contact">Contact</a> <a href="Login.xhtml">Connexion</a>
-				<a href="signIn.xhtml">Inscription</a>
+
+				<a href="#">Accueil</a> <a href="index.xhtml">Accueil</a> <a href="categorie.xhtml">Nos offres</a> 
+      <a href="#{loginControllerBean.redirectionDashboard()}" id="profileLink">Mon profil</a><a href="#">Services</a>
+				<a href="#contact">Contact</a>
+<!-- Dans la page XHTML -->
+  <h:outputLink value="signIn.xhtml" rendered="#{!loginControllerBean.loggedIn}">
+        Connexion
+    </h:outputLink>
+    <h:outputLink rendered="#{loginControllerBean.loggedIn}" action="#{loginControllerBean.logout()}" >
+    Déconnexion
+</h:outputLink>
+<a href="#contact">Contact</a> 
+				<a href="signIn.xhtml" action="#{loginControllerBean.connected}">Inscription/Connexion</a>
+				<a href="signIn.xhtml" action="#{loginControllerBean.logout()}">Déconnexion</a>
+<h:outputText value="loggedIn: #{loginControllerBean.loggedIn}" />
+<h:outputText value="Role: #{sessionUtils.account.role}" />
+
 
 			</div>
 		</div>
 	</header>
 
+
 	<section class="home">
 
 		<!-- Vidéos en arrière-plan pour le slider -->
+
+
+
+	<!-- <video class="video-slide active" src="media/videos/videoPlage.mp4"
+			autoplay="autoplay" muted="muted" loop="loop"></video>
+		<video class="video-slide" src="media/videos/videoMarche.mp4"
+			autoplay="autoplay" muted="muted" loop="loop"></video>
+		<video class="video-slide" src="media/videos/videoDesert.mp4"
+			autoplay="autoplay" muted="muted" loop="loop"></video>
+		<video class="video-slide" src="media/videos/videoRoute.mp4"
+			autoplay="autoplay" muted="muted" loop="loop"></video>
+		<video class="video-slide" src="media/videos/videoNature.mp4"
+			autoplay="autoplay" muted="muted" loop="loop"></video> -->	
 
 
 
@@ -117,10 +145,9 @@
 		</div>
 		<div class="content">
 			<h1>
-				N'attendez pu<br /> <span>essayez !</span>
+				N'attendez plus<br /> <span>essayez !</span>
 			</h1>
-			<p>Notre plateforme n'attend que vous, inscrivez-vous en cliquant
-				sur le bouton "Lire Plus", afin de profiter de tous les avantages
+			<p>Notre plateforme n'attend que vous, inscrivez-vous afin de profiter de tous les avantages
 				qu'offrent notre site. Vous avez longtemps cherché un moyen rapide
 				et efficace de trouver les meilleurs plans voyages? Nous l'avons
 				fait !</p>
@@ -227,6 +254,27 @@
 				</button>
 			</div>
 		</div>
+		<ui:repeat value="#{journeyControllerBean.allJourneys}" var="journey">
+			<div class="lTSContainer">
+				<div class="tPCard">
+					<img src="#{journey.imagePath}" alt="Image du Voyage"
+						style="max-width: 100%;" />
+					<div class="infoTPCard">
+						<h2>#{journey.name}</h2>
+						<h3>#{journey.country}</h3>
+					</div>
+					<div class="infoSupTPCard">
+						<h3>Description: #{journey.description}</h3>
+						<!-- Autres détails à afficher -->
+					</div>
+				</div>
+				<div class="lTSBtnContainer">
+					<h:commandButton value="Supprimer"
+						action="#{journeyControllerBean.deleteJourney(journey.id)}" />
+
+				</div>
+			</div>
+		</ui:repeat>
 	</section>
 
 	<!-- DEBUT DES AVIS CLIENTS-->

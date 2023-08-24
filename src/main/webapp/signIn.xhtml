@@ -9,10 +9,23 @@
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <link rel="stylesheet" href="./css/signIn.css" />
+<link rel="stylesheet" href="./css/index.css" />
 <title>Page de connexion</title>
 </head>
 
 <h:body>
+<header>	<div class="menu-btn"></div>
+		<!-- Bouton de menu (hamburger) -->
+		<div class="navigation">
+			<div class="navigation-items">
+				<a href="index.xhtml">Accueil</a> <a href="categorie.xhtml">Nos offres</a> <a href="">Mon profil</a>
+
+				<a href="#contact">Contact</a> <a href="signIn.xhtml">Connexion</a>
+				<a href="signIn.xhtml">Inscription</a>
+
+			</div>
+		</div>
+		</header>
 	<main>
 		<section id="flexingSection">
 			<h:panelGroup id="leftContainer" class="fade-in">
@@ -226,7 +239,7 @@
 						class="designButtonSecond partnerButton" value="Partenaire !">
 					</h:commandButton>
 				</h:panelGroup>
-				<a href="#" class="backHome">Retour à l'accueil</a>
+				<a href="index.xhtml" class="backHome">Retour à l'accueil</a>
 			</h:panelGroup>
 
 			<h:panelGroup id="leftContainerThird" class="fade-in">
