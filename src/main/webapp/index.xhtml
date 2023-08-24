@@ -28,110 +28,42 @@
 
 <body>
 	<header>
-		<a href="index.xhtml" class="brand">Travel linker</a>
+		<a href="#" class="brand">Travel linker</a>
 		<div class="menu-btn"></div>
 		<!-- Bouton de menu (hamburger) -->
 		<div class="navigation">
 			<div class="navigation-items">
-
-<<<<<<< HEAD
-
-				<a href="#">Accueil</a> <a href="index.xhtml">Accueil</a> <a href="categorie.xhtml">Nos offres</a> 
-      <a href="#{loginControllerBean.redirectionDashboard()}" id="profileLink">Mon profil</a><a href="#">Services</a>
-
-=======
-				<a href="#">Accueil</a> <a href="index.xhtml">Accueil</a> <a href="categorie.xhtml">Nos offres</a> 
-      <a href="#{loginControllerBean.redirectionDashboard()}" id="profileLink">Mon profil</a><a href="#">Services</a>
->>>>>>> b48ecd266e5a385216184b6438f15b11b12302d5
+				<a href="#">Accueil</a> <a href="#">A Propos de nous</a> <a href="#">Services</a>
 				<a href="#contact">Contact</a>
 <!-- Dans la page XHTML -->
-  <h:outputLink value="signIn.xhtml" rendered="#{!loginControllerBean.loggedIn}">
+  <h:outputLink id="connexionButton" value="signIn.xhtml" rendered="#{!loginControllerBean.loggedIn}">
         Connexion
     </h:outputLink>
-    <h:outputLink rendered="#{loginControllerBean.loggedIn}" action="#{loginControllerBean.logout()}" >
-    Déconnexion
-</h:outputLink>
-<a href="#contact">Contact</a> 
-				<a href="signIn.xhtml" action="#{loginControllerBean.connected}">Inscription/Connexion</a>
-				<a href="signIn.xhtml" action="#{loginControllerBean.logout()}">Déconnexion</a>
-
-<a href="#contact">Contact</a> 
-				<a href="signIn.xhtml" action="#{loginControllerBean.connected}">Inscription/Connexion</a>
-				<a href="signIn.xhtml" action="#{loginControllerBean.logout()}">Déconnexion</a>
-<h:outputText value="loggedIn: #{loginControllerBean.loggedIn}" />
-<h:outputText value="Role: #{sessionUtils.account.role}" />
-
-
+   <h:commandButton value="Déconnexion"
+								action="#{loginControllerBean.logout()}"  rendered="#{loginControllerBean.loggedIn}"></h:commandButton>
 
 			</div>
 		</div>
 	</header>
 <h:outputText value="loggedIn: #{loginControllerBean.loggedIn}" />
-<h:outputText value="Role: #{sessionUtils.account.role}" />
 
 
 	<section class="home">
 
 		<!-- Vidéos en arrière-plan pour le slider -->
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> b48ecd266e5a385216184b6438f15b11b12302d5
-
-
-	<!-- <video class="video-slide active" src="media/videos/videoPlage.mp4"
-			autoplay="autoplay" muted="muted" loop="loop"></video>
-		<video class="video-slide" src="media/videos/videoMarche.mp4"
-			autoplay="autoplay" muted="muted" loop="loop"></video>
-		<video class="video-slide" src="media/videos/videoDesert.mp4"
-			autoplay="autoplay" muted="muted" loop="loop"></video>
-		<video class="video-slide" src="media/videos/videoRoute.mp4"
-			autoplay="autoplay" muted="muted" loop="loop"></video>
-		<video class="video-slide" src="media/videos/videoNature.mp4"
-<<<<<<< HEAD
-			autoplay="autoplay" muted="muted" loop="loop"></video>
->>>>>>> d052e85191048bf953de7c895a5e59a92b166bd9
-
-
-	<!-- <video class="video-slide active" src="media/videos/videoPlage.mp4"
-			autoplay="autoplay" muted="muted" loop="loop"></video>
-		<video class="video-slide" src="media/videos/videoMarche.mp4"
-			autoplay="autoplay" muted="muted" loop="loop"></video>
-		<video class="video-slide" src="media/videos/videoDesert.mp4"
-			autoplay="autoplay" muted="muted" loop="loop"></video>
-		<video class="video-slide" src="media/videos/videoRoute.mp4"
-			autoplay="autoplay" muted="muted" loop="loop"></video>
-		<video class="video-slide" src="media/videos/videoNature.mp4"
-=======
->>>>>>> b48ecd266e5a385216184b6438f15b11b12302d5
-			autoplay="autoplay" muted="muted" loop="loop"></video> -->	
-
-
 
 		<video class="video-slide active" src="media/videos/videoPlage.mp4"
-			autoplay="autoplay" controls="controls" loop="loop">
-
-		</video>
-
-
+			autoplay="autoplay" muted="muted" loop="loop"></video>
 		<video class="video-slide" src="media/videos/videoMarche.mp4"
-			autoplay="autoplay" controls="controls" loop="loop">
-
-		</video>
+			autoplay="autoplay" muted="muted" loop="loop"></video>
 		<video class="video-slide" src="media/videos/videoDesert.mp4"
-			controls="controls" autoplay="autoplay" loop="loop">
-
-		</video>
+			autoplay="autoplay" muted="muted" loop="loop"></video>
 		<video class="video-slide" src="media/videos/videoRoute.mp4"
-			controls="controls" autoplay="autoplay" loop="loop">
-
-		</video>
+			autoplay="autoplay" muted="muted" loop="loop"></video>
 		<video class="video-slide" src="media/videos/videoNature.mp4"
-			controls="controls" autoplay="autoplay" loop="loop">
+			autoplay="autoplay" muted="muted" loop="loop"></video>
 
-		</video>
 
 		<!-- Contenu de chaque diapositive -->
 
@@ -142,7 +74,7 @@
 				pour les organisateurs de voyage, offrant une gestion complète et
 				professionnelle des voyages, avec des fonctionnalités avancées et
 				innovantes.</p>
-			<a href="produit.xhtml">Lire Plus</a>
+			<a href="#">Lire Plus</a>
 		</div>
 		<div class="content">
 			<h1>
@@ -179,17 +111,10 @@
 		</div>
 		<div class="content">
 			<h1>
-<<<<<<< HEAD
-<<<<<<< HEAD
-				N'attendez plus<br /> <span>essayez !</span>
-=======
 				N'attendez pu<br /> <span>essayez !</span>
->>>>>>> d052e85191048bf953de7c895a5e59a92b166bd9
-=======
-				N'attendez plus<br /> <span>essayez !</span>
->>>>>>> b48ecd266e5a385216184b6438f15b11b12302d5
 			</h1>
-			<p>Notre plateforme n'attend que vous, inscrivez-vous afin de profiter de tous les avantages
+			<p>Notre plateforme n'attend que vous, inscrivez-vous en cliquant
+				sur le bouton "Lire Plus", afin de profiter de tous les avantages
 				qu'offrent notre site. Vous avez longtemps cherché un moyen rapide
 				et efficace de trouver les meilleurs plans voyages? Nous l'avons
 				fait !</p>
@@ -230,7 +155,7 @@
 						<div class="description-package">Découvrez la magie
 							intemporelle de la Grèce, où l'histoire ancienne se mêle
 							harmonieusement aux paysages à couper le souffle.</div>
-						<a href="produit.xhtml"/><button>Voir plus</button>
+						<button>Voir plus</button>
 					</div>
 				</div>
 				<div class="item-package"
@@ -240,11 +165,9 @@
 						<div class="description-package">Explorez des paysages d'une
 							verdeur exceptionnelle, des falaises dramatiques aux prairies
 							vallonnées en passant par des lacs miroitants.</div>
-						<a href="produit.xhtml"/><button>Voir plus</button>
+						<button>Voir plus</button>
 					</div>
 				</div>
-
-
 				<div class="item-package"
 					style="background-image: url(media/images/PaysBas.jpg)">
 					<div class="content-package">
@@ -253,7 +176,7 @@
 							historiques dotées de canaux sinueux, admirez les moulins à vent
 							emblématiques et profitez d'une culture artistique et innovante.
 						</div>
-						<a href="produit.xhtml"/><button>Voir plus</button>
+						<button>Voir plus</button>
 					</div>
 				</div>
 				<div class="item-package"
@@ -263,7 +186,7 @@
 						<div class="description-package">Plongez dans l'élégance
 							intemporelle et l'art de vivre inimitable de la France, ainsi que
 							sa vie parisienne.</div>
-						<a href="produit.xhtml"/><button>Voir plus</button>
+						<button>Voir plus</button>
 					</div>
 				</div>
 				<div class="item-package"
@@ -283,7 +206,7 @@
 						<div class="description-package">Parcourez des paysages
 							époustouflants, des sommets alpins enneigés aux lacs d'un bleu
 							profond, où la nature se déploie dans toute sa splendeur.</div>
-						<a href="produit.xhtml"/><button>Voir plus</button>
+						<button>Voir plus</button>
 					</div>
 				</div>
 			</div>
@@ -318,7 +241,7 @@
 			</div>
 		</ui:repeat>
 	</section>
-
+	<!-- FIN DES PACKAGES -->
 	<!-- DEBUT DES AVIS CLIENTS-->
 	<section class="client">
 		<div class="title-package">

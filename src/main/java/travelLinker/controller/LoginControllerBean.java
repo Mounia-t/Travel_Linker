@@ -32,6 +32,7 @@ public class LoginControllerBean implements Serializable {
 	private AccountViewModel accountVM = new AccountViewModel();
 	@Inject
 	private LoginDao loginDao;
+	private boolean loggedIn=false;
 
 
 	

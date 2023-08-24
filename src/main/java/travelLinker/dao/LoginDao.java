@@ -7,13 +7,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.NonUniqueResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-import javax.servlet.http.HttpSession;
 
 import travelLinker.entity.Account;
+import travelLinker.entity.RoleUser;
 import travelLinker.entity.TravelPlanner;
 import travelLinker.utils.PasswordUtils;
-import travelLinker.utils.SessionUtils;
 import travelLinker.viewModel.AccountViewModel;
 
 @Stateless
@@ -36,19 +36,10 @@ public class LoginDao {
     }
 
 
-public String logout() {
-		
-		HttpSession session = SessionUtils.getSession();
-		session.invalidate();
-		return "signIn"; // Rediriger vers la page de connexion
-	}
-    
     public boolean validate(AccountViewModel accountVM) {
         Account accountBean = findAccountByEmail(accountVM.getEmail());
 
         if (accountBean != null) {
-        	
-        	
             return PasswordUtils.checkPassword(accountVM.getPassword(), accountBean.getPassword());
             
         }
@@ -58,9 +49,8 @@ public String logout() {
 
     public Account findAccountByEmailAndPassword(AccountViewModel accountVM, String email, String password) {
         Account accountBean = findAccountByEmail(email);
-
+       
         if (accountBean != null && PasswordUtils.checkPassword(password, accountBean.getPassword())) {
-
             return accountBean;
         } else {
             throw new  RuntimeException("Authentification échouée en raison de mots de passe incorrects");
