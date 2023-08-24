@@ -5,10 +5,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.servlet.http.HttpSession;
 
 import travelLinker.entity.Account;
 import travelLinker.entity.TravelPlanner;
 import travelLinker.utils.PasswordUtils;
+import travelLinker.utils.SessionUtils;
 import travelLinker.viewModel.AccountViewModel;
 
 @Stateless
