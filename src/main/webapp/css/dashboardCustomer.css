@@ -162,17 +162,16 @@ b {
 
 /*--------------------------------------------------------------------*/
 .container {
-    display: flex;
-    flex: 5;
+    display: grid;
     position: relative;
     width: 96%;
     margin: 0 auto;
     gap: 1.8rem;
+    grid-template-columns: 12rem auto 23rem;
 }
 
 aside {
     height: 100vh;
-    flex: 1;
 }
 
 aside .toggle {
@@ -198,6 +197,7 @@ aside .toggle .close {
 }
 
 aside .sidebar {
+	position: relative;
     display: flex;
     flex-direction: column;
     background-color: var(--color-white);
@@ -208,10 +208,6 @@ aside .sidebar {
     overflow: hidden;
     top: 1.5rem;
     transition: all 0.3s ease;
-}
-
-aside .sidebar .imgProfile {
-    align-items: center;
 }
 
 aside .sidebar:hover {
@@ -264,24 +260,13 @@ aside .sidebar .message-count {
     border-radius: var(--border-radius-1);
 }
 
-.imgProfile {
-    height: 9rem;
-    width: 9rem;
-    background-color: var(--color-background);
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
+aside .sidebar .noBackgroundLogout {
+	background-color: transparent;
+	color: var(--color-info-dark);
 }
-
-.imgProfile img {
-    height: 8rem;
-    width: 8rem;
-    border-radius: 50%;
-    object-fit: cover;
+aside .sidebar a:hover .noBackgroundLogout {
+    color: var(--color-primary);
 }
-
 /*-------------------------- Zone main analyse -------------------------------*/
 main {
     margin-top: 1.4rem;
@@ -959,22 +944,48 @@ main .recent-orders a {
     box-shadow: none;
 }
 
-/*------------------------------------Zone Création de service------------------------------*/
+/*------------------------------------Zone input form label ------------------------------*/
+#mainInfos .inputFormLabel {
+    position: relative;
+    margin-bottom: 20px;
+    transition: 0.2s ease all;
+}
 
-#mainAddAdmin .user-listMessages input {
-    width: 100%;
-    border: 1px solid lightgrey;
+
+#mainInfos  .placeholder {
+    position: absolute;
+    pointer-events: none;
+    left: 30px;
+    top: 3px;
+    padding: 2px;
+    transition: 0.2s ease all;
+    font-size: 14px;
+    color: #999;
+    background-color: white;
+}
+
+#mainInfos .inputForm {
+    border: 1px solid grey;
     border-radius: 25px;
+    background: none;
     padding: 10px;
-    margin-top: 15px;
+    margin-top: 30px;
+    width: 94%;
+    outline: none;
 }
 
-#mainAddAdmin .user-listMessages #inputMessageDetails {
-    height: 180px;
+#mainInfos  .inputForm:focus {
+    border-color: green;
 }
 
-#mainAddAdmin .user-listMessages:hover {
-    box-shadow: none;
+.inputForm:focus+.placeholder,
+.inputForm:not(:placeholder-shown)+.placeholder,
+.inputForm:not(:valid)+.placeholder {
+    top: 20px;
+    font-size: 15px;
+    color: #333;
+    padding: 2px 5px;
+    background-color: white;
 }
 
 /*------------------------------------Zone radioButtons service-----------------------------*/

@@ -2,7 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <h:head>
 
@@ -25,10 +27,6 @@
 				</div>
 			</div>
 			<div class="sidebar">
-				<!-- <div class="imgProfile">
-                    <img src="images/IMG_0434.jpg" />
-                    <h2></h2>
-                </div> -->
 				<a href="#" id="infosBtn" class="active"> <span
 					class="material-icons-sharp"> person_outline </span>
 					<h3>Infos</h3>
@@ -107,7 +105,7 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td><input type="checkbox" class="deleteCheckboxAllMsg"></td>
+									<td><input type="checkbox" class="deleteCheckboxAllMsg"/></td>
 									<td>Le Gourmet Parisien</td>
 									<td>Restaurant</td>
 									<td>Restaurant français raffiné au cœur de Paris</td>
@@ -117,7 +115,7 @@
 									</td>
 								</tr>
 								<tr>
-									<td><input type="checkbox" class="deleteCheckboxAllMsg"></td>
+									<td><input type="checkbox" class="deleteCheckboxAllMsg"/></td>
 									<td>Étoile Hôtel</td>
 									<td>Hébergement</td>
 									<td>Hôtel de luxe cinq étoiles avec vue panoramique</td>
@@ -127,7 +125,7 @@
 									</td>
 								</tr>
 								<tr>
-									<td><input type="checkbox" class="deleteCheckboxAllMsg"></td>
+									<td><input type="checkbox" class="deleteCheckboxAllMsg"/></td>
 									<td>Airport Shuttle</td>
 									<td>Transport</td>
 									<td>Service de navette entre l'aéroport et le centre-ville</td>
@@ -137,7 +135,7 @@
 									</td>
 								</tr>
 								<tr>
-									<td><input type="checkbox" class="deleteCheckboxAllMsg"></td>
+									<td><input type="checkbox" class="deleteCheckboxAllMsg"/></td>
 									<td>Sakura Sushi</td>
 									<td>Restaurant</td>
 									<td>Restaurant japonais spécialisé dans les sushis</td>
@@ -147,7 +145,7 @@
 									</td>
 								</tr>
 								<tr>
-									<td><input type="checkbox" class="deleteCheckboxAllMsg"></td>
+									<td><input type="checkbox" class="deleteCheckboxAllMsg"/></td>
 									<td>Mountain Lodge</td>
 									<td>Hébergement</td>
 									<td>Charmante auberge de montagne pour les amoureux de la
@@ -158,7 +156,7 @@
 									</td>
 								</tr>
 								<tr>
-									<td><input type="checkbox" class="deleteCheckboxAllMsg"></td>
+									<td><input type="checkbox" class="deleteCheckboxAllMsg"/></td>
 									<td>Mountain Lodge</td>
 									<td>Hébergement</td>
 									<td>Charmante auberge de montagne pour les amoureux de la
@@ -192,7 +190,7 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td><input type="checkbox" class="deleteCheckboxReadMsg"></td>
+									<td><input type="checkbox" class="deleteCheckboxReadMsg"/></td>
 									<td>Le Gourmet Parisien</td>
 									<td>Restaurant</td>
 									<td>Restaurant français raffiné au cœur de Paris</td>
@@ -201,7 +199,7 @@
 									</td>
 								</tr>
 								<tr>
-									<td><input type="checkbox" class="deleteCheckboxReadMsg"></td>
+									<td><input type="checkbox" class="deleteCheckboxReadMsg"/></td>
 									<td>Étoile Hôtel</td>
 									<td>Hébergement</td>
 									<td>Hôtel de luxe cinq étoiles avec vue panoramique</td>
@@ -210,7 +208,7 @@
 									</td>
 								</tr>
 								<tr>
-									<td><input type="checkbox" class="deleteCheckboxReadMsg"></td>
+									<td><input type="checkbox" class="deleteCheckboxReadMsg"/></td>
 									<td>Airport Shuttle</td>
 									<td>Transport</td>
 									<td>Service de navette entre l'aéroport et le centre-ville</td>
@@ -219,7 +217,7 @@
 									</td>
 								</tr>
 								<tr>
-									<td><input type="checkbox" class="deleteCheckboxReadMsg"></td>
+									<td><input type="checkbox" class="deleteCheckboxReadMsg"/></td>
 									<td>Sakura Sushi</td>
 									<td>Restaurant</td>
 									<td>Restaurant japonais spécialisé dans les sushis</td>
@@ -228,7 +226,7 @@
 									</td>
 								</tr>
 								<tr>
-									<td><input type="checkbox" class="deleteCheckboxReadMsg"></td>
+									<td><input type="checkbox" class="deleteCheckboxReadMsg"/></td>
 									<td>Mountain Lodge</td>
 									<td>Hébergement</td>
 									<td>Charmante auberge de montagne pour les amoureux de la
@@ -261,7 +259,7 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td><input type="checkbox" class="deleteCheckboxUnreadMsg"></td>
+									<td><input type="checkbox" class="deleteCheckboxUnreadMsg"/></td>
 									<td>Le Gourmet Parisien</td>
 									<td>Restaurant</td>
 									<td>Restaurant français raffiné au cœur de Paris</td>
@@ -270,7 +268,7 @@
 									</td>
 								</tr>
 								<tr>
-									<td><input type="checkbox" class="deleteCheckboxUnreadMsg"></td>
+									<td><input type="checkbox" class="deleteCheckboxUnreadMsg"/></td>
 									<td>Étoile Hôtel</td>
 									<td>Hébergement</td>
 									<td>Hôtel de luxe cinq étoiles avec vue panoramique</td>
@@ -279,7 +277,7 @@
 									</td>
 								</tr>
 								<tr>
-									<td><input type="checkbox" class="deleteCheckboxUnreadMsg"></td>
+									<td><input type="checkbox" class="deleteCheckboxUnreadMsg"/></td>
 									<td>Airport Shuttle</td>
 									<td>Transport</td>
 									<td>Service de navette entre l'aéroport et le centre-ville</td>
@@ -288,7 +286,7 @@
 									</td>
 								</tr>
 								<tr>
-									<td><input type="checkbox" class="deleteCheckboxUnreadMsg"></td>
+									<td><input type="checkbox" class="deleteCheckboxUnreadMsg"/></td>
 									<td>Sakura Sushi</td>
 									<td>Restaurant</td>
 									<td>Restaurant japonais spécialisé dans les sushis</td>
@@ -297,7 +295,7 @@
 									</td>
 								</tr>
 								<tr>
-									<td><input type="checkbox" class="deleteCheckboxUnreadMsg"></td>
+									<td><input type="checkbox" class="deleteCheckboxUnreadMsg"/></td>
 									<td>Mountain Lodge</td>
 									<td>Hébergement</td>
 									<td>Charmante auberge de montagne pour les amoureux de la
@@ -330,7 +328,7 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td><input type="checkbox" class="deleteCheckboxSentMsg"></td>
+									<td><input type="checkbox" class="deleteCheckboxSentMsg"/></td>
 									<td>Le Gourmet Parisien</td>
 									<td>Restaurant</td>
 									<td>Restaurant français raffiné au cœur de Paris</td>
@@ -339,7 +337,7 @@
 									</td>
 								</tr>
 								<tr>
-									<td><input type="checkbox" class="deleteCheckboxSentMsg"></td>
+									<td><input type="checkbox" class="deleteCheckboxSentMsg"/></td>
 									<td>Étoile Hôtel</td>
 									<td>Hébergement</td>
 									<td>Hôtel de luxe cinq étoiles avec vue panoramique</td>
@@ -348,7 +346,7 @@
 									</td>
 								</tr>
 								<tr>
-									<td><input type="checkbox" class="deleteCheckboxSentMsg"></td>
+									<td><input type="checkbox" class="deleteCheckboxSentMsg"/></td>
 									<td>Airport Shuttle</td>
 									<td>Transport</td>
 									<td>Service de navette entre l'aéroport et le centre-ville</td>
@@ -357,7 +355,7 @@
 									</td>
 								</tr>
 								<tr>
-									<td><input type="checkbox" class="deleteCheckboxSentMsg"></td>
+									<td><input type="checkbox" class="deleteCheckboxSentMsg"/></td>
 									<td>Sakura Sushi</td>
 									<td>Restaurant</td>
 									<td>Restaurant japonais spécialisé dans les sushis</td>
@@ -366,7 +364,7 @@
 									</td>
 								</tr>
 								<tr>
-									<td><input type="checkbox" class="deleteCheckboxSentMsg"></td>
+									<td><input type="checkbox" class="deleteCheckboxSentMsg"/></td>
 									<td>Mountain Lodge</td>
 									<td>Hébergement</td>
 									<td>Charmante auberge de montagne pour les amoureux de la
@@ -391,23 +389,46 @@
 						<div class="user-listMessages" style="display: block;">
 							<div class="radio-inputs">
 								<label class="radio"> <input type="radio" name="radio"
-									id="allMsg"><span class="name">Partenaire</span>
+									id="allMsg" /> <span class="name">Partenaire</span>
 								</label> <label class="radio"> <input type="radio" name="radio"
-									id="readMsg"><span class="name">Travel planner</span>
+									id="readMsg" /> <span class="name">Travel planner</span>
 								</label> <label class="radio"> <input type="radio" name="radio"
-									id="unreadMsg"><span class="name">Client</span>
+									id="unreadMsg" /> <span class="name">Client</span>
 								</label> <label class="radio"> <input type="radio" name="radio"
-									id="sentMsg"><span class="name">Administration</span>
+									id="sentMsg" /> <span class="name">Administration</span>
 								</label>
 							</div>
-							<input type="text" id="inputMessageDest"
-								placeholder="Choisir un destinataire..." required><input
-								type="text" id="inputMessageResume"
-								placeholder="Écrire un titre..." required>
-							<textarea name="writeMsgZoneTA" id="inputMessageDetails"
-								cols="100" rows="13" placeholder="Écrire le corps du message..."></textarea>
+
+							<div class="user-listWriteMSGSection">
+								<h:form>
+
+									<div class="inputFormLabel">
+										<h:outputLabel value="Destinataire"
+											styleClass="placeholder label" />
+										<h:inputText
+											value="#{conversationController.accVM.recepientEmail}"
+											required="true" class="inputForm" />
+									</div>
+
+									<div class="inputFormLabel">
+										<h:outputLabel value="Objet" styleClass="placeholder label" />
+										<h:inputText
+											value="#{conversationController.accVM.messageResume}"
+											required="true" class="inputForm" />
+									</div>
+									<div class="inputFormLabel">
+										<h:outputLabel value="Message"
+											styleClass="placeholderTA label" />
+										<h:inputTextarea rows="5" cols="40" class="textAreaWriteMSG" />
+									</div>
+
+
+									<h:commandButton
+										action="#{conversationController.sendMessage()}"
+										value="Envoyer" />
+								</h:form>
+							</div>
 						</div>
-						<button id="saveInfos">Envoyer</button>
 					</div>
 				</div>
 			</div>
@@ -422,7 +443,7 @@
 					<div class="sales">
 						<div class="status">
 							<div class="info logo">
-								<img src="images/IMG_0434.jpg"/>
+								<img src=".media/images/IMG_0434.jpg"/>
 								<h1>Frédéric Dupin</h1>
 							</div>
 						</div>
@@ -534,9 +555,9 @@
 				<div class="new-users flexingRB">
 					<div class="radio-inputs">
 						<label class="radio"> <input type="radio" name="radio"
-							id="listFavTravel"><span class="name">Voyages</span>
+							id="listFavTravel"/><span class="name">Voyages</span>
 						</label> <label class="radio"> <input type="radio" name="radio"
-							id="listFavTravelPlanner"><span class="name">Travel
+							id="listFavTravelPlanner"/><span class="name">Travel
 								Planner</span>
 						</label>
 					</div>
@@ -556,7 +577,7 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td>Routard & Co</td>
+										<td>Routard and Co</td>
 										<td>Mobil'rapid</td>
 										<td>Transport</td>
 										<td class="fourthTD">Faites appel à nous si vous
@@ -616,7 +637,7 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td>Routard & Co</td>
+										<td>Routard and Co</td>
 										<td>Mobil'rapid</td>
 										<td>Transport</td>
 										<td class="fourthTD">Faites appel à nous si vous
@@ -665,11 +686,72 @@
 		</main>
 
 		<!-- Right Section -->
+				<!-- Right Section -->
 		<div class="right-section">
 			<div class="nav">
 				<button id="menu-btn">
 					<span class="material-icons-sharp"> menu </span>
 				</button>
+				<div class="dark-mode">
+					<span class="material-icons-sharp active"> light_mode </span> <span
+						class="material-icons-sharp"> dark_mode </span>
+				</div>
+
+			</div>
+			<!-- End of Nav -->
+
+			<div class="user-profile">
+				<div class="logo">
+					<img src="images/IMG_0434.jpg" />
+					<h3>
+						Bonjour, <b><h:outputText
+								value="#{loginControllerBean.userFirstName}" /></b>
+					</h3>
+				</div>
+			</div>
+
+			<div class="reminders">
+				<div class="header">
+					<h2>Notes</h2>
+					<span class="material-icons-sharp">notifications_none</span>
+					<div id="rightNotifNumber" style="display: none;">
+						<h4>1</h4>
+					</div>
+				</div>
+				<div id="rightContainerNotif">
+					<ui:repeat value="#{taskControllerBean.getAllTasks()}" var="task">
+						<div class="notification">
+							<div class="icon">
+								<span class="material-icons-sharp">priority_high</span>
+							</div>
+							<div class="content">
+								<div class="info">
+									<h3>Tâche à faire</h3>
+									<small class="text_muted"> #{task.taskContent} </small>
+								</div>
+								<span class="material-icons-sharp closeCrossNotes">close</span>
+							</div>
+						</div>
+					</ui:repeat>
+
+					<div class="notification-add add-reminder">
+						<div>
+							<span class="material-icons-sharp">add</span>
+							<h:form>
+								<div>
+									<h:inputText value="#{taskControllerBean.accVM.taskContent}" />
+								</div>
+								<div>
+									<h:commandButton value="Ajouter une note"
+										action="#{taskControllerBean.addTask()}" />
+								</div>
+							</h:form>
+
+						</div>
+
+					</div>
+
+				</div>
 			</div>
 
 		</div>
