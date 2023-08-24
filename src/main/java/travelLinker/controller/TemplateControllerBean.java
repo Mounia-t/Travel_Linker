@@ -44,7 +44,7 @@ public class TemplateControllerBean implements Serializable {
 	public String updateBackgroundColor() {
 		System.out.println("Mise à jour de la couleur d'arrière-plan: " + selectedColor);
 
-		String userEmail = SessionUtils.getUserEmail();
+		String userEmail = SessionUtils.getAccount().getEmail();
 		if (userEmail == null) {
 			System.err.println("Erreur : Aucun e-mail trouvé dans la session.");
 			return null;
