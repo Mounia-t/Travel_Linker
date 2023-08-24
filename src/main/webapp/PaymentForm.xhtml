@@ -20,6 +20,24 @@
 
 	<main>
 		<section id="zonePaiement">
+		<div id="recapCard">
+			<div class="recapCardZone">
+                    <div class="infosZone">
+                        <h2>Informations client : </h2>
+                        <h3>{User(rôle)}</h3>
+                    </div>
+                    <div class="recapZone">
+                        <h2>Récapitulatif de réservation : </h2>
+                        <h3>{reservation}</h3>
+                    </div>
+                </div>
+                <div class="totalZone">
+                    <h2>Montant total : </h2>
+                    <h3>{0€}</h3>
+                </div>
+		</div>
+
+			<div id="paiementForm">
 			<div id="paiementCard">
 				<div id="cardBody">
 					<div id="cbBodyInfo">
@@ -36,7 +54,6 @@
 					</div>
 				</div>
 			</div>
-			<div id="paiementForm">
 				<h:form>
 					<!-- <label for="nom">Nom complet:</label> -->
 					<div class="inputFormLabel">
@@ -57,7 +74,7 @@
 						<h:inputText type="text" id="expirationDate" name="expirationDate"
 							value="#{paymentControllerBean.payment.cardDate}" maxlength="5"
 							class="inputForm" />
-						<h:outputLabel value="09/23" for="expirationDate"
+						<h:outputLabel value="Date exp." for="expirationDate"
 							styleClass="placeholder label" />
 
 						<h:inputText type="text" id="cvv" name="cvv"
