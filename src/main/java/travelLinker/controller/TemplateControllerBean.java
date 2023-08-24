@@ -91,6 +91,9 @@ public class TemplateControllerBean implements Serializable {
 	}
 
 	public Template getTemplate() {
+		if (template == null) {
+			template = templateDao.loadTemplateForCurrentUser();
+		}
 		return template;
 	}
 

@@ -66,8 +66,10 @@ public class LoginControllerBean implements Serializable {
 				String userEmail = SessionUtils.getAccount().getEmail();
 				TravelPlanner tp = loginDao.findTravelPlanner(userEmail);
 				Template userTemplate = tp.getTemplate();
+				HttpSession session1 = SessionUtils.getSession();
+				session1.setAttribute("template", userTemplate);
 				templateControllerBean.setTemplate(userTemplate);
-				System.out.println("validate account la template est " + userTemplate + " travel planner est " + tp);
+				templateControllerBean.setSelectedColor(userTemplate.getBackgroundColor());
 			}
 
 			// Effectuer la redirection
@@ -127,23 +129,23 @@ public class LoginControllerBean implements Serializable {
 
 	// Méthode pour se déconnecter, sans invalider la session entière
 	public String logout() {
-		account = SessionUtils.getAccount();
-		System.out.println("logout avec account is " + account);
-
-		if (account.getRole() == RoleUser.TravelPlanner) {
-			String userEmail = SessionUtils.getAccount().getEmail();
-			System.out.println(" logout avec user e mail " + userEmail);
-			TravelPlanner tp = loginDao.findTravelPlanner(userEmail);
-			System.out.println("logout avec " + tp + " its ok");
-			HttpSession session = SessionUtils.getSession();
-			session.removeAttribute("userId");
-			session.removeAttribute("userEmail");
-			session.removeAttribute("userRole");
-		}
 
 		loginDao.logout();
+
 		return "signIn"; // Rediriger vers la page de connexion
 	}
+
+//	public String logout() {
+//		HttpSession session = SessionUtils.getSession();
+//
+//		if (account.getRole() == RoleUser.TravelPlanner) {
+//			// Supprimez uniquement l'attribut de l'utilisateur connecté
+//			session.removeAttribute("loggedInUser");
+//		} else {
+//			loginDao.logout(); // Ici, je suppose que loginDao.logout() n'invalide pas la session entière.
+//		}
+//		return "signIn"; // Rediriger vers la page de connexion
+//	}
 
 	public Account getConnectedAccount() {
 		HttpSession session = SessionUtils.getSession();
