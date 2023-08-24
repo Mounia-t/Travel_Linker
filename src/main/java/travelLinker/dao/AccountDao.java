@@ -7,9 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
-import javax.faces.application.NavigationHandler;
 import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -28,34 +26,25 @@ public class AccountDao {
 	@PersistenceContext(unitName = "travelLinker")
 	private EntityManager entityManager;
 
-
-	/*public Long insert(AccountViewModel accountVM) {
-		try {
-			Account accountbean = createAccount(accountVM);
-
-			if (accountVM.getRole() == RoleUser.Customer) {
-				Customer customer = createCustomer(accountVM);
-				customer.setAccount(accountbean);
-				entityManager.persist(customer);
-			} else if (accountVM.getRole() == RoleUser.TravelPlanner) {
-				TravelPlanner travelPlanner = createTravelPlanner(accountVM, null);
-				travelPlanner.setAccount(accountbean);
-				entityManager.persist(travelPlanner);
-			} else if (accountVM.getRole() == RoleUser.Partner) {
-				Partner partner = createPartner(accountVM);
-				partner.setAccount(accountbean);
-				entityManager.persist(partner);
-			}
-
-			entityManager.persist(accountbean);
-			entityManager.flush(); // Flush to synchronize changes
-
-			return accountbean.getId();
-		} catch (Exception e) {
-			e.printStackTrace(); // Handle exceptions
-			return null;
-		}
-	}*/
+	/*
+	 * public Long insert(AccountViewModel accountVM) { try { Account accountbean =
+	 * createAccount(accountVM);
+	 * 
+	 * if (accountVM.getRole() == RoleUser.Customer) { Customer customer =
+	 * createCustomer(accountVM); customer.setAccount(accountbean);
+	 * entityManager.persist(customer); } else if (accountVM.getRole() ==
+	 * RoleUser.TravelPlanner) { TravelPlanner travelPlanner =
+	 * createTravelPlanner(accountVM, null); travelPlanner.setAccount(accountbean);
+	 * entityManager.persist(travelPlanner); } else if (accountVM.getRole() ==
+	 * RoleUser.Partner) { Partner partner = createPartner(accountVM);
+	 * partner.setAccount(accountbean); entityManager.persist(partner); }
+	 * 
+	 * entityManager.persist(accountbean); entityManager.flush(); // Flush to
+	 * synchronize changes
+	 * 
+	 * return accountbean.getId(); } catch (Exception e) { e.printStackTrace(); //
+	 * Handle exceptions return null; } }
+	 */
 
 	public Account createAccount(AccountViewModel accountVM) {
 		Account accountbean = new Account();
@@ -88,36 +77,34 @@ public class AccountDao {
 		entityManager.flush();
 		return customer;
 	}
-	
 
 	public TravelPlanner createTravelPlanner(AccountViewModel accountVM, ExternalContext externalContext) {
-	    TravelPlanner travelPlanner = new TravelPlanner();
-	    travelPlanner.setEmail(accountVM.getEmail());
-	    travelPlanner.setLastName(accountVM.getLastName());
-	    travelPlanner.setFirstName(accountVM.getFirstName());
-	    travelPlanner.setPhoneNumber(accountVM.getPhoneNumber());
+		TravelPlanner travelPlanner = new TravelPlanner();
+		travelPlanner.setEmail(accountVM.getEmail());
+		travelPlanner.setLastName(accountVM.getLastName());
+		travelPlanner.setFirstName(accountVM.getFirstName());
+		travelPlanner.setPhoneNumber(accountVM.getPhoneNumber());
 
-	    Account accountbean = createAccount(accountVM);
-	    accountbean.setRole(RoleUser.TravelPlanner);
-	    travelPlanner.setAccount(accountbean);
+		Account accountbean = createAccount(accountVM);
+		accountbean.setRole(RoleUser.TravelPlanner);
+		travelPlanner.setAccount(accountbean);
 
-	    entityManager.persist(travelPlanner); // Persist the entity
+		entityManager.persist(travelPlanner); // Persist the entity
 
-	    try {
-	        // Redirect to subscriptionTP.xhtml
-	        externalContext.redirect("SubscriptionTP.xhtml");
-	    } catch (IOException e) {
-	        // Handle the exception if redirection fails
-	        e.printStackTrace();
-	    }
+		try {
+			// Redirect to subscriptionTP.xhtml
+			externalContext.redirect("SubscriptionTP.xhtml");
+		} catch (IOException e) {
+			// Handle the exception if redirection fails
+			e.printStackTrace();
+		}
 
-	    return travelPlanner;
+		return travelPlanner;
 	}
 
 	public void updateTravelPlanner(TravelPlanner travelPlanner) {
 		entityManager.merge(travelPlanner);
 	}
-
 
 	public Partner createPartner(AccountViewModel accountVM) {
 
@@ -201,27 +188,28 @@ public class AccountDao {
 
 //---------------------------------------------------
 	public List<Partner> getLatestRegisteredPartners(int count) {
-	    LocalDate threeDaysAgo = LocalDate.now().minusDays(3);
-	    Date threeDaysAgoDate = Date.from(threeDaysAgo.atStartOfDay(ZoneId.systemDefault()).toInstant());
+		LocalDate threeDaysAgo = LocalDate.now().minusDays(3);
+		Date threeDaysAgoDate = Date.from(threeDaysAgo.atStartOfDay(ZoneId.systemDefault()).toInstant());
 
-	    TypedQuery<Partner> query = entityManager.createQuery(
-	        "SELECT p FROM Partner p WHERE p.registrationDate >= :threeDaysAgoDate ORDER BY p.registrationDate DESC",
-	        Partner.class);
-	    query.setParameter("threeDaysAgoDate", threeDaysAgoDate);
-	    query.setMaxResults(count);
-	    return query.getResultList();
+		TypedQuery<Partner> query = entityManager.createQuery(
+				"SELECT p FROM Partner p WHERE p.registrationDate >= :threeDaysAgoDate ORDER BY p.registrationDate DESC",
+				Partner.class);
+		query.setParameter("threeDaysAgoDate", threeDaysAgoDate);
+		query.setMaxResults(count);
+		return query.getResultList();
 	}
+
 	public Account loadAccountFromDataSource(Long accountId) {
-	    // Remplacez "accountId" par l'identifiant de l'utilisateur connecté
-	    return entityManager.find(Account.class, accountId);
+		// Remplacez "accountId" par l'identifiant de l'utilisateur connecté
+		return entityManager.find(Account.class, accountId);
 	}
-	
+
 	public RoleUser getUserRoleById(Long userId) {
-	    Account account = getAccountById(userId);
-	    if (account != null) {
-	        return account.getRole();
-	    }
-	    return null;
+		Account account = getAccountById(userId);
+		if (account != null) {
+			return account.getRole();
+		}
+		return null;
 	}
 
 }

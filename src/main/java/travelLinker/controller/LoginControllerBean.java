@@ -13,6 +13,8 @@ import javax.servlet.http.HttpSession;
 import travelLinker.dao.LoginDao;
 import travelLinker.entity.Account;
 import travelLinker.entity.RoleUser;
+import travelLinker.entity.Template;
+import travelLinker.entity.TravelPlanner;
 import travelLinker.utils.SessionUtils;
 import travelLinker.viewModel.AccountViewModel;
 
@@ -28,6 +30,9 @@ public class LoginControllerBean implements Serializable {
 	private AccountViewModel accountVM = new AccountViewModel();
 	@Inject
 	private LoginDao loginDao;
+
+	@Inject
+	private TemplateControllerBean templateControllerBean;
 
 	public LoginControllerBean() {
 	}
@@ -46,8 +51,18 @@ public class LoginControllerBean implements Serializable {
 			// Recuperer les données de la session
 			SessionUtils.writeInSession(account.getId(), account.getEmail(), account.getRole(), account.getFirstName(),
 					account.getLastName());
-	//	SessionUtils.writeInSessionTP(tp.getSiret(), tp.getPhoneNumber(), tp.getCompanyName());
+			// SessionUtils.writeInSessionTP(tp.getSiret(), tp.getPhoneNumber(),
+			// tp.getCompanyName());
 			;
+			// TODO Ajouter travel planner dans la session
+
+			if (account.getRole() == RoleUser.TravelPlanner) {
+				String userEmail = SessionUtils.getUserEmail();
+				TravelPlanner tp = loginDao.findTravelPlanner(userEmail);
+				Template userTemplate = tp.getTemplate();
+				templateControllerBean.setTemplate(userTemplate);
+				System.out.println("validate account la template est " + userTemplate + " travel planner est " + tp);
+			}
 
 			// Effectuer la redirection
 			ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
@@ -89,7 +104,7 @@ public class LoginControllerBean implements Serializable {
 				// Redirection vers le tableau de bord des clients
 				redirectionUrl = "DashboardCustomer.xhtml"; // Remplacez "dashboard-customer.xhtml" par l'URL du tableau
 															// de bord des clients
-			} else if (role == RoleUser.TravelPlanner && account.getSubscription()!=null) {
+			} else if (role == RoleUser.TravelPlanner && account.getSubscription() != null) {
 
 				// Redirection vers le tableau de bord des clients
 				redirectionUrl = "dashboardTP.xhtml";
@@ -98,7 +113,7 @@ public class LoginControllerBean implements Serializable {
 				redirectionUrl = "index.xhtml"; // Remplacez "default-dashboard.xhtml" par l'URL de la page de tableau
 												// de bord par défaut
 			}
-System.out.println(role);
+			System.out.println(role);
 			return redirectionUrl;
 		} else {
 			// Compte non trouvé dans la base de données
@@ -108,10 +123,13 @@ System.out.println(role);
 		}
 	}
 
-	// Méthode pour se déconnecter, invalider la session
+	// Méthode pour se déconnecter, sans invalider la session entière
 	public String logout() {
 		HttpSession session = SessionUtils.getSession();
-		session.invalidate();
+		session.removeAttribute("userId");
+		session.removeAttribute("userEmail");
+		session.removeAttribute("userRole");
+
 		return "signIn"; // Rediriger vers la page de connexion
 	}
 
@@ -131,15 +149,18 @@ System.out.println(role);
 		return SessionUtils.getUserEmail();
 	}
 
-    public String getUserSiret() {
-	        return SessionUtils.getUserSiret();
-	    }
-    public String getUserPhone() {
-		return SessionUtils.getUserPhone();  	
-    }
-    public String getUserCompany() {
-        return SessionUtils.getUserCompany();
-    }
+	public String getUserSiret() {
+		return SessionUtils.getUserSiret();
+	}
+
+	public String getUserPhone() {
+		return SessionUtils.getUserPhone();
+	}
+
+	public String getUserCompany() {
+		return SessionUtils.getUserCompany();
+	}
+
 	public AccountViewModel getAccountVM() {
 		return accountVM;
 	}

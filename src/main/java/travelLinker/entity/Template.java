@@ -47,4 +47,20 @@ public class Template {
 	public Long getId() {
 		return id;
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Template [id=");
+		builder.append(id);
+		builder.append(", nom=");
+		builder.append(nom);
+		builder.append(", htmlCssContent=");
+		builder.append(htmlCssContent);
+		builder.append(", backgroundColor=");
+		builder.append(backgroundColor);
+		builder.append("]");
+		return builder.toString();
+	}
+
 }

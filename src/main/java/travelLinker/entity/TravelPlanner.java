@@ -28,7 +28,6 @@ public class TravelPlanner {
 	@JoinColumn(name = "account_id")
 	private Account account;
 
-
 	@OneToOne
 	@JoinColumn(name = "template_fk_id")
 	private Template template;
@@ -41,11 +40,9 @@ public class TravelPlanner {
 		this.template = template;
 	}
 
-	
 	@OneToOne
-	@JoinColumn(name="subscription_id")
+	@JoinColumn(name = "subscription_id")
 	private Subscription subcription;
-	
 
 	public Long getId() {
 		return id;
@@ -115,18 +112,41 @@ public class TravelPlanner {
 		this.account = account;
 	}
 
-
-
 	public Subscription getSubcription() {
 		return subcription;
 	}
 
-
 	public void setSubcription(Subscription subcription) {
 		this.subcription = subcription;
-	}	
-	
-	
+	}
 
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("TravelPlanner [id=");
+		builder.append(id);
+		builder.append(", lastName=");
+		builder.append(lastName);
+		builder.append(", firstName=");
+		builder.append(firstName);
+		builder.append(", address=");
+		builder.append(address);
+		builder.append(", email=");
+		builder.append(email);
+		builder.append(", phoneNumber=");
+		builder.append(phoneNumber);
+		builder.append(", siret=");
+		builder.append(siret);
+		builder.append(", companyName=");
+		builder.append(companyName);
+		builder.append(", account=");
+		builder.append(account);
+		builder.append(", template=");
+		builder.append(template);
+		builder.append(", subcription=");
+		builder.append(subcription);
+		builder.append("]");
+		return builder.toString();
+	}
 
 }
