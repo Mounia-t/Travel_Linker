@@ -7,6 +7,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
+
 @Entity
 public class Journey {
 	
@@ -21,10 +25,10 @@ public class Journey {
 	private String location;
 	private Date startDate;
 	private Date endDate;
+
 	private String imagePath;
 	private Long accountId;
 	
-
 
 
 
@@ -45,21 +49,7 @@ public class Journey {
 	}
 	
 
-	public Long getAccountId() {
-		return accountId;
-	}
 
-	public void setAccountId(Long accountId) {
-		this.accountId = accountId;
-	}
-
-	public String getImagePath() {
-		return imagePath;
-	}
-
-	public void setImagePath(String imagePath) {
-		this.imagePath = imagePath;
-	}
 	public Long getId() {
 		return id;
 	}
@@ -117,6 +107,24 @@ public class Journey {
 		this.description = description;
 	}
 	
+
+
+	public String getImagePath() {
+		return imagePath;
+	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+
+
+	public Long getAccountId() {
+		return accountId;
+	}
+
+	public void setAccountId(Long accountId) {
+		this.accountId = accountId;
+	}
 
 }
 

@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html lang="fr"
+xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -27,11 +30,11 @@
       <!-- Bouton de menu (hamburger) -->
       <div class="navigation">
         <div class="navigation-items">
-          <a href="index.xhtml">Accueil</a>
+          <a href="#">Accueil</a>
           <a href="#">A Propos de nous</a>
           <a href="#">Services</a>
           <a href="#contact">Contact</a>
-          <a href="login.xhtml">Connexion</a>
+          <a href="#">Connexion</a>
         </div>
       </div>
     </header>
@@ -47,7 +50,7 @@
         </div>
         <div class="image-animation">
           <img src="./media/images/Croatie.jpg" alt="Voyage" />
-        <a class="btn-home" href="PaymentForm.xhtml">Payer</a>
+          <button class="btn-home">Réserver</button>
         </div>
       </div>
     </section>
@@ -162,7 +165,7 @@
         </div>
 
         <div class="box">
-          <img src="./media/images/Portugal.jpg" alt="" />
+          <img src="images/Portugal.jpg" alt="" />
           <div class="content">
             <h3><i class="fas fa-map-marker-alt"></i> Portugal</h3>
             <p>
@@ -194,7 +197,7 @@
         <div class="card-service">
           <div
             class="card-background-service"
-            style="background-image: url(./media/images/hotel.jpg)"
+            style="background-image: url(images/hotel.jpg)"
           ></div>
           <div class="content-service">
             <div class="card-category-service">Hôtel</div>
@@ -283,7 +286,7 @@
 
     <div class="footer">
       <div class="logo-footer">
-        <img src="./media/images/logoTravelLinker2.png" alt="Logo-footer" />
+        <img src="images/logoTravelLinker2.png" alt="Logo-footer" />
         <div class="social-icons-footer">
           <div class="social-icon"><i class="fab fa-facebook-f"></i></div>
           <div class="social-icon"><i class="fab fa-instagram"></i></div>
@@ -346,6 +349,6 @@
 
   <!-- Lien vers le script JavaScript -->
 
-  <script src="./js/produit.js" defer="defer"></script>
+  <script src="./js/produit.js" defer></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </html>
