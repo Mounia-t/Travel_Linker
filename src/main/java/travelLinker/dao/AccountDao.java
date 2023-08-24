@@ -26,26 +26,6 @@ public class AccountDao {
 	@PersistenceContext(unitName = "travelLinker")
 	private EntityManager entityManager;
 
-	/*
-	 * public Long insert(AccountViewModel accountVM) { try { Account accountbean =
-	 * createAccount(accountVM);
-	 * 
-	 * if (accountVM.getRole() == RoleUser.Customer) { Customer customer =
-	 * createCustomer(accountVM); customer.setAccount(accountbean);
-	 * entityManager.persist(customer); } else if (accountVM.getRole() ==
-	 * RoleUser.TravelPlanner) { TravelPlanner travelPlanner =
-	 * createTravelPlanner(accountVM, null); travelPlanner.setAccount(accountbean);
-	 * entityManager.persist(travelPlanner); } else if (accountVM.getRole() ==
-	 * RoleUser.Partner) { Partner partner = createPartner(accountVM);
-	 * partner.setAccount(accountbean); entityManager.persist(partner); }
-	 * 
-	 * entityManager.persist(accountbean); entityManager.flush(); // Flush to
-	 * synchronize changes
-	 * 
-	 * return accountbean.getId(); } catch (Exception e) { e.printStackTrace(); //
-	 * Handle exceptions return null; } }
-	 */
-
 	public Account createAccount(AccountViewModel accountVM) {
 		Account accountbean = new Account();
 		accountbean.setEmail(accountVM.getEmail());
@@ -63,7 +43,7 @@ public class AccountDao {
 
 	}
 
-	public Customer createCustomer(AccountViewModel accountVM) {
+	public Customer createCustomer(AccountViewModel accountVM, ExternalContext externalContext) {
 
 		Customer customer = new Customer();
 		customer.setEmail(accountVM.getEmail());
@@ -75,38 +55,55 @@ public class AccountDao {
 		customer.setAccount(accountbean);
 		entityManager.persist(customer);
 		entityManager.flush();
-		return customer;
+		
+		
+		 try {
+		        // Redirect to subscriptionTP.xhtml
+		        externalContext.redirect("index.xhtml");
+		    } catch (IOException e) {
+		        // Handle the exception if redirection fails
+		        e.printStackTrace();
+		    }
+		 
+		 return customer;
 	}
 
 	public TravelPlanner createTravelPlanner(AccountViewModel accountVM, ExternalContext externalContext) {
-		TravelPlanner travelPlanner = new TravelPlanner();
-		travelPlanner.setEmail(accountVM.getEmail());
-		travelPlanner.setLastName(accountVM.getLastName());
-		travelPlanner.setFirstName(accountVM.getFirstName());
-		travelPlanner.setPhoneNumber(accountVM.getPhoneNumber());
 
-		Account accountbean = createAccount(accountVM);
-		accountbean.setRole(RoleUser.TravelPlanner);
-		travelPlanner.setAccount(accountbean);
+	    TravelPlanner travelPlanner = new TravelPlanner();
+	    travelPlanner.setEmail(accountVM.getEmail());
+	    travelPlanner.setLastName(accountVM.getLastName());
+	    travelPlanner.setFirstName(accountVM.getFirstName());
+	    travelPlanner.setPhoneNumber(accountVM.getPhoneNumber());
+	    travelPlanner.setSiret(accountVM.getSiret());
+	    travelPlanner.setAddress(accountVM.getAddress());
+	    travelPlanner.setCompanyName(accountVM.getCompanyName());
 
-		entityManager.persist(travelPlanner); // Persist the entity
+	    Account accountbean = createAccount(accountVM);
+	    accountbean.setRole(RoleUser.TravelPlanner);
+	    travelPlanner.setAccount(accountbean);
 
-		try {
-			// Redirect to subscriptionTP.xhtml
-			externalContext.redirect("SubscriptionTP.xhtml");
-		} catch (IOException e) {
-			// Handle the exception if redirection fails
-			e.printStackTrace();
-		}
+	    entityManager.persist(travelPlanner); // Persist the entity
+	    entityManager.flush();
 
-		return travelPlanner;
+	    try {
+	        // Redirect to subscriptionTP.xhtml
+	        externalContext.redirect("index.xhtml");
+	    } catch (IOException e) {
+	        // Handle the exception if redirection fails
+	        e.printStackTrace();
+	    }
+
+	    return travelPlanner;
+
 	}
 
 	public void updateTravelPlanner(TravelPlanner travelPlanner) {
 		entityManager.merge(travelPlanner);
 	}
 
-	public Partner createPartner(AccountViewModel accountVM) {
+	public Partner createPartner(AccountViewModel accountVM, ExternalContext externalContext) {
+
 
 		Partner partner = new Partner();
 		partner.setFirstName(accountVM.getFirstName());
@@ -120,6 +117,18 @@ public class AccountDao {
 		accountbean.setRole(RoleUser.Partner);
 		partner.setAccount(accountbean);
 		entityManager.persist(partner);
+		 entityManager.flush();
+
+		    try {
+		        // Redirect to subscriptionTP.xhtml
+		        externalContext.redirect("index.xhtml");
+		    } catch (IOException e) {
+		        // Handle the exception if redirection fails
+		        e.printStackTrace();
+		    }
+
+		    
+		
 		return partner;
 	}
 

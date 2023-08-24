@@ -2,6 +2,8 @@ package travelLinker.entity;
 
 import java.util.Date;
 
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
@@ -15,6 +17,9 @@ public abstract class Service {
 	private Date startDate;
 	private Date endDate;
 	private String description;
+	@ManyToOne
+	@JoinColumn(name="journey_id")
+	private Journey journey;
 
 	public float getPrice() {
 		return price;

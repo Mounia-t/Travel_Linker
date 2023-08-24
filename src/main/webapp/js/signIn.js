@@ -113,3 +113,4 @@ eyeClosedIconPartner.addEventListener("click", () => {
     eyeClosedIconPartner.style.display = 'none';
     eyeOpenIconPartner.style.display = 'block';
 });
+/*------------------------------------Zone validation des entrées input-----------------------------------------*/

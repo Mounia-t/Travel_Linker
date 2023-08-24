@@ -5,8 +5,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
@@ -23,7 +21,9 @@ import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 
 import travelLinker.dao.JourneyDao;
+import travelLinker.dao.ServiceDao;
 import travelLinker.entity.Journey;
+import travelLinker.entity.Service;
 import travelLinker.viewModel.JourneyViewModel;
 
 	@ManagedBean
@@ -41,13 +41,17 @@ import travelLinker.viewModel.JourneyViewModel;
 		
 		@Inject
 		private DashboardController dashController;
+		@Inject
+		private ServiceDao serviceDao;
 		
 		@Lob
 		@Basic(fetch = FetchType.LAZY)
 		@Column(columnDefinition = "BLOB")
 		private Part imageFile;
 		
-		public List<Journey> journeys;
+		private List<Service> filteredServices;
+
+		
 		public void addJourney() {
 		    try {
 		        if (imageFile != null) {
@@ -116,27 +120,42 @@ import travelLinker.viewModel.JourneyViewModel;
 			return imageFile;
 		}
 
-
-
 		public void setImageFile(Part imageFile) {
 			this.imageFile = imageFile;
 		}
 		
-		public List<Journey> getJourneys() {
-			return journeys;
+	
+		public DashboardController getDashController() {
+			return dashController;
 		}
 
-		public void setJourneys(List<Journey> journeys) {
-			this.journeys = journeys;
+		public void setDashController(DashboardController dashController) {
+			this.dashController = dashController;
 		}
+
+		public ServiceDao getServiceDao() {
+			return serviceDao;
+		}
+
+		public void setServiceDao(ServiceDao serviceDao) {
+			this.serviceDao = serviceDao;
+		}
+
 		public List<Journey> getAllJourneys(){
 			return journeyDao.getAllJourneys();
 			
 		}
-		
-		
-
-
+		public List<Journey> displayTravelPlaJournyes(){
+			return journeyDao.getTravelPlannerJourneys();
+		}
+		public void filterServicesByCountry() {
+		    String selectedCountry = journeyVM.getCountry(); // Récupérer le pays sélectionné
+		    if (selectedCountry != null && !selectedCountry.isEmpty()) {
+		        filteredServices = serviceDao.displayFiltredServices(selectedCountry);
+		    }
+			
+		}
 	}
+
 
 

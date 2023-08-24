@@ -88,15 +88,6 @@ main {
     padding: 10px 50px;
 }
 
-/* .partnerButton {
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-.customerButton {
-    margin-top: 20px;
-    margin-bottom: 20px;
-} */
 
 .designButtonSecond {
     padding: 5px 40px;
@@ -161,16 +152,13 @@ main {
 }
 
 .wave-group .input {
-    /* font-size: 16px; */
-    /* padding: 10px 10px 10px 5px; */
+
     font-size: 14px;
     padding: 5px;
     display: block;
     width: 200px;
     border-radius: 25px;
     border: 1px solid lightgrey;
-    /* border: none; */
-    /* border-bottom: 2px solid lightgrey; */
     background: transparent;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }

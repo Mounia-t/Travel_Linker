@@ -6,8 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Journey {
@@ -23,18 +21,18 @@ public class Journey {
 	private String location;
 	private Date startDate;
 	private Date endDate;
-	private byte[] imageFile;
-	@OneToOne
-	@JoinColumn(name = "account_id")
-	private Account account;
 	private String imagePath;
+	private Long accountId;
+	
+
+
 
 
 	public Journey (){
 			}
 	
 	public Journey(String country, int numberOfTravellers, float price, String location, Date startDate,
-			Date endDate, byte[]imageFile) {
+			Date endDate, String Description, String imagePath, Long accountId) {
 		super();
 		this.country = country;
 		this.numberOfTravellers = numberOfTravellers;
@@ -42,7 +40,25 @@ public class Journey {
 		this.location = location;
 		this.startDate = startDate;
 		this.endDate = endDate;
-		this.imageFile= imageFile;
+		this.description=Description;
+		this.imagePath=imagePath;
+	}
+	
+
+	public Long getAccountId() {
+		return accountId;
+	}
+
+	public void setAccountId(Long accountId) {
+		this.accountId = accountId;
+	}
+
+	public String getImagePath() {
+		return imagePath;
+	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
 	}
 	public Long getId() {
 		return id;
@@ -83,13 +99,7 @@ public class Journey {
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
-	public byte[] getImage() {
-		return imageFile;
-	}
 
-	public void setImageFile(byte[] imageFile) {
-		this.imageFile = imageFile;
-	}
 
 	public String getName() {
 		return name;
@@ -107,26 +117,6 @@ public class Journey {
 		this.description = description;
 	}
 	
-
-	public byte[] getImageFile() {
-		return imageFile;
-	}
-
-	public String getImagePath() {
-		return imagePath;
-	}
-
-	public void setImagePath(String imagePath) {
-		this.imagePath = imagePath;
-	}
-
-	public Account getAccount() {
-		return account;
-	}
-
-	public void setAccount(Account account) {
-		this.account = account;
-	}
 
 }
 

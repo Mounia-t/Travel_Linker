@@ -1,5 +1,6 @@
 package travelLinker.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -7,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import travelLinker.entity.Accomodation;
+import travelLinker.entity.Account;
 import travelLinker.entity.Journey;
 import travelLinker.entity.Task;
 import travelLinker.utils.SessionUtils;
@@ -24,7 +26,8 @@ public class TaskDao {
 	public Long insert(AccountViewModel accVM) {
 	    try {
 	    	Task task = new Task();
-	    	Long accountId = SessionUtils.getUserId();
+	    	Account account = SessionUtils.getAccount();
+	    	Long accountId = account.getId();
 	    	task.setTaskContent(accVM.getTaskContent());
 	    	task.setAccountId(accountId);
 	        entityManager.persist(task);
@@ -38,11 +41,20 @@ public class TaskDao {
 		
 }
 	public List<Task> getAllTasks() {
-		Long accountId = SessionUtils.getUserId();
-	    return entityManager.createQuery("SELECT t FROM Task t WHERE t.accountId = :accountId", Task.class)
-	            .setParameter("accountId", accountId)
-	            .getResultList();
+	    Account account = SessionUtils.getAccount();
+	    Long accountId = account.getId();
+	    
+	    List<Task> tasks = entityManager.createQuery("SELECT t FROM Task t WHERE t.accountId = :accountId", Task.class)
+	                                   .setParameter("accountId", accountId)
+	                                   .getResultList();
+	    
+	    if (tasks == null) {
+	        tasks = new ArrayList<>(); // Retourner une liste vide au lieu de null
+	    }
+	    
+	    return tasks;
 	}
+
 	 public void deleteTask(Long id) {
 				Task task = entityManager.find(Task.class, id);
 				if (task != null) {
