@@ -9,11 +9,8 @@ import javax.persistence.PersistenceContext;
 
 import travelLinker.entity.Account;
 import travelLinker.entity.Journey;
-<<<<<<< HEAD
-=======
 import travelLinker.entity.Service;
 import travelLinker.entity.Task;
->>>>>>> d052e85191048bf953de7c895a5e59a92b166bd9
 import travelLinker.utils.SessionUtils;
 import travelLinker.viewModel.JourneyViewModel;
 
@@ -99,6 +96,7 @@ public class JourneyDao {
 	    return journeys;
 	}
 
+
 	public List<Journey> getTravelPlannerJourneys() {
 	    Account account = SessionUtils.getAccount();
 	    Long accountId = account.getId();
@@ -115,6 +113,8 @@ public class JourneyDao {
 
 
 	}
+
+
+	}
 		
-	
-}
+

@@ -11,6 +11,8 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
+import org.hibernate.validator.internal.xml.GetterType;
+
 import travelLinker.dao.LoginDao;
 import travelLinker.entity.Account;
 import travelLinker.entity.RoleUser;
@@ -19,6 +21,7 @@ import travelLinker.viewModel.AccountViewModel;
 
 @ManagedBean
 @SessionScoped
+
 //Serializable : les instances de cette classe peuvent être sérialisées 
 //(converties en un flux d'octets) pour être stockées dans un flux, tel qu'une session HTTP.
 public class LoginControllerBean implements Serializable {
@@ -29,10 +32,11 @@ public class LoginControllerBean implements Serializable {
 	private AccountViewModel accountVM = new AccountViewModel();
 	@Inject
 	private LoginDao loginDao;
-	private boolean loggedIn;
+
 
 	
 	public void validateAccount() {
+
 	    // Vérifier si le nom d'utilisateur et le mot de passe saisis sont valides
 	    boolean isValid = loginDao.validate(accountVM);
 	    Account account = loginDao.findAccountByEmailAndPassword(accountVM, accountVM.getEmail(), accountVM.getPassword());
@@ -103,6 +107,7 @@ public class LoginControllerBean implements Serializable {
 	    HttpSession session = SessionUtils.getSession();
 	    session.invalidate();
 	    return "signIn.xhtml?faces-redirect=true"; // Rediriger vers la page de connexion
+
 	}
 	  public Account getConnectedAccount() {
 		  HttpSession session= SessionUtils.getSession();

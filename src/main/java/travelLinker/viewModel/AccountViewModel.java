@@ -20,7 +20,16 @@ public class AccountViewModel {
 	private String messageResume;
 	private String taskContent;
 	private String imagePath;
+	private boolean connected;
 	
+	public boolean isConnected() {
+		return connected;
+	}
+
+	public void setConnected(boolean connected) {
+		this.connected = connected;
+	}
+
 	public String getContent() {
 		return content;
 	}
