@@ -1,10 +1,13 @@
 package travelLinker.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
+import travelLinker.entity.Account;
 import travelLinker.entity.Journey;
 import travelLinker.entity.Service;
 import travelLinker.entity.Task;
@@ -20,7 +23,8 @@ public class JourneyDao {
 	public Long insert(JourneyViewModel journeyVM) {
 	    try {
 	        Journey journeybean = new Journey();
-	        Long accountId = SessionUtils.getUserId();
+	        Account account = SessionUtils.getAccount();
+	        Long accountId = account.getId();
 	        journeybean.setAccountId(accountId);
 	        journeybean.setNumberOfTravellers(journeyVM.getNumberOfTravellers());
 	        journeybean.setPrice(journeyVM.getPrice());
@@ -71,18 +75,29 @@ public class JourneyDao {
 	}
 	
 	public List<Journey> getAllJourneys() {
-		return entityManager.createQuery("SELECT j FROM Journey j", Journey.class).getResultList();
+	    List<Journey> journeys = entityManager.createQuery("SELECT j FROM Journey j", Journey.class)
+	                                        .getResultList();
+	    if (journeys == null) {
+	        journeys = new ArrayList<>(); // Retourner une liste vide au lieu de null
+	    }
+	    return journeys;
 	}
-	public List<Journey>getTravelPlannerJourneys(){
-		Long accountId = SessionUtils.getUserId();
-		List<Journey> ListJourney=entityManager.createQuery("SELECT j FROM Journey j WHERE j.accountId = :accountId", Journey.class)
-	            .setParameter("accountId", accountId)
-	            .getResultList();
-		System.out.println(ListJourney);
-	    return ListJourney;
+
+	public List<Journey> getTravelPlannerJourneys() {
+	    Account account = SessionUtils.getAccount();
+	    Long accountId = account.getId();
+	    List<Journey> listJourney = entityManager.createQuery("SELECT j FROM Journey j WHERE j.accountId = :accountId", Journey.class)
+	                                            .setParameter("accountId", accountId)
+	                                            .getResultList();
+	    
+	    if (listJourney == null) {
+	        listJourney = new ArrayList<>(); // Retourner une liste vide au lieu de null
+	    }
+	    
+	    System.out.println(listJourney);
+	    return listJourney;
 	}
-	
-		
+
 	}
 		
 	

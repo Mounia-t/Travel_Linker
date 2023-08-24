@@ -34,7 +34,11 @@
 		<div class="navigation">
 			<div class="navigation-items">
 				<a href="#">Accueil</a> <a href="#">A Propos de nous</a> <a href="#">Services</a>
-				<a href="#contact">Contact</a> <a href="signIn.xhtml">Connexion</a>
+				<a href="#contact">Contact</a>
+				
+					<h:outputLink value="#{loginControllerBean.isConnected() ? loginControllerBean.logout() : 'signIn.xhtml'}">
+    #{loginControllerBean.isConnected() ? 'Déconnexion' : 'Connexion'}
+</h:outputLink>
 			</div>
 		</div>
 	</header>

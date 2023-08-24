@@ -22,8 +22,9 @@ public class ConversationDao {
 	
 //Methode pour ajouter un message à la base de donnée 
 	public void sendMessage(AccountViewModel accVM) {
-		String senderEmail = SessionUtils.getUserEmail();
-		Long idSender = SessionUtils.getUserId();
+		Account account = SessionUtils.getAccount();
+		String senderEmail = account.getEmail();
+		Long idSender = account.getId();
 		Account recipient = loginDao.findAccountByEmail(accVM.getRecepientEmail());
 		Long idRecipient = recipient.getId();
 
@@ -42,7 +43,8 @@ public class ConversationDao {
 	}
 
 	public String getEmail() {
-		String EmailSender = SessionUtils.getUserEmail();
+		Account account=SessionUtils.getAccount();
+		String EmailSender = account.getEmail();
 		return EmailSender;
 	}
 
