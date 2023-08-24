@@ -8,16 +8,11 @@ import java.util.List;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
-
-import org.apache.commons.io.FilenameUtils;
-import org.apache.commons.io.IOUtils;
-import org.primefaces.event.FileUploadEvent;
 
 import travelLinker.dao.AccountDao;
 
@@ -70,8 +65,9 @@ public class AccountControllerBean implements Serializable {
 	
 //---------------------------------------------------	
 	public void deleteAccount() {
+		Account account = SessionUtils.getAccount();
 		// Vérifier si l'utilisateur est connecté (authentifié)
-		Long accountId = SessionUtils.getUserId();
+		Long accountId = account.getId();
 	if (accountId != null) {
 			// On appelle la méthode de suppression dans le DAO pour supprimer le compte
 			accountDao.delete(accountId);
@@ -91,8 +87,9 @@ public class AccountControllerBean implements Serializable {
 	}
 
 	public void updateAccount() {
+		Account account =SessionUtils.getAccount();
 	    // Vérifier si l'utilisateur est connecté (authentifié)
-	    Long accountId = SessionUtils.getUserId();
+	    Long accountId = account.getId();
 	        
 	    if (accountId != null) {
 	        // Créer un nouvel objet AccountBean avec les valeurs mises à jour
@@ -115,8 +112,7 @@ public class AccountControllerBean implements Serializable {
 		return accountDao.getLatestRegisteredPartners(4);
 		
 	}
-	
-	 
+
 //--------------------------------------------------------
 	
 	public AccountViewModel getAccountVM() {

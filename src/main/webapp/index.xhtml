@@ -33,14 +33,28 @@
 		<!-- Bouton de menu (hamburger) -->
 		<div class="navigation">
 			<div class="navigation-items">
-				<a href="index.xhtml">Accueil</a> <a href="categorie.xhtml">Nos offres</a> <a href="#{loginControllerBean.redirectionDashboard()}" id="profileLink">Mon profil</a>
 
-				<a href="#contact">Contact</a> 
+				<a href="#">Accueil</a> <a href="index.xhtml">Accueil</a> <a href="categorie.xhtml">Nos offres</a> 
+      <a href="#{loginControllerBean.redirectionDashboard()}" id="profileLink">Mon profil</a><a href="#">Services</a>
+				<a href="#contact">Contact</a>
+<!-- Dans la page XHTML -->
+  <h:outputLink value="signIn.xhtml" rendered="#{!loginControllerBean.loggedIn}">
+        Connexion
+    </h:outputLink>
+    <h:outputLink rendered="#{loginControllerBean.loggedIn}" action="#{loginControllerBean.logout()}" >
+    Déconnexion
+</h:outputLink>
+<a href="#contact">Contact</a> 
 				<a href="signIn.xhtml" action="#{loginControllerBean.connected}">Inscription/Connexion</a>
 				<a href="signIn.xhtml" action="#{loginControllerBean.logout()}">Déconnexion</a>
+
+
+
 			</div>
 		</div>
 	</header>
+<h:outputText value="loggedIn: #{loginControllerBean.loggedIn}" />
+<h:outputText value="Role: #{sessionUtils.account.role}" />
 
 	<section class="home">
 

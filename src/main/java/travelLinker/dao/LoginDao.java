@@ -52,23 +52,22 @@ public String logout() {
         	
         	
             return PasswordUtils.checkPassword(accountVM.getPassword(), accountBean.getPassword());
+            
         }
 
         return false;
     }
 
     public Account findAccountByEmailAndPassword(AccountViewModel accountVM, String email, String password) {
-        Account accountBean = findAccountByEmail(accountVM.getEmail());
-
-        if (accountBean != null && PasswordUtils.checkPassword(accountVM.getPassword(), accountBean.getPassword())) {
+        Account accountBean = findAccountByEmail(email);
+       
+        if (accountBean != null && PasswordUtils.checkPassword(password, accountBean.getPassword())) {
             return accountBean;
         } else {
-            System.out.println("Mot de passe incorrect");
-            return null; // Ou lancez une exception appropriée
+            throw new  RuntimeException("Authentification échouée en raison de mots de passe incorrects");
         }
-    
     }
-    
+
     public TravelPlanner findTravelPlanner(String email) {
         try {
             TypedQuery<TravelPlanner> query = entityManager.createQuery(

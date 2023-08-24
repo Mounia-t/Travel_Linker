@@ -78,6 +78,9 @@ public class AccountDao {
 	    travelPlanner.setLastName(accountVM.getLastName());
 	    travelPlanner.setFirstName(accountVM.getFirstName());
 	    travelPlanner.setPhoneNumber(accountVM.getPhoneNumber());
+	    travelPlanner.setSiret(accountVM.getSiret());
+	    travelPlanner.setAddress(accountVM.getAddress());
+	    travelPlanner.setCompanyName(accountVM.getCompanyName());
 
 	    Account accountbean = createAccount(accountVM);
 	    accountbean.setRole(RoleUser.TravelPlanner);
