@@ -3,13 +3,15 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
+
+
+
 <head>
-
 <meta charset="UTF-8" />
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link
 	href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
@@ -17,33 +19,10 @@
 <link rel="stylesheet" href="./css/dashboardTP.css" />
 <title>Dashboard</title>
 
-
 </head>
-
-<body>
+<h:body style="background-color: #{templateControllerBean.template.backgroundColor}">
 <h:outputText value="loggedIn: #{loginControllerBean.loggedIn}" />
 <h:outputText value="Role: #{sessionUtils.account.role}" />
-
-
-	<style>
-body {
-	background-color: #{sessionBean.getCurrentTravelPlanner() .getTemplate()
-		.backgroundColor
-}
-;
-}
-</style>
-
-	<script>
-    function changeBackgroundColor(colorValue) {
-        document.body.style.backgroundColor = colorValue;
-    }
-    
-    </script>
-        
-
-
-
 	<h:inputHidden id="defaultSection"
 		value="#{dashboardController.section}" />
 	<div class="container">
@@ -127,26 +106,6 @@ body {
 			</div>
 
 
-			<h:form>
-				<p>Choisissez la couleur de fond:</p>
-
-				<h:selectOneRadio
-					value="#{templateControllerBean.selectedTemplate.backgroundColor}"
-					onchange="document.body.style.backgroundColor = this.value;"
-					layout="pageDirection">
-					<f:selectItem itemValue="#ADD8E6" itemLabel="Bleu clair" />
-					<f:selectItem itemValue="#90EE90" itemLabel="Vert clair" />
-					<f:selectItem itemValue="#FFC0CB" itemLabel="Rose" />
-					<f:ajax event="change"
-						listener="#{templateControllerBean.updateBackgroundColor}" />
-				</h:selectOneRadio>
-
-				<br />
-				<h:commandButton value="Valider"
-					action="#{templateControllerBean.selectTemplate(template)}" />
-			</h:form>
-
-
 			<!-- End of Analyses -->
 
 			<!-- New Users Section -->
@@ -169,6 +128,31 @@ body {
 			<!-- Recent Orders Table -->
 
 			<!-- End of Recent Orders -->
+
+			<!-- <h:panelGrid columns="2"> -->
+			<!--     <h:outputLabel value="Choisir une couleur:" for="colorMenu" /> -->
+			<!--     <h:selectOneMenu id="colorMenu" value="#{templateControllerBean.template.backgroundColor}"> -->
+			<!--         <f:selectItems value="#{templateControllerBean.predefinedColorItems}" var="color"  -->
+			<!--                        itemValue="#{color.value}" itemLabel="#{color.label}" /> -->
+			<!--     </h:selectOneMenu> -->
+			<!-- </h:panelGrid> -->
+
+			<h:form>
+				<h:selectOneMenu value="#{templateControllerBean.selectedColor}">
+					<f:selectItems
+						value="#{templateControllerBean.predefinedColorItems}" var="color"
+						itemValue="#{color.value}" itemLabel="#{color.label}" />
+				</h:selectOneMenu>
+
+				<h:commandButton value="Appliquer la couleur"
+					action="#{templateControllerBean.updateBackgroundColor()}" />
+			</h:form>
+
+
+
+
+
+
 
 		</main>
 		<!-- Main Content -->
@@ -1084,6 +1068,6 @@ body {
 
 
 	<script src="./js/dashboardTP.js"></script>
-</body>
+</h:body>
 
 </html>

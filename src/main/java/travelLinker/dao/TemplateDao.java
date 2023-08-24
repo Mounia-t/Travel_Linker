@@ -1,8 +1,5 @@
 package travelLinker.dao;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,25 +12,17 @@ public class TemplateDao {
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	public Template createTemplate(Template template) {
+	public void CreateTemplate(Template template) {
 		entityManager.persist(template);
-		return template;
 	}
 
-	public Template getTemplateById(Long id) {
+	public Template findById(Long id) {
 		return entityManager.find(Template.class, id);
 	}
 
-	public void updateTemplate(Template template) {
-		entityManager.merge(template);
-	}
+	public void update(Template template) {
+		template = entityManager.merge(template);
+		entityManager.flush();
 
-	public List<Template> getAllTemplates() {
-		try {
-			return entityManager.createQuery("SELECT t FROM Template t", Template.class).getResultList();
-		} catch (Exception e) {
-			return new ArrayList<>();
-		}
 	}
-
 }
