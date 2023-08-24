@@ -1,31 +1,17 @@
 package travelLinker.controller;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.Serializable;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
-
-import org.apache.commons.io.FilenameUtils;
-import org.apache.commons.io.IOUtils;
-import org.primefaces.event.FileUploadEvent;
 
 import travelLinker.dao.AccountDao;
 
@@ -74,8 +60,9 @@ public class AccountControllerBean implements Serializable {
 	
 //---------------------------------------------------	
 	public void deleteAccount() {
+		Account account = SessionUtils.getAccount();
 		// Vérifier si l'utilisateur est connecté (authentifié)
-		Long accountId = SessionUtils.getUserId();
+		Long accountId = account.getId();
 	if (accountId != null) {
 			// On appelle la méthode de suppression dans le DAO pour supprimer le compte
 			accountDao.delete(accountId);
@@ -95,8 +82,9 @@ public class AccountControllerBean implements Serializable {
 	}
 
 	public void updateAccount() {
+		Account account =SessionUtils.getAccount();
 	    // Vérifier si l'utilisateur est connecté (authentifié)
-	    Long accountId = SessionUtils.getUserId();
+	    Long accountId = account.getId();
 	        
 	    if (accountId != null) {
 	        // Créer un nouvel objet AccountBean avec les valeurs mises à jour
@@ -119,6 +107,19 @@ public class AccountControllerBean implements Serializable {
 		return accountDao.getLatestRegisteredPartners(4);
 		
 	}
+	public String logout() {
+	    HttpSession session = SessionUtils.getSession();
+	    
+	    // Récupérer l'état de connexion depuis la session
+	    boolean connected = (boolean) session.getAttribute("connected");
+	    
+	    
+	    // Invalider la session
+	    session.invalidate();
+	    
+	    return "index.xhtml"; // Rediriger vers la page d'accueil
+	}
+	
 //--------------------------------------------------------
 	
 	public AccountViewModel getAccountVM() {

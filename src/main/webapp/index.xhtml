@@ -34,10 +34,22 @@
 		<div class="navigation">
 			<div class="navigation-items">
 				<a href="#">Accueil</a> <a href="#">A Propos de nous</a> <a href="#">Services</a>
-				<a href="#contact">Contact</a> <a href="signIn.xhtml">Connexion</a>
+				<a href="#contact">Contact</a>
+<!-- Dans la page XHTML -->
+  <h:outputLink value="signIn.xhtml" rendered="#{!loginControllerBean.loggedIn}">
+        Connexion
+    </h:outputLink>
+    <h:outputLink rendered="#{loginControllerBean.loggedIn}" action="#{loginControllerBean.logout()}" >
+    Déconnexion
+</h:outputLink>
+
+
+
 			</div>
 		</div>
 	</header>
+<h:outputText value="loggedIn: #{loginControllerBean.loggedIn}" />
+<h:outputText value="Role: #{sessionUtils.account.role}" />
 
 	<section class="home">
 
