@@ -36,7 +36,7 @@ public class LoginControllerBean implements Serializable {
 
 	@Inject
 	private TemplateControllerBean templateControllerBean;
-	private boolean loggedIn = false;
+
 
 	private Account account;
 
@@ -125,27 +125,83 @@ public class LoginControllerBean implements Serializable {
 		}
 		return redirectionUrl;
 	}
+	
+	public String changeRoleDashboard() {
+	    if (!loggedIn) {
+	        // L'utilisateur n'est pas connecté, rediriger vers la page de connexion
+	        return "index.xhtml";
+	    }
 
-	// Méthode pour se déconnecter, sans invalider la session entière
-	public String logout() {
-		account = SessionUtils.getAccount();
-		System.out.println("logout avec account is " + account);
+	    Account account = loginDao.findAccountByEmail(accountVM.getEmail());
 
-		if (account.getRole() == RoleUser.TravelPlanner) {
-			String userEmail = SessionUtils.getAccount().getEmail();
-			System.out.println(" logout avec user e mail " + userEmail);
-			TravelPlanner tp = loginDao.findTravelPlanner(userEmail);
-			System.out.println("logout avec " + tp + " its ok");
-			HttpSession session = SessionUtils.getSession();
-			session.removeAttribute("userId");
-			session.removeAttribute("userEmail");
-			session.removeAttribute("userRole");
-		}
+	    if (account == null) {
+	        // Aucun compte trouvé, rediriger vers une page appropriée
+	        return "index.xhtml"; // Remplacez "noAccountPage.xhtml" par la page de votre choix
+	    }
 
-		loginDao.logout();
-		return "signIn"; // Rediriger vers la page de connexion
+	    RoleUser role = account.getRole();
+
+	    if (role == RoleUser.Partner) {
+	        return "DashboardPartner.xhtml";
+	    } else if (role == RoleUser.Customer) {
+	        return "DashboardCustomer.xhtml";
+	    } else if (role == RoleUser.TravelPlanner) {
+	        return "dashboardTP.xhtml";
+	    }
+
+	    // Si aucun rôle valide n'est trouvé, rediriger vers une page appropriée
+	    return "index.xhtml"; // Remplacez "defaultPage.xhtml" par la page de votre choix
 	}
 
+
+
+	// Méthode pour se déconnecter, sans invalider la session entière
+//	public String logout() {
+//	    account = SessionUtils.getAccount();
+//	    System.out.println("logout avec account is " + account);
+//
+//	    if (account.getRole() == RoleUser.TravelPlanner) {
+//	        String userEmail = SessionUtils.getAccount().getEmail();
+//	        System.out.println(" logout avec user e mail " + userEmail);
+//	        TravelPlanner tp = loginDao.findTravelPlanner(userEmail);
+//	        System.out.println("logout avec " + tp + " its ok");
+//	        HttpSession session = SessionUtils.getSession();
+//	        session.removeAttribute("userId");
+//	        session.removeAttribute("userEmail");
+//	        session.removeAttribute("userRole");
+//	    }
+//
+//	    HttpSession session = SessionUtils.getSession();
+//	    session.invalidate(); // Invalider la session pour déconnecter complètement l'utilisateur
+//
+//	    loginDao.logout();
+//	    return "signIn.xhtml"; // Rediriger vers la page de connexion
+//	}
+
+	public String logout() {
+	    HttpSession session = SessionUtils.getSession();
+	    Account account = SessionUtils.getAccount(); // Récupérer le compte de l'utilisateur connecté
+
+	    if (account != null) {
+	        if (account.getRole() == RoleUser.TravelPlanner ) {
+	            // Utilisateur connecté en tant que TravelPlanner
+	            String userEmail = account.getEmail();
+	            TravelPlanner tp = loginDao.findTravelPlanner(userEmail);
+	            if (tp != null) {
+	                session.removeAttribute("userId");
+	                session.removeAttribute("userEmail");
+	                session.removeAttribute("userRole");
+	            }
+	        }
+
+	        // Invalider la session pour déconnecter complètement l'utilisateur
+	        session.invalidate();
+	        loginDao.logout();
+	    }
+
+	    return "signIn.xhtml"; // Rediriger vers la page de connexion
+	}
+	
 	public Account getConnectedAccount() {
 		HttpSession session = SessionUtils.getSession();
 		System.out.println("Session : " + session);
