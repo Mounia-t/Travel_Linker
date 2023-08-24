@@ -11,8 +11,6 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
-import org.hibernate.validator.internal.xml.GetterType;
-
 import travelLinker.dao.LoginDao;
 import travelLinker.entity.Account;
 import travelLinker.entity.RoleUser;
@@ -35,33 +33,35 @@ public class LoginControllerBean implements Serializable {
 	@Inject
 	private LoginDao loginDao;
 
-
 	@Inject
 	private TemplateControllerBean templateControllerBean;
+	private boolean loggedIn = false;
 
 	public LoginControllerBean() {
 	}
 
-
-	
 	public void validateAccount() {
-
+		boolean isValid = loginDao.validate(accountVM);
+		Account account = loginDao.findAccountByEmailAndPassword(accountVM, accountVM.getEmail(),
+				accountVM.getPassword());
 
 		// Si les informations de connexion sont valides
-		if (valid) {
+		if (isValid) {
+			HttpSession session = SessionUtils.getSession();
+			session.setAttribute("loggedInUser", account);
+			loggedIn = true;
 			// Récupérer l'URL de redirection
 			String redirectionUrl = redirectionDashboard();
 
 			// Recuperer les données de la session
-			SessionUtils.writeInSession(account.getId(), account.getEmail(), account.getRole(), account.getFirstName(),
-					account.getLastName());
+
 			// SessionUtils.writeInSessionTP(tp.getSiret(), tp.getPhoneNumber(),
 			// tp.getCompanyName());
 			;
 			// TODO Ajouter travel planner dans la session
 
 			if (account.getRole() == RoleUser.TravelPlanner) {
-				String userEmail = SessionUtils.getUserEmail();
+				String userEmail = SessionUtils.getAccount().getEmail();
 				TravelPlanner tp = loginDao.findTravelPlanner(userEmail);
 				Template userTemplate = tp.getTemplate();
 				templateControllerBean.setTemplate(userTemplate);
@@ -89,6 +89,7 @@ public class LoginControllerBean implements Serializable {
 		}
 
 	}
+
 	public String redirectionDashboard() {
 		Account account = loginDao.findAccountByEmailAndPassword(accountVM, accountVM.getEmail(),
 				accountVM.getPassword());
@@ -115,12 +116,12 @@ public class LoginControllerBean implements Serializable {
 			redirectionUrl = "dashboardTP.xhtml";
 		} else {
 			// Redirection par défaut (par exemple, si le rôle n'est pas géré)
-			redirectionUrl = "SubscriptionTP.xhtml"; // Remplacez "default-dashboard.xhtml" par l'URL de la page de tableau
-											// de bord par défaut
+			redirectionUrl = "SubscriptionTP.xhtml"; // Remplacez "default-dashboard.xhtml" par l'URL de la page de
+														// tableau
+			// de bord par défaut
 		}
 		return redirectionUrl;
 	}
-	
 
 	// Méthode pour se déconnecter, sans invalider la session entière
 	public String logout() {
@@ -133,36 +134,12 @@ public class LoginControllerBean implements Serializable {
 		return "signIn"; // Rediriger vers la page de connexion
 	}
 
-
-	}
-	  public Account getConnectedAccount() {
-		  HttpSession session= SessionUtils.getSession();
-		  System.out.println("Session : " + session);
-		  Account account = SessionUtils.getAccount();
-		  System.out.println(account);
-	        return account;
-	    }
-
-
-
-	public String getUserAddress() {
-		return SessionUtils.getUserAddress();
-	}
-
-	public String getUserEmail() {
-		return SessionUtils.getUserEmail();
-	}
-
-	public String getUserSiret() {
-		return SessionUtils.getUserSiret();
-	}
-
-	public String getUserPhone() {
-		return SessionUtils.getUserPhone();
-	}
-
-	public String getUserCompany() {
-		return SessionUtils.getUserCompany();
+	public Account getConnectedAccount() {
+		HttpSession session = SessionUtils.getSession();
+		System.out.println("Session : " + session);
+		Account account = SessionUtils.getAccount();
+		System.out.println(account);
+		return account;
 	}
 
 	public AccountViewModel getAccountVM() {
@@ -180,15 +157,15 @@ public class LoginControllerBean implements Serializable {
 	public void setLoginDao(LoginDao loginDao) {
 		this.loginDao = loginDao;
 	}
-	
 
 	public boolean isLoggedIn() {
-	    Account account = SessionUtils.getAccount();
-	    loggedIn = (account != null);
-	    System.out.println(loggedIn);
-	    return loggedIn;
+		Account account = SessionUtils.getAccount();
+		loggedIn = (account != null);
+		System.out.println(loggedIn);
+		return loggedIn;
 	}
-	 public String redirectToLogin() {
-	        return "signIn.xhtm";
-	    }
+
+	public String redirectToLogin() {
+		return "signIn.xhtm";
+	}
 }
