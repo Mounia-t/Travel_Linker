@@ -1,18 +1,13 @@
 package travelLinker.dao;
 
-import java.util.List;
-
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
-import javax.persistence.NonUniqueResultException;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.servlet.http.HttpSession;
 
 import travelLinker.entity.Account;
-import travelLinker.entity.RoleUser;
 import travelLinker.entity.TravelPlanner;
 import travelLinker.utils.PasswordUtils;
 import travelLinker.utils.SessionUtils;
@@ -82,8 +77,4 @@ public String logout() {
     }
 
     }
-
-
-
-
 

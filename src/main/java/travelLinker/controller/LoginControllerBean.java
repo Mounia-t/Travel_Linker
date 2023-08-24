@@ -16,6 +16,8 @@ import org.hibernate.validator.internal.xml.GetterType;
 import travelLinker.dao.LoginDao;
 import travelLinker.entity.Account;
 import travelLinker.entity.RoleUser;
+import travelLinker.entity.Template;
+import travelLinker.entity.TravelPlanner;
 import travelLinker.utils.SessionUtils;
 import travelLinker.viewModel.AccountViewModel;
 
@@ -34,45 +36,63 @@ public class LoginControllerBean implements Serializable {
 	private LoginDao loginDao;
 
 
+	@Inject
+	private TemplateControllerBean templateControllerBean;
+
+	public LoginControllerBean() {
+	}
+
+
 	
 	public void validateAccount() {
 
-	    // Vérifier si le nom d'utilisateur et le mot de passe saisis sont valides
-	    boolean isValid = loginDao.validate(accountVM);
-	    Account account = loginDao.findAccountByEmailAndPassword(accountVM, accountVM.getEmail(), accountVM.getPassword());
 
-	    if (isValid && account != null) {
-	        // Stoker l'objet Account dans la session
-	        HttpSession session = SessionUtils.getSession();
-	        //System.out.println("Ma session du lgc " +session);
-	        
-	        session.setAttribute("loggedInUser", account);
-	        
-	        loggedIn=true;
-	        // Effectuer la redirection
-	        String redirectionUrl = redirectionDashboard();
-	        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-	        try {
-	            ec.redirect(redirectionUrl);
-	        } catch (IOException e) {
-	            // Gérer l'exception en cas d'erreur de redirection
-	            e.printStackTrace();
-	        }
-	    } else {
-	        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
-	            "Email ou Mot de passe incorrectes", "Merci de saisir les bons identifiants"));
-	        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-	        try {
-	            ec.redirect("signIn.xhtml");
-	        } catch (IOException e) {
-	            // Gérer l'exception en cas d'erreur de redirection
-	            e.printStackTrace();
-	        }
-	    }
+		// Si les informations de connexion sont valides
+		if (valid) {
+			// Récupérer l'URL de redirection
+			String redirectionUrl = redirectionDashboard();
+
+			// Recuperer les données de la session
+			SessionUtils.writeInSession(account.getId(), account.getEmail(), account.getRole(), account.getFirstName(),
+					account.getLastName());
+			// SessionUtils.writeInSessionTP(tp.getSiret(), tp.getPhoneNumber(),
+			// tp.getCompanyName());
+			;
+			// TODO Ajouter travel planner dans la session
+
+			if (account.getRole() == RoleUser.TravelPlanner) {
+				String userEmail = SessionUtils.getUserEmail();
+				TravelPlanner tp = loginDao.findTravelPlanner(userEmail);
+				Template userTemplate = tp.getTemplate();
+				templateControllerBean.setTemplate(userTemplate);
+				System.out.println("validate account la template est " + userTemplate + " travel planner est " + tp);
+			}
+
+			// Effectuer la redirection
+			ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+			try {
+				ec.redirect(redirectionUrl);
+			} catch (IOException e) {
+				// Gérer l'exception en cas d'erreur de redirection
+				e.printStackTrace();
+			}
+		} else {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
+					"Email ou Mot de pass incorrectes", "Merci de saisir les bons identifiants"));
+			ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+			try {
+				ec.redirect("signIn.xhtml");
+			} catch (IOException e) {
+				// Gérer l'exception en cas d'erreur de redirection
+				e.printStackTrace();
+			}
+		}
+
 	}
 	public String redirectionDashboard() {
 		Account account = loginDao.findAccountByEmailAndPassword(accountVM, accountVM.getEmail(),
 				accountVM.getPassword());
+
 		System.out.println(account.getRole());
 
 		// Le compte a été trouvé dans la base de données.
@@ -102,11 +122,17 @@ public class LoginControllerBean implements Serializable {
 	}
 	
 
-	// Méthode pour se déconnecter, invalider la session
+	// Méthode pour se déconnecter, sans invalider la session entière
 	public String logout() {
-	    HttpSession session = SessionUtils.getSession();
-	    session.invalidate();
-	    return "signIn.xhtml?faces-redirect=true"; // Rediriger vers la page de connexion
+
+		HttpSession session = SessionUtils.getSession();
+		session.removeAttribute("userId");
+		session.removeAttribute("userEmail");
+		session.removeAttribute("userRole");
+
+		return "signIn"; // Rediriger vers la page de connexion
+	}
+
 
 	}
 	  public Account getConnectedAccount() {
@@ -117,6 +143,27 @@ public class LoginControllerBean implements Serializable {
 	        return account;
 	    }
 
+
+
+	public String getUserAddress() {
+		return SessionUtils.getUserAddress();
+	}
+
+	public String getUserEmail() {
+		return SessionUtils.getUserEmail();
+	}
+
+	public String getUserSiret() {
+		return SessionUtils.getUserSiret();
+	}
+
+	public String getUserPhone() {
+		return SessionUtils.getUserPhone();
+	}
+
+	public String getUserCompany() {
+		return SessionUtils.getUserCompany();
+	}
 
 	public AccountViewModel getAccountVM() {
 		return accountVM;
