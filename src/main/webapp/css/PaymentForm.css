@@ -1,16 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --color-primary: #6C9BCF;
+    --color-danger: #FF0060;
+    --color-classic: black;
+    --color-warning: #F7D060;
+    --color-white: #fff;
+    --color-info-dark: #7d8da1;
+    --color-dark: #363949;
+    --color-light: rgba(132, 139, 200, 0.18);
+    --color-dark-variant: #677483;
+    --color-background: #f6f6f9;
+
+    --card-border-radius: 25px;
+    --border-radius-1: 25px;
+    --border-radius-2: 25px;
+
+    --card-padding: 1.8rem;
+    --padding-1: 1.2rem;
+
+    --box-shadow: 0 2rem 3rem var(--color-light);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    appearance: 0;
+    border: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+h1 {
+    font-weight: 800;
+    font-size: 1.8rem;
+}
+
+h2 {
+    font-weight: 600;
+    font-size: 1.4rem;
+}
+
+h3 {
+    font-weight: 500;
+    font-size: 0.87rem;
+}
+
+a {
+    color: var(--color-dark);
+}
+
+body {
+    background-color: var(--color-background);
+}
 
 #zonePaiement {
+    display: flex;
+    gap: 1.8rem;
     margin-top: 20px;
     height: 88vh;
     width: 100%;
-    display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
-    flex-direction: column;
 }
 
 #paiementCard {
-    z-index: 1;
+    position: absolute;
+    top: -160px;
     height: 200px;
     width: 350px;
     border-radius: 25px;
@@ -36,7 +93,6 @@
 } 
 
 #cardBody {
-    display: flex;
     flex-direction: column;
     margin: 10px;
 }
@@ -88,19 +144,21 @@
 /*-------------------Paiementform-----------------------*/
 
 #paiementForm {
+    position: relative;
+    margin-right: 20px;
     height: 400px;
     width: 500px;
     border-radius: 25px;
-    background-color: rgba(255, 255, 255, 0.074);
+    background-color: #fff;
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    backdrop-filter: blur(20px); /* Ajout de l'effet de flou */
+    backdrop-filter: blur(20px);
     opacity: 0.9;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
 }
+
 
 .inputFormLabel, #dateCvvDiv {
 	position: relative;
@@ -145,7 +203,7 @@
     font-size: 15px;
     color: #333;
     padding: 2px 5px;
-    background-color: white;
+    background-color: #fff;
 }
 
 #paiementForm .paymentBtn{
@@ -174,3 +232,66 @@
 .inputFormContainer {
     position: relative;
 }
+
+
+.infosZone,
+.recapZone,
+.totalZone {
+    border-bottom: 1px solid var(--color-info-dark);
+    margin: 30px 20px;
+    padding-bottom: 10px;
+    overflow-x: auto;
+    text-align: start;
+}
+
+
+#recapCard {
+    position: relative;
+    flex: 1;
+    margin-left: 20px;
+    height: 600px;
+    width: 500px;
+    border-radius: 25px;
+    background-color: rgba(255, 255, 255, 0.074);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(20px);
+    opacity: 0.9;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: flex;
+    flex-direction: column;
+}
+
+.totalZone {
+    position: absolute;
+    bottom: 2rem;
+}
+
+
+/*--------------------------------Zone fade in et visible------------------------------------*/
+.fade-in-bottom {
+    transform: translateY(50px);
+    /* Déplacez-les vers le bas de 50px */
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    /* Ajoutez une transition de 0.5s avec une courbe d'accélération pour une apparence fluide */
+    animation: fadeInBottom 0.8s ease forwards;
+    /* Utilisez l'animation fadeInBottom pour contrôler l'opacité */
+}
+
+@keyframes fadeInBottom {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+        /* Début de l'animation : opacité à 0 et décalage vers le bas de 50px */
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        /* Fin de l'animation : opacité à 1 et pas de décalage en Y */
+    }
+}
+
+
+
+
+
