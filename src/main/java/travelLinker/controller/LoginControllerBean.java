@@ -19,6 +19,14 @@ import travelLinker.entity.TravelPlanner;
 import travelLinker.utils.SessionUtils;
 import travelLinker.viewModel.AccountViewModel;
 
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileItemFactory;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.util.List;
+
 @ManagedBean
 @SessionScoped
 
@@ -236,4 +244,40 @@ public class LoginControllerBean implements Serializable {
 	public String redirectToLogin() {
 		return "signIn.xhtm";
 	}
-}
+//--------------------------------------------------------------
+
+
+
+	    public void handleProfileImageUpload() {
+	        FacesContext facesContext = FacesContext.getCurrentInstance();
+	        boolean isMultipart = ServletFileUpload.isMultipartContent((HttpServletRequest) facesContext.getExternalContext().getRequest());
+
+	        if (isMultipart) {
+	            FileItemFactory factory = new DiskFileItemFactory();
+	            ServletFileUpload upload = new ServletFileUpload(factory);
+
+	            try {
+	                List<FileItem> items = upload.parseRequest((HttpServletRequest) facesContext.getExternalContext().getRequest());
+
+	                for (FileItem item : items) {
+	                    if (!item.isFormField() && item.getFieldName().equals("newProfileImage")) {
+	                        // Nom du fichier téléchargé
+	                        String fileName = item.getName();
+
+	                        // Chemin absolu vers le répertoire media dans votre projet
+	                        String uploadDir = facesContext.getExternalContext().getRealPath("/") + "images";
+
+	                        File file = new File(uploadDir, fileName);
+	                        item.write(file);
+
+	                        // Maintenant, vous avez le fichier enregistré sur le serveur à l'emplacement spécifié
+	                    }
+	                }
+	            } catch (Exception e) {
+	                e.printStackTrace();
+	                // Gérer les erreurs
+	            }
+	        }
+	    }
+
+	}

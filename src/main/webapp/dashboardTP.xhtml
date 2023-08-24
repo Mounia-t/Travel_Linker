@@ -28,7 +28,7 @@
 		<aside>
 			<div class="toggle">
 				<div class="logo">
-					<img src="./media/images/PHOTO-2023-07-03-17-06-30.jpg" />
+					<img src="./media/images/logoTravelLinker2.png" />
 					
 					<h2></h2>
 				</div>
@@ -438,27 +438,27 @@
 		<!-- Start of mainProfile Content -->
 
 		<main id="mainProfile" style="display: none;">
-			<div class="messages">
-				<h1>Mon profil</h1>
-				<div class="analyse">
-					<div class="sales">
-						<div class="status">
-							<div class="info logo">
-								<img src="./media/images/IMG_0434.jpg" />
+    <div class="messages">
+        <h1>Mon profil</h1>
+        <div class="analyse">
+            <div class="sales">
+                <div class="status">
+                    <div class="info logo">
+                        <img id="profileImageDisplay" />
 
-								<h1>Frédéric Dupin</h1>
-							</div>
-						</div>
-						<span class="material-icons-sharp"> <h:form
-								id="profileImageForm" enctype="multipart/form-data">
-								<input type="file" id="newProfileImage" name="newProfileImage"
-									style="display: none;" onchange="submitForm()" />
-								<label for="newProfileImage">update</label>
-							</h:form>
-						</span>
-					</div>
-				</div>
-			</div>
+                        <h1><b><h:outputText value="#{loginControllerBean.connectedAccount.firstName}" /></b></h1>
+                    </div>
+                </div>
+                <span class="material-icons-sharp">
+                    <h:form id="profileImageForm" enctype="multipart/form-data">
+                        <input type="file" id="newProfileImage" name="newProfileImage" style="display: none;" 
+                               onchange="displaySelectedImage(this);" />
+                        <label for="newProfileImage">update</label>
+                    </h:form>
+                </span>
+            </div>
+        </div>
+    </div>
 			<div class="new-users">
 				<h2>Mes informations personnelles</h2>
 				<h:form action="post">
@@ -958,9 +958,9 @@
 
 			<div class="user-profile">
 				<div class="logo">
-					<img src="./media/images/IMG_0434.jpg" />
+					<img src="./media/images/logoTravelLinker.png" />
 					<h3>
-						Bonjour, <b><h:outputText
+						Bienvenue, <b><h:outputText
 								value="#{loginControllerBean.connectedAccount.firstName}" /></b>
 					</h3>
 
