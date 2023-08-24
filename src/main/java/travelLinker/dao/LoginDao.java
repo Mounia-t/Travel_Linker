@@ -47,8 +47,9 @@ public class LoginDao {
 
     public Account findAccountByEmailAndPassword(AccountViewModel accountVM, String email, String password) {
         Account accountBean = findAccountByEmail(email);
-       
-        if (PasswordUtils.checkPassword(password, accountBean.getPassword())) {
+
+        if (accountBean != null && PasswordUtils.checkPassword(password, accountBean.getPassword())) {
+
             return accountBean;
         } else {
             throw new  RuntimeException("Authentification échouée en raison de mots de passe incorrects");

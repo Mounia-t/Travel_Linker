@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Journey {
@@ -21,10 +23,14 @@ public class Journey {
 	private String location;
 	private Date startDate;
 	private Date endDate;
-	private String imagePath;
-	private Long accountId;
-	
 
+	private byte[] imageFile;
+	@OneToOne
+	@JoinColumn(name = "account_id")
+	private Account account;
+	private Long accountId;
+	private String imagePath;
+	
 
 
 
@@ -45,21 +51,11 @@ public class Journey {
 	}
 	
 
-	public Long getAccountId() {
-		return accountId;
+
+	public void setImageFile(byte[] imageFile) {
+		this.imageFile = imageFile;
 	}
 
-	public void setAccountId(Long accountId) {
-		this.accountId = accountId;
-	}
-
-	public String getImagePath() {
-		return imagePath;
-	}
-
-	public void setImagePath(String imagePath) {
-		this.imagePath = imagePath;
-	}
 	public Long getId() {
 		return id;
 	}
@@ -118,5 +114,36 @@ public class Journey {
 	}
 	
 
+<<<<<<< HEAD
+=======
+	public byte[] getImageFile() {
+		return imageFile;
+	}
+
+	public String getImagePath() {
+		return imagePath;
+	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
+	}
+
+	public Long getAccountId() {
+		return accountId;
+	}
+
+	public void setAccountId(Long accountId) {
+		this.accountId = accountId;
+	}
+
+>>>>>>> d052e85191048bf953de7c895a5e59a92b166bd9
 }
 

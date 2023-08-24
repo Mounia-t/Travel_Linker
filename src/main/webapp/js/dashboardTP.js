@@ -376,6 +376,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Par défaut, masquer tous les formulaires
     hideAllSections();
 
+
     // Gestion des événements de clic sur les radios
     rbRestTable.addEventListener('click', () => {
         showSection(restTable);
