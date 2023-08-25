@@ -617,6 +617,7 @@
 											required="true" class="inputForm" />
 									</div>
 								</div>
+								
 								<div class="flexingInputManagedResa">
 									<div class="inputFormLabel">
 										<h:outputLabel value="Adresse" styleClass="placeholder label" />
@@ -641,9 +642,9 @@
 											required="true" class="inputForm" />
 									</div>
 									<div class="inputFormLabel">
-										<h:outputLabel value="Sélectionner une image" for="imageFile"
+										<h:outputLabel value="Sélectionner une image" 
 											styleClass="placeholder label" />
-										<h:inputFile id="imageFile" class="inputForm"
+										<h:inputFile class="inputForm"
 											value="#{journeyControllerBean.imageFile}" accept="image/*" />
 									</div>
 								</div>
@@ -822,7 +823,9 @@
 								<h:commandButton action="#{journeyControllerBean.addJourney()}"
 									value="Créer un voyage" class="createAdmin" />
 							</div>
+							</div>
 						</h:form>
+					
 					</div>
 				</div>
 

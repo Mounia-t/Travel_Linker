@@ -73,7 +73,9 @@ public class LoginControllerBean implements Serializable {
 			if (account.getRole() == RoleUser.TravelPlanner) {
 				String userEmail = SessionUtils.getAccount().getEmail();
 				TravelPlanner tp = loginDao.findTravelPlanner(userEmail);
-				if(tp.getTemplate()!=null) {
+
+				if (tp.getTemplate()!=null) {
+
 				Template userTemplate = tp.getTemplate();
 				HttpSession session1 = SessionUtils.getSession();
 				session1.setAttribute("template", userTemplate);

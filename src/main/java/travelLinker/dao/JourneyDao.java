@@ -24,11 +24,8 @@ public class JourneyDao {
 	private EntityManager entityManager;
 	@Inject
 	ServiceDao serviceDao;
-	private List<Restaurant> selectedRestaurants =new ArrayList<Restaurant>() ;
-	private List<Long> selectedRestaurantIds ;
-	private Long selectedRestaurantId;
 
-	public Long insert(JourneyViewModel journeyVM) {
+	public Long insert(JourneyViewModel journeyVM, List<Restaurant> selectedRestaurants) {
 
 	    try {
 	        Journey journeybean = new Journey();
@@ -51,8 +48,7 @@ public class JourneyDao {
 	        journeybean.setImagePath(journeyVM.getImagePath()); // Utilisez le chemin de l'image
 	        
 	        // Récupérer la liste des restaurants sélectionnés
-	        List<Restaurant> selectedRestaurants = getSelectedRestaurants();
-	        System.out.println("ma selec"+ selectedRestaurants);
+	        System.out.println("ma selec dans journeyDao insert"+ selectedRestaurants);
 	        
 	        // Associer la liste des restaurants sélectionnés au voyage
 	        journeybean.setSelectedRestaurants(selectedRestaurants);
@@ -136,33 +132,6 @@ public class JourneyDao {
 
 	}
 
-
-public List<Restaurant> addSelectedService(Long restaurantId) {
-	 selectedRestaurantId = restaurantId;
-	 System.out.println("Mon restaur " + restaurantId);
-    if (selectedRestaurantId != null) {
-        // Récupérer les détails du restaurant à partir de l'ID
-        Restaurant selectedRestaurant = serviceDao.findByIdRestaurant(selectedRestaurantId);
-
-        // Ajouter le restaurant sélectionné à la liste des services sélectionnés
-        getSelectedRestaurants().add(selectedRestaurant);
-        selectedRestaurants = getSelectedRestaurants();
-        System.out.println(selectedRestaurants.toString());
-
-    }
-
-    // Retourner la liste des restaurants sélectionnés (éventuellement)
-    return selectedRestaurants;
-}
-
-public List<Restaurant> getSelectedRestaurants() {
-	System.out.println("Get"+ selectedRestaurants);
-    return selectedRestaurants;
-}
-
-public void setSelectedRestaurants(List<Restaurant> selectedRestaurants) {
-this.selectedRestaurants = selectedRestaurants;
-}
 
 	}
 		
