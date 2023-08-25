@@ -145,7 +145,7 @@ header .navigation .navigation-items a:hover:before{
 
   /* Bouton hamburger */
   .menu-btn{
-    background: url(images/menu.png)no-repeat;
+    background: url(./media/images/menu.png)no-repeat;
     background-size: 30px;
     background-position: center;
     width: 40px;
@@ -158,7 +158,7 @@ header .navigation .navigation-items a:hover:before{
 
   .menu-btn.active{
     z-index: 999;
-    background: url(images/close.png)no-repeat;
+    background: url(./media/images/close.png)no-repeat;
     background-size: 25px;
     background-position: center;
     transition: 0.3s ease;
@@ -179,7 +179,7 @@ header .navigation .navigation-items a:hover:before{
     position: relative;
     width: 100%;
     height: 100vh;
-    background-image: url('images/bgcategorie.jpg');
+    background-image: url('./media/images/bgcategorie.jpg');
     background-size: cover; /* Réduire la taille de l'image pour couvrir la zone */
     background-position: center center;
 }
@@ -414,7 +414,7 @@ header .navigation .navigation-items a:hover:before{
 }
 
 .banner-image {
-  background-image: url(images/Algarve.png);
+  background-image: url(css/images/Algarve.png);
   background-position: top;
   background-size: cover;
   height: 200px;
@@ -425,7 +425,7 @@ header .navigation .navigation-items a:hover:before{
 }
 
 .banner-image1 {
-    background-image: url(images/france1.jpg);
+    background-image: url('media/images/france1.jpg');
     background-position: top;
     background-size: cover;
     height: 200px;
@@ -436,7 +436,7 @@ header .navigation .navigation-items a:hover:before{
   }
 
   .banner-image2 {
-    background-image: url(images/angleterre1.jpg);
+    background-image: url(css/angleterre1.jpg);
     background-position: top;
     background-size: cover;
     height: 200px;
@@ -447,7 +447,7 @@ header .navigation .navigation-items a:hover:before{
   }
 
   .banner-image3 {
-    background-image: url(images/grèce.jpg);
+    background-image: url(media/images/grèce.jpg);
     background-position: top;
     background-size: cover;
     height: 200px;
@@ -458,7 +458,7 @@ header .navigation .navigation-items a:hover:before{
   }
 
   .banner-image4 {
-    background-image: url(images/turquie1.jpg);
+    background-image: url(./media/images/turquie1.jpg);
     background-position: top;
     background-size: cover;
     height: 200px;
@@ -469,7 +469,7 @@ header .navigation .navigation-items a:hover:before{
   }
 
   .banner-image5 {
-    background-image: url(images/malte.jpg);
+    background-image: url(media/images/malte.jpg);
     background-position: top;
     background-size: cover;
     height: 200px;
