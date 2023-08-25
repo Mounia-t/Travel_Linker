@@ -40,6 +40,7 @@ public class LoginControllerBean implements Serializable {
 	private AccountViewModel accountVM = new AccountViewModel();
 	@Inject
 	private LoginDao loginDao;
+
 	private boolean loggedIn=false;
 
 	@Inject
@@ -128,9 +129,11 @@ public class LoginControllerBean implements Serializable {
 			redirectionUrl = "dashboardTP.xhtml";
 		} else {
 			// Redirection par défaut (par exemple, si le rôle n'est pas géré)
+
 			redirectionUrl = "SubscriptionTP.xhtml"; // Remplacez "default-dashboard.xhtml" par l'URL de la page de
 														// tableau
 			// de bord par défaut
+
 		}
 		return redirectionUrl;
 	}
@@ -156,6 +159,7 @@ public class LoginControllerBean implements Serializable {
 	        return "DashboardCustomer.xhtml";
 	    } else if (role == RoleUser.TravelPlanner) {
 	        return "dashboardTP.xhtml";
+
 	    }
 
 	    // Si aucun rôle valide n'est trouvé, rediriger vers une page appropriée
@@ -205,7 +209,6 @@ public class LoginControllerBean implements Serializable {
 	public String redirectToLogin() {
 		return "signIn.xhtm";
 	}
-//--------------------------------------------------------------
 
 
 
@@ -242,3 +245,4 @@ public class LoginControllerBean implements Serializable {
 	    }
 
 	}
+

@@ -57,6 +57,7 @@ $(document).ready(function () {
   };
 });
 
+
    // Code pour gérer la visibilité des boutons en fonction de la connexion
     window.addEventListener('DOMContentLoaded', (event) => {
         var connexionButton = document.getElementById("connexionButton");
@@ -71,3 +72,4 @@ $(document).ready(function () {
             deconnexionButton.style.display = "none";
         }
     });
+
