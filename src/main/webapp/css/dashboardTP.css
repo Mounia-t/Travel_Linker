@@ -1077,7 +1077,7 @@ main .recent-orders a {
     pointer-events: none;
     left: 30px;
     top: 18px;
-    padding: 2px;
+    padding: 0 2px;
     transition: 0.2s ease all;
     font-size: 14px;
     color: #999;
@@ -1358,7 +1358,7 @@ tr {
 
 tr:not(:first-child):hover th,
 tr:hover td {
-    transform: scale(.95);
+    border-bottom: 1px solid lightgrey;
 }
 
 
@@ -1786,7 +1786,7 @@ tr:hover td {
     .right-section .nav button span {
         font-size: 2rem;
     }
-
+}
 #mainProfile .inputFormLabel .placeholder{
     position: absolute;
     pointer-events: none;
@@ -1849,3 +1849,45 @@ tr:hover td {
 .createServicesTable {
 	box-shadow: none;
 }
+
+/*-------------------------Zone de creation de voyage Services--------------------------*/
+
+.createTravelServicesBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+.createTravelServicesBtn .servicesBtn {
+    margin: 20px 10px;
+    background-color: #fff;
+    border-radius: 25px;
+    padding: 10px 12px;
+    color: rgba(51, 65, 85, 1);
+    cursor: pointer;
+    box-shadow: var(--box-shadow);
+    transition: all 0.3s ease;
+}
+
+.createTravelServicesBtn .servicesBtn:hover {
+    background-color: var(--color-background);
+    box-shadow: none;
+}
+
+.flexingManagedResa {
+	display: block;
+    position: relative;
+    width: 96%;
+    
+}
+
+.flexingInputManagedResa {
+	display: flex;
+}
+
+.flexingInputManagedResa .inputFormLabel {
+	width: -webkit-fill-available;
+}
+

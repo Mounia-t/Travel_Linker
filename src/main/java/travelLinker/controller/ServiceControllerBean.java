@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import travelLinker.dao.ServiceDao;
 import travelLinker.entity.Accomodation;
 import travelLinker.entity.Restaurant;
+import travelLinker.entity.Service;
 import travelLinker.entity.Transport;
 import travelLinker.viewModel.ServiceViewModel;
 
@@ -43,9 +44,11 @@ public class ServiceControllerBean implements Serializable {
 	public List<Restaurant> restaurants;
 
 	public List<Transport> transports;
+
 	private List<Restaurant> selectedRestaurants =new ArrayList<Restaurant>() ;
 	private List<Long> selectedRestaurantIds ;
 	
+
 	public void createAccomodation() {
 		Long id = serviceDao.createAccomodation(accomodationVm);
 		System.out.println("Accomodation created with id : " + id);
@@ -170,6 +173,13 @@ public class ServiceControllerBean implements Serializable {
 	public List<Transport> getTransports() {
 		return serviceDao.getAllTransports();
 	}
+	public List<Service> getAllServices() {
+		return serviceDao.getAllServices();
+	}
+
+	public List<Service> getAllServices() {
+		return serviceDao.getAllServices();
+	}
 
 	public ServiceViewModel getRestaurantVm() {
 		return restaurantVm;
@@ -232,6 +242,7 @@ public class ServiceControllerBean implements Serializable {
             return selectedRestaurants;
         } 
 
+
 	public Long getSelectedRestaurantId() {
 		return selectedRestaurantId;
 	}
@@ -244,7 +255,7 @@ public class ServiceControllerBean implements Serializable {
 		this.selectedRestaurants = selectedRestaurants;
 	}
 
-    
+
 }
 	
 

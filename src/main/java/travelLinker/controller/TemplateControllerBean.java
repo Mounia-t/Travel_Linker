@@ -1,110 +1,142 @@
 package travelLinker.controller;
 
+import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
 import travelLinker.dao.AccountDao;
+import travelLinker.dao.LoginDao;
 import travelLinker.dao.TemplateDao;
 import travelLinker.entity.Template;
 import travelLinker.entity.TravelPlanner;
+import travelLinker.utils.SessionUtils;
 
 @ManagedBean
 @SessionScoped
-public class TemplateControllerBean {
+public class TemplateControllerBean implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Long templateId;
+	private Template template;
 
 	@Inject
 	private TemplateDao templateDao;
 
 	@Inject
+	private LoginDao loginDao;
+
+	@Inject
 	private AccountDao accountDao;
 
-	private Template selectedTemplate = new Template();
+	private String selectedColor;
 
-	@ManagedProperty(value = "#{sessionBean}")
-	private SessionBean sessionBean;
+	private List<ColorItem> predefinedColorItems = Arrays.asList(new ColorItem("Rouge", "#FF5733"),
+			new ColorItem("Vert", "#33FF57"), new ColorItem("Coral", "#ff7f50"), new ColorItem("Bleu", "#3357FF"),
+			new ColorItem("Rose", "#FF33F6"), new ColorItem("Orange", "#FF8C33"));
 
-//	public String selectTemplate() {
-//
-//		TravelPlanner currentTravelPlanner = sessionBean.getCurrentTravelPlanner();
-//		if (currentTravelPlanner != null) {
-//			currentTravelPlanner.setTemplate(selectedTemplate);
-//
-//			accountDao.updateTravelPlanner(currentTravelPlanner);
-//		}
-//		return "dashboardTP?faces-redirect=true";
-//	}
+	public String updateBackgroundColor() {
+		System.out.println("Mise à jour de la couleur d'arrière-plan: " + selectedColor);
 
-	public String selectTemplate(Template template) {
-		this.selectedTemplate = template;
-		TravelPlanner currentTravelPlanner = sessionBean.getCurrentTravelPlanner();
-		if (currentTravelPlanner != null) {
-			currentTravelPlanner.setTemplate(template);
-			accountDao.updateTravelPlanner(currentTravelPlanner);
+		String userEmail = SessionUtils.getAccount().getEmail();
+		if (userEmail == null) {
+			System.err.println("Erreur : Aucun e-mail trouvé dans la session.");
+			return null;
 		}
+		TravelPlanner tp = loginDao.findTravelPlanner(userEmail);
+
+		if (tp == null) {
+			System.err.println("Erreur : Aucun TravelPlanner trouvé pour l'e-mail " + userEmail);
+			return null;
+		}
+		if (tp.getTemplate() == null) {
+			Template newTemplate = new Template();
+			newTemplate.setBackgroundColor(selectedColor);
+			tp.setTemplate(newTemplate);
+			templateDao.CreateTemplate(newTemplate);
+		} else {
+			tp.getTemplate().setBackgroundColor(selectedColor);
+			templateDao.update(tp.getTemplate());
+		}
+		accountDao.updateTravelPlanner(tp);
+		this.template = tp.getTemplate();
+		System.out.println("Fin de la méthode updateBackgroundColor");
 		return "dashboardTP?faces-redirect=true";
 	}
 
-	public String loadTemplate(Long templateId) {
-		selectedTemplate = templateDao.getTemplateById(templateId);
-		return "dashboardTP.xhtml";
+	public List<ColorItem> getPredefinedColorItems() {
+		return predefinedColorItems;
 	}
 
-	public String addTemplate() {
-		templateDao.createTemplate(selectedTemplate);
-		selectedTemplate = new Template();
-		return "templateListPage?faces-redirect=true";
+	public void loadTemplate() {
+		this.template = templateDao.findById(templateId);
 	}
 
-	@PostConstruct
-	public void init() {
-		System.out.println("Init method called");
-		if (selectedTemplate == null) {
-			selectedTemplate = new Template();
-			selectedTemplate.setBackgroundColor("#8a6451");
+	public void saveTemplate() {
+		templateDao.update(template);
+	}
+
+	public Long getTemplateId() {
+		return templateId;
+	}
+
+	public void setTemplateId(Long templateId) {
+		this.templateId = templateId;
+	}
+
+	public Template getTemplate() {
+		if (template == null) {
+			template = templateDao.loadTemplateForCurrentUser();
 		}
+		return template;
 	}
 
-	public void updateBackgroundColor() {
-		System.out.println("noluyor amk");
-		TravelPlanner currentTravelPlanner = sessionBean.getCurrentTravelPlanner();
-		if (currentTravelPlanner != null) {
-			currentTravelPlanner.setTemplate(selectedTemplate);
-			System.out.println("selecgtionné" + selectedTemplate + currentTravelPlanner);
-			accountDao.updateTravelPlanner(currentTravelPlanner);
+	public void setTemplate(Template template) {
+		this.template = template;
+	}
+
+	public String getSelectedColor() {
+		return selectedColor;
+	}
+
+	public void setSelectedColor(String selectedColor) {
+		this.selectedColor = selectedColor;
+	}
+
+	public static class ColorItem {
+		private String label;
+		private String value;
+
+		public ColorItem(String label, String value) {
+			this.label = label;
+			this.value = value;
 		}
-	}
 
-	public List<Template> getAllTemplates() {
-		return templateDao.getAllTemplates();
-	}
+		public String getLabel() {
+			return label;
+		}
 
-	public TemplateDao getTemplateDao() {
-		return templateDao;
-	}
+		public String getValue() {
+			return value;
+		}
 
-	public void setTemplateDao(TemplateDao templateDao) {
-		this.templateDao = templateDao;
-	}
+		@Override
+		public String toString() {
+			StringBuilder builder = new StringBuilder();
+			builder.append("ColorItem [label=");
+			builder.append(label);
+			builder.append(", value=");
+			builder.append(value);
+			builder.append("]");
+			return builder.toString();
+		}
 
-	public Template getSelectedTemplate() {
-		return selectedTemplate;
-	}
-
-	public void setSelectedTemplate(Template selectedTemplate) {
-		this.selectedTemplate = selectedTemplate;
-	}
-
-	public SessionBean getSessionBean() {
-		return sessionBean;
-	}
-
-	public void setSessionBean(SessionBean sessionBean) {
-		this.sessionBean = sessionBean;
 	}
 
 }

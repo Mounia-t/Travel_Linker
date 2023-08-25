@@ -1,13 +1,13 @@
 package travelLinker.dao;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import travelLinker.entity.Template;
+import travelLinker.entity.TravelPlanner;
+import travelLinker.utils.SessionUtils;
 
 @Stateless
 public class TemplateDao {
@@ -15,25 +15,30 @@ public class TemplateDao {
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	public Template createTemplate(Template template) {
+	@Inject
+	private LoginDao loginDao;
+
+	public void CreateTemplate(Template template) {
 		entityManager.persist(template);
-		return template;
 	}
 
-	public Template getTemplateById(Long id) {
-		return entityManager.find(Template.class, id);
-	}
-
-	public void updateTemplate(Template template) {
-		entityManager.merge(template);
-	}
-
-	public List<Template> getAllTemplates() {
-		try {
-			return entityManager.createQuery("SELECT t FROM Template t", Template.class).getResultList();
-		} catch (Exception e) {
-			return new ArrayList<>();
+	public Template loadTemplateForCurrentUser() {
+		String currentUserEmail = SessionUtils.getAccount().getEmail();
+		TravelPlanner tp = loginDao.findTravelPlanner(currentUserEmail);
+		if (tp != null && tp.getTemplate() != null) {
+			return tp.getTemplate();
+		} else {
+			return null;
 		}
 	}
 
+	public Template findById(Long id) {
+		return entityManager.find(Template.class, id);
+	}
+
+	public void update(Template template) {
+		template = entityManager.merge(template);
+		entityManager.flush();
+
+	}
 }

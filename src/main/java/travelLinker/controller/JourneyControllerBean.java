@@ -160,6 +160,3 @@ import travelLinker.viewModel.JourneyViewModel;
 			
 
 
-	}
-	}
-

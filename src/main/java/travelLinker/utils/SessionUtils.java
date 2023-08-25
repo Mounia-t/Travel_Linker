@@ -3,10 +3,10 @@ package travelLinker.utils;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 import travelLinker.dao.AccountDao;
 import travelLinker.entity.Account;
 import travelLinker.entity.Partner;
+
 import travelLinker.entity.RoleUser;
 import travelLinker.entity.TravelPlanner;
 
@@ -48,4 +48,5 @@ public class SessionUtils {
     public static Partner getPartner() {
 		return  (Partner)getSession().getAttribute(PARTNER);
 	}
+
 }

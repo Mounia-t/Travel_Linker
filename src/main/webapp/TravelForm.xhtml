@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
+
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
@@ -11,6 +12,7 @@
 <style>
 /* Votre CSS personnalisé ici */
 </style>
+
 </head>
 <body>
 	<h:form enctype="multipart/form-data">
@@ -97,10 +99,11 @@
         </div>
 
         <h:commandButton action="#{journeyControllerBean.clear()}" value="Clear" />
-
+        
         <div class="form-group">
             <h:commandButton action="#{journeyControllerBean.addJourney()}" value="Create" />
         </div>
     </h:form>
+
 </body>
 </html>

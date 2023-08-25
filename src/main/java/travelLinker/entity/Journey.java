@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
@@ -29,14 +30,16 @@ public class Journey {
 	private String location;
 	private Date startDate;
 	private Date endDate;
-	private byte[] imageFile;
+
 
 	@OneToOne
 	@JoinColumn(name = "account_id")
 	private Account account;
 
 
+
 	private String imagePath;
+
 
 
 
@@ -50,6 +53,7 @@ public class Journey {
 
 	public Journey(String country, int numberOfTravellers, float price, String location, Date startDate, Date endDate,
 			byte[] imageFile) {
+
 		super();
 		this.country = country;
 		this.numberOfTravellers = numberOfTravellers;
@@ -57,8 +61,15 @@ public class Journey {
 		this.location = location;
 		this.startDate = startDate;
 		this.endDate = endDate;
-		this.imageFile = imageFile;
+
+		this.description=Description;
+		this.imagePath=imagePath;
+		this.account=account;
+		this.id=id;
 	}
+	
+
+
 
 	public Long getId() {
 		return id;
@@ -112,13 +123,6 @@ public class Journey {
 		this.endDate = endDate;
 	}
 
-	public byte[] getImage() {
-		return imageFile;
-	}
-
-	public void setImageFile(byte[] imageFile) {
-		this.imageFile = imageFile;
-	}
 
 	public String getName() {
 		return name;
@@ -136,9 +140,6 @@ public class Journey {
 		this.description = description;
 	}
 
-	public byte[] getImageFile() {
-		return imageFile;
-	}
 
 	public String getImagePath() {
 		return imagePath;
@@ -148,13 +149,6 @@ public class Journey {
 		this.imagePath = imagePath;
 	}
 
-	public Account getAccount() {
-		return account;
-	}
-
-	public void setAccount(Account account) {
-		this.account = account;
-	}
 
 	public Long getAccountId() {
 		return accountId;
