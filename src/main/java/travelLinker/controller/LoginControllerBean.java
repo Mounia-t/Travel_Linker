@@ -46,8 +46,6 @@ public class LoginControllerBean implements Serializable {
 	private TemplateControllerBean templateControllerBean;
 
 
-	private Account account;
-
 	public LoginControllerBean() {
 	}
 
@@ -75,8 +73,10 @@ public class LoginControllerBean implements Serializable {
 				String userEmail = SessionUtils.getAccount().getEmail();
 				TravelPlanner tp = loginDao.findTravelPlanner(userEmail);
 				Template userTemplate = tp.getTemplate();
+				HttpSession session1 = SessionUtils.getSession();
+				session1.setAttribute("template", userTemplate);
 				templateControllerBean.setTemplate(userTemplate);
-				System.out.println("validate account la template est " + userTemplate + " travel planner est " + tp);
+				templateControllerBean.setSelectedColor(userTemplate.getBackgroundColor());
 			}
 
 			// Effectuer la redirection
@@ -164,50 +164,10 @@ public class LoginControllerBean implements Serializable {
 
 
 	// Méthode pour se déconnecter, sans invalider la session entière
-//	public String logout() {
-//	    account = SessionUtils.getAccount();
-//	    System.out.println("logout avec account is " + account);
-//
-//	    if (account.getRole() == RoleUser.TravelPlanner) {
-//	        String userEmail = SessionUtils.getAccount().getEmail();
-//	        System.out.println(" logout avec user e mail " + userEmail);
-//	        TravelPlanner tp = loginDao.findTravelPlanner(userEmail);
-//	        System.out.println("logout avec " + tp + " its ok");
-//	        HttpSession session = SessionUtils.getSession();
-//	        session.removeAttribute("userId");
-//	        session.removeAttribute("userEmail");
-//	        session.removeAttribute("userRole");
-//	    }
-//
-//	    HttpSession session = SessionUtils.getSession();
-//	    session.invalidate(); // Invalider la session pour déconnecter complètement l'utilisateur
-//
-//	    loginDao.logout();
-//	    return "signIn.xhtml"; // Rediriger vers la page de connexion
-//	}
-
 	public String logout() {
-	    HttpSession session = SessionUtils.getSession();
-	    Account account = SessionUtils.getAccount(); // Récupérer le compte de l'utilisateur connecté
+		loginDao.logout();
+		return "signIn"; // Rediriger vers la page de connexion
 
-	    if (account != null) {
-	        if (account.getRole() == RoleUser.TravelPlanner ) {
-	            // Utilisateur connecté en tant que TravelPlanner
-	            String userEmail = account.getEmail();
-	            TravelPlanner tp = loginDao.findTravelPlanner(userEmail);
-	            if (tp != null) {
-	                session.removeAttribute("userId");
-	                session.removeAttribute("userEmail");
-	                session.removeAttribute("userRole");
-	            }
-	        }
-
-	        // Invalider la session pour déconnecter complètement l'utilisateur
-	        session.invalidate();
-	        loginDao.logout();
-	    }
-
-	    return "signIn.xhtml"; // Rediriger vers la page de connexion
 	}
 	
 	public Account getConnectedAccount() {

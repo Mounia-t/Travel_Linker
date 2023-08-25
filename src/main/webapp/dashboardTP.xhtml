@@ -130,13 +130,7 @@
 
 			<!-- End of Recent Orders -->
 
-			<!-- <h:panelGrid columns="2"> -->
-			<!--     <h:outputLabel value="Choisir une couleur:" for="colorMenu" /> -->
-			<!--     <h:selectOneMenu id="colorMenu" value="#{templateControllerBean.template.backgroundColor}"> -->
-			<!--         <f:selectItems value="#{templateControllerBean.predefinedColorItems}" var="color"  -->
-			<!--                        itemValue="#{color.value}" itemLabel="#{color.label}" /> -->
-			<!--     </h:selectOneMenu> -->
-			<!-- </h:panelGrid> -->
+
 
 			<h:form>
 				<h:selectOneMenu value="#{templateControllerBean.selectedColor}">
@@ -147,7 +141,12 @@
 
 				<h:commandButton value="Appliquer la couleur"
 					action="#{templateControllerBean.updateBackgroundColor()}" />
+					
+					
 			</h:form>
+			
+								<h:outputText value="Couleur d'arrière-plan: #{templateControllerBean.template.backgroundColor}" />
+			
 
 		</main>
 		<!-- Main Content -->

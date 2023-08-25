@@ -159,8 +159,7 @@ public class ServiceDao {
 	public Transport findByIdTransport(Long id) {
 		return entityManager.find(Transport.class, id);
 	}
-	
-	
+
 	public List<Service> getAllServices() {
 		List<Service> services = new ArrayList<>();
 		services.addAll(getAllAccomodations());
@@ -169,11 +168,12 @@ public class ServiceDao {
 
 		return services;
 	}
-	
-	public List<Service> displayFiltredServices(String country){
-		List<Service> servicesFiltred=  entityManager.createQuery("SELECT s FROM Service s WHERE s.country = :country", Service.class)
-		            .setParameter("country", country)
-		            .getResultList();
+
+
+	public List<Service> displayFiltredServices(String country) {
+		List<Service> servicesFiltred = entityManager
+				.createQuery("SELECT s FROM Service s WHERE s.country = :country", Service.class)
+				.setParameter("country", country).getResultList();
 		return servicesFiltred;
-}
+	}
 }

@@ -174,6 +174,10 @@ public class ServiceControllerBean implements Serializable {
 		return serviceDao.getAllServices();
 	}
 
+	public List<Service> getAllServices() {
+		return serviceDao.getAllServices();
+	}
+
 	public ServiceViewModel getRestaurantVm() {
 		return restaurantVm;
 	}
