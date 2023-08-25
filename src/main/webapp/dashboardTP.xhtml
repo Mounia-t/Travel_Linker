@@ -17,8 +17,7 @@
 <title>Dashboard</title>
 
 </head>
-<h:body
-	style="background-color: #{templateControllerBean.template.backgroundColor}">
+<h:body>
 	<h:outputText value="loggedIn: #{loginControllerBean.loggedIn}" />
 	<h:outputText value="Role: #{sessionUtils.account.role}" />
 	<h:inputHidden id="defaultSection"
@@ -65,6 +64,13 @@
 					class="material-icons-sharp"> home </span>
 					<h3>
 						<h:commandButton href="index.xhtml" value="Accueil"
+							class="noBackgroundLogout" />
+					</h3>
+				</a>
+				<a href="HomeTP.xhtml" id="backToHomeBtn"> <span
+					class="material-icons-sharp"> business </span>
+					<h3>
+						<h:commandButton href="HomeTP.xhtml" value="Mon espace"
 							class="noBackgroundLogout" />
 					</h3>
 				</a>
@@ -132,20 +138,8 @@
 
 
 
-			<h:form>
-				<h:selectOneMenu value="#{templateControllerBean.selectedColor}">
-					<f:selectItems
-						value="#{templateControllerBean.predefinedColorItems}" var="color"
-						itemValue="#{color.value}" itemLabel="#{color.label}" />
-				</h:selectOneMenu>
 
-				<h:commandButton value="Appliquer la couleur"
-					action="#{templateControllerBean.updateBackgroundColor()}" />
-					
-					
-			</h:form>
 			
-								<h:outputText value="Couleur d'arrière-plan: #{templateControllerBean.template.backgroundColor}" />
 			
 
 		</main>

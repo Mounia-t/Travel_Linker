@@ -43,8 +43,6 @@ public class ServiceControllerBean implements Serializable {
 	public List<Restaurant> restaurants;
 
 	public List<Transport> transports;
-	
-	
 
 	public void createAccomodation() {
 		Long id = serviceDao.createAccomodation(accomodationVm);
@@ -170,9 +168,6 @@ public class ServiceControllerBean implements Serializable {
 	public List<Transport> getTransports() {
 		return serviceDao.getAllTransports();
 	}
-	public List<Service> getAllServices() {
-		return serviceDao.getAllServices();
-	}
 
 	public List<Service> getAllServices() {
 		return serviceDao.getAllServices();
@@ -213,6 +208,5 @@ public class ServiceControllerBean implements Serializable {
 	public void setShowTransportForm(boolean showTransportForm) {
 		this.showTransportForm = showTransportForm;
 	}
-
 
 }
