@@ -25,9 +25,12 @@ public class Journey {
 	private String location;
 	private Date startDate;
 	private Date endDate;
-
-	private String imagePath;
+	@OneToOne
+	@JoinColumn(name = "account_id")
+	private Account account;
 	private Long accountId;
+	
+	private String imagePath;
 	
 
 
@@ -46,6 +49,8 @@ public class Journey {
 		this.endDate = endDate;
 		this.description=Description;
 		this.imagePath=imagePath;
+		this.account=account;
+		this.id=id;
 	}
 	
 
