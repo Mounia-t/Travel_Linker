@@ -28,7 +28,9 @@ public class Journey {
 
 	private String imagePath;
 	private Long accountId;
-	
+	@OneToOne
+	@JoinColumn(name = "account_id")
+	private Account account;
 
 
 
