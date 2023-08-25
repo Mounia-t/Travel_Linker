@@ -5,6 +5,21 @@
     <title>User Home Page</title>
 
 </h:head>
+	<header>
+		<a href="index.xhtml" class="brand">Travel linker</a>
+		<div class="menu-btn"></div>
+		<!-- Bouton de menu (hamburger) -->
+		<div class="navigation">
+			<div class="navigation-items">
+				<a href="index.xhtml">Accueil</a> <a href="categorie.xhtml">Nos
+					voyages</a> <a href="CategorieTP.xhtml">Nos travels planners</a> <a
+					href="#{loginControllerBean.changeRoleDashboard()}">Mon profil</a><a
+					href="#contact">Contact</a><a href="signIn.xhtml" id="connexionButton">Me connecter</a>
+				<a href="#{loginControllerBean.logout()}" rendered="#{loginControllerBean.loggedIn}">Deconnexion</a>
+
+			</div>
+		</div>
+	</header>
 <h:body>
     <h1>Welcome to Your Personalized Home Page</h1>
     <!-- Le contenu spécifique au template sera rendu ici -->
