@@ -67,7 +67,7 @@ public class TemplateControllerBean implements Serializable {
 		accountDao.updateTravelPlanner(tp);
 		this.template = tp.getTemplate();
 		System.out.println("Fin de la méthode updateBackgroundColor");
-		return "dashboardTP?faces-redirect=true";
+		return "HomeTP?faces-redirect=true";
 	}
 
 	public List<ColorItem> getPredefinedColorItems() {

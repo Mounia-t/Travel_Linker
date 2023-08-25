@@ -49,6 +49,7 @@ public class ServiceControllerBean implements Serializable {
 	private List<Long> selectedRestaurantIds ;
 	
 
+
 	public void createAccomodation() {
 		Long id = serviceDao.createAccomodation(accomodationVm);
 		System.out.println("Accomodation created with id : " + id);
@@ -173,9 +174,6 @@ public class ServiceControllerBean implements Serializable {
 	public List<Transport> getTransports() {
 		return serviceDao.getAllTransports();
 	}
-	public List<Service> getAllServices() {
-		return serviceDao.getAllServices();
-	}
 
 
 	public ServiceViewModel getRestaurantVm() {
@@ -251,7 +249,6 @@ public class ServiceControllerBean implements Serializable {
 	public void setSelectedRestaurants(List<Restaurant> selectedRestaurants) {
 		this.selectedRestaurants = selectedRestaurants;
 	}
-
 
 }
 	

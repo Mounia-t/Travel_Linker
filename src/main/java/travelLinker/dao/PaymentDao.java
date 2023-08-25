@@ -13,9 +13,9 @@ public class PaymentDao {
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	public Payment createPayment(Payment payment) {
+	public Long createPayment(Payment payment) {
 		entityManager.persist(payment);
-		return payment;
+		return payment.getId();
 	}
 
 	public Payment findPaymentById(Long paymentId) {

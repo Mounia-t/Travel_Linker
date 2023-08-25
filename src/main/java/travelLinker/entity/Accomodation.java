@@ -19,6 +19,10 @@ public class Accomodation extends Service {
 	private Journey journey;
 
 
+	@ManyToOne
+	@JoinColumn(name = "journey_id_fk")
+	private Journey journey;
+
 	private String typeOfAccomodation;
 
 	public Long getId() {

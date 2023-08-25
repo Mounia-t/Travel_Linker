@@ -12,8 +12,6 @@ import javax.inject.Inject;
 
 import travelLinker.dao.CartDao;
 import travelLinker.dao.PaymentDao;
-import travelLinker.entity.Cart;
-import travelLinker.entity.Item;
 import travelLinker.entity.Payment;
 import travelLinker.entity.PaymentStatus;
 
@@ -40,37 +38,34 @@ public class PaymentControllerBean implements Serializable {
 
 	public void makePayment() {
 		System.out.println("make payment " + payment);
-		try {
-			if (!validateCardDetails(payment.getCardNumber(), payment.getCardDate(), payment.getNumberCvv())) {
-				return;
-			}
-			System.out.println("make Payment " + payment.getCardNumber() + payment.getCardDate());
+//		if (!validateCardDetails(payment.getCardNumber(), payment.getCardDate(), payment.getNumberCvv())) {
+//			return;
+//		}
+//		Cart cart = cartDao.findByCartId(cartId);
+//		System.out.println("le panier est " + cartId);
+//		if (cart != null) {
+//			float totalAmount = 0.0f;
+//
+//			for (Item item : cart.getItems()) {
+//				totalAmount += item.getPrice() * item.getQuantity();
+//			}
+		float totalAmount = 0.0f;
+//
+//			payment.setCart(cart);
+		payment.setAmount(totalAmount);
+		payment.setPaymentDate(new Date());
 
-			Cart cart = cartDao.findByCartId(cartId);
-			if (cart != null) {
-				float totalAmount = 0.0f;
+		System.out.println("ici les details " + payment.getAmount() + payment.getCardDate());
 
-				for (Item item : cart.getItems()) {
-					totalAmount += item.getPrice() * item.getQuantity();
-				}
-
-				Payment payment = new Payment();
-				payment.setCart(cart);
-				payment.setAmount(totalAmount);
-				payment.setPaymentDate(new Date());
-
-				if (processPayment(payment.getCardNumber(), payment.getCardDate(), totalAmount)) {
-					payment.setPaymentStatus(PaymentStatus.PAID);
-				} else {
-					payment.setPaymentStatus(PaymentStatus.FAILED);
-				}
-
-				paymentDao.createPayment(payment);
-			}
-		} catch (Exception e) {
-			System.out.println("Error");
-			e.printStackTrace();
+		if (processPayment(payment.getCardNumber(), payment.getCardDate(), totalAmount)) {
+			payment.setPaymentStatus(PaymentStatus.PAID);
+		} else {
+			payment.setPaymentStatus(PaymentStatus.FAILED);
 		}
+
+		paymentDao.createPayment(payment);
+
+		System.out.println("apres persistence: " + payment);
 	}
 
 	private boolean validateCardDetails(long cardNumber, String cardDate, int numberCvv) {

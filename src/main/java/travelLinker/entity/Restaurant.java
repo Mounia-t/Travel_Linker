@@ -15,6 +15,10 @@ public class Restaurant extends Service {
 	private Long id;
 	
 
+	@ManyToOne
+	@JoinColumn(name = "journey_id_fk")
+	private Journey journey;
+
 	private String typeOfRestaurant;
 
 	@ManyToOne
