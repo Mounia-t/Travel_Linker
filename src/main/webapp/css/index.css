@@ -380,7 +380,9 @@ section{
   display: flex;
   justify-content: center;
   flex-direction: column;
-  border-radius: 25px; /*TEST*/
+  border-radius: 25px; 
+  overflow: hidden;
+  /*TEST*/
   /* background-color: red; */
   /* position: absolute;
   left: 32%;
@@ -761,7 +763,6 @@ text-shadow: 1px 1px 0 rgb(0, 0, 0),
 .contact {
   display: flex;
   justify-content: center;
-  align-items: center;
   flex-direction: column;
   width: 100%;
 }
@@ -792,28 +793,35 @@ text-shadow: 1px 1px 0 rgb(0, 0, 0),
   flex: 1 1 calc(50% - 0.75rem);
   width: 100%;
   padding:2rem;
-  border:.1rem solid rgba(0,0,0,.1);
+  border: 0px solid white;
   border-radius: 25px;
   box-shadow: 0 2rem 3rem rgba(132, 139, 200, 0.18);
+  transition: 0.3 ease;
+}
+
+.contact .row-contact .map:hover {
+	box-shadow: none;
 }
 
 .contact .row-contact form{
   padding:2rem;
   flex: 1 1 calc(50% - 0.75rem);
-  border:.1rem solid rgba(0,0,0,.1);
   text-align: center;
   border-radius: 25px;
-  background: linear-gradient(45deg, #84fab0, #8fd3f4);
   box-shadow: 0 2rem 3rem rgba(132, 139, 200, 0.18);
+  transition: 0.3 ease;
+}
+.contact .row-contact form:hover{
+  box-shadow: none;
 }
 
 .contact .row-contact form .box-contact{
   width:100%;
   border-radius: 25px;
   padding:1rem 1.2rem;
-  font-size: 1.6rem;
+  font-size: 1rem;
   text-transform: none;
-  border:.1rem solid white;
+  border:1px solid grey;
   margin:.7rem 0;
   font-weight: bold;
 }
@@ -824,19 +832,24 @@ text-shadow: 1px 1px 0 rgb(0, 0, 0),
 }
 
 .contact .row-contact .btn-contact{
-backdrop-filter: blur(200px); /* Ajustez la valeur du flou selon vos préférences */
-background-color: rgba(255, 255, 255, 0.2); /* Couleur de fond semi-transparente */
-border: 3px solid white;
-color: rgb(244, 239, 239);
+background-color: transparent; 
+border: none;
+color: #999;
 margin-top: 15px;
 padding: 5px 30px;
 font-size: 1.1em;
 font-weight: bold;
 border-radius: 25px;
+box-shadow: 0 2rem 3rem rgba(132, 139, 200, 0.18);
 transition: 0.3 ease;
 cursor: pointer;
 animation:showcontent 1s ease-in-out 0.6s 1 forwards;
 }
+
+.contact .row-contact .btn-contact:hover {
+	box-shadow: none;
+}
+
 
 /* FIN DE LA MAP ET FORMULAIRE */
 /* DEBUT DU FOOTER */
@@ -1108,3 +1121,40 @@ animation:showcontent 1s ease-in-out 0.6s 1 forwards;
   transform: scale(1.3);
 }
 /*FIN DU FOOTER */
+
+/*-----------------_Zone inputForm -----------------------*/
+
+.inputFormLabel {
+    position: relative;
+    margin-bottom: 20px;
+    transition: 0.2s ease all;
+}
+
+.inputForm {
+    border: 1px solid grey;
+    border-radius: 25px;
+    background: none;
+    padding: 10px;
+    margin-top: 30px;
+    width: 94%;
+    outline: none;
+}
+
+.inputForm:focus {
+    border-color: green;
+}
+.deleteButtons {
+	display: flex;
+	justify-content: space-evenly;
+}
+.placeholder {
+    position: absolute;
+    pointer-events: none;
+    left: 32px;
+    top: 18px;
+    transition: 0.2s ease all;
+    font-size: 15px;
+    color: #999;
+    background-color: white;
+    padding: 0 5px
+}

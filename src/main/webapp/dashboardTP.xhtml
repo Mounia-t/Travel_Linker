@@ -17,10 +17,12 @@
 <title>Dashboard</title>
 
 </head>
+
 <h:body
 	style="background-color: #{templateControllerBean.template.backgroundColor}">
 	<h:outputText value="loggedIn: #{loginControllerBean.loggedIn}" />
 	<h:outputText value="Role: #{sessionUtils.account.role}" />
+
 	<h:inputHidden id="defaultSection"
 		value="#{dashboardController.section}" />
 	<div class="container">
@@ -157,7 +159,7 @@
 					<label class="radio"> <input type="radio" name="radio"
 						id="rbRestaurantList" /><span class="name">Restaurant</span>
 					</label> <label class="radio"> <input type="radio" name="radio"
-						id="rbAccomoList" /><span class="name">Hébergement</span>
+						id="rbAccomoList" /> <span class="name">Hébergement</span>
 					</label> <label class="radio"> <input type="radio" name="radio"
 						id="rbTransList" /><span class="name">Transport</span>
 					</label>
@@ -467,20 +469,20 @@
 
 
 						<div class="inputFormLabel">
-							<h:outputLabel value="Nom" styleClass="placeholder label" />
+							<h:outputLabel value="Nom" />
 							<h:inputText
 								value="#{loginControllerBean.connectedAccount.lastName}"
 								required="true" class="inputForm" />
 						</div>
 						<div class="inputFormLabel">
-							<h:outputLabel value="Prénom" styleClass="placeholder label" />
+							<h:outputLabel value="Prénom" />
 							<h:inputText
 								value="#{loginControllerBean.connectedAccount.firstName}"
 								required="true" class="inputForm" />
 						</div>
 
 						<div class="inputFormLabel">
-							<h:outputLabel value="Email" styleClass="placeholder label" />
+							<h:outputLabel value="Email" />
 							<h:inputText
 								value="#{loginControllerBean.connectedAccount.email}"
 								required="true" class="inputForm" />
@@ -557,6 +559,7 @@
 						</label>
 					</div>
 					<div id="ListTravelSection">
+
 						<div class="table-container">
 									<h:dataTable value="#{serviceControllerBean.allServices}"
 										var="service" styleClass="table">
@@ -592,6 +595,7 @@
                     </h:column>
 									</h:dataTable>
 								</div>
+
 					</div>
 					<div id="createTravelSection" class="flexingManagedResa">
 						<h:form enctype="multipart/form-data">
@@ -698,8 +702,115 @@
 								</div>
 
 
-							</div>
+								<div class="inputFormLabel">
+									<h:outputLabel value="Sélectionner une image" for="imageFile"
+										styleClass="placeholder label" />
+									<h:inputFile id="imageFile" class="inputForm"
+										value="#{journeyControllerBean.imageFile}" accept="image/*" />
+								</div>
 
+								<div class="radio-inputs">
+									<label class="radio"> <input type="radio" name="radio"
+										id="rbRestTable" /> <span class="name">Restaurant</span>
+									</label> <label class="radio"> <input type="radio" name="radio"
+										id="rbAccomoTable" /> <span class="name">Hébergement</span>
+									</label> <label class="radio"> <input type="radio" name="radio"
+										id="rbTransTable" /> <span class="name">Transport</span>
+									</label>
+								</div>
+
+								<h:form>
+									<div class="table-container" id="restTable">
+
+										<table class="createServicesTable">
+											<thead>
+												<tr>
+													<th>Nom du restaurant</th>
+													<th>Type de restaurant</th>
+													<th>Description</th>
+													<th>Prix</th>
+													<th>Action</th>
+												</tr>
+											</thead>
+											<tbody>
+												<ui:repeat value="#{serviceControllerBean.restaurants}"
+													var="restaurant">
+													<tr>
+														<td>#{restaurant.name}</td>
+														<td>#{restaurant.type}</td>
+														<td>#{restaurant.description}</td>
+														<td>#{restaurant.price}</td>
+														<td><h:inputHidden value="#{restaurant.id}" /></td>
+														<td><h:commandButton value="Add"
+																action="#{serviceControllerBean.prepareToAddService(restaurant.id)}">
+															</h:commandButton></td>
+
+													</tr>
+												</ui:repeat>
+
+											</tbody>
+										</table>
+
+									</div>
+								</h:form>
+								<div class="table-container" id="accomoTable">
+									<table class="createServicesTable">
+										<thead>
+											<tr>
+												<th>Nom de l'hébergement</th>
+												<th>Type d'hébergement</th>
+												<th>Description</th>
+												<th>Prix</th>
+												<th>Action</th>
+											</tr>
+										</thead>
+										<tbody>
+											<ui:repeat value="#{serviceControllerBean.accomodations}"
+												var="accomodation">
+												<tr>
+													<td>#{accomodation.name}</td>
+													<td>#{accomodation.type}</td>
+													<td>#{accomodation.description}</td>
+													<td>#{accomodation.price}</td>
+													<td><h:selectBooleanCheckbox
+															styleClass="material-icons-sharp edit">
+															<f:ajax event="change"
+																listener="#{serviceControllerBean.setRestaurantVm(restaurant)}"
+																render=":editFormRestaurant" />
+														</h:selectBooleanCheckbox></td>
+												</tr>
+											</ui:repeat>
+										</tbody>
+									</table>
+								</div>
+
+								<div class="table-container" id="transTable">
+									<table class="createServicesTable">
+										<thead>
+											<tr>
+												<th>Nom du transporteur</th>
+												<th>Type de transport</th>
+												<th>Description</th>
+												<th>Prix</th>
+												<th>Action</th>
+											</tr>
+										</thead>
+										<tbody>
+											<ui:repeat value="#{serviceControllerBean.transports}"
+												var="transport">
+												<tr>
+													<td>#{transport.name}</td>
+													<td>#{transport.type}</td>
+													<td>#{transport.description}</td>
+													<td>#{transport.price}</td>
+													<td><h:selectBooleanCheckbox
+															styleClass="material-icons-sharp ">
+														</h:selectBooleanCheckbox></td>
+												</tr>
+											</ui:repeat>
+										</tbody>
+									</table>
+								</div>
 
 
 
