@@ -166,7 +166,8 @@ public class ServiceDao {
 		List<Accomodation> servicesFiltred=  entityManager.createQuery("SELECT a FROM Accomodation a WHERE a.country = :country", Accomodation.class)
 		            .setParameter("country", country)
 		            .getResultList();
-
+		return servicesFiltred;
+	}
 
 	public List<Service> getAllServices() {
 		List<Service> services = new ArrayList<>();

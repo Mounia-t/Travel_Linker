@@ -17,7 +17,9 @@ public class Restaurant extends Service {
 
 	private String typeOfRestaurant;
 
-	
+	@ManyToOne
+	@JoinColumn (name = "journey_id_fk")
+	private Journey journey;
 
 	@Override
 	public String toString() {

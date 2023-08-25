@@ -35,6 +35,9 @@ public class Journey {
 	@OneToOne
 	@JoinColumn(name = "account_id")
 	private Account account;
+	
+	
+	
 
 
 
@@ -62,7 +65,7 @@ public class Journey {
 		this.startDate = startDate;
 		this.endDate = endDate;
 
-		this.description=Description;
+		this.description=description;
 		this.imagePath=imagePath;
 		this.account=account;
 		this.id=id;
@@ -150,13 +153,7 @@ public class Journey {
 	}
 
 
-	public Long getAccountId() {
-		return accountId;
-	}
-
-	public void setAccountId(Long accountId) {
-		this.accountId = accountId;
-	}
+	
 
 	public List<Restaurant> getSelectedRestaurants() {
 		return selectedRestaurants;
@@ -164,5 +161,13 @@ public class Journey {
 
 	public void setSelectedRestaurants(List<Restaurant> selectedRestaurants) {
 		this.selectedRestaurants = selectedRestaurants;
+	}
+
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
 	}
 }

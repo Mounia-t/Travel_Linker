@@ -56,9 +56,14 @@ import travelLinker.viewModel.JourneyViewModel;
 		
 		private List<Accomodation> filteredServices;
 		
+		private Long selectedRestaurantId;
+		
+		private List<Restaurant> selectedRestaurants =new ArrayList<Restaurant>() ;
 		
 		public void addJourney() {
 		    try {
+		    	 System.out.println("dans addJourney, liste: " + selectedRestaurants);
+		    	 
 		        if (imageFile != null) {
 		            // Obtenez le chemin absolu vers le répertoire de déploiement de l'application
 		            String deploymentPath = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");
@@ -84,7 +89,7 @@ import travelLinker.viewModel.JourneyViewModel;
 		        
 
 		        // Appel à la méthode de la couche de persistance pour ajouter le voyage
-		        Long id = journeyDao.insert(journeyVM);
+		        Long id = journeyDao.insert(journeyVM, selectedRestaurants); 
 
 		        System.out.println("Journey created with id : " + id);
 		        clear();
@@ -93,7 +98,46 @@ import travelLinker.viewModel.JourneyViewModel;
 		        e.printStackTrace(); // Gérez l'exception selon vos besoins
 		    }
 		}
-	                
+	         
+
+        public List<Restaurant> addSelectedService(Long restaurantId) {
+        	 selectedRestaurantId = restaurantId;
+        	 System.out.println("Mon restaur " + restaurantId);
+            if (selectedRestaurantId != null) {
+                // Récupérer les détails du restaurant à partir de l'ID
+                Restaurant selectedRestaurant = serviceDao.findByIdRestaurant(selectedRestaurantId);
+
+                // Ajouter le restaurant sélectionné à la liste des services sélectionnés
+                selectedRestaurants.add(selectedRestaurant);
+                System.out.println("dans addSelectedService, liste: " + selectedRestaurants);
+
+            }
+
+            // Retourner la liste des restaurants sélectionnés (éventuellement)
+            return selectedRestaurants;
+        }
+
+        public List<Restaurant> getSelectedRestaurants() {
+        	System.out.println("Get"+ selectedRestaurants);
+            return selectedRestaurants;
+        } 
+
+
+	public Long getSelectedRestaurantId() {
+		return selectedRestaurantId;
+	}
+
+	public void setSelectedRestaurantId(Long selectedRestaurantId) {
+		this.selectedRestaurantId = selectedRestaurantId;
+	}
+
+	public void setSelectedRestaurants(List<Restaurant> selectedRestaurants) {
+		this.selectedRestaurants = selectedRestaurants;
+	}
+
+		
+		
+		
 		public void clear() {
 			journeyVM = new JourneyViewModel();
 		}
@@ -152,11 +196,13 @@ import travelLinker.viewModel.JourneyViewModel;
 		public List<Journey> displayTravelPlaJournyes(){
 			return journeyDao.getTravelPlannerJourneys();
 		}
+		
 		public void filterServicesByCountry() {
 		    String selectedCountry = journeyVM.getCountry(); // Récupérer le pays sélectionné
 		    if (selectedCountry != null && !selectedCountry.isEmpty()) {
 		        filteredServices = serviceDao.displayFiltredAccomodatin(selectedCountry);
 		    }
 			
-
+		}
+	}
 
