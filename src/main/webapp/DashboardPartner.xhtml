@@ -45,10 +45,17 @@
 				</a> <a href="#" id="messagesBtn"> <span
 					class="material-icons-sharp"> mail </span>
 					<h3>Messages</h3>
-				</a> <a href="#"> <span class="material-icons-sharp"> logout
-				</span>
-					<h3>Déconnexion</h3>
-				</a>
+				</a> 	<h:form>
+					<a href="#" class="logoutStyle"> <span
+						class="material-icons-sharp"> logout </span>
+						<h3>
+							<h:commandButton value="Déconnexion"
+								action="#{loginControllerBean.logout()}"
+								class="noBackgroundLogout" />
+						</h3>
+
+					</a>
+				</h:form>
 			</div>
 		</aside>
 		<!-- End of Sidebar Section -->

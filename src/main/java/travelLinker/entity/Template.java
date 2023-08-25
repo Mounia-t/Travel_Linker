@@ -19,6 +19,10 @@ public class Template {
 
 	@Column(name = "background_color")
 	private String backgroundColor;
+	
+	@Column (name = "picture")
+	private String picture; 
+	
 
 	public String getBackgroundColor() {
 		return backgroundColor;

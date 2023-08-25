@@ -135,4 +135,33 @@ public class Payment {
 		this.paymentDate = paymentDate;
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Payment [id=");
+		builder.append(id);
+		builder.append(", customerId=");
+		builder.append(customerId);
+		builder.append(", partnerId=");
+		builder.append(partnerId);
+		builder.append(", travelPlannerId=");
+		builder.append(travelPlannerId);
+		builder.append(", cart=");
+		builder.append(cart);
+		builder.append(", paymentStatus=");
+		builder.append(paymentStatus);
+		builder.append(", amount=");
+		builder.append(amount);
+		builder.append(", paymentDate=");
+		builder.append(paymentDate);
+		builder.append(", cardNumber=");
+		builder.append(cardNumber);
+		builder.append(", cardDate=");
+		builder.append(cardDate);
+		builder.append(", numberCvv=");
+		builder.append(numberCvv);
+		builder.append("]");
+		return builder.toString();
+	}
+
 }
