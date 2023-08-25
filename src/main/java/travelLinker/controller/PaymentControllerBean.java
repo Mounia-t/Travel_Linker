@@ -39,10 +39,12 @@ public class PaymentControllerBean implements Serializable {
 	private String ownerName;
 
 	public void makePayment() {
+		System.out.println("make payment " + payment);
 		try {
 			if (!validateCardDetails(payment.getCardNumber(), payment.getCardDate(), payment.getNumberCvv())) {
 				return;
 			}
+			System.out.println("make Payment " + payment.getCardNumber() + payment.getCardDate());
 
 			Cart cart = cartDao.findByCartId(cartId);
 			if (cart != null) {
@@ -102,7 +104,7 @@ public class PaymentControllerBean implements Serializable {
 	private boolean processPayment(long cardNumber, String cardDate, float totalAmount) {
 		double randomValue = Math.random();
 
-		if (randomValue < 0.9) {
+		if (randomValue < 1) {
 			return true;
 		} else {
 			return false;

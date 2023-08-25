@@ -625,15 +625,6 @@
 									styleClass="placeholder label" />
 							</div>
 
-
-							<div class="inputFormLabel">
-								<h:inputText id="serviceType"
-									value="#{serviceControllerBean.restaurantVm.type}"
-									class="inputForm" />
-								<h:outputLabel value="Type de service" for="serviceType"
-									styleClass="placeholder label" />
-							</div>
-
 							<div class="inputFormLabel">
 								<h:inputText id="servicePrice"
 									value="#{serviceControllerBean.restaurantVm.price}"
@@ -659,11 +650,11 @@
 							</div>
 
 							<div class="inputFormLabel">
-								<h:inputText id="typeOfRestaurantTxt"
-									value="#{serviceControllerBean.restaurantVm.typeOfRestaurant}"
+								<h:inputText id="serviceType"
+									value="#{serviceControllerBean.restaurantVm.type}"
 									class="inputForm" />
-								<h:outputLabel value="Type de restaurant"
-									for="typeOfRestaurantTxt" styleClass="placeholder label" />
+								<h:outputLabel value="Type de service" for="serviceType"
+									styleClass="placeholder label" />
 							</div>
 						</div>
 						<div class="new-usersButton">
@@ -686,14 +677,6 @@
 									value="#{serviceControllerBean.accomodationVm.name}"
 									class="inputForm" />
 								<h:outputLabel value="Nom" for="nameTxtAccom"
-									styleClass="placeholder label" />
-							</div>
-
-							<div class="inputFormLabel">
-								<h:inputText id="typeTxtAccom"
-									value="#{serviceControllerBean.accomodationVm.type}"
-									class="inputForm" />
-								<h:outputLabel value="Type de service" for="typeTxtAccom"
 									styleClass="placeholder label" />
 							</div>
 
@@ -722,11 +705,11 @@
 							</div>
 
 							<div class="inputFormLabel">
-								<h:inputText id="typeOfAccomTxt"
-									value="#{serviceControllerBean.accomodationVm.typeOfAccomodation}"
+								<h:inputText id="typeTxtAccom"
+									value="#{serviceControllerBean.accomodationVm.type}"
 									class="inputForm" />
-								<h:outputLabel value="Type de l'hébergement"
-									for="typeOfAccomTxt" styleClass="placeholder label" />
+								<h:outputLabel value="Type de service" for="typeTxtAccom"
+									styleClass="placeholder label" />
 							</div>
 						</div>
 						<div class="new-usersButton">
@@ -751,15 +734,6 @@
 									value="#{serviceControllerBean.transportVm.name}"
 									class="inputForm" />
 								<h:outputLabel value="Nom" for="nameTxtTrans"
-									styleClass="placeholder label" />
-							</div>
-
-							<!-- Type de service -->
-							<div class="inputFormLabel">
-								<h:inputText id="typeTxtTrans"
-									value="#{serviceControllerBean.transportVm.type}"
-									class="inputForm" />
-								<h:outputLabel value="Type de service" for="typeTxtTrans"
 									styleClass="placeholder label" />
 							</div>
 
@@ -792,10 +766,10 @@
 
 							<!-- Type de transport -->
 							<div class="inputFormLabel">
-								<h:inputText id="typeOfTransTxt"
-									value="#{serviceControllerBean.transportVm.modeOfTransport}"
+								<h:inputText id="typeTxtTrans"
+									value="#{serviceControllerBean.transportVm.type}"
 									class="inputForm" />
-								<h:outputLabel value="Type de transport" for="typeOfTransTxt"
+								<h:outputLabel value="Type de service" for="typeTxtTrans"
 									styleClass="placeholder label" />
 							</div>
 
