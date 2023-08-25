@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:head>
+	<title>Messagerie: Index</title>
+</h:head>
+<h:body>
+<h:form>
+        <h:outputLabel value="Email" />
+        <h:inputText value="#{conversationController.accVM.recepientEmail}" required="true" /> 
+<br/>
+<br/>
+        <h:outputLabel value="Message" />
+        <h:inputText value="#{conversationController.accVM.content}" required="true" />
+<br/>
+<br/>
+
+        <h:commandButton value="Envoyer" action="#{conversationController.sendMessage()}"/>
+   </h:form>
+   <h:panelGroup rendered="#{not empty conversationController.messages}">
+    <h:outputText value="Messages between sender and recipient:" />
+    <ul>
+        <ui:repeat var="message" value="#{conversationController.messages}">
+            <li>Sender: #{message.senderEmail}, Recipient: #{message.recepientEmail}, Content: #{message.content}</li>
+        </ui:repeat>
+    </ul>
+</h:panelGroup>
+</h:body>
+</html>

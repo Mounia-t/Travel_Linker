@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<!-- 	<ui:composition template=""> -->
+<!-- 	</ui:composition> -->
+
+<h:head>
+	<title>Services</title>
+</h:head>
+
+<h:body>
+	<header>
+		<a href="index.xhtml" class="brand">Travel linker</a>
+		<div class="menu-btn"></div>
+		<!-- Bouton de menu (hamburger) -->
+		<div class="navigation">
+			<div class="navigation-items">
+				<a href="index.xhtml">Accueil</a> <a href="categorie.xhtml">Nos
+					voyages</a> <a href="CategorieTP.xhtml">Nos travels planners</a> <a
+					href="#{loginControllerBean.changeRoleDashboard()}">Mon profil</a><a
+					href="#contact">Contact</a><a href="signIn.xhtml" id="connexionButton">Me connecter</a>
+				<a href="#{loginControllerBean.logout()}" rendered="#{loginControllerBean.loggedIn}">Deconnexion</a>
+
+			</div>
+		</div>
+	</header>
+	
+	<h:form>
+
+		<!-- List of All Services -->
+
+<h2>All Services</h2>
+
+<h:dataTable value="#{serviceControllerBean.allServices}" var="service">
+    <h:column>
+        <f:facet name="header">Nom du service</f:facet>
+        #{service.name}
+    </h:column>
+    <h:column>
+        <f:facet name="header">Description</f:facet>
+        #{service.description}
+    </h:column>
+    
+    <h:column>
+    <f:facet name="header">Prix</f:facet>
+    #{service.price}
+    </h:column>
+ 
+        <h:column>
+        <f:facet name="header">Type de service</f:facet>
+        #{service.type}
+    </h:column>
+</h:dataTable>
+
+
+	</h:form>
+</h:body>
+</html>

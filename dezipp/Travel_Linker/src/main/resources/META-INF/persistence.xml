@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.2"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+
+	<!-- Unité de  persistance: 1 unité par BDD (en mode ressources locale) -->
+	<persistence-unit name="travelLinker"
+		transaction-type="JTA">
+		<jta-data-source>java:jboss/datasources/travelLinkerDS</jta-data-source>
+		<class>travelLinker.beans.JourneyBean</class>
+		<class>travelLinker.entity.AccountBean</class>
+		<class>travelLinker.entity.Accomodation</class>
+		<class>travelLinker.entity.Restaurant</class>
+		<class>travelLinker.entity.Subscription</class>
+		<class>travelLinker.entity.Message</class>
+		<class>travelLinker.entity.Conversation</class>
+		<class>travelLinker.entity.Insurance</class>
+		<class>travelLinker.entity.ColorChoice</class>
+		<class>travelLinker.entity.Template</class>
+
+		<properties>
+
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
+
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.show_sql" value="true" />
+		</properties>
+	</persistence-unit>
+</persistence>

@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<link rel="stylesheet" href="./css/signIn.css" />
+<link rel="stylesheet" href="./css/index.css" />
+<title>Page de connexion</title>
+</head>
+
+<h:body>
+	<header>
+		<a href="index.xhtml" class="brand">Travel linker</a>
+		<div class="menu-btn"></div>
+		<!-- Bouton de menu (hamburger) -->
+		<div class="navigation">
+			<div class="navigation-items">
+				<a href="index.xhtml">Accueil</a> <a href="categorie.xhtml">Nos
+					voyages</a> <a href="CategorieTP.xhtml">Nos travels planners</a> <a
+					href="#{loginControllerBean.changeRoleDashboard()}">Mon profil</a><a
+					href="#contact">Contact</a><a href="signIn.xhtml" id="connexionButton">Me connecter</a>
+				<a href="#{loginControllerBean.logout()}" rendered="#{loginControllerBean.loggedIn}">Deconnexion</a>
+
+			</div>
+		</div>
+	</header>
+	<main>
+		<section id="flexingSection">
+			<h:panelGroup id="leftContainer" class="fade-in">
+				<p>Vous voulez devenir client ?</p>
+				<h:form method="post" action="">
+					<h:panelGroup class="wave-group">
+						<h:inputText required="on" type="text" class="input"
+							autocomplete="on" value= "#{accountControllerBean.accountVM.lastName}"/>
+						<h:outputLabel class="label">
+							<span class="label-char" style="-index: 0">N</span>
+							<span class="label-char" style="-index: 1">o</span>
+							<span class="label-char" style="-index: 2">m</span>
+						</h:outputLabel>
+					</h:panelGroup>
+					<h:panelGroup class="wave-group">
+						<h:inputText required="on" type="text" class="input"
+							autocomplete="on" value="#{accountControllerBean.accountVM.firstName}" />
+						<h:outputLabel class="label">
+							<span class="label-char" style="-index: 0">P</span>
+							<span class="label-char" style="-index: 1">r</span>
+							<span class="label-char" style="-index: 2">é</span>
+							<span class="label-char" style="-index: 3">n</span>
+							<span class="label-char" style="-index: 4">o</span>
+							<span class="label-char" style="-index: 5">m</span>
+						</h:outputLabel>
+					</h:panelGroup>
+					<h:panelGroup class="wave-group">
+						<h:inputText required="on" type="text" class="input"
+							autocomplete="on" value="#{accountControllerBean.accountVM.email}"/>
+						<h:outputLabel class="label">
+							<span class="label-char" style="-index: 0">E</span>
+							<span class="label-char" style="-index: 1">m</span>
+							<span class="label-char" style="-index: 2">a</span>
+							<span class="label-char" style="-index: 3">i</span>
+							<span class="label-char" style="-index: 4">l</span>
+						</h:outputLabel>
+					</h:panelGroup>
+					<h:panelGroup class="wave-group">
+						<h:inputSecret required="on" class="input" autocomplete="on"
+							id="passwordInputCustomer" value="#{accountControllerBean.accountVM.password}" />
+						<h:outputLabel class="label">
+							<span class="label-char" style="-index: 0">M</span>
+							<span class="label-char" style="-index: 1">o</span>
+							<span class="label-char" style="-index: 2">t</span>
+							<span class="label-char" style="-index: 3">&#160;</span>
+							<span class="label-char" style="-index: 4">d</span>
+							<span class="label-char" style="-index: 5">e</span>
+							<span class="label-char" style="-index: 6">&#160;</span>
+							<span class="label-char" style="-index: 7">p</span>
+							<span class="label-char" style="-index: 8">a</span>
+							<span class="label-char" style="-index: 9">s</span>
+							<span class="label-char" style="-index: 10">s</span>
+							<span class="label-char" style="-index: 11">e</span>
+						</h:outputLabel>
+						<span
+							class="material-symbols-sharp eye-iconCustomer eye-openCustomer">
+							visibility </span>
+						<span
+							class="material-symbols-sharp eye-iconCustomer eye-closedCustomer">
+							visibility_off </span>
+					</h:panelGroup>
+					<h:commandButton type="submit" class="designButton"
+						value="Inscription" action="#{accountControllerBean.addCustomer()}"></h:commandButton>
+				</h:form>
+				<h:panelGroup class="noAccount">
+					<p>Vous n'êtes pas encore inscrit ?</p>
+					<h:commandButton type="button" class="designButtonSecond tpButton"
+						value="Travel Planner !">
+					</h:commandButton>
+					<h:commandButton type="button"
+						class="designButtonSecond partnerButton" value="Partenaire !">
+					</h:commandButton>
+				</h:panelGroup>
+				<a href="index.xhtml" class="backHome">Retour à l'accueil</a>
+			</h:panelGroup>
+
+			<h:panelGroup id="leftContainerSecond" class="fade-in">
+				<p>Vous voulez devenir un de nos Travel planner ?</p>
+				<h:form method="post" action="">
+					<h:panelGroup class="containerWave-group">
+						<h:panelGroup class="wave-group margin">
+							<h:inputText required="on" type="text" class="input"
+								autocomplete="on" value="#{accountControllerBean.accountVM.lastName}"/>
+							<h:outputLabel class="label">
+								<span class="label-char" style="-index: 0">N</span>
+								<span class="label-char" style="-index: 1">o</span>
+								<span class="label-char" style="-index: 2">m</span>
+							</h:outputLabel>
+						</h:panelGroup>
+						<h:panelGroup class="wave-group margin">
+							<h:inputText required="on" type="text" class="input"
+								autocomplete="on" value="#{accountControllerBean.accountVM.firstName}"/>
+							<h:outputLabel class="label">
+								<span class="label-char" style="-index: 0">P</span>
+								<span class="label-char" style="-index: 1">r</span>
+								<span class="label-char" style="-index: 2">é</span>
+								<span class="label-char" style="-index: 3">n</span>
+								<span class="label-char" style="-index: 4">o</span>
+								<span class="label-char" style="-index: 5">m</span>
+							</h:outputLabel>
+						</h:panelGroup>
+					</h:panelGroup>
+					<h:panelGroup class="containerWave-group">
+						<h:panelGroup class="wave-group margin">
+							<h:inputText required="on" class="input" autocomplete="on" />
+							<h:outputLabel class="label" value="#{accountControllerBean.accountVM.companyName}">
+								<span class="label-char" style="-index: 0">N</span>
+								<span class="label-char" style="-index: 1">o</span>
+								<span class="label-char" style="-index: 2">m</span>
+								<span class="label-char" style="-index: 3">&#160;</span>
+								<span class="label-char" style="-index: 4">d</span>
+								<span class="label-char" style="-index: 5">e</span>
+								<span class="label-char" style="-index: 6">&#160;</span>
+								<span class="label-char" style="-index: 7">s</span>
+								<span class="label-char" style="-index: 8">o</span>
+								<span class="label-char" style="-index: 9">c</span>
+								<span class="label-char" style="-index: 10">i</span>
+								<span class="label-char" style="-index: 11">é</span>
+								<span class="label-char" style="-index: 12">t</span>
+								<span class="label-char" style="-index: 13">é</span>
+							</h:outputLabel>
+						</h:panelGroup>
+						<h:panelGroup class="wave-group margin">
+							<h:inputText required="on" type="text" class="input"
+								autocomplete="on" value="#{accountControllerBean.accountVM.email}"/>
+							<h:outputLabel class="label">
+								<span class="label-char" style="-index: 0">E</span>
+								<span class="label-char" style="-index: 1">m</span>
+								<span class="label-char" style="-index: 2">a</span>
+								<span class="label-char" style="-index: 3">i</span>
+								<span class="label-char" style="-index: 4">l</span>
+							</h:outputLabel>
+						</h:panelGroup>
+					</h:panelGroup>
+					<h:panelGroup class="containerWave-group">
+						<h:panelGroup class="wave-group margin">
+							<h:inputText required="on" type="text" class="input"
+								autocomplete="on" value="#{accountControllerBean.accountVM.address}" />
+							<h:outputLabel class="label">
+								<span class="label-char" style="-index: 0">A</span>
+								<span class="label-char" style="-index: 1">d</span>
+								<span class="label-char" style="-index: 2">r</span>
+								<span class="label-char" style="-index: 3">e</span>
+								<span class="label-char" style="-index: 4">s</span>
+								<span class="label-char" style="-index: 5">s</span>
+								<span class="label-char" style="-index: 6">e</span>
+							</h:outputLabel>
+						</h:panelGroup>
+						<h:panelGroup class="wave-group margin">
+							<h:inputText required="on" type="text" class="input"
+								autocomplete="on" value="#{accountControllerBean.accountVM.phoneNumber}"/>
+							<h:outputLabel class="label">
+								<span class="label-char" style="-index: 0">T</span>
+								<span class="label-char" style="-index: 1">é</span>
+								<span class="label-char" style="-index: 2">l</span>
+								<span class="label-char" style="-index: 3">é</span>
+								<span class="label-char" style="-index: 4">p</span>
+								<span class="label-char" style="-index: 5">h</span>
+								<span class="label-char" style="-index: 6">o</span>
+								<span class="label-char" style="-index: 7">n</span>
+								<span class="label-char" style="-index: 8">e</span>
+							</h:outputLabel>
+						</h:panelGroup>
+					</h:panelGroup>
+					<h:panelGroup class="containerWave-group">
+						<h:panelGroup class="wave-group margin">
+							<h:inputText required="on" type="text" class="input"
+								autocomplete="on" value="#{accountControllerBean.accountVM.siret}"/>
+							<h:outputLabel class="label">
+								<span class="label-char" style="-index: 0">S</span>
+								<span class="label-char" style="-index: 1">i</span>
+								<span class="label-char" style="-index: 2">r</span>
+								<span class="label-char" style="-index: 3">e</span>
+								<span class="label-char" style="-index: 4">t</span>
+							</h:outputLabel>
+						</h:panelGroup>
+						<h:panelGroup class="wave-group margin">
+							<h:inputSecret required="on" class="input" autocomplete="on"
+								id="passwordInputTP" value="#{accountControllerBean.accountVM.password}"/>
+							<h:outputLabel class="label">
+								<span class="label-char" style="-index: 0">M</span>
+								<span class="label-char" style="-index: 1">o</span>
+								<span class="label-char" style="-index: 2">t</span>
+								<span class="label-char" style="-index: 3">&#160;</span>
+								<span class="label-char" style="-index: 4">d</span>
+								<span class="label-char" style="-index: 5">e</span>
+								<span class="label-char" style="-index: 6">&#160;</span>
+								<span class="label-char" style="-index: 7">p</span>
+								<span class="label-char" style="-index: 8">a</span>
+								<span class="label-char" style="-index: 9">s</span>
+								<span class="label-char" style="-index: 10">s</span>
+								<span class="label-char" style="-index: 11">e</span>
+							</h:outputLabel>
+							<span
+								class="material-symbols-sharp eye-iconTP eye-openTP">
+								visibility </span>
+							<span
+								class="material-symbols-sharp eye-iconTP eye-closedTP">
+								visibility_off </span>
+						</h:panelGroup>
+					</h:panelGroup>
+					<h:commandButton type="submit" class="designButton"
+						value="Inscription" action="#{accountControllerBean.addTravelP()}"></h:commandButton>
+				</h:form>
+				<h:panelGroup class="noAccount">
+					<p>Vous n'êtes pas encore inscrit ?</p>
+					<h:commandButton type="button"
+						class="designButtonSecond customerButton" value="Client !">
+					</h:commandButton>
+					<h:commandButton type="button"
+						class="designButtonSecond partnerButton" value="Partenaire !">
+					</h:commandButton>
+				</h:panelGroup>
+				<a href="index.xhtml" class="backHome">Retour à l'accueil</a>
+			</h:panelGroup>
+
+			<h:panelGroup id="leftContainerThird" class="fade-in">
+				<p>Vous voulez rejoindre nos prestigieux partenaires ?</p>
+				<h:form method="post" action="">
+					<h:panelGroup class="containerWave-group">
+						<h:panelGroup class="wave-group margin">
+							<h:inputText required="on" type="text" class="input"
+								autocomplete="on" value="#{accountControllerBean.accountVM.lastName}" />
+							<h:outputLabel class="label">
+								<span class="label-char" style="-index: 0">N</span>
+								<span class="label-char" style="-index: 1">o</span>
+								<span class="label-char" style="-index: 2">m</span>
+							</h:outputLabel>
+						</h:panelGroup>
+						<h:panelGroup class="wave-group margin">
+							<h:inputText required="on" type="text" class="input"
+								autocomplete="on" value="#{accountControllerBean.accountVM.firstName}" />
+							<h:outputLabel class="label">
+								<span class="label-char" style="-index: 0">P</span>
+								<span class="label-char" style="-index: 1">r</span>
+								<span class="label-char" style="-index: 2">é</span>
+								<span class="label-char" style="-index: 3">n</span>
+								<span class="label-char" style="-index: 4">o</span>
+								<span class="label-char" style="-index: 5">m</span>
+							</h:outputLabel>
+						</h:panelGroup>
+					</h:panelGroup>
+					<h:panelGroup class="containerWave-group">
+						<h:panelGroup class="wave-group margin">
+							<h:inputText required="on" type="text" class="input"
+								autocomplete="on" value="#{accountControllerBean.accountVM.email}" />
+							<h:outputLabel class="label">
+								<span class="label-char" style="-index: 0">E</span>
+								<span class="label-char" style="-index: 1">m</span>
+								<span class="label-char" style="-index: 2">a</span>
+								<span class="label-char" style="-index: 3">i</span>
+								<span class="label-char" style="-index: 4">l</span>
+							</h:outputLabel>
+						</h:panelGroup>
+						<h:panelGroup class="wave-group margin">
+							<h:inputText required="on" type="text" class="input"
+								autocomplete="on" value="#{accountControllerBean.accountVM.phoneNumber}" />
+							<h:outputLabel class="label">
+								<span class="label-char" style="-index: 0">T</span>
+								<span class="label-char" style="-index: 1">é</span>
+								<span class="label-char" style="-index: 2">l</span>
+								<span class="label-char" style="-index: 3">é</span>
+								<span class="label-char" style="-index: 4">p</span>
+								<span class="label-char" style="-index: 5">h</span>
+								<span class="label-char" style="-index: 6">o</span>
+								<span class="label-char" style="-index: 7">n</span>
+								<span class="label-char" style="-index: 8">e</span>
+							</h:outputLabel>
+						</h:panelGroup>
+					</h:panelGroup>
+					<h:panelGroup class="wave-group margin partnerAddress">
+						<h:inputText required="on" type="text" class="input"
+							autocomplete="on" value="#{accountControllerBean.accountVM.address}" />
+						<h:outputLabel class="label">
+							<span class="label-char" style="-index: 0">A</span>
+							<span class="label-char" style="-index: 1">d</span>
+							<span class="label-char" style="-index: 2">r</span>
+							<span class="label-char" style="-index: 3">e</span>
+							<span class="label-char" style="-index: 4">s</span>
+							<span class="label-char" style="-index: 5">s</span>
+							<span class="label-char" style="-index: 6">e</span>
+						</h:outputLabel>
+					</h:panelGroup>
+					<h:panelGroup class="containerWave-group">
+						<h:panelGroup class="wave-group margin">
+							<input required="required" type="text" class="input" autocomplete="on" value="#{accountControllerBean.accountVM.siret}" />
+							<h:outputLabel class="label">
+								<span class="label-char" style="-index: 0">S</span>
+								<span class="label-char" style="-index: 1">i</span>
+								<span class="label-char" style="-index: 2">r</span>
+								<span class="label-char" style="-index: 3">e</span>
+								<span class="label-char" style="-index: 4">t</span>
+							</h:outputLabel>
+						</h:panelGroup>
+						<h:panelGroup class="wave-group margin">
+							<h:inputSecret required="on" class="input" autocomplete="on"
+								id="passwordInputPartner" value="#{accountControllerBean.accountVM.password}"/>
+							<h:outputLabel class="label">
+								<span class="label-char" style="-index: 0">M</span>
+								<span class="label-char" style="-index: 1">o</span>
+								<span class="label-char" style="-index: 2">t</span>
+								<span class="label-char" style="-index: 3">&#160;</span>
+								<span class="label-char" style="-index: 4">d</span>
+								<span class="label-char" style="-index: 5">e</span>
+								<span class="label-char" style="-index: 6">&#160;</span>
+								<span class="label-char" style="-index: 7">p</span>
+								<span class="label-char" style="-index: 8">a</span>
+								<span class="label-char" style="-index: 9">s</span>
+								<span class="label-char" style="-index: 10">s</span>
+								<span class="label-char" style="-index: 11">e</span>
+							</h:outputLabel>
+							<span
+								class="material-symbols-sharp eye-iconPartner eye-openPartner">
+								visibility </span>
+							<span
+								class="material-symbols-sharp eye-iconPartner eye-closedPartner">
+								visibility_off </span>
+						</h:panelGroup>
+					</h:panelGroup>
+					<h:commandButton type="submit" class="designButton"
+						value="Inscription" action="#{accountControllerBean.addPartner()}"></h:commandButton>
+				</h:form>
+				<h:panelGroup class="noAccount">
+					<p>Vous n'êtes pas encore inscrit ?</p>
+					<h:commandButton type="button"
+						class="designButtonSecond customerButton" value="Client !">
+					</h:commandButton>
+					<h:commandButton type="button" class="designButtonSecond tpButton"
+						value="Travel Planner !">
+					</h:commandButton>
+				</h:panelGroup>
+				<a href="index.xhtml" class="backHome">Retour à l'accueil</a>
+			</h:panelGroup>
+			<h:panelGroup id="rightContainer" class="fade-in">
+				<img src="./media/images/logoTravelLinker.png" alt="" />
+				<h:panelGroup class="squareCard">
+					<h:form method="post" action="">
+						<h:panelGroup class="wave-group">
+							<h:inputText required="on" type="text" class="input"
+								autocomplete="on" value="#{loginControllerBean.accountVM.email}"/>
+							<h:outputLabel class="label">
+								<span class="label-char" style="-index: 0">E</span>
+								<span class="label-char" style="-index: 1">m</span>
+								<span class="label-char" style="-index: 2">a</span>
+								<span class="label-char" style="-index: 3">i</span>
+								<span class="label-char" style="-index: 4">l</span>
+							</h:outputLabel>
+						</h:panelGroup>
+						<h:panelGroup class="wave-group">
+							<h:inputSecret required="on" type="password" class="input"
+								autocomplete="on"  value="#{loginControllerBean.accountVM.password}" />
+							<h:outputLabel class="label">
+								<span class="label-char" style="-index: 0">M</span>
+								<span class="label-char" style="-index: 1">o</span>
+								<span class="label-char" style="-index: 2">t</span>
+								<span class="label-char" style="-index: 3">&#160;</span>
+								<span class="label-char" style="-index: 4">d</span>
+								<span class="label-char" style="-index: 5">e</span>
+								<span class="label-char" style="-index: 6">&#160;</span>
+								<span class="label-char" style="-index: 7">p</span>
+								<span class="label-char" style="-index: 8">a</span>
+								<span class="label-char" style="-index: 9">s</span>
+								<span class="label-char" style="-index: 10">s</span>
+								<span class="label-char" style="-index: 11">e</span>
+							</h:outputLabel>
+							<h:panelGroup class="rememberMe">
+								<h:selectBooleanCheckbox type="checkbox" id="passwordCheckbox"
+									name="passwordCheckbox" />
+								<h:outputLabel for="passwordCheckbox">Se rappeler de moi</h:outputLabel>
+							</h:panelGroup>
+							<span
+								class="material-symbols-sharp eye-icon eye-open">
+								visibility </span>
+							<span
+								class="material-symbols-sharp eye-icon eye-closed">
+								visibility_off </span>
+						</h:panelGroup>
+						<h:commandButton type="submit" class="designButton"
+							value="Connexion" action="#{loginControllerBean.validateAccount() }"></h:commandButton>
+					</h:form>
+				</h:panelGroup>
+			</h:panelGroup>
+		</section>
+	</main>
+	<script src="./js/signIn.js"></script>
+</h:body>
+
+</html>

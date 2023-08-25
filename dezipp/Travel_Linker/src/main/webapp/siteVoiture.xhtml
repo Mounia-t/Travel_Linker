@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    
+      <!-- custom css file link  -->
+      
+    <link rel="stylesheet" href="./css/siteVoiture.css"/>
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+
+  
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"/>
+
+</head>
+
+<body>
+
+    <header class="header">
+
+        <div id="menu-btn" class="fas fa-bars"></div>
+
+        <a href="#" class="logo"> <span>Rent</span>Cars </a>
+
+        <nav class="navbar">
+            <a href="#home">home</a>
+            <a href="#vehicles">véhicules</a>
+            <a href="#services">services</a>
+            <a href="#featured">partenaire</a>
+            <a href="#reviews">avis</a>
+            <a href="#contact">contact</a>
+        </nav>
+
+        <div id="login-btn">
+            <button class="btn">login</button>
+            <i class="far fa-user"></i>
+        </div>
+
+    </header>
+
+    <div class="login-form-container">
+
+        <span id="close-login-form" class="fas fa-times"></span>
+
+        <form action="">
+            <h3>Connexion</h3>
+            <input type="email" placeholder="email" class="box"/>
+            <input type="password" placeholder="mot de passe" class="box"/>
+            <p> Mot de passe oublié <a href="#">cliquez ici</a> </p>
+            <input type="submit" value="login" class="btn"/>
+            <p>ou connectez-vous avec</p>
+            <div class="buttons">
+                <a href="#" class="btn"> google </a>
+                <a href="#" class="btn"> facebook </a>
+            </div>
+            <p> Vous n'avez pas de compte? <a href="#">créer un compte</a> </p>
+        </form>
+
+    </div>
+
+    <section class="home" id="home"/>
+
+        <h3 data-speed="-2" class="home-parallax">Trouvez votre voiture</h3>
+
+        <img data-speed="5" class="home-parallax" src="./media/image/home-img.png" alt=""/>
+
+        <a data-speed="7" href="#" class="btn home-parallax">Réservez</a>
+
+
+    <section class="vehicles" id="vehicles">
+
+        <h1 class="heading"> notre gamme <span>Porsche</span> </h1>
+
+        <div class="swiper vehicles-slider">
+
+            <div class="swiper-wrapper">
+
+                <div class="swiper-slide box">
+                    <img src="./media/images/vehicle-1.png" alt=""/>
+                    <div class="content">
+                        <h3>911 carrera</h3>
+                        <div class="price"> <span>prix : </span> €200/jour </div>
+                        <p>
+                            
+                            <span class="fas fa-circle"></span> 2021
+                            <span class="fas fa-circle"></span> automatique
+                            <span class="fas fa-circle"></span> gasoil
+
+                        </p>
+                        <a href="#" class="btn">Réserver</a>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <img src="./media/images/vehicle-2.png" alt=""/>
+                    <div class="content">
+                        <h3>Taycan</h3>
+                        <div class="price"> <span>prix : </span> €180/jour </div>
+                        <p>
+                            
+                            <span class="fas fa-circle"></span> 2022
+                            <span class="fas fa-circle"></span> automatique
+                            <span class="fas fa-circle"></span> gasoil
+
+                        </p>
+                        <a href="#" class="btn">Réserver</a>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <img src="./media/images/vehicle-3.png" alt=""/>
+                    <div class="content">
+                        <h3>Taycan GTS</h3>
+                        <div class="price"> <span>prix : </span> €200/jour </div>
+                        <p>
+                            
+                            <span class="fas fa-circle"></span> 2019
+                            <span class="fas fa-circle"></span> Manuel
+                            <span class="fas fa-circle"></span> Essence
+
+                        </p>
+                        <a href="#" class="btn">Réserver</a>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <img src="image/vehicle-4.png" alt=""/>
+                    <div class="content">
+                        <h3>718 Cayman</h3>
+                        <div class="price"> <span>prix : </span> €250/jour </div>
+                        <p>
+                            
+                            <span class="fas fa-circle"></span> 2023
+                            <span class="fas fa-circle"></span> automatique
+                            <span class="fas fa-circle"></span> gasoil
+
+                        </p>
+                        <a href="#" class="btn">Réserver</a>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <img src="./media/images/vehicle-5.png" alt=""/>
+                    <div class="content">
+                        <h3>718 Boxster</h3>
+                        <div class="price"> <span>prix : </span> €200/jour</div>
+                        <p>
+                            
+                            <span class="fas fa-circle"></span> 2021
+                            <span class="fas fa-circle"></span> automatique
+                            <span class="fas fa-circle"></span> gasoil
+
+                        </p>
+                        <a href="#" class="btn">Réserver</a>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <img src="./media/images/vehicle-6.png" alt=""/>
+                    <div class="content">
+                        <h3>Cayenne</h3>
+                        <div class="price"> <span>prix : </span> €150/jour </div>
+                        <p>
+                            
+                            <span class="fas fa-circle"></span> 2022
+                            <span class="fas fa-circle"></span> automatique
+                            <span class="fas fa-circle"></span> essence
+                        </p>
+                        <a href="#" class="btn">Réserver</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="swiper-pagination"></div>
+
+        </div>
+
+    </section>
+
+
+
+    <section class="services" id="services">
+
+        <h1 class="heading"> nos <span>services</span> </h1>
+
+        <div class="box-container">
+
+            <div class="box myservice">
+                <i class="fas fa-car"></i>
+                <h3>Location de voiture</h3>
+                <p>Venez profiter de notre large gamme de voiture.</p>
+                <a href="#" class="btn"> en savoir plus</a>
+            </div>
+
+            <div class="box">
+                <i class="fas fa-tools"></i>
+                <h3>Réparation rapide</h3>
+                <p>Nous réparons rapidement votre véhicule en cas de problème lors de votre location</p>
+                <a href="#" class="btn"> en savoir plus</a>
+            </div>
+
+            <div class="box">
+                <i class="fas fa-car-crash"></i>
+                <h3>Assurance voiture</h3>
+                <p>Roulez sans risque grâce à notre assurance RentCar qui couvre tout types d'accidents.</p>
+                <a href="#" class="btn"> en savoir plus</a>
+            </div>
+
+            <div class="box">
+                <i class="fas fa-car-battery"></i>
+                <h3>Changement de batterie</h3>
+                <p>Nos batteries sont vérifiés et changés afin qu'aucun problème subsiste lors de votre location.</p>
+                <a href="#" class="btn"> en savoir plus</a>
+            </div>
+
+            <div class="box">
+                <i class="fas fa-gas-pump"></i>
+                <h3>Remplissage d'essence</h3>
+                <p>Chez RentCar, vous êtes assuré de récupérer un véhicule avec le plein lors de votre location.</p>
+                <a href="#" class="btn"> en savoir plus</a>
+            </div>
+
+            <div class="box">
+                <i class="fas fa-headset"></i>
+                <h3>Assistance 24/7</h3>
+                <p>On ne choisi pas quand un problème survient, notre assistance 24h sur 24h et 7 jours sur 7 est là pour vous.</p>
+                <a href="#" class="btn"> en savoir plus</a>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="featured" id="featured">
+
+        <h1 class="heading"> <span>Nos autres</span> voitures </h1>
+
+        <div class="swiper featured-slider">
+
+            <div class="swiper-wrapper">
+
+                <div class="swiper-slide box">
+                    <img src="./media/images/car-8.png" alt=""/>
+                    <div class="content">
+                        <h3> Bentley</h3>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="price">€200/jour</div>
+                        <a href="#" class="btn servicebtn">Réserver</a>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <img src="./media/images/car-1.png" alt=""/>
+                    <div class="content">
+                        <h3>Mercedes Class E</h3>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <div class="price">€180/jour</div>
+                        <a href="#" class="btn">Réserver</a>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <img src="./media/images/car-2.png" alt=""/>
+                    <div class="content">
+                        <h3>MG5</h3>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-empty"></i>
+                        </div>
+                        <div class="price">€200/jour</div>
+                        <a href="#" class="btn">Réserver</a>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <img src="./media/images/car-3.png" alt=""/>
+                    <div class="content">
+                        <h3>Ford Focus</h3>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <i class="fas fa-star-empty"></i>
+                        </div>
+                        <div class="price">€80/jour</div>
+                        <a href="#" class="btn">Réserver</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="swiper-pagination"></div>
+
+        </div>
+
+        <div class="swiper featured-slider">
+
+            <div class="swiper-wrapper">
+
+                <div class="swiper-slide box">
+                    <img src="./media/images/car-5.png" alt=""/>
+                    <div class="content">
+                        <h3>Kia Sportage</h3>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <i class="fas fa-star-empty"></i>
+                        </div>
+                        <div class="price">€80/jour</div>
+                        <a href="#" class="btn">Réserver</a>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <img src="./media/images/car-6.png" alt=""/>
+                    <div class="content">
+                        <h3>Honda Civic</h3>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-empty"></i>
+                        </div>
+                        <div class="price">€100/jour</div>
+                        <a href="#" class="btn">Réserver</a>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <img src="./media/images/car-7.png" alt=""/>
+                    <div class="content">
+                        <h3>Kia Sorento</h3>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <div class="price">€120/jour</div>
+                        <a href="#" class="btn">Réserver</a>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <img src="./media/images/car-4.png" alt=""/>
+                    <div class="content">
+                        <h3>Audi Q7</h3>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="price">€180/jour</div>
+                        <a href="#" class="btn">Réserver</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="swiper-pagination"></div>
+
+        </div>
+
+    </section>
+
+    <section class="newsletter">
+
+        <h3>Inscrivez-vous à notre newsletter</h3>
+        <p>Ne ratez pas nos offres incroyables, afin de profiter au mieux de vos voyages.</p>
+
+        <form action="">
+            <input type="email" placeholder="entrer votre email"/>
+            <input type="submit" value="souscrire"/>
+        </form>
+
+    </section>
+
+    <section class="reviews" id="reviews">
+
+        <h1 class="heading"> Nos avis <span>clients</span> </h1>
+
+        <div class="swiper review-slider">
+
+            <div class="swiper-wrapper">
+
+                <div class="swiper-slide box">
+                    <img src="./media/images/pic-1.png" alt=""/>
+                    <div class="content">
+                        <p>Une expérience de location de voiture parfaite ! J'ai réservé un véhicule pour un voyage d'affaires et tout s'est déroulé sans accroc. Le site était facile à utiliser, 
+                            et j'ai pu trouver une voiture qui correspondait parfaitement à mes besoins.</p>
+                        <h3>Sean Klay</h3>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <img src="./media/images/pic-2.png" alt=""/>
+                    <div class="content">
+                        <p>J'ai loué une voiture sur ce site pour un voyage en famille, et je suis extrêmement satisfait du service ! 
+                            Le processus de réservation était simple et rapide, et le personnel de l'agence de location était très aimable et professionnel.</p>
+                        <h3>Julie Dalo</h3>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <img src="./media/images/pic-3.png" alt=""/>
+                    <div class="content">
+                        <p>Cinq étoiles pour ce site de location de voiture ! J'ai réservé une voiture pour un week-end en famille, et tout s'est déroulé parfaitement.
+                            Je recommande sans aucune hésitation ! Nous avons été amplement satisfait de notre location.
+                        </p>
+                        <h3>Marc Jorgansen</h3>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <img src="./media/images/pic-4.png" alt=""/>
+                    <div class="content">
+                        <p>Le meilleur service de location de voiture que j'ai utilisé jusqu'à présent ! J'ai été impressionné par la variété de voitures disponibles sur le site, 
+                            des économiques aux luxueuses, nous avons pris un SUV mais nous allons la prochaine fois nous laissés tenter par une voiture sport.</p>
+                        <h3>Laetitia cleme</h3>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <img src="./media/images/pic-5.png" alt=""/>
+                    <div class="content">
+                        <p>Je recommande chaudement ce site de location de voiture pour son service client exceptionnel ! 
+                            J'ai eu un petit souci avec ma réservation, mais l'équipe d'assistance a été incroyablement réactive et a résolu mon problème en un rien de temps.</p>
+                        <h3>Alex Andras</h3>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <img src="./media/images/pic-6.png" alt=""/>
+                    <div class="content">
+                        <p>Ce qui a vraiment fait la différence, c'est le service client exceptionnel. 
+                            Lorsque nous avons eu besoin de contacter l'équipe pour quelques questions supplémentaires, ils ont été incroyablement réactifs et serviables</p>
+                        <h3>Ino Yamanaka</h3>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="swiper-pagination"></div>
+
+        </div>
+
+    </section>
+
+    <section class="footer" id="footer">
+
+        <div class="box-container">
+
+            <div class="box">
+                <h3>nos filiales</h3>
+                <a href="#"> <i class="fas fa-map-marker-alt"></i> Indonesie </a>
+                <a href="#"> <i class="fas fa-map-marker-alt"></i> Japon </a>
+                <a href="#"> <i class="fas fa-map-marker-alt"></i> France </a>
+                <a href="#"> <i class="fas fa-map-marker-alt"></i> Russie </a>
+                <a href="#"> <i class="fas fa-map-marker-alt"></i> USA </a>
+            </div>
+
+            <div class="box">
+                <h3>liens</h3>
+                <a href="#"> <i class="fas fa-arrow-right"></i> home </a>
+                <a href="#"> <i class="fas fa-arrow-right"></i> vehicules </a>
+                <a href="#"> <i class="fas fa-arrow-right"></i> services </a>
+                <a href="#"> <i class="fas fa-arrow-right"></i> partenaires </a>
+                <a href="#"> <i class="fas fa-arrow-right"></i> avis </a>
+            </div>
+
+            <div class="box">
+                <h3>informations</h3>
+                <a href="#"> <i class="fas fa-phone"></i> +62031459871 </a>
+                <a href="#"> <i class="fas fa-phone"></i> 2031459871 </a>
+                <a href="#"> <i class="fas fa-envelope"></i> contact.rentcar@gmail.com </a>
+                <a href="#"> <i class="fas fa-map-marker-alt"></i> USA </a>
+
+
+            </div>
+            </div>
+
+    </section>
+
+    <section class="contact-info" id="contact-info">
+        <div class="social">
+            <a href="#"><i class='bx bxl-facebook'></i></a>
+            <a href="#"><i class='bx bxl-instagram'></i></a>
+            <a href="#"><i class='bx bxl-twitter'></i></a>
+            <a href="#"><i class='bx bxl-youtube'></i></a>
+        </div>
+        <div class="links">
+            <a href="#">Politique de Confidentialité</a>
+            <a href="#">Notre société</a>
+            <a href="#">Nos conditions</a>
+        </div>
+        <p>&#169; Tous droits réservés</p>
+    </section>
+
+    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+
+    <script src="js/siteVoiture.js"></script>
+
+</body>
+</html>

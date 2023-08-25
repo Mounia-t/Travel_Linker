@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bienvenue chez les planners</title>
+    <link rel="stylesheet" href="./css/CategorieTP.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <a href="#" class="brand">La maison des planners</a>
+      <div class="menu-btn"></div>
+      <!-- Bouton de menu (hamburger) -->
+      <div class="navigation">
+        <div class="navigation-items">
+          <a href="#">Accueil</a>
+          <a href="#">A Propos de nous</a>
+          <a href="#">Services</a>
+          <a href="#contact">Contact</a>
+          <a href="#">Connexion</a>
+        </div>
+      </div>
+    </header>
+    <section class="home">
+      <div class="content-text-home">
+        <h1>BIENVENUE CHEZ LES <span>PLANNERS</span></h1>
+        <p>
+          Une plateforme de connectivité qui relie les organisateurs de
+          voyage locaux, les partenaires et les clients. C’est l'outil
+          ultime pour les organisateurs de voyage, offrant une gestion
+          complète et professionnelle des voyages, avec des fonctionnalités
+          avancées et innovantes.
+        </p>
+        <a href="#">Lire Plus</a>
+        </div>
+
+        <div class="content-image-home">
+          <img src="./media/images/profile.png"/>
+          </div>
+</section>
+    <div class="title-offre">
+      <h1>Offres <span>flashs</span></h1>
+    </div>
+    <section class="offre">
+      <div class="container left-container">
+        <!-- Contenu du container gauche -->
+        <div class="wrapper">
+          <div class="image-container">
+            <img
+              id="mainPhoto-left"
+              name-left="Florence"
+              src="./media/images/italie1.jpg"
+            />
+            
+
+            <div class="caption-wrapper">
+              <div id="caption-left">Caption du container gauche</div>
+              <div class="country">Italie</div>
+              <div class="btn">
+                <a href="#">Ajouter à la liste +</a>
+              </div>
+            </div>
+
+            <div class="image-wrapper">
+              <img
+                class="imgCarousel-left"
+                name-left="Rome"
+                src="./media/images/italie2.jpg"
+              />
+              <img
+                class="imgCarousel-left"
+                name-left="Toscane"
+                src="./media/images/italie3.jpg"
+              />
+              <img
+                class="imgCarousel-left"
+                name-left="Napoli"
+                src="./media/images/italie4.jpg"
+              />
+              <img
+                class="imgCarousel-left"
+                name-left="Rome"
+                src="./media/images/italie5.jpg"
+              />
+            </div>
+            <button class="achat-left">
+              <i class="fas fa-shopping-cart"></i> Ajouter au Panier
+            </button>
+            </div>
+          </div>
+        </div>
+
+
+      <div class="search-bar-container">
+        <div class="search-bar">
+          <div class="search-item">
+            <i class="fas fa-globe"></i>
+            <input type="text" placeholder="Pays" />
+          </div>
+          <div class="search-item">
+            <i class="fas fa-city"></i>
+            <input type="text" placeholder="Ville" />
+          </div>
+          <div class="search-item">
+            <i class="far fa-calendar-alt"></i>
+            <input type="date" />
+          </div>
+          <div class="search-item">
+            <i class="fas fa-euro-sign"></i>
+            <input type="text" placeholder="Prix" />
+          </div>
+          <button class="search-button">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="container right-container">
+        <!-- Contenu du container droit -->
+        <div class="wrapper">
+          <div class="image-container">
+            <img
+              id="mainPhoto-right"
+              name-right="Algarve"
+              src="./media/images/portugal1.jpg"
+            />
+
+            <div class="caption-wrapper">
+              <div id="caption-right">Caption du container droit</div>
+              <div class="country">Portugal</div>
+              <div class="btn">
+                <a href="#">Ajouter à la liste +</a>
+              </div>
+            </div>
+
+            <div class="image-wrapper">
+              <img
+                class="imgCarousel-right"
+                name-right="Lisbonne"
+                src="./media/images/portugal2.jpg"
+              />
+              <img
+                class="imgCarousel-right"
+                name-right="Porto"
+                src="./media/images/portugal3.jpg"
+              />
+              <img
+                class="imgCarousel-right"
+                name-right="Madère"
+                src="./media/images/portugal4.jpg"
+              />
+              <img
+                class="imgCarousel-right"
+                name-right="Povoà"
+                src="./media/images/portugal5.jpg"
+              />
+            </div>
+            <button class="achat-right">
+              <i class="fas fa-shopping-cart"></i> Ajouter au Panier
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="planner">
+      <div class="title-planner card-special">
+        <h1>Nos <span>Planners</span></h1>
+      </div>
+      <div class="card-planner">
+        <div class="image-planner">
+          <img src="./media/images/influenceur1.jpg" />
+        </div>
+        <div class="content-planner">
+          <div class="details-planner">
+            <h2>Michael Smith <br /><span>Responsable FlyShip</span></h2>
+            <div class="data-planner">
+              <h3>90<br /><span>Posts</span></h3>
+              <h3>14k<br /><span>Followers</span></h3>
+              <h3>97<br /><span>Following</span></h3>
+            </div>
+            <div class="action-btn-planner">
+              <button>Accueil</button>
+              <button>Message</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-planner">
+        <div class="image-planner">
+          <img src="./media/images/influenceur2.jpg" />
+        </div>
+        <div class="content-planner">
+          <div class="details-planner">
+            <h2>Alessandro Masci <br /><span>Mannequin</span></h2>
+            <div class="data-planner">
+              <h3>345<br /><span>Posts</span></h3>
+              <h3>124k<br /><span>Followers</span></h3>
+              <h3>389<br /><span>Following</span></h3>
+            </div>
+            <div class="action-btn-planner">
+              <button>Accueil</button>
+              <button>Message</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-planner">
+        <div class="image-planner">
+          <img src="./media/images/influenceur3.jpg" />
+        </div>
+        <div class="content-planner">
+          <div class="details-planner">
+            <h2>Sounil Laktalhi <br /><span>Créateur de contenus</span></h2>
+            <div class="data-planner">
+              <h3>212<br /><span>Posts</span></h3>
+              <h3>54k<br /><span>Followers</span></h3>
+              <h3>6098<br /><span>Following</span></h3>
+            </div>
+            <div class="action-btn-planner">
+              <button>Accueil</button>
+              <button>Message</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-planner">
+        <div class="image-planner">
+          <img src="./media/images/influenceuse1.jpg" />
+        </div>
+        <div class="content-planner">
+          <div class="details-planner">
+            <h2>Angie Hammer <br /><span>Modèle Instagram</span></h2>
+            <div class="data-planner">
+              <h3>345<br /><span>Posts</span></h3>
+              <h3>124k<br /><span>Followers</span></h3>
+              <h3>345<br /><span>Following</span></h3>
+            </div>
+            <div class="action-btn-planner">
+              <button>Accueil</button>
+              <button>Message</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-planner">
+        <div class="image-planner">
+          <img src="./media/images/influenceuse2.jpg" />
+        </div>
+        <div class="content-planner">
+          <div class="details-planner">
+            <h2>Marine Ferrand <br /><span>Co-créatice de TravelVue</span></h2>
+            <div class="data-planner">
+              <h3>445<br /><span>Posts</span></h3>
+              <h3>78k<br /><span>Followers</span></h3>
+              <h3>5098<br /><span>Following</span></h3>
+            </div>
+            <div class="action-btn-planner">
+              <button>Accueil</button>
+              <button>Message</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-planner">
+        <div class="image-planner">
+          <img src="./media/images/influenceuse3.jpg" />
+        </div>
+        <div class="content-planner">
+          <div class="details-planner">
+            <h2>Elena Wan <br /><span>TikTokeuse</span></h2>
+            <div class="data-planner">
+              <h3>890<br /><span>Posts</span></h3>
+              <h3>450k<br /><span>Followers</span></h3>
+              <h3>9876<br /><span>Following</span></h3>
+            </div>
+            <div class="action-btn-planner">
+              <button>Accueil</button>
+              <button>Message</button>
+            </div>
+          </div>
+        </div>
+      </div>
+	
+      
+    </section>
+
+      <!--Début du footer-->
+
+  <div class="footer">
+    <div class="logo-footer">
+      <img src="./media/images/logoTravelLinker2.png" alt="Logo-footer"/>
+      <div class="social-icons-footer">
+        <div class="social-icon"><i class="fab fa-facebook-f"></i></div>
+      <div class="social-icon"><i class="fab fa-instagram"></i></div>
+      <div class="social-icon"><i class="fab fa-twitter"></i></div>
+      </div>
+    </div>
+    
+    <div class="quick-links">
+      <div class="quick-links-title">Liens</div>
+      <div class="quick-link">
+        <div class="link-text">Accueil</div>
+      </div>
+      <div class="quick-link">
+        <div class="link-text">A propos de nous</div>
+      </div>
+      <div class="quick-link">
+        <div class="link-text">Services</div>
+      </div>
+      <div class="quick-link">
+        <div class="link-text">Contact</div>
+      </div>
+    </div>
+  
+    <div class="info-section">
+      <div class="info-section-title">Nos informations</div>
+      <div class="info-item">
+      <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+      <div>Paris, FRANCE</div>
+    </div>
+    <div class="info-item">
+      <div class="icon"><i class="fas fa-phone"></i></div>
+      <div>+331.65.74.83.02</div>
+    </div>
+    <div class="info-item">
+      <div class="icon"><i class="fas fa-envelope"></i></div>
+      <div>contact@travellinker.com</div>
+    </div>
+    <div class="info-item">
+      <div class="icon"><i class="fas fa-clock"></i></div>
+      <div>24h/24, 7j/7</div>
+    </div>
+  </div>
+  
+    <div class="newsletter">
+      <div class="newsletter-title">Newsletters</div>
+      <div class="newsletter-text">Inscrivez-vous pour recevoir notre newsletters</div>
+      <div class="subscribe-form">
+        <input type="email" class="subscribe-input" placeholder="Adresse e-mail"/>
+        <button class="subscribe-button">Souscrire</button>
+      </div>
+    </div>
+  </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./js/CategorieTP.js"></script>
+  </body>
+</html>
