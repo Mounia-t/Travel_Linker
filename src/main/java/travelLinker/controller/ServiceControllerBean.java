@@ -1,6 +1,7 @@
 package travelLinker.controller;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -10,6 +11,7 @@ import javax.inject.Inject;
 import travelLinker.dao.ServiceDao;
 import travelLinker.entity.Accomodation;
 import travelLinker.entity.Restaurant;
+import travelLinker.entity.Service;
 import travelLinker.entity.Transport;
 import travelLinker.viewModel.ServiceViewModel;
 
@@ -21,7 +23,7 @@ public class ServiceControllerBean implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	private Long selectedRestaurantId;
 	@Inject
 	private ServiceDao serviceDao;
 
@@ -42,6 +44,10 @@ public class ServiceControllerBean implements Serializable {
 	public List<Restaurant> restaurants;
 
 	public List<Transport> transports;
+
+	private List<Restaurant> selectedRestaurants =new ArrayList<Restaurant>() ;
+	private List<Long> selectedRestaurantIds ;
+	
 
 	public void createAccomodation() {
 		Long id = serviceDao.createAccomodation(accomodationVm);
@@ -167,6 +173,10 @@ public class ServiceControllerBean implements Serializable {
 	public List<Transport> getTransports() {
 		return serviceDao.getAllTransports();
 	}
+	public List<Service> getAllServices() {
+		return serviceDao.getAllServices();
+	}
+
 
 	public ServiceViewModel getRestaurantVm() {
 		return restaurantVm;
@@ -203,5 +213,46 @@ public class ServiceControllerBean implements Serializable {
 	public void setShowTransportForm(boolean showTransportForm) {
 		this.showTransportForm = showTransportForm;
 	}
+	
+
+     
+
+        public List<Restaurant> addSelectedService(Long restaurantId) {
+        	 selectedRestaurantId = restaurantId;
+        	 System.out.println("Mon restaur " + restaurantId);
+            if (selectedRestaurantId != null) {
+                // Récupérer les détails du restaurant à partir de l'ID
+                Restaurant selectedRestaurant = serviceDao.findByIdRestaurant(selectedRestaurantId);
+
+                // Ajouter le restaurant sélectionné à la liste des services sélectionnés
+                selectedRestaurants.add(selectedRestaurant);
+                System.out.println(selectedRestaurants);
+
+            }
+
+            // Retourner la liste des restaurants sélectionnés (éventuellement)
+            return selectedRestaurants;
+        }
+
+        public List<Restaurant> getSelectedRestaurants() {
+        	System.out.println("Get"+ selectedRestaurants);
+            return selectedRestaurants;
+        } 
+
+
+	public Long getSelectedRestaurantId() {
+		return selectedRestaurantId;
+	}
+
+	public void setSelectedRestaurantId(Long selectedRestaurantId) {
+		this.selectedRestaurantId = selectedRestaurantId;
+	}
+
+	public void setSelectedRestaurants(List<Restaurant> selectedRestaurants) {
+		this.selectedRestaurants = selectedRestaurants;
+	}
+
 
 }
+	
+

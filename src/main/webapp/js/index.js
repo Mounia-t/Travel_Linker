@@ -56,3 +56,22 @@ $(document).ready(function () {
     document.getElementById("slide-package").prepend(lists[lists.length - 1]);
   };
 });
+
+
+
+   // Code pour gérer la visibilité des boutons en fonction de la connexion
+    window.addEventListener('DOMContentLoaded', (event) => {
+        var connexionButton = document.getElementById("connexionButton");
+        var deconnexionButton = document.getElementById("deconnexionButton");
+        var loggedIn = "#{loginControllerBean.loggedIn}";
+
+        if (loggedIn) {
+            connexionButton.style.display = "none";
+            deconnexionButton.style.display = "inline";
+        } else {
+            connexionButton.style.display = "inline";
+            deconnexionButton.style.display = "none";
+        }
+    });
+
+

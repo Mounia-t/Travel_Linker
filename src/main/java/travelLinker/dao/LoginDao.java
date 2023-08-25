@@ -32,12 +32,12 @@ public class LoginDao {
 		}
 	}
 
-	public String logout() {
+	public void logout() {
 		HttpSession session = SessionUtils.getSession();
 		session.invalidate();
-		return "signIn"; // Rediriger vers la page de connexion
 	}
 
+ 
 
 	public boolean validate(AccountViewModel accountVM) {
 		Account accountBean = findAccountByEmail(accountVM.getEmail());

@@ -1358,7 +1358,7 @@ tr {
 
 tr:not(:first-child):hover th,
 tr:hover td {
-    transform: scale(.95);
+    border-bottom: 1px solid lightgrey;
 }
 
 

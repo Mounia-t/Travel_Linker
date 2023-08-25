@@ -3,12 +3,15 @@ package travelLinker.dao;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
 import javax.persistence.PersistenceContext;
 
+import travelLinker.controller.ServiceControllerBean;
 import travelLinker.entity.Account;
 import travelLinker.entity.Journey;
+import travelLinker.entity.Restaurant;
 import travelLinker.entity.Service;
 import travelLinker.entity.Task;
 import travelLinker.utils.SessionUtils;
@@ -19,16 +22,21 @@ public class JourneyDao {
 
 	@PersistenceContext
 	private EntityManager entityManager;
+	@Inject
+	ServiceDao serviceDao;
 
-	public Long insert(JourneyViewModel journeyVM) {
+	public Long insert(JourneyViewModel journeyVM, List<Restaurant> selectedRestaurants) {
 
 	    try {
 	        Journey journeybean = new Journey();
 
 	        Account account = SessionUtils.getAccount();
 	        Long accountId = account.getId();
-	        journeybean.setAccountId(accountId);
 
+	      
+	        // Utilisez plutôt directement journeybean.setAccount(account);
+	        journeybean.setAccount(account);
+	        
 
 	        journeybean.setNumberOfTravellers(journeyVM.getNumberOfTravellers());
 	        journeybean.setPrice(journeyVM.getPrice());
@@ -38,15 +46,25 @@ public class JourneyDao {
 	        journeybean.setEndDate(journeyVM.getEndDate());
 	        journeybean.setDescription(journeyVM.getDescription());
 	        journeybean.setImagePath(journeyVM.getImagePath()); // Utilisez le chemin de l'image
+	        
+	        // Récupérer la liste des restaurants sélectionnés
+	        System.out.println("ma selec dans journeyDao insert"+ selectedRestaurants);
+	        
+	        // Associer la liste des restaurants sélectionnés au voyage
+	        journeybean.setSelectedRestaurants(selectedRestaurants);
 
+	        // Persistez l'entité Journey
 	        entityManager.persist(journeybean);
 	        entityManager.flush();
+	        
 	        return journeybean.getId();
 	    } catch (Exception e) {
-	        e.printStackTrace(); // Handle exceptions appropriately
+	        e.printStackTrace(); // Gérez les exceptions de manière appropriée
 	        return null;
 	    }
 	}
+
+
 
 	public void deleteJourney(Long id) {
 	    Journey journey = entityManager.find(Journey.class, id);
