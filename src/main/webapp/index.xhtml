@@ -8,11 +8,14 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Travel Linker</title>
+
 
 <!-- Lien vers la feuille de style -->
 
-<link rel="stylesheet" href="css/index.css" />
+
+<link rel="stylesheet" href="./css/index.css" />
+
+
 
 <!-- Lien vers la bibliothèque FONT AWESOME -->
 <link rel="stylesheet"
@@ -28,24 +31,20 @@
 
 <body>
 	<header>
-		<a href="#" class="brand">Travel linker</a>
+		<a href="index.xhtml" class="brand">Travel linker</a>
 		<div class="menu-btn"></div>
 		<!-- Bouton de menu (hamburger) -->
 		<div class="navigation">
 			<div class="navigation-items">
-				<a href="#">Accueil</a> <a href="#">A Propos de nous</a> <a href="#">Services</a>
-				<a href="#contact">Contact</a>
-<!-- Dans la page XHTML -->
-  <h:outputLink id="connexionButton" value="signIn.xhtml" rendered="#{!loginControllerBean.loggedIn}">
-        Connexion
-    </h:outputLink>
-   <h:commandButton value="Déconnexion"
-								action="#{loginControllerBean.logout()}"  rendered="#{loginControllerBean.loggedIn}"></h:commandButton>
+				<a href="index.xhtml">Accueil</a> <a href="categorie.xhtml">Nos
+					voyages</a> <a href="CategorieTP.xhtml">Nos travels planners</a> <a
+					href="#{loginControllerBean.changeRoleDashboard()}">Mon profil</a><a
+					href="#contact">Contact</a><a href="signIn.xhtml" id="connexionButton">Connexion</a>
+				<a href="#{loginControllerBean.logout()}" id="deconnexionButton">Deconnexion</a>
 
 			</div>
 		</div>
 	</header>
-<h:outputText value="loggedIn: #{loginControllerBean.loggedIn}" />
 
 
 	<section class="home">
@@ -74,7 +73,7 @@
 				pour les organisateurs de voyage, offrant une gestion complète et
 				professionnelle des voyages, avec des fonctionnalités avancées et
 				innovantes.</p>
-			<a href="#">Lire Plus</a>
+			<a href="index.xhtml">Lire Plus</a>
 		</div>
 		<div class="content">
 			<h1>
@@ -85,7 +84,7 @@
 				inégalée relie parfaitement les organisateurs de voyages locaux, les
 				partenaires et les clients. Simplifiez la gestion complète de vos
 				voyages avec des fonctionnalités avancées et novatrices.</p>
-			<a href="#">Lire Plus</a>
+			<a href="CategorieTP.xhtml">Lire Plus</a>
 		</div>
 		<div class="content">
 			<h1>
@@ -107,26 +106,26 @@
 				explorateur solo, un couple en quête de romantisme ou une famille
 				avide d'aventures, nous sommes là pour créer des expériences
 				inoubliables sur mesure, rien que pour vous.</p>
-			<a href="#">Lire Plus</a>
+			<a href="signIn.xhtml">Lire Plus</a>
 		</div>
 		<div class="content">
 			<h1>
-				N'attendez pu<br /> <span>essayez !</span>
+				N'attendez plus<br /> <span>essayez !</span>
 			</h1>
 			<p>Notre plateforme n'attend que vous, inscrivez-vous en cliquant
 				sur le bouton "Lire Plus", afin de profiter de tous les avantages
 				qu'offrent notre site. Vous avez longtemps cherché un moyen rapide
 				et efficace de trouver les meilleurs plans voyages? Nous l'avons
 				fait !</p>
-			<a href="#">Lire Plus</a>
+			<a href="signIn.xhtml">Lire Plus</a>
 		</div>
 
 		<!-- Icônes de médias sociaux -->
 
 		<div class="media-icons">
-			<a href="#"><i class="fab fa-facebook-f"></i></a> <a href="#"><i
-				class="fab fa-instagram"></i></a> <a href="#"><i
-				class="fab fa-twitter"></i></a>
+			<a href="#"><i class="fab fa-facebook-f"></i></a> <a
+				href="facebook.com"><i class="fab fa-instagram"></i></a> <a
+				href="instagram.com"><i class="fab fa-twitter"></i></a>
 		</div>
 
 		<!-- Boutons de navigation du slider -->
@@ -342,8 +341,6 @@
 			</div>
 		</div>
 
-
-
 	</section>
 	<section id="contact" class="contact">
 		<div class="title-contact">
@@ -444,12 +441,11 @@
 			</div>
 		</div>
 	</div>
-
 	<!-- Lien vers le script JavaScript -->
 
-	<script src="js/index.js" defer="defer"></script>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+	<script src="./js/index.js"></script>
+
 </body>
 
 </html>
-

@@ -19,6 +19,14 @@ import travelLinker.entity.TravelPlanner;
 import travelLinker.utils.SessionUtils;
 import travelLinker.viewModel.AccountViewModel;
 
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileItemFactory;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.util.List;
+
 @ManagedBean
 @SessionScoped
 
@@ -32,10 +40,11 @@ public class LoginControllerBean implements Serializable {
 	private AccountViewModel accountVM = new AccountViewModel();
 	@Inject
 	private LoginDao loginDao;
+	private boolean loggedIn=false;
 
 	@Inject
 	private TemplateControllerBean templateControllerBean;
-	private boolean loggedIn = false;
+
 
 	public LoginControllerBean() {
 	}
@@ -124,13 +133,43 @@ public class LoginControllerBean implements Serializable {
 		}
 		return redirectionUrl;
 	}
+	
+	public String changeRoleDashboard() {
+	    if (!loggedIn) {
+	        // L'utilisateur n'est pas connecté, rediriger vers la page de connexion
+	        return "index.xhtml";
+	    }
+
+	    Account account = loginDao.findAccountByEmail(accountVM.getEmail());
+
+	    if (account == null) {
+	        // Aucun compte trouvé, rediriger vers une page appropriée
+	        return "index.xhtml"; // Remplacez "noAccountPage.xhtml" par la page de votre choix
+	    }
+
+	    RoleUser role = account.getRole();
+
+	    if (role == RoleUser.Partner) {
+	        return "DashboardPartner.xhtml";
+	    } else if (role == RoleUser.Customer) {
+	        return "DashboardCustomer.xhtml";
+	    } else if (role == RoleUser.TravelPlanner) {
+	        return "dashboardTP.xhtml";
+	    }
+
+	    // Si aucun rôle valide n'est trouvé, rediriger vers une page appropriée
+	    return "index.xhtml"; // Remplacez "defaultPage.xhtml" par la page de votre choix
+	}
+
+
 
 	// Méthode pour se déconnecter, sans invalider la session entière
 	public String logout() {
 		loginDao.logout();
 		return "signIn"; // Rediriger vers la page de connexion
-	}
 
+	}
+	
 	public Account getConnectedAccount() {
 		HttpSession session = SessionUtils.getSession();
 		System.out.println("Session : " + session);
@@ -165,4 +204,40 @@ public class LoginControllerBean implements Serializable {
 	public String redirectToLogin() {
 		return "signIn.xhtm";
 	}
-}
+//--------------------------------------------------------------
+
+
+
+	    public void handleProfileImageUpload() {
+	        FacesContext facesContext = FacesContext.getCurrentInstance();
+	        boolean isMultipart = ServletFileUpload.isMultipartContent((HttpServletRequest) facesContext.getExternalContext().getRequest());
+
+	        if (isMultipart) {
+	            FileItemFactory factory = new DiskFileItemFactory();
+	            ServletFileUpload upload = new ServletFileUpload(factory);
+
+	            try {
+	                List<FileItem> items = upload.parseRequest((HttpServletRequest) facesContext.getExternalContext().getRequest());
+
+	                for (FileItem item : items) {
+	                    if (!item.isFormField() && item.getFieldName().equals("newProfileImage")) {
+	                        // Nom du fichier téléchargé
+	                        String fileName = item.getName();
+
+	                        // Chemin absolu vers le répertoire media dans votre projet
+	                        String uploadDir = facesContext.getExternalContext().getRealPath("/") + "images";
+
+	                        File file = new File(uploadDir, fileName);
+	                        item.write(file);
+
+	                        // Maintenant, vous avez le fichier enregistré sur le serveur à l'emplacement spécifié
+	                    }
+	                }
+	            } catch (Exception e) {
+	                e.printStackTrace();
+	                // Gérer les erreurs
+	            }
+	        }
+	    }
+
+	}

@@ -8,6 +8,18 @@ menuBtn.addEventListener('click', () => {
 closeBtn.addEventListener('click', () => {
     sideMenu.style.display = 'none';
 });
+/*---------------------------------image test----- */
+function displaySelectedImage(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function (e) {
+                document.getElementById("profileImageDisplay").src = e.target.result;
+            }
+            
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
 
 /*----------------------Zone active pour sidebar-------------------------*/
 

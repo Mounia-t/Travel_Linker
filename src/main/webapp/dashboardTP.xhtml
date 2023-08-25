@@ -3,11 +3,8 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:c="http://java.sun.com/jsp/jstl/core">
-
-
 
 
 <head>
@@ -20,9 +17,10 @@
 <title>Dashboard</title>
 
 </head>
-<h:body style="background-color: #{templateControllerBean.template.backgroundColor}">
-<h:outputText value="loggedIn: #{loginControllerBean.loggedIn}" />
-<h:outputText value="Role: #{sessionUtils.account.role}" />
+<h:body
+	style="background-color: #{templateControllerBean.template.backgroundColor}">
+	<h:outputText value="loggedIn: #{loginControllerBean.loggedIn}" />
+	<h:outputText value="Role: #{sessionUtils.account.role}" />
 	<h:inputHidden id="defaultSection"
 		value="#{dashboardController.section}" />
 	<div class="container">
@@ -30,8 +28,8 @@
 		<aside>
 			<div class="toggle">
 				<div class="logo">
-					<img src="./media/images/PHOTO-2023-07-03-17-06-30.jpg" />
-					
+					<img src="./media/images/logoTravelLinker2.png" />
+
 					<h2></h2>
 				</div>
 				<div class="close" id="close-btn">
@@ -62,16 +60,19 @@
 				</a> <a href="#" id="messagesBtn"> <span
 					class="material-icons-sharp"> mail </span>
 					<h3>Messages</h3>
-					
+
 				</a> <a href="index.xhtml" id="backToHomeBtn"> <span
 					class="material-icons-sharp"> home </span>
-					<h3>Retour à l'accueil</h3>
+					<h3>
+						<h:commandButton href="index.xhtml" value="Accueil"
+							class="noBackgroundLogout" />
+					</h3>
 				</a>
 				<h:form>
 					<a href="#" class="logoutStyle"> <span
 						class="material-icons-sharp"> logout </span>
 						<h3>
-							<h:commandButton value="Déconnexion"
+							<h:commandButton href="signIn.xhtml" value="Deconnexion"
 								action="#{loginControllerBean.logout()}"
 								class="noBackgroundLogout" />
 						</h3>
@@ -146,12 +147,6 @@
 			
 								<h:outputText value="Couleur d'arrière-plan: #{templateControllerBean.template.backgroundColor}" />
 			
-
-
-
-
-
-
 
 		</main>
 		<!-- Main Content -->
@@ -447,15 +442,18 @@
 					<div class="sales">
 						<div class="status">
 							<div class="info logo">
-								<img src="./media/images/IMG_0434.jpg" />
+								<img id="profileImageDisplay" />
 
-								<h1>Frédéric Dupin</h1>
+								<h1>
+									<b><h:outputText
+											value="#{loginControllerBean.connectedAccount.firstName}" /></b>
+								</h1>
 							</div>
 						</div>
 						<span class="material-icons-sharp"> <h:form
 								id="profileImageForm" enctype="multipart/form-data">
 								<input type="file" id="newProfileImage" name="newProfileImage"
-									style="display: none;" onchange="submitForm()" />
+									style="display: none;" onchange="displaySelectedImage(this);" />
 								<label for="newProfileImage">update</label>
 							</h:form>
 						</span>
@@ -561,86 +559,88 @@
 					<div id="ListTravelSection">
 						<div class="lTSContainer"></div>
 					</div>
-					<div id="createTravelSection">
+					<div id="createTravelSection" class="flexingManagedResa">
 						<h:form enctype="multipart/form-data">
 							<div class="user-listMessages">
 
 								<h2>Proposez votre voyage</h2>
+								<div class="flexingInputManagedResa">
+									<div class="inputFormLabel">
 
-								<div class="inputFormLabel">
+										<h:outputLabel value="Pays" styleClass="placeholder label" />
+										<h:inputText
+											value="#{journeyControllerBean.journeyVM.country}"
+											required="true" class="inputForm" />
+									</div>
+									<div class="inputFormLabel">
+										<h:outputLabel value="Titre" styleClass="placeholder label" />
 
-									<h:outputLabel value="Pays" styleClass="placeholder label" />
-									<h:inputText value="#{journeyControllerBean.journeyVM.country}"
-										required="true" class="inputForm" />
+										<h:inputText value="#{journeyControllerBean.journeyVM.name}"
+											required="true" class="inputForm" />
+									</div>
 								</div>
-								<div class="inputFormLabel">
-									<h:outputLabel value="Titre" styleClass="placeholder label" />
+								<div class="flexingInputManagedResa">
+									<div class="inputFormLabel">
+										<h:outputLabel value="Adresse" styleClass="placeholder label" />
+										<h:inputText
+											value="#{journeyControllerBean.journeyVM.location}"
+											required="true" class="inputForm" />
+									</div>
 
-									<h:inputText value="#{journeyControllerBean.journeyVM.name}"
-										required="true" class="inputForm" />
+									<div class="inputFormLabel">
+										<h:outputLabel value="Prix" styleClass="placeholder label" />
+										<h:inputText value="#{journeyControllerBean.journeyVM.price}"
+											required="true" class="inputForm" />
+									</div>
+								</div>
+								<div class="flexingInputManagedResa">
+									<div class="inputFormLabel">
+
+										<h:outputLabel value="Nombres de voyageurs"
+											styleClass="placeholder label" />
+										<h:inputText
+											value="#{journeyControllerBean.journeyVM.numberOfTravellers}"
+											required="true" class="inputForm" />
+									</div>
+									<div class="inputFormLabel">
+										<h:outputLabel value="Sélectionner une image" for="imageFile"
+											styleClass="placeholder label" />
+										<h:inputFile id="imageFile" class="inputForm"
+											value="#{journeyControllerBean.imageFile}" accept="image/*" />
+									</div>
+								</div>
+								<div class="flexingInputManagedResa">
+									<div class="inputFormLabel">
+
+										<h:outputLabel value="Date de Début du Voyage"
+											styleClass="placeholder label" />
+										<h:inputText id="startDate"
+											value="#{journeyControllerBean.journeyVM.startDate}"
+											required="true" class="inputForm">
+											<f:convertDateTime pattern="dd/MM/yyyy" />
+										</h:inputText>
+
+									</div>
+									<div class="inputFormLabel">
+										<h:outputLabel value="Date de Fin du Voyage"
+											styleClass="placeholder label" />
+										<h:inputText id="endDate" class="inputForm"
+											value="#{journeyControllerBean.journeyVM.endDate}"
+											required="true" label="date de fin">
+											<f:convertDateTime pattern="dd/MM/yyyy" />
+										</h:inputText>
+									</div>
 								</div>
 
-								<div class="inputFormLabel">
-									<h:outputLabel value="Adresse" styleClass="placeholder label" />
-									<h:inputText
-										value="#{journeyControllerBean.journeyVM.location}"
-										required="true" class="inputForm" />
-								</div>
-
-								<div class="inputFormLabel">
-									<h:outputLabel value="Prix" styleClass="placeholder label" />
-									<h:inputText value="#{journeyControllerBean.journeyVM.price}"
-										required="true" class="inputForm" />
-								</div>
-
-								<div class="inputFormLabel">
-
-									<h:outputLabel value="Nombres de voyageurs"
-										styleClass="placeholder label" />
-									<h:inputText
-										value="#{journeyControllerBean.journeyVM.numberOfTravellers}"
-										required="true" class="inputForm" />
-								</div>
-
-								<div class="inputFormLabel">
-
-									<h:outputLabel value="Date de Début du Voyage"
-										styleClass="placeholder label" />
-									<h:inputText id="startDate"
-										value="#{journeyControllerBean.journeyVM.startDate}"
-										required="true" class="inputForm">
-										<f:convertDateTime pattern="dd/MM/yyyy" />
-									</h:inputText>
-
-								</div>
-								<div class="inputFormLabel">
-									<h:outputLabel value="Date de Fin du Voyage"
-										styleClass="placeholder label" />
-									<h:inputText id="endDate" class="inputForm"
-										value="#{journeyControllerBean.journeyVM.endDate}"
-										required="true" label="date de fin">
-										<f:convertDateTime pattern="dd/MM/yyyy" />
-									</h:inputText>
-								</div>
-
-								<div class="inputFormLabel">
-									<h:outputLabel value="Sélectionner une image" for="imageFile"
-										styleClass="placeholder label" />
-									<h:inputFile id="imageFile" class="inputForm"
-										value="#{journeyControllerBean.imageFile}" accept="image/*" />
-								</div>
-								<div>
-									<h:commandButton id="addServiceButton" value="Ajouter service"
-										class="createAdmin" onclick="toggleServiceList();" />
-								</div>
-								<div class="radio-inputs">
-									<label class="radio"> <input type="radio" name="radio"
-										id="rbRestTable" /> <span class="name">Restaurant</span>
-									</label> <label class="radio"> <input type="radio" name="radio"
-										id="rbAccomoTable" /> <span class="name">Hébergement</span>
-									</label> <label class="radio"> <input type="radio" name="radio"
-										id="rbTransTable" /> <span class="name">Transport</span>
-									</label>
+							</div>
+							<div class="user-listMessages">
+								<div class="createTravelServicesBtn">
+									<h:commandLink id="rbRestTable" class="servicesBtn"
+										value="Restaurant"></h:commandLink>
+									<h:commandLink id="rbAccomoTable" class="servicesBtn"
+										value="Hébergement"></h:commandLink>
+									<h:commandLink id="rbTransTable" class="servicesBtn"
+										value="Transport"></h:commandLink>
 								</div>
 
 								<div class="table-container" id="restTable">
@@ -961,9 +961,9 @@
 
 			<div class="user-profile">
 				<div class="logo">
-					<img src="./media/images/IMG_0434.jpg" />
+					<img src="./media/images/logoTravelLinker.png" />
 					<h3>
-						Bonjour, <b><h:outputText
+						Bienvenue, <b><h:outputText
 								value="#{loginControllerBean.connectedAccount.firstName}" /></b>
 					</h3>
 

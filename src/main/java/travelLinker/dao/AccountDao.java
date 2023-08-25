@@ -26,6 +26,7 @@ public class AccountDao {
 	@PersistenceContext(unitName = "travelLinker")
 	private EntityManager entityManager;
 
+
 	public Account createAccount(AccountViewModel accountVM) {
 		Account accountbean = new Account();
 		accountbean.setEmail(accountVM.getEmail());

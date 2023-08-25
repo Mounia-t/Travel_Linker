@@ -37,12 +37,14 @@ public class LoginDao {
 		session.invalidate();
 	}
 
+
 	public boolean validate(AccountViewModel accountVM) {
 		Account accountBean = findAccountByEmail(accountVM.getEmail());
 
 		if (accountBean != null) {
 
 			return PasswordUtils.checkPassword(accountVM.getPassword(), accountBean.getPassword());
+
 
 		}
 
@@ -73,3 +75,4 @@ public class LoginDao {
 	}
 
 }
+
