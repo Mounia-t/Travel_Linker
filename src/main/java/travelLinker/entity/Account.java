@@ -39,6 +39,7 @@ public class Account {
 	private Subscription subscription;
 	
 	
+	
 	public Account(String email, String password) {
 		this.email = email;
 		this.password = password;

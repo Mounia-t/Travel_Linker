@@ -152,6 +152,7 @@ public class ServiceDao {
 	}
 
 	public Restaurant findByIdRestaurant(Long id) {
+		System.out.println("Mon restau : " + id +" "+ entityManager.find(Restaurant.class, id));
 		return entityManager.find(Restaurant.class, id);
 	}
 
@@ -159,8 +160,8 @@ public class ServiceDao {
 		return entityManager.find(Transport.class, id);
 	}
 	
-	public List<Service> displayFiltredServices(String country){
-		List<Service> servicesFiltred=  entityManager.createQuery("SELECT s FROM Service s WHERE s.country = :country", Service.class)
+	public List<Accomodation> displayFiltredAccomodatin(String country ){
+		List<Accomodation> servicesFiltred=  entityManager.createQuery("SELECT a FROM Accomodation a WHERE a.country = :country", Accomodation.class)
 		            .setParameter("country", country)
 		            .getResultList();
 		return servicesFiltred;

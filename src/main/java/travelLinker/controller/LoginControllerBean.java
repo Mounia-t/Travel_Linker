@@ -29,7 +29,7 @@ public class LoginControllerBean implements Serializable {
 	private AccountViewModel accountVM = new AccountViewModel();
 	@Inject
 	private LoginDao loginDao;
-	private boolean loggedIn;
+	private boolean loggedIn = false;
 
 	
 	public void validateAccount() {
@@ -91,8 +91,7 @@ public class LoginControllerBean implements Serializable {
 			redirectionUrl = "dashboardTP.xhtml";
 		} else {
 			// Redirection par défaut (par exemple, si le rôle n'est pas géré)
-			redirectionUrl = "SubscriptionTP.xhtml"; // Remplacez "default-dashboard.xhtml" par l'URL de la page de tableau
-											// de bord par défaut
+			redirectionUrl = "SubscriptionTP.xhtml"; 
 		}
 		return redirectionUrl;
 	}
@@ -101,14 +100,14 @@ public class LoginControllerBean implements Serializable {
 	// Méthode pour se déconnecter, invalider la session
 	public String logout() {
 	    HttpSession session = SessionUtils.getSession();
+	    loggedIn = false;
 	    session.invalidate();
-	    return "signIn.xhtml?faces-redirect=true"; // Rediriger vers la page de connexion
+	     // Mettez à jour la valeur de loggedIn ici
+	    return "index.xhtml";
 	}
 	  public Account getConnectedAccount() {
 		  HttpSession session= SessionUtils.getSession();
-		  System.out.println("Session : " + session);
 		  Account account = SessionUtils.getAccount();
-		  System.out.println(account);
 	        return account;
 	    }
 
@@ -136,7 +135,5 @@ public class LoginControllerBean implements Serializable {
 	    System.out.println(loggedIn);
 	    return loggedIn;
 	}
-	 public String redirectToLogin() {
-	        return "signIn.xhtm";
-	    }
+	 
 }

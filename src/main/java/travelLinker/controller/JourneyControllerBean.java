@@ -6,9 +6,11 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.persistence.Basic;
@@ -22,11 +24,14 @@ import org.apache.commons.io.IOUtils;
 
 import travelLinker.dao.JourneyDao;
 import travelLinker.dao.ServiceDao;
+import travelLinker.entity.Accomodation;
 import travelLinker.entity.Journey;
+import travelLinker.entity.Restaurant;
 import travelLinker.entity.Service;
 import travelLinker.viewModel.JourneyViewModel;
 
 	@ManagedBean
+	@SessionScoped
 	public class JourneyControllerBean  implements Serializable{
 		
 		/**
@@ -49,8 +54,8 @@ import travelLinker.viewModel.JourneyViewModel;
 		@Column(columnDefinition = "BLOB")
 		private Part imageFile;
 		
-		private List<Service> filteredServices;
-
+		private List<Accomodation> filteredServices;
+		
 		
 		public void addJourney() {
 		    try {
@@ -115,7 +120,6 @@ import travelLinker.viewModel.JourneyViewModel;
 		}
 
 
-
 		public Part getImageFile() {
 			return imageFile;
 		}
@@ -151,10 +155,11 @@ import travelLinker.viewModel.JourneyViewModel;
 		public void filterServicesByCountry() {
 		    String selectedCountry = journeyVM.getCountry(); // Récupérer le pays sélectionné
 		    if (selectedCountry != null && !selectedCountry.isEmpty()) {
-		        filteredServices = serviceDao.displayFiltredServices(selectedCountry);
+		        filteredServices = serviceDao.displayFiltredAccomodatin(selectedCountry);
 		    }
 			
-		}
-	}
 
+
+	}
+	}
 

@@ -21,8 +21,8 @@
 </head>
 
 <body>
-<h:outputText value="loggedIn: #{loginControllerBean.loggedIn}" />
-<h:outputText value="Role: #{sessionUtils.account.role}" />
+	<h:outputText value="loggedIn: #{loginControllerBean.loggedIn}" />
+	<h:outputText value="Role: #{sessionUtils.account.role}" />
 
 
 	<style>
@@ -40,7 +40,7 @@ body {
     }
     
     </script>
-        
+
 
 
 
@@ -174,7 +174,7 @@ body {
 					<label class="radio"> <input type="radio" name="radio"
 						id="rbRestaurantList" /><span class="name">Restaurant</span>
 					</label> <label class="radio"> <input type="radio" name="radio"
-						id="rbAccomoList" /><span class="name">Hébergement</span>
+						id="rbAccomoList" /> <span class="name">Hébergement</span>
 					</label> <label class="radio"> <input type="radio" name="radio"
 						id="rbTransList" /><span class="name">Transport</span>
 					</label>
@@ -481,20 +481,20 @@ body {
 
 
 						<div class="inputFormLabel">
-							<h:outputLabel value="Nom" styleClass="placeholder label" />
+							<h:outputLabel value="Nom" />
 							<h:inputText
 								value="#{loginControllerBean.connectedAccount.lastName}"
 								required="true" class="inputForm" />
 						</div>
 						<div class="inputFormLabel">
-							<h:outputLabel value="Prénom" styleClass="placeholder label" />
+							<h:outputLabel value="Prénom" />
 							<h:inputText
 								value="#{loginControllerBean.connectedAccount.firstName}"
 								required="true" class="inputForm" />
 						</div>
 
 						<div class="inputFormLabel">
-							<h:outputLabel value="Email" styleClass="placeholder label" />
+							<h:outputLabel value="Email" />
 							<h:inputText
 								value="#{loginControllerBean.connectedAccount.email}"
 								required="true" class="inputForm" />
@@ -572,6 +572,7 @@ body {
 					</div>
 					<div id="ListTravelSection">
 						<div class="lTSContainer"></div>
+
 					</div>
 					<div id="createTravelSection">
 						<h:form enctype="multipart/form-data">
@@ -641,10 +642,7 @@ body {
 									<h:inputFile id="imageFile" class="inputForm"
 										value="#{journeyControllerBean.imageFile}" accept="image/*" />
 								</div>
-								<div>
-									<h:commandButton id="addServiceButton" value="Ajouter service"
-										class="createAdmin" onclick="toggleServiceList();" />
-								</div>
+
 								<div class="radio-inputs">
 									<label class="radio"> <input type="radio" name="radio"
 										id="rbRestTable" /> <span class="name">Restaurant</span>
@@ -655,82 +653,40 @@ body {
 									</label>
 								</div>
 
-								<div class="table-container" id="restTable">
-									<table class="createServicesTable">
-										<thead>
-											<tr>
-												<th>Nom du restaurant</th>
-												<th>Type de restaurant</th>
-												<th>Description</th>
-												<th>Prix</th>
-												<th>Action</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>125</td>
-												<td>Paris</td>
-												<td>John Doe</td>
-												<td>$1000</td>
-												<td><h:commandLink
-														styleClass="material-icons-sharp edit"
-														action="#{serviceControllerBean.setRestaurantVm(restaurant)}"
-														update=":editFormRestaurant">
-            add
-        </h:commandLink></td>
-											</tr>
-											<tr>
-												<td>1252</td>
-												<td>Tokyo</td>
-												<td>Jane Smith</td>
-												<td>$1500</td>
-												<td><h:commandLink
-														styleClass="material-icons-sharp edit"
-														action="#{serviceControllerBean.setRestaurantVm(restaurant)}"
-														update=":editFormRestaurant">
-            add
-        </h:commandLink></td>
-											</tr>
-											<tr>
-												<td>Voyage 3</td>
-												<td>London</td>
-												<td>Michael Johnson</td>
-												<td>$1200</td>
-												<td><h:commandLink
-														styleClass="material-icons-sharp edit"
-														action="#{serviceControllerBean.setRestaurantVm(restaurant)}"
-														update=":editFormRestaurant">
-            add
-        </h:commandLink></td>
-											</tr>
-											<tr>
-												<td>1854</td>
-												<td>Rome</td>
-												<td>Emily Brown</td>
-												<td>$1300</td>
-												<td><h:commandLink
-														styleClass="material-icons-sharp edit"
-														action="#{serviceControllerBean.setRestaurantVm(restaurant)}"
-														update=":editFormRestaurant">
-            add
-        </h:commandLink></td>
-											</tr>
-											<tr>
-												<td>965</td>
-												<td>Sydney</td>
-												<td>Liam Davis</td>
-												<td>$1800</td>
-												<td><h:commandLink
-														styleClass="material-icons-sharp edit"
-														action="#{serviceControllerBean.setRestaurantVm(restaurant)}"
-														update=":editFormRestaurant">
-            add
-        </h:commandLink></td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
+								<h:form>
+									<div class="table-container" id="restTable">
 
+										<table class="createServicesTable">
+											<thead>
+												<tr>
+													<th>Nom du restaurant</th>
+													<th>Type de restaurant</th>
+													<th>Description</th>
+													<th>Prix</th>
+													<th>Action</th>
+												</tr>
+											</thead>
+											<tbody>
+												<ui:repeat value="#{serviceControllerBean.restaurants}"
+													var="restaurant">
+													<tr>
+														<td>#{restaurant.name}</td>
+														<td>#{restaurant.type}</td>
+														<td>#{restaurant.description}</td>
+														<td>#{restaurant.price}</td>
+														<td><h:inputHidden value="#{restaurant.id}" /></td>
+														<td><h:commandButton value="Add"
+																action="#{serviceControllerBean.prepareToAddService(restaurant.id)}">
+															</h:commandButton></td>
+
+													</tr>
+												</ui:repeat>
+
+											</tbody>
+										</table>
+
+									</div>
+								</h:form>
 								<div class="table-container" id="accomoTable">
 									<table class="createServicesTable">
 										<thead>
@@ -743,66 +699,21 @@ body {
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td>125</td>
-												<td>Paris</td>
-												<td>John Doe</td>
-												<td>$1000</td>
-												<td><h:commandLink
-														styleClass="material-icons-sharp edit"
-														action="#{serviceControllerBean.setRestaurantVm(restaurant)}"
-														update=":editFormRestaurant">
-            add
-        </h:commandLink></td>
-											</tr>
-											<tr>
-												<td>1252</td>
-												<td>Tokyo</td>
-												<td>Jane Smith</td>
-												<td>$1500</td>
-												<td><h:commandLink
-														styleClass="material-icons-sharp edit"
-														action="#{serviceControllerBean.setRestaurantVm(restaurant)}"
-														update=":editFormRestaurant">
-            add
-        </h:commandLink></td>
-											</tr>
-											<tr>
-												<td>Voyage 3</td>
-												<td>London</td>
-												<td>Michael Johnson</td>
-												<td>$1200</td>
-												<td><h:commandLink
-														styleClass="material-icons-sharp edit"
-														action="#{serviceControllerBean.setRestaurantVm(restaurant)}"
-														update=":editFormRestaurant">
-            add
-        </h:commandLink></td>
-											</tr>
-											<tr>
-												<td>1854</td>
-												<td>Rome</td>
-												<td>Emily Brown</td>
-												<td>$1300</td>
-												<td><h:commandLink
-														styleClass="material-icons-sharp edit"
-														action="#{serviceControllerBean.setRestaurantVm(restaurant)}"
-														update=":editFormRestaurant">
-            add
-        </h:commandLink></td>
-											</tr>
-											<tr>
-												<td>965</td>
-												<td>Sydney</td>
-												<td>Liam Davis</td>
-												<td>$1800</td>
-												<td><h:commandLink
-														styleClass="material-icons-sharp edit"
-														action="#{serviceControllerBean.setRestaurantVm(restaurant)}"
-														update=":editFormRestaurant">
-            add
-        </h:commandLink></td>
-											</tr>
+											<ui:repeat value="#{serviceControllerBean.accomodations}"
+												var="accomodation">
+												<tr>
+													<td>#{accomodation.name}</td>
+													<td>#{accomodation.type}</td>
+													<td>#{accomodation.description}</td>
+													<td>#{accomodation.price}</td>
+													<td><h:selectBooleanCheckbox
+															styleClass="material-icons-sharp edit">
+															<f:ajax event="change"
+																listener="#{serviceControllerBean.setRestaurantVm(restaurant)}"
+																render=":editFormRestaurant" />
+														</h:selectBooleanCheckbox></td>
+												</tr>
+											</ui:repeat>
 										</tbody>
 									</table>
 								</div>
@@ -819,66 +730,18 @@ body {
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td>125</td>
-												<td>Paris</td>
-												<td>John Doe</td>
-												<td>$1000</td>
-												<td><h:commandLink
-														styleClass="material-icons-sharp edit"
-														action="#{serviceControllerBean.setRestaurantVm(restaurant)}"
-														update=":editFormRestaurant">
-            add
-        </h:commandLink></td>
-											</tr>
-											<tr>
-												<td>1252</td>
-												<td>Tokyo</td>
-												<td>Jane Smith</td>
-												<td>$1500</td>
-												<td><h:commandLink
-														styleClass="material-icons-sharp edit"
-														action="#{serviceControllerBean.setRestaurantVm(restaurant)}"
-														update=":editFormRestaurant">
-            add
-        </h:commandLink></td>
-											</tr>
-											<tr>
-												<td>Voyage 3</td>
-												<td>London</td>
-												<td>Michael Johnson</td>
-												<td>$1200</td>
-												<td><h:commandLink
-														styleClass="material-icons-sharp edit"
-														action="#{serviceControllerBean.setRestaurantVm(restaurant)}"
-														update=":editFormRestaurant">
-            add
-        </h:commandLink></td>
-											</tr>
-											<tr>
-												<td>1854</td>
-												<td>Rome</td>
-												<td>Emily Brown</td>
-												<td>$1300</td>
-												<td><h:commandLink
-														styleClass="material-icons-sharp edit"
-														action="#{serviceControllerBean.setRestaurantVm(restaurant)}"
-														update=":editFormRestaurant">
-            add
-        </h:commandLink></td>
-											</tr>
-											<tr>
-												<td>965</td>
-												<td>Sydney</td>
-												<td>Liam Davis</td>
-												<td>$1800</td>
-												<td><h:commandLink
-														styleClass="material-icons-sharp edit"
-														action="#{serviceControllerBean.setRestaurantVm(restaurant)}"
-														update=":editFormRestaurant">
-            add
-        </h:commandLink></td>
-											</tr>
+											<ui:repeat value="#{serviceControllerBean.transports}"
+												var="transport">
+												<tr>
+													<td>#{transport.name}</td>
+													<td>#{transport.type}</td>
+													<td>#{transport.description}</td>
+													<td>#{transport.price}</td>
+													<td><h:selectBooleanCheckbox
+															styleClass="material-icons-sharp ">
+														</h:selectBooleanCheckbox></td>
+												</tr>
+											</ui:repeat>
 										</tbody>
 									</table>
 								</div>

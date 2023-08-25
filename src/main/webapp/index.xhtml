@@ -35,21 +35,20 @@
 			<div class="navigation-items">
 				<a href="#">Accueil</a> <a href="#">A Propos de nous</a> <a href="#">Services</a>
 				<a href="#contact">Contact</a>
-<!-- Dans la page XHTML -->
-  <h:outputLink value="signIn.xhtml" rendered="#{!loginControllerBean.loggedIn}">
+				<!-- Dans la page XHTML -->
+				<h:outputLink id="connexionButton" value="signIn.xhtml"
+					rendered="#{!loginControllerBean.loggedIn}">
         Connexion
     </h:outputLink>
-    <h:outputLink rendered="#{loginControllerBean.loggedIn}" action="#{loginControllerBean.logout()}" >
-    Déconnexion
-</h:outputLink>
-
-
+				<h:commandButton value="Déconnexion"
+					action="#{loginControllerBean.logout()}"
+					rendered="#{loginControllerBean.loggedIn}"></h:commandButton>
 
 			</div>
 		</div>
 	</header>
-<h:outputText value="loggedIn: #{loginControllerBean.loggedIn}" />
-<h:outputText value="Role: #{sessionUtils.account.role}" />
+	<h:outputText value="loggedIn: #{loginControllerBean.loggedIn}" />
+
 
 	<section class="home">
 

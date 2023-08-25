@@ -85,4 +85,12 @@ public abstract class Service {
 		this.description = description;
 	}
 
+	@Override
+	public String toString() {
+		return "Service [name=" + name + ", type=" + type + ", price=" + price + ", country=" + country + ", location="
+				+ location + ", startDate=" + startDate + ", endDate=" + endDate + ", description=" + description
+				+ ", journey=" + journey + "]";
+	}
+	
+
 }
