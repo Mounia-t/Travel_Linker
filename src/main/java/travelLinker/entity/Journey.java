@@ -32,16 +32,15 @@ public class Journey {
 	private Date endDate;
 
 
+	private String imagePath;
+
+	private Long accountId;
 	@OneToOne
 	@JoinColumn(name = "account_id")
 	private Account account;
 	
 	
 	
-
-
-
-	private String imagePath;
 
 
 
