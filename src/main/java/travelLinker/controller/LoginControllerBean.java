@@ -40,7 +40,9 @@ public class LoginControllerBean implements Serializable {
 	private AccountViewModel accountVM = new AccountViewModel();
 	@Inject
 	private LoginDao loginDao;
-	private boolean loggedIn = false;
+
+
+	private boolean loggedIn=false;
 
 	@Inject
 	private TemplateControllerBean templateControllerBean;
@@ -78,8 +80,9 @@ public class LoginControllerBean implements Serializable {
 					templateControllerBean.setTemplate(userTemplate);
 					templateControllerBean.setSelectedColor(userTemplate.getBackgroundColor());
 				}
-			}
 
+			}
+			}
 			// Effectuer la redirection
 			ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
 			try {
@@ -128,18 +131,44 @@ public class LoginControllerBean implements Serializable {
 			redirectionUrl = "dashboardTP.xhtml";
 		} else {
 			// Redirection par défaut (par exemple, si le rôle n'est pas géré)
+
 			redirectionUrl = "SubscriptionTP.xhtml"; // Remplacez "default-dashboard.xhtml" par l'URL de la page de
 														// tableau
 			// de bord par défaut
+
 		}
 		return redirectionUrl;
 	}
 
 	public String changeRoleDashboard() {
-		if (!loggedIn) {
-			// L'utilisateur n'est pas connecté, rediriger vers la page de connexion
-			return "index.xhtml";
-		}
+
+	    if (!loggedIn) {
+	        // L'utilisateur n'est pas connecté, rediriger vers la page de connexion
+	        return "signIn.xhtml";
+	    }
+
+	    Account account = loginDao.findAccountByEmail(accountVM.getEmail());
+
+	    if (account == null) {
+	        // Aucun compte trouvé, rediriger vers une page appropriée
+	        return "signIn.xhtml"; // Remplacez "noAccountPage.xhtml" par la page de votre choix
+	    }
+
+	    RoleUser role = account.getRole();
+
+	    if (role == RoleUser.Partner) {
+	        return "DashboardPartner.xhtml";
+	    } else if (role == RoleUser.Customer) {
+	        return "DashboardCustomer.xhtml";
+	    } else if (role == RoleUser.TravelPlanner) {
+	        return "dashboardTP.xhtml";
+
+	    }
+
+	    // Si aucun rôle valide n'est trouvé, rediriger vers une page appropriée
+	    return "signIn.xhtml"; // Remplacez "defaultPage.xhtml" par la page de votre choix
+	}
+
 
 		Account account = loginDao.findAccountByEmail(accountVM.getEmail());
 
@@ -203,7 +232,6 @@ public class LoginControllerBean implements Serializable {
 	public String redirectToLogin() {
 		return "signIn.xhtm";
 	}
-//--------------------------------------------------------------
 
 	public void handleProfileImageUpload() {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -240,4 +268,3 @@ public class LoginControllerBean implements Serializable {
 		}
 	}
 
-}

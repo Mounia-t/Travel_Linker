@@ -6,9 +6,11 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.persistence.Basic;
@@ -22,11 +24,14 @@ import org.apache.commons.io.IOUtils;
 
 import travelLinker.dao.JourneyDao;
 import travelLinker.dao.ServiceDao;
+import travelLinker.entity.Accomodation;
 import travelLinker.entity.Journey;
+import travelLinker.entity.Restaurant;
 import travelLinker.entity.Service;
 import travelLinker.viewModel.JourneyViewModel;
 
 	@ManagedBean
+	@SessionScoped
 	public class JourneyControllerBean  implements Serializable{
 		
 		/**
@@ -49,11 +54,16 @@ import travelLinker.viewModel.JourneyViewModel;
 		@Column(columnDefinition = "BLOB")
 		private Part imageFile;
 		
-		private List<Service> filteredServices;
-
+		private List<Accomodation> filteredServices;
+		
+		private Long selectedRestaurantId;
+		
+		private List<Restaurant> selectedRestaurants =new ArrayList<Restaurant>() ;
 		
 		public void addJourney() {
 		    try {
+		    	 System.out.println("dans addJourney, liste: " + selectedRestaurants);
+		    	 
 		        if (imageFile != null) {
 		            // Obtenez le chemin absolu vers le répertoire de déploiement de l'application
 		            String deploymentPath = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");
@@ -79,7 +89,7 @@ import travelLinker.viewModel.JourneyViewModel;
 		        
 
 		        // Appel à la méthode de la couche de persistance pour ajouter le voyage
-		        Long id = journeyDao.insert(journeyVM);
+		        Long id = journeyDao.insert(journeyVM, selectedRestaurants); 
 
 		        System.out.println("Journey created with id : " + id);
 		        clear();
@@ -88,7 +98,46 @@ import travelLinker.viewModel.JourneyViewModel;
 		        e.printStackTrace(); // Gérez l'exception selon vos besoins
 		    }
 		}
-	                
+	         
+
+        public List<Restaurant> addSelectedService(Long restaurantId) {
+        	 selectedRestaurantId = restaurantId;
+        	 System.out.println("Mon restaur " + restaurantId);
+            if (selectedRestaurantId != null) {
+                // Récupérer les détails du restaurant à partir de l'ID
+                Restaurant selectedRestaurant = serviceDao.findByIdRestaurant(selectedRestaurantId);
+
+                // Ajouter le restaurant sélectionné à la liste des services sélectionnés
+                selectedRestaurants.add(selectedRestaurant);
+                System.out.println("dans addSelectedService, liste: " + selectedRestaurants);
+
+            }
+
+            // Retourner la liste des restaurants sélectionnés (éventuellement)
+            return selectedRestaurants;
+        }
+
+        public List<Restaurant> getSelectedRestaurants() {
+        	System.out.println("Get"+ selectedRestaurants);
+            return selectedRestaurants;
+        } 
+
+
+	public Long getSelectedRestaurantId() {
+		return selectedRestaurantId;
+	}
+
+	public void setSelectedRestaurantId(Long selectedRestaurantId) {
+		this.selectedRestaurantId = selectedRestaurantId;
+	}
+
+	public void setSelectedRestaurants(List<Restaurant> selectedRestaurants) {
+		this.selectedRestaurants = selectedRestaurants;
+	}
+
+		
+		
+		
 		public void clear() {
 			journeyVM = new JourneyViewModel();
 		}
@@ -113,7 +162,6 @@ import travelLinker.viewModel.JourneyViewModel;
 		public void setJourneyVM(JourneyViewModel journeyVM) {
 			this.journeyVM = journeyVM;
 		}
-
 
 
 		public Part getImageFile() {
@@ -148,14 +196,13 @@ import travelLinker.viewModel.JourneyViewModel;
 		public List<Journey> displayTravelPlaJournyes(){
 			return journeyDao.getTravelPlannerJourneys();
 		}
+		
 		public void filterServicesByCountry() {
 		    String selectedCountry = journeyVM.getCountry(); // Récupérer le pays sélectionné
 		    if (selectedCountry != null && !selectedCountry.isEmpty()) {
-		        filteredServices = serviceDao.displayFiltredServices(selectedCountry);
+		        filteredServices = serviceDao.displayFiltredAccomodatin(selectedCountry);
 		    }
 			
 		}
 	}
-
-
 

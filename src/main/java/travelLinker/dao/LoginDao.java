@@ -37,6 +37,7 @@ public class LoginDao {
 		session.invalidate();
 	}
 
+ 
 
 	public boolean validate(AccountViewModel accountVM) {
 		Account accountBean = findAccountByEmail(accountVM.getEmail());

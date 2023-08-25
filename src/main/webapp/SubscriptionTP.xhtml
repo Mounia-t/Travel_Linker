@@ -5,6 +5,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
+
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,45 +13,62 @@
 	href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
 	rel="stylesheet" />
 
-<title>Travel Linker</title>
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
-<link rel="stylesheet" href="css/subscriptionTP.css" />
+
+
+<link rel="stylesheet" href="./css/subscriptionTP.css" />
+<title>Abonnement</title>
 </head>
 
 <body>
-	<h2>Nos Abonnements</h2>
-	<h:form>
-		<div class="carousel">
-			<ui:repeat value="#{subscriptionController.allSubscriptions}"
-				var="subscription">
-				<div class="carousel-item">
-					<div class="card">
-						<div class="img-area" style="background-image: url(img/1.jpg);"></div>
-						<div class="container">
+	<section id="subscriptionSection">
+		<h1>
+			NOS <span>ABONNEMENTS</span>
+		</h1>
+		<div class="aboContainer">
+				<ui:repeat value="#{subscriptionController.allSubscriptions}"
+					var="subscription">
+					<h:form>
+					<div class="pack-container">
+						<div class="header">
+							<p class="title">
+								<span>#{subscription.type}</span>
+							</p>
+							<div class="price-container">
+								<h3>#{subscription.price}€</h3>
+							</div>
 
-
-							<h2>#{subscription.type}</h2>
-							<h3>#{subscription.price}</h3>
-							<h4>
-								#{subscription.duration}
-							</h4>
-							<h:commandButton class="btn" value="souscrire"
-								action="#{subscriptionController.dispSelectedSubsPack(subscription.type)}" 
-								outcome="PaymentForm.xhtml"/>
 						</div>
+						<div>
+							<ul class="lists">
+								<li class="list">
+									<p></p>
+								</li>
+								<li class="list">
 
+									<p></p>
+								</li>
+								<li class="list">
+									<p></p>
+								</li>
+								<li class="list">
+
+									<p></p>
+								</li>
+							</ul>
+						</div>
+						<div class="containerBtn">
+						<h:commandButton class="btn" value="souscrire"
+							action="#{subscriptionController.dispSelectedSubsPack(subscription.type)}"
+							outcome="PaymentForm.xhtml" /></div>
+						
 					</div>
-					</div>
-			</ui:repeat>
+					</h:form>
+				</ui:repeat>
+			
 		</div>
 
+	</section>
 
-		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-		<script src="js/subsScript.js"></script>
-	</h:form>
 </body>
+
 </html>
