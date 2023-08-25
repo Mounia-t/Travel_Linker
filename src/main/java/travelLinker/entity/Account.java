@@ -39,13 +39,14 @@ public class Account {
 	private Subscription subscription;
 	private boolean connected;
 	
-	
+
 	public boolean isConnected() {
 		return connected;
 	}
 	public void setConnected(boolean connected) {
 		this.connected = connected;
 	}
+
 	public Account(String email, String password) {
 		this.email = email;
 		this.password = password;
