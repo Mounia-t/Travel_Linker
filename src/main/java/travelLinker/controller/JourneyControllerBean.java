@@ -158,5 +158,7 @@ import travelLinker.viewModel.JourneyViewModel;
 		        filteredServices = serviceDao.displayFiltredAccomodatin(selectedCountry);
 		    }
 			
+		}
+	}
 
 
