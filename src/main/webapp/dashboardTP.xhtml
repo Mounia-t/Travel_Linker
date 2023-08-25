@@ -557,7 +557,41 @@
 						</label>
 					</div>
 					<div id="ListTravelSection">
-						<div class="lTSContainer"></div>
+						<div class="table-container">
+									<h:dataTable value="#{serviceControllerBean.allServices}"
+										var="service" styleClass="table">
+										<!-- Nom du restaurant -->
+
+										<h:column>
+											<f:facet name="header">Photo</f:facet>
+                        <img src="" alt="Photo de voyage"/>
+                    </h:column>
+                    
+										<h:column>
+											<f:facet name="header">Nom du service</f:facet>
+                        #{service.name}
+                    </h:column>
+
+
+										<h:column>
+											<f:facet name="header">Description</f:facet>
+                        #{service.description}
+                    </h:column>
+										<h:column>
+											<f:facet name="header">Prix</f:facet>
+                        #{service.price}
+                    </h:column>
+                    
+                    <h:column>
+											<f:facet name="header">Type de service</f:facet>
+                        #{service.type}
+                    </h:column>
+                    <h:column>
+											<f:facet name="header">Ajouter</f:facet>
+                        <h:selectBooleanCheckbox />
+                    </h:column>
+									</h:dataTable>
+								</div>
 					</div>
 					<div id="createTravelSection" class="flexingManagedResa">
 						<h:form enctype="multipart/form-data">
