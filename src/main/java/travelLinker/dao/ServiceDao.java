@@ -1,5 +1,6 @@
 package travelLinker.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -157,6 +158,16 @@ public class ServiceDao {
 
 	public Transport findByIdTransport(Long id) {
 		return entityManager.find(Transport.class, id);
+	}
+	
+	
+	public List<Service> getAllServices() {
+		List<Service> services = new ArrayList<>();
+		services.addAll(getAllAccomodations());
+		services.addAll(getAllRestaurants());
+		services.addAll(getAllTransports());
+
+		return services;
 	}
 	
 	public List<Service> displayFiltredServices(String country){
