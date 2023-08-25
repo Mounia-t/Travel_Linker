@@ -272,7 +272,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function showSection(section) {
         hideAllSections();
         if (listTravelSection) {
-            section.style.display = 'flex';
+            section.style.display = 'block';
         } else if (createTravelSection) {
             section.style.display = 'block';
         }
@@ -360,44 +360,36 @@ document.addEventListener('DOMContentLoaded', function () {
 
 /*----------------------Zone radioButton create table services------------------------*/
 
-document.addEventListener('DOMContentLoaded', function () {
-    const rbRestTable = document.getElementById('rbRestTable');
-    const rbAccomoTable = document.getElementById('rbAccomoTable');
-    const rbTransTable = document.getElementById('rbTransTable');
+document.addEventListener("DOMContentLoaded", function() {
+    const restTable = document.getElementById("restTable");
+    const accomoTable = document.getElementById("accomoTable");
+    const transTable = document.getElementById("transTable");
 
+    const rbRestTable = document.getElementById("rbRestTable");
+    const rbAccomoTable = document.getElementById("rbAccomoTable");
+    const rbTransTable = document.getElementById("rbTransTable");
 
-    const restTable = document.getElementById('restTable');
-    const accomoTable = document.getElementById('accomoTable');
-    const transTable = document.getElementById('transTable');
-
-
-    // Fonction pour masquer tous les sections
-    function hideAllSections() {
-        const sections = [restTable, accomoTable, transTable];
-        sections.forEach(section => {
-            section.style.display = 'none';
-        });
-    }
-    // Fonction pour afficher un formulaire spécifique
-    function showSection(section) {
-        hideAllSections();
-        section.style.display = 'block';
-        section.classList.add('fade-in-bottom'); // Ajout de la classe pour l'animation fade-in
+    function hideAllTables() {
+        restTable.style.display = "none";
+        accomoTable.style.display = "none";
+        transTable.style.display = "none";
     }
 
-    // Par défaut, masquer tous les formulaires
-    hideAllSections();
+hideAllTables();
 
+    rbRestTable.addEventListener("click", function() {
+        hideAllTables();
+        restTable.style.display = "block";
+    });
 
-    // Gestion des événements de clic sur les radios
-    rbRestTable.addEventListener('click', () => {
-        showSection(restTable);
+    rbAccomoTable.addEventListener("click", function() {
+        hideAllTables();
+        accomoTable.style.display = "block";
     });
-    rbAccomoTable.addEventListener('click', () => {
-        showSection(accomoTable);
-    });
-    rbTransTable.addEventListener('click', () => {
-        showSection(transTable);
+
+    rbTransTable.addEventListener("click", function() {
+        hideAllTables();
+        transTable.style.display = "block";
     });
 });
 
