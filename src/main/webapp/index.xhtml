@@ -39,8 +39,9 @@
 				<a href="index.xhtml">Accueil</a> <a href="categorie.xhtml">Nos
 					voyages</a> <a href="CategorieTP.xhtml">Nos travels planners</a> <a
 					href="#{loginControllerBean.changeRoleDashboard()}">Mon profil</a><a
-					href="#contact">Contact</a><a href="signIn.xhtml" id="connexionButton">Connexion</a>
-				<a href="#{loginControllerBean.logout()}" id="deconnexionButton">Deconnexion</a>
+					href="#contact">Contact</a><a href="signIn.xhtml"
+					id="connexionButton">Connexion</a> <a
+					href="#{loginControllerBean.logout()}" id="deconnexionButton">Deconnexion</a>
 
 			</div>
 		</div>
@@ -355,14 +356,42 @@
 				src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2626.8907461958947!2d2.2983450761843427!3d48.82214597132722!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e6705c21f00001%3A0x56cd923a25baed54!2sISIKA%20-%20Formation%20et%20Reconversion%20aux%20M%C3%A9tiers%20du%20Num%C3%A9rique!5e0!3m2!1sfr!2sfr!4v1691145250537!5m2!1sfr!2sfr"
 				allowfullscreen="" loading="lazy"></iframe>
 
-			<form action="">
-				<input type="text" placeholder="Votre nom" class="box-contact" /> <input
-					type="email" placeholder="Votre email" class="box-contact" /> <input
-					type="tel" placeholder="Sujet" class="box-contact" />
-				<textarea placeholder="Votre message" class="box-contact" cols="30"
-					rows="10"></textarea>
+			<h:form>
+				<div class="inputFormLabel">
+					<h:inputText id="nom"
+						value="#{serviceControllerBean.restaurantVm.name}"
+						class="inputForm" />
+					<h:outputLabel value="Votre nom complet" for="nom"
+						styleClass="placeholder label" />
+				</div>
+
+				<div class="inputFormLabel">
+					<h:inputText id="mail"
+						value="#{serviceControllerBean.restaurantVm.name}"
+						class="inputForm" />
+					<h:outputLabel value="Votre email" for="mail"
+						styleClass="placeholder label" />
+				</div>
+
+				<div class="inputFormLabel">
+					<h:inputText id="sujet"
+						value="#{serviceControllerBean.restaurantVm.name}"
+						class="inputForm" />
+					<h:outputLabel value="Sujet" for="sujet"
+						styleClass="placeholder label" />
+				</div>
+
+				<div class="inputFormLabel">
+					<h:inputTextarea id="message"
+						value="#{serviceControllerBean.restaurantVm.name}"
+						class="inputForm" />
+					<h:outputLabel value="Votre message" for="message"
+						styleClass="placeholder label" />
+				</div>
+
+
 				<input type="submit" value="SOUMETTRE" class="btn-contact" />
-			</form>
+			</h:form>
 
 		</div>
 
