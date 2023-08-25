@@ -143,14 +143,14 @@ public class LoginControllerBean implements Serializable {
 	public String changeRoleDashboard() {
 	    if (!loggedIn) {
 	        // L'utilisateur n'est pas connecté, rediriger vers la page de connexion
-	        return "index.xhtml";
+	        return "signIn.xhtml";
 	    }
 
 	    Account account = loginDao.findAccountByEmail(accountVM.getEmail());
 
 	    if (account == null) {
 	        // Aucun compte trouvé, rediriger vers une page appropriée
-	        return "index.xhtml"; // Remplacez "noAccountPage.xhtml" par la page de votre choix
+	        return "signIn.xhtml"; // Remplacez "noAccountPage.xhtml" par la page de votre choix
 	    }
 
 	    RoleUser role = account.getRole();
@@ -165,7 +165,7 @@ public class LoginControllerBean implements Serializable {
 	    }
 
 	    // Si aucun rôle valide n'est trouvé, rediriger vers une page appropriée
-	    return "index.xhtml"; // Remplacez "defaultPage.xhtml" par la page de votre choix
+	    return "signIn.xhtml"; // Remplacez "defaultPage.xhtml" par la page de votre choix
 	}
 
 

@@ -52,4 +52,5 @@ public class SubscriptionDao {
 		return query.getResultList();
 	}
 
+
 }
