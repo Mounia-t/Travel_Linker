@@ -23,27 +23,36 @@ public class SubscriptionDao {
 	}
 
 	public void addSubscriptionPacks() {
-		// Create and insert the "Essential" pack
-		Subscription essentialPack = new Subscription();
-		essentialPack.setType(SubscriptionPack.Essentiel);
-		;
-		essentialPack.setPrice(50);
-		essentialPack.setDuration(30);
-		entityManager.persist(essentialPack);
+		if (!packAbonnementExiste(SubscriptionPack.Essentiel)) {
+			Subscription essentialPack = new Subscription();
+			essentialPack.setType(SubscriptionPack.Essentiel);
+			essentialPack.setPrice(50);
+			essentialPack.setDuration(30);
+			entityManager.persist(essentialPack);
+		}
 
-		// Create and insert the "Extra" pack
-		Subscription extraPack = new Subscription();
-		extraPack.setType(SubscriptionPack.Extra);
-		extraPack.setPrice(75);
-		extraPack.setDuration(60);
-		entityManager.persist(extraPack);
+		if (!packAbonnementExiste(SubscriptionPack.Extra)) {
+			Subscription extraPack = new Subscription();
+			extraPack.setType(SubscriptionPack.Extra);
+			extraPack.setPrice(75);
+			extraPack.setDuration(60);
+			entityManager.persist(extraPack);
+		}
 
-		// Create and insert the "Premium" pack
-		Subscription premiumPack = new Subscription();
-		premiumPack.setType(SubscriptionPack.Premium);
-		premiumPack.setPrice(100);
-		premiumPack.setDuration(90);
-		entityManager.persist(premiumPack);
+		if (!packAbonnementExiste(SubscriptionPack.Premium)) {
+			Subscription premiumPack = new Subscription();
+			premiumPack.setType(SubscriptionPack.Premium);
+			premiumPack.setPrice(100);
+			premiumPack.setDuration(90);
+			entityManager.persist(premiumPack);
+		}
+	}
+
+	private boolean packAbonnementExiste(SubscriptionPack type) {
+		TypedQuery<Subscription> query = entityManager.createQuery("SELECT s FROM Subscription s WHERE s.type = :type",
+				Subscription.class);
+		query.setParameter("type", type);
+		return !query.getResultList().isEmpty();
 	}
 
 	public List<Subscription> getAllSubscriptions() {
@@ -51,6 +60,5 @@ public class SubscriptionDao {
 		TypedQuery<Subscription> query = entityManager.createQuery("SELECT s FROM Subscription s", Subscription.class);
 		return query.getResultList();
 	}
-
 
 }

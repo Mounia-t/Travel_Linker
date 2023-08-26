@@ -3,7 +3,9 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
 
 <head>
 <meta charset="UTF-8" />
@@ -22,7 +24,7 @@
 		<aside>
 			<div class="toggle">
 				<div class="logo">
-					<img src="images/PHOTO-2023-07-03-17-06-30.jpg" />
+					<img src="./media/images/logoTravelLinker2.png" />
 					<h2></h2>
 				</div>
 				<div class="close" id="close-btn">
@@ -45,7 +47,8 @@
 				</a> <a href="#" id="messagesBtn"> <span
 					class="material-icons-sharp"> mail </span>
 					<h3>Messages</h3>
-				</a> 	<h:form>
+				</a>
+				<h:form>
 					<a href="#" class="logoutStyle"> <span
 						class="material-icons-sharp"> logout </span>
 						<h3>
@@ -119,26 +122,15 @@
 			<div class="new-users fade-in-bottom">
 				<h2>Nouveaux travel planners</h2>
 				<div class="user-list">
-					<div class="user">
-						<img src="images/profile-2.jpg" />
-						<h2>Jack</h2>
-						<p>54 Min Ago</p>
-					</div>
-					<div class="user">
-						<img src="images/profile-3.jpg" />
-						<h2>Amir</h2>
-						<p>3 Hours Ago</p>
-					</div>
-					<div class="user">
-						<img src="images/profile-4.jpg" />
-						<h2>Ember</h2>
-						<p>6 Hours Ago</p>
-					</div>
-					<div class="user">
-						<img src="images/plus.png" />
-						<h2>More</h2>
-						<p>New User</p>
-					</div>
+					<ui:repeat value="#{accountControllerBean.newTravelPlanner}"
+						var="travelPlanner">
+						<div class="user">
+							<img src="./media/images/pp_profil.jpg" />
+							<h2>#{travelPlanner.firstName}</h2>
+							<p>#{travelPlanner.lastName}</p>
+							<p>#{travelPlanner.phoneNumber}</p>
+						</div>
+					</ui:repeat>
 				</div>
 			</div>
 			<!-- End of New Users Section -->
@@ -535,65 +527,30 @@
 				<h2>Mes informations personnelles</h2>
 				<h:form action="post">
 					<div class="user-listMessages" style="display: block;">
-							
-							
-							<div class="inputFormLabel">
-								<h:inputText id="nom"
-									value="#{serviceControllerBean.restaurantVm.name}"
-									class="inputForm"/>
-								<h:outputLabel value="Nom" for="nom"
-									styleClass="placeholder label" />
-							</div>
 
 
-							<div class="inputFormLabel">
-								<h:inputText id="firstname"
-									value="#{serviceControllerBean.restaurantVm.type}"
-									class="inputForm" />
-								<h:outputLabel value="Prénom" for="firstname"
-									styleClass="placeholder label" />
-							</div>
+						<div class="inputFormLabel">
+							<h:outputLabel value="Nom" />
+							<h:inputText
+								value="#{loginControllerBean.connectedAccount.lastName}"
+								required="true" class="inputForm" />
+						</div>
+						<div class="inputFormLabel">
+							<h:outputLabel value="Prénom" />
+							<h:inputText
+								value="#{loginControllerBean.connectedAccount.firstName}"
+								required="true" class="inputForm" />
+						</div>
 
-							<div class="inputFormLabel">
-								<h:inputText id="adresse"
-									value="#{serviceControllerBean.restaurantVm.price}"
-									class="inputForm" />
-								<h:outputLabel value="Adresse" for="adresse"
-									styleClass="placeholder label" />
-							</div>
+						<div class="inputFormLabel">
+							<h:outputLabel value="Email" />
+							<h:inputText
+								value="#{loginControllerBean.connectedAccount.email}"
+								required="true" class="inputForm" />
+						</div>
 
-							<div class="inputFormLabel">
-								<h:inputText id="mail"
-									value="#{serviceControllerBean.restaurantVm.location}"
-									class="inputForm" />
-								<h:outputLabel value="Email" for="mail"
-									styleClass="placeholder label" />
-							</div>
 
-							<div class="inputFormLabel">
-								<h:inputSecret id="password"
-									value="#{serviceControllerBean.restaurantVm.description}"
-									class="inputForm" />
-								<h:outputLabel value="Mot de passe" for="password"
-									styleClass="placeholder label" />
-							</div>
 
-							<div class="inputFormLabel">
-								<h:inputText id="telephone"
-									value="#{serviceControllerBean.restaurantVm.typeOfRestaurant}"
-									class="inputForm" />
-								<h:outputLabel value="Téléphone"
-									for="telephone" styleClass="placeholder label" />
-							</div>
-							<div class="inputFormLabel">
-								<h:inputText id="siret"
-									value="#{serviceControllerBean.restaurantVm.typeOfRestaurant}"
-									class="inputForm" />
-								<h:outputLabel value="Siret"
-									for="siret" styleClass="placeholder label" />
-							</div>
-							
-							
 					</div>
 
 					<div class="new-usersButton">
@@ -987,9 +944,10 @@
 
 			<div class="user-profile">
 				<div class="logo">
-					<img src="images/IMG_0434.jpg" />
+					<img src="./media/images/logoTravelLinker.png" />
 					<h3>
-						Bonjour, <b>{User}</b>
+						Bonjour, <b><h:outputText
+								value="#{loginControllerBean.connectedAccount.firstName}" /></b>
 					</h3>
 				</div>
 			</div>
