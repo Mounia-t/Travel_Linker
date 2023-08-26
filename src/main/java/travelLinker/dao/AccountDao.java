@@ -26,7 +26,6 @@ public class AccountDao {
 	@PersistenceContext(unitName = "travelLinker")
 	private EntityManager entityManager;
 
-
 	public Account createAccount(AccountViewModel accountVM) {
 		Account accountbean = new Account();
 		accountbean.setEmail(accountVM.getEmail());
@@ -56,46 +55,38 @@ public class AccountDao {
 		customer.setAccount(accountbean);
 		entityManager.persist(customer);
 		entityManager.flush();
-		
-		
-		 try {
-		        // Redirect to subscriptionTP.xhtml
-		        externalContext.redirect("index.xhtml");
-		    } catch (IOException e) {
-		        // Handle the exception if redirection fails
-		        e.printStackTrace();
-		    }
-		 
-		 return customer;
+
+		try {
+			// Redirect to subscriptionTP.xhtml
+			externalContext.redirect("index.xhtml");
+		} catch (IOException e) {
+			// Handle the exception if redirection fails
+			e.printStackTrace();
+		}
+
+		return customer;
 	}
 
-	public TravelPlanner createTravelPlanner(AccountViewModel accountVM, ExternalContext externalContext) {
+	public TravelPlanner createTravelPlanner(AccountViewModel accountVM) {
 
-	    TravelPlanner travelPlanner = new TravelPlanner();
-	    travelPlanner.setEmail(accountVM.getEmail());
-	    travelPlanner.setLastName(accountVM.getLastName());
-	    travelPlanner.setFirstName(accountVM.getFirstName());
-	    travelPlanner.setPhoneNumber(accountVM.getPhoneNumber());
-	    travelPlanner.setSiret(accountVM.getSiret());
-	    travelPlanner.setAddress(accountVM.getAddress());
-	    travelPlanner.setCompanyName(accountVM.getCompanyName());
+		TravelPlanner travelPlanner = new TravelPlanner();
+		travelPlanner.setEmail(accountVM.getEmail());
+		travelPlanner.setLastName(accountVM.getLastName());
+		travelPlanner.setFirstName(accountVM.getFirstName());
+		travelPlanner.setPhoneNumber(accountVM.getPhoneNumber());
+		travelPlanner.setSiret(accountVM.getSiret());
+		travelPlanner.setAddress(accountVM.getAddress());
+		travelPlanner.setCompanyName(accountVM.getCompanyName());
+		travelPlanner.setRegistrationDate(new Date());
 
-	    Account accountbean = createAccount(accountVM);
-	    accountbean.setRole(RoleUser.TravelPlanner);
-	    travelPlanner.setAccount(accountbean);
+		Account accountbean = createAccount(accountVM);
+		accountbean.setRole(RoleUser.TravelPlanner);
+		travelPlanner.setAccount(accountbean);
 
-	    entityManager.persist(travelPlanner); // Persist the entity
-	    entityManager.flush();
+		entityManager.persist(travelPlanner); // Persist the entity
+		entityManager.flush();
 
-	    try {
-	        // Redirect to subscriptionTP.xhtml
-	        externalContext.redirect("index.xhtml");
-	    } catch (IOException e) {
-	        // Handle the exception if redirection fails
-	        e.printStackTrace();
-	    }
-
-	    return travelPlanner;
+		return travelPlanner;
 
 	}
 
@@ -104,7 +95,6 @@ public class AccountDao {
 	}
 
 	public Partner createPartner(AccountViewModel accountVM, ExternalContext externalContext) {
-
 
 		Partner partner = new Partner();
 		partner.setFirstName(accountVM.getFirstName());
@@ -118,18 +108,16 @@ public class AccountDao {
 		accountbean.setRole(RoleUser.Partner);
 		partner.setAccount(accountbean);
 		entityManager.persist(partner);
-		 entityManager.flush();
+		entityManager.flush();
 
-		    try {
-		        // Redirect to subscriptionTP.xhtml
-		        externalContext.redirect("index.xhtml");
-		    } catch (IOException e) {
-		        // Handle the exception if redirection fails
-		        e.printStackTrace();
-		    }
+		try {
+			// Redirect to subscriptionTP.xhtml
+			externalContext.redirect("index.xhtml");
+		} catch (IOException e) {
+			// Handle the exception if redirection fails
+			e.printStackTrace();
+		}
 
-		    
-		
 		return partner;
 	}
 
@@ -204,6 +192,18 @@ public class AccountDao {
 		TypedQuery<Partner> query = entityManager.createQuery(
 				"SELECT p FROM Partner p WHERE p.registrationDate >= :threeDaysAgoDate ORDER BY p.registrationDate DESC",
 				Partner.class);
+		query.setParameter("threeDaysAgoDate", threeDaysAgoDate);
+		query.setMaxResults(count);
+		return query.getResultList();
+	}
+
+	public List<TravelPlanner> getLatestRegisteredTravelPlanners(int count) {
+		LocalDate threeDaysAgo = LocalDate.now().minusDays(3);
+		Date threeDaysAgoDate = Date.from(threeDaysAgo.atStartOfDay(ZoneId.systemDefault()).toInstant());
+
+		TypedQuery<TravelPlanner> query = entityManager.createQuery(
+				"SELECT t FROM TravelPlanner t WHERE t.registrationDate >= :threeDaysAgoDate ORDER BY t.registrationDate DESC",
+				TravelPlanner.class);
 		query.setParameter("threeDaysAgoDate", threeDaysAgoDate);
 		query.setMaxResults(count);
 		return query.getResultList();

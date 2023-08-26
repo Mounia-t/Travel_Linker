@@ -18,12 +18,10 @@
 
 </head>
 
-<h:body>
-	
-	
+<body>
 	<main id="mainContainer">
 		<div id="firstLeftContainer">
-			<h1>Bienvenue sur ma page ! Je suis {Travel planner}</h1>
+			<h1>Bienvenue sur ma page ! Je suis <h:outputText value="#{loginControllerBean.connectedAccount.firstName}" /></h1>
 			<h3>Lorem ipsum dolor, sit amet consectetur adipisicing elit.
 				Consequatur reiciendis expedita esse fuga autem repellendus, quos
 				nesciunt unde eligendi</h3>
@@ -51,10 +49,17 @@
 						<h3>#{journey.country}</h3>
 						
 					</div>
+
 				<h:form>
 					<h:commandButton value="Réserver" class="resaBtn" 
 					action="#{journeyControllerBean.reserveAndRedirect(journey.id)}"></h:commandButton>
 					</h:form>
+
+					<div class="infoSupTPCard">
+						
+						<h4>Encore du détail</h4>
+					</div>
+			
 				</div>
 			</ui:repeat>
 		
@@ -75,8 +80,6 @@
 			</h:form>
 	</main>
 
-
-
 	<script src="./js/homeTP.js"></script>
-</h:body>
+</body>
 </html>

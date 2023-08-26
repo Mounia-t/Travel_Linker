@@ -20,19 +20,17 @@
 </head>
 <body>
 
-	<header>
+<header>
 		<a href="index.xhtml" class="brand">Travel linker</a>
 		<div class="menu-btn"></div>
 		<!-- Bouton de menu (hamburger) -->
 		<div class="navigation">
 			<div class="navigation-items">
+
 				<a href="index.xhtml">Accueil</a> <a href="categorie.xhtml">Nos
 					voyages</a> <a href="CategorieTP.xhtml">Nos travels planners</a> <a
 					href="#{loginControllerBean.changeRoleDashboard()}">Mon profil</a><a
-					href="#contact">Contact</a><a href="signIn.xhtml"
-					id="connexionButton">Me connecter</a> <a
-					href="#{loginControllerBean.logout()}"
-					rendered="#{loginControllerBean.loggedIn}">Deconnexion</a>
+					href="#contact">Contact</a><a href="signIn.xhtml" id="connexionButton">Nous rejoindre</a>
 
 			</div>
 		</div>
@@ -51,7 +49,6 @@
 				</h1>
 				<h2>De: #{journeyControllerBean.selectedJourney.startDate}</h2>
 				<h2>A: #{journeyControllerBean.selectedJourney.startDate}</h2>
-
 
 				<p>#{journeyControllerBean.selectedJourney.description}</p>
 				<span>à partir de
@@ -180,6 +177,7 @@
 				</div>
 			</div>
 
+<<<<<<< HEAD
 			<div class="box">
 				<img src="./media/images/Portugal.jpg" alt="" />
 				<div class="content">
@@ -199,6 +197,59 @@
 			</div>
 		</div>
 	</section>
+=======
+    <section class="service">
+      <div class="title-service">
+        <h1>Services <span>annexes</span></h1>
+      </div>
+      <div class="card-container-service">
+        <div class="card-service">
+          <div
+            class="card-background-service"
+            style="background-image: url(./media/images/hotel.jpg)"
+          ></div>
+          <div class="content-service">
+            <div class="card-category-service">Hôtel</div>
+            <h3 class="card-heading-service">Villa Kate Dadic</h3>
+            <a href="#" class="btn-service">Réserver</a>
+          </div>
+        </div>
+        <div class="card-service">
+          <div
+            class="card-background-service"
+            style="background-image: url(./media/images/restaurant.jpg)"
+          ></div>
+          <div class="content-service">
+            <div class="card-category-service">Restaurant</div>
+            <h3 class="card-heading-service">Konoba Dubrava</h3>
+            <a href="siteRestaurant.xhtml" class="btn-service">Réserver</a>
+          </div>
+        </div>
+        <div class="card-service">
+          <div
+            class="card-background-service"
+            style="background-image: url(./media/images/location.jpg)"
+          ></div>
+          <div class="content-service">
+            <div class="card-category-service">Location</div>
+            <h3 class="card-heading-service">Entreprise</h3>
+            <a href="siteVoiture.xhtml" class="btn-service">Réserver</a>
+          </div>
+        </div>
+        <div class="card-service">
+          <div
+            class="card-background-service"
+            style="background-image: url(./media/images/canoe.jpg)"
+          ></div>
+          <div class="content-service">
+            <div class="card-category-service">Activité</div>
+            <h3 class="card-heading-service">Fun and Sea</h3>
+            <a href="#" class="btn-service">Réserver</a>
+          </div>
+        </div>
+      </div>
+    </section>
+>>>>>>> e843cee94b70d68826b8e7cf679b1299bc864e41
 
 	<!-- Fin Package  -->
 	<!-- Début Service -->
