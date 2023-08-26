@@ -41,8 +41,7 @@ public class LoginControllerBean implements Serializable {
 	@Inject
 	private LoginDao loginDao;
 
-
-	private boolean loggedIn=false;
+	private boolean loggedIn = false;
 
 	@Inject
 	private TemplateControllerBean templateControllerBean;
@@ -82,7 +81,7 @@ public class LoginControllerBean implements Serializable {
 				}
 
 			}
-			}
+
 			// Effectuer la redirection
 			ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
 			try {
@@ -91,7 +90,9 @@ public class LoginControllerBean implements Serializable {
 				// Gérer l'exception en cas d'erreur de redirection
 				e.printStackTrace();
 			}
-		} else {
+		} else
+
+		{
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
 					"Email ou Mot de pass incorrectes", "Merci de saisir les bons identifiants"));
 			ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
@@ -102,7 +103,6 @@ public class LoginControllerBean implements Serializable {
 				e.printStackTrace();
 			}
 		}
-
 	}
 
 	public String redirectionDashboard() {
@@ -142,39 +142,16 @@ public class LoginControllerBean implements Serializable {
 
 	public String changeRoleDashboard() {
 
-	    if (!loggedIn) {
-	        // L'utilisateur n'est pas connecté, rediriger vers la page de connexion
-	        return "signIn.xhtml";
-	    }
-
-	    Account account = loginDao.findAccountByEmail(accountVM.getEmail());
-
-	    if (account == null) {
-	        // Aucun compte trouvé, rediriger vers une page appropriée
-	        return "signIn.xhtml"; // Remplacez "noAccountPage.xhtml" par la page de votre choix
-	    }
-
-	    RoleUser role = account.getRole();
-
-	    if (role == RoleUser.Partner) {
-	        return "DashboardPartner.xhtml";
-	    } else if (role == RoleUser.Customer) {
-	        return "DashboardCustomer.xhtml";
-	    } else if (role == RoleUser.TravelPlanner) {
-	        return "dashboardTP.xhtml";
-
-	    }
-
-	    // Si aucun rôle valide n'est trouvé, rediriger vers une page appropriée
-	    return "signIn.xhtml"; // Remplacez "defaultPage.xhtml" par la page de votre choix
-	}
-
+		if (!loggedIn) {
+			// L'utilisateur n'est pas connecté, rediriger vers la page de connexion
+			return "signIn.xhtml";
+		}
 
 		Account account = loginDao.findAccountByEmail(accountVM.getEmail());
 
 		if (account == null) {
 			// Aucun compte trouvé, rediriger vers une page appropriée
-			return "index.xhtml"; // Remplacez "noAccountPage.xhtml" par la page de votre choix
+			return "signIn.xhtml"; // Remplacez "noAccountPage.xhtml" par la page de votre choix
 		}
 
 		RoleUser role = account.getRole();
@@ -185,10 +162,11 @@ public class LoginControllerBean implements Serializable {
 			return "DashboardCustomer.xhtml";
 		} else if (role == RoleUser.TravelPlanner) {
 			return "dashboardTP.xhtml";
+
 		}
 
 		// Si aucun rôle valide n'est trouvé, rediriger vers une page appropriée
-		return "index.xhtml"; // Remplacez "defaultPage.xhtml" par la page de votre choix
+		return "signIn.xhtml"; // Remplacez "defaultPage.xhtml" par la page de votre choix
 	}
 
 	// Méthode pour se déconnecter, sans invalider la session entière
@@ -267,4 +245,4 @@ public class LoginControllerBean implements Serializable {
 			}
 		}
 	}
-
+}

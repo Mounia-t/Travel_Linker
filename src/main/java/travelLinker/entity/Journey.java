@@ -1,20 +1,13 @@
 package travelLinker.entity;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
-import javax.persistence.CollectionTable;
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-
 
 @Entity
 public class Journey {
@@ -31,7 +24,6 @@ public class Journey {
 	private Date startDate;
 	private Date endDate;
 
-
 	private String imagePath;
 
 	private Long accountId;
@@ -40,10 +32,6 @@ public class Journey {
 	private Account account;
 
 
-	@ElementCollection
-	@CollectionTable(name = "journey_restaurants", joinColumns = @JoinColumn(name = "journey_id"))
-	@Column(name = "restaurant_list")
-	private List<Restaurant> selectedRestaurants = new ArrayList<>();
 
 	public Journey() {
 	}
@@ -59,14 +47,11 @@ public class Journey {
 		this.startDate = startDate;
 		this.endDate = endDate;
 
-		this.description=description;
-		this.imagePath=imagePath;
-		this.account=account;
-		this.id=id;
+		this.description = description;
+		this.imagePath = imagePath;
+		this.account = account;
+		this.id = id;
 	}
-	
-
-
 
 	public Long getId() {
 		return id;
@@ -120,7 +105,6 @@ public class Journey {
 		this.endDate = endDate;
 	}
 
-
 	public String getName() {
 		return name;
 	}
@@ -137,7 +121,6 @@ public class Journey {
 		this.description = description;
 	}
 
-
 	public String getImagePath() {
 		return imagePath;
 	}
@@ -146,16 +129,13 @@ public class Journey {
 		this.imagePath = imagePath;
 	}
 
-
-	
-
-	public List<Restaurant> getSelectedRestaurants() {
-		return selectedRestaurants;
-	}
-
-	public void setSelectedRestaurants(List<Restaurant> selectedRestaurants) {
-		this.selectedRestaurants = selectedRestaurants;
-	}
+//	public List<Restaurant> getSelectedRestaurants() {
+//		return selectedRestaurants;
+//	}
+//
+//	public void setSelectedRestaurants(List<Restaurant> selectedRestaurants) {
+//		this.selectedRestaurants = selectedRestaurants;
+//	}
 
 	public Account getAccount() {
 		return account;

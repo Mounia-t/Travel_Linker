@@ -1,4 +1,5 @@
 package travelLinker.entity;
+
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -13,7 +14,7 @@ public class Insurance {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	private String type ;
+	private String type;
 	private String description;
 	private float price;
 	private String country;
@@ -21,11 +22,10 @@ public class Insurance {
 	private Date startDate;
 	private Date endDate;
 
-	public Insurance (){
-			}
+	public Insurance() {
+	}
 
-	public Insurance(String type, float price, String description, Date startDate,
-			Date endDate) {
+	public Insurance(String type, float price, String description, Date startDate, Date endDate) {
 		super();
 		this.type = type;
 		this.description = description;
@@ -66,7 +66,6 @@ public class Insurance {
 		return endDate;
 	}
 
-
 	public void setType(String type) {
 		this.type = type;
 	}
@@ -95,6 +94,4 @@ public class Insurance {
 		this.endDate = endDate;
 	}
 
-
-	
 }
