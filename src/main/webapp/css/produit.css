@@ -104,7 +104,7 @@ header .navigation .navigation-items a:hover:before{
 }
 
 .text-animation {
-  color: white ;
+  color: #171717;
   opacity: 0;
   transform: translateY(50px);
   transition: opacity 1s, transform 1s;
@@ -117,6 +117,7 @@ header .navigation .navigation-items a:hover:before{
 }
 
 .text-animation.active {
+	background-color: #171717;
   opacity: 1;
   transform: translateY(0);
 }
