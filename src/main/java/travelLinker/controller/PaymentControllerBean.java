@@ -30,28 +30,22 @@ public class PaymentControllerBean implements Serializable {
 	@Inject
 	private CartDao cartDao;
 
-	private Payment payment = new Payment();
+	@Inject
+	private SubscriptionController subscriptionController;
+
+	@Inject
+	private Payment payment;
 
 	private Long cartId;
 
 	private String ownerName;
 
 	public void makePayment() {
-		System.out.println("make payment " + payment);
-//		if (!validateCardDetails(payment.getCardNumber(), payment.getCardDate(), payment.getNumberCvv())) {
-//			return;
-//		}
-//		Cart cart = cartDao.findByCartId(cartId);
-//		System.out.println("le panier est " + cartId);
-//		if (cart != null) {
-//			float totalAmount = 0.0f;
-//
-//			for (Item item : cart.getItems()) {
-//				totalAmount += item.getPrice() * item.getQuantity();
-//			}
+		System.out.println("paymentDao: " + paymentDao);
+		System.out.println("payment: " + payment);
+		System.out.println("subscriptionController: " + subscriptionController);
+
 		float totalAmount = 0.0f;
-//
-//			payment.setCart(cart);
 		payment.setAmount(totalAmount);
 		payment.setPaymentDate(new Date());
 
@@ -63,7 +57,12 @@ public class PaymentControllerBean implements Serializable {
 			payment.setPaymentStatus(PaymentStatus.FAILED);
 		}
 
-		paymentDao.createPayment(payment);
+		System.out.println("payment stat " + payment.getPaymentStatus());
+
+		if (payment.getPaymentStatus() == PaymentStatus.PAID) {
+			subscriptionController.createSubscriptionForTravelPlanner();
+			paymentDao.createPayment(payment);
+		}
 
 		System.out.println("apres persistence: " + payment);
 	}

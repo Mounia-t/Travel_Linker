@@ -64,6 +64,7 @@ const addBtn = document.getElementById('addBtn');
 const profileBtn = document.getElementById('profileBtn');
 const dashboardBtn = document.getElementById('dashboardBtn')
 const managedBtn = document.getElementById('managedResaBtn')
+const analyticsBtn = document.getElementById('analyticsBtn')
 
 // Récupération des éléments de contenu
 const mainMessages = document.getElementById('mainMessages');
@@ -73,11 +74,12 @@ const mainAdd = document.getElementById('mainAdd');
 const mainProfile = document.getElementById('mainProfile');
 const mainDashboard = document.getElementById('mainDashboard')
 const mainManagedResa = document.getElementById('mainManagedResa')
+const mainAnalytics = document.getElementById('mainAnalytics')
 var defaultSection =document.getElementById(document.getElementById('defaultSection').value)
 
 // Fonction pour masquer tous les contenus
 function hideMainContent() {
-    const contenus = [mainMessages, mainUsers, mainProfile, mainHistory, mainDashboard, mainManagedResa];
+    const contenus = [mainMessages, mainUsers, mainProfile, mainHistory, mainDashboard, mainManagedResa, mainAnalytics];
     contenus.forEach(contenu => {
         contenu.style.display = 'none';
     });
@@ -121,6 +123,10 @@ dashboardBtn.addEventListener('click', () => {
 
 managedBtn.addEventListener('click', () => {
     showMainContent(mainManagedResa);
+});
+
+analyticsBtn.addEventListener('click', () => {
+    showMainContent(mainAnalytics);
 });
 
 

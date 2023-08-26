@@ -122,7 +122,7 @@
 					<ui:repeat value="#{accountControllerBean.newPartner}"
 						var="partner">
 						<div class="user">
-							<img src="./media/images/profile-2.jpg" />
+							<img src="./media/images/pp_profil.jpg" />
 							<h2>#{partner.firstName}</h2>
 							<p>#{partner.lastName}</p>
 							<p>#{partner.phoneNumber}</p>
@@ -146,17 +146,31 @@
 		<!-- Main Content -->
 		<main id="mainAnalytics" style="display: none;">
 			<h1>Liste des services</h1>
-			<div class="new-users flexingRB">
-				<div class="radio-inputs">
-					<label class="radio"> <input type="radio" name="radio"
-						id="rbRestaurantList" /><span class="name">Restaurant</span>
-					</label> <label class="radio"> <input type="radio" name="radio"
-						id="rbAccomoList" /> <span class="name">Hébergement</span>
-					</label> <label class="radio"> <input type="radio" name="radio"
-						id="rbTransList" /><span class="name">Transport</span>
-					</label>
-				</div>
-			</div>
+			<div class="table-container">
+									<h:dataTable value="#{serviceControllerBean.allServices}"
+										var="service" styleClass="table">
+
+										<h:column>
+											<f:facet name="header">Nom du service</f:facet>
+                        #{service.name}
+                    </h:column>
+
+
+										<h:column>
+											<f:facet name="header">Description</f:facet>
+                        #{service.description}
+                    </h:column>
+										<h:column>
+											<f:facet name="header">Prix</f:facet>
+                        #{service.price}
+                    </h:column>
+                    
+                    <h:column>
+											<f:facet name="header">Type de service</f:facet>
+                        #{service.type}
+                    </h:column>
+									</h:dataTable>
+								</div>
 
 		</main>
 		<!-- End of MainAnalytics Content -->
@@ -436,7 +450,7 @@
 					<div class="sales">
 						<div class="status">
 							<div class="info logo">
-								<img id="profileImageDisplay" />
+								<img src="./media/images/pp_profil.jpg" />
 
 								<h1>
 									<b><h:outputText
@@ -553,37 +567,34 @@
 					<div id="ListTravelSection">
 
 						<div class="table-container">
-									<h:dataTable value="#{serviceControllerBean.allServices}"
-										var="service" styleClass="table">
-										<!-- Nom du restaurant -->
-
-										<h:column>
-											<f:facet name="header">Photo</f:facet>
-                        <img src="" alt="Photo de voyage"/>
-                    </h:column>
+									<h:dataTable value="#{journeyControllerBean.allJourneys}"
+										var="journey" styleClass="table">
                     
 										<h:column>
-											<f:facet name="header">Nom du service</f:facet>
-                        #{service.name}
+											<f:facet name="header">Nom du voyage</f:facet>
+                        #{journey.name}
                     </h:column>
 
 
 										<h:column>
-											<f:facet name="header">Description</f:facet>
-                        #{service.description}
+											<f:facet name="header">Pays</f:facet>
+                        #{journey.country}
                     </h:column>
-										<h:column>
+
+                    
+                    <h:column>
+											<f:facet name="header">Adresse du voyage</f:facet>
+                        #{journey.location}
+                    </h:column>
+                    
+                    <h:column>
+											<f:facet name="header">Nombres de voyageurs</f:facet>
+                        #{journey.numberOfTravellers}
+                    </h:column>
+                    
+                    										<h:column>
 											<f:facet name="header">Prix</f:facet>
-                        #{service.price}
-                    </h:column>
-                    
-                    <h:column>
-											<f:facet name="header">Type de service</f:facet>
-                        #{service.type}
-                    </h:column>
-                    <h:column>
-											<f:facet name="header">Ajouter</f:facet>
-                        <h:selectBooleanCheckbox />
+                        #{journey.price}
                     </h:column>
 									</h:dataTable>
 								</div>
