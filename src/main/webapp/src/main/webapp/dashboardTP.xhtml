@@ -20,6 +20,9 @@
 
 <h:body>
 
+	<h:outputText value="loggedIn: #{loginControllerBean.loggedIn}" />
+	<h:outputText value="Role: #{sessionUtils.account.role}" />
+
 	<h:inputHidden id="defaultSection"
 		value="#{dashboardController.section}" />
 	<div class="container">
@@ -27,7 +30,7 @@
 		<aside>
 			<div class="toggle">
 				<div class="logo">
-					
+					<img src="./media/images/logoTravelLinker2.png" />
 
 					<h2></h2>
 				</div>
@@ -59,8 +62,8 @@
 				</a> <a href="#" id="messagesBtn"> <span
 					class="material-icons-sharp"> mail </span>
 					<h3>Messages</h3>
-					
-					</a> <a href="index.xhtml" id="backToHomeBtn"> <span
+
+				</a> <a href="index.xhtml" id="backToHomeBtn"> <span
 					class="material-icons-sharp"> home </span>
 					<h3>
 						<h:commandButton href="index.xhtml" value="Accueil"
@@ -75,7 +78,7 @@
 					</h3>
 				</a>
 				<h:form>
-					<a href="signIn.xhtml" class="logoutStyle"> <span
+					<a href="#" class="logoutStyle"> <span
 						class="material-icons-sharp"> logout </span>
 						<h3>
 							<h:commandButton href="signIn.xhtml" value="Deconnexion"
@@ -122,7 +125,7 @@
 					<ui:repeat value="#{accountControllerBean.newPartner}"
 						var="partner">
 						<div class="user">
-							<img src="./media/images/profile-2.jpg" />
+							<img src="./media/images/pp_profil.jpg" />
 							<h2>#{partner.firstName}</h2>
 							<p>#{partner.lastName}</p>
 							<p>#{partner.phoneNumber}</p>
@@ -146,17 +149,31 @@
 		<!-- Main Content -->
 		<main id="mainAnalytics" style="display: none;">
 			<h1>Liste des services</h1>
-			<div class="new-users flexingRB">
-				<div class="radio-inputs">
-					<label class="radio"> <input type="radio" name="radio"
-						id="rbRestaurantList" /><span class="name">Restaurant</span>
-					</label> <label class="radio"> <input type="radio" name="radio"
-						id="rbAccomoList" /> <span class="name">Hébergement</span>
-					</label> <label class="radio"> <input type="radio" name="radio"
-						id="rbTransList" /><span class="name">Transport</span>
-					</label>
-				</div>
-			</div>
+			<div class="table-container">
+									<h:dataTable value="#{serviceControllerBean.allServices}"
+										var="service" styleClass="table">
+
+										<h:column>
+											<f:facet name="header">Nom du service</f:facet>
+                        #{service.name}
+                    </h:column>
+
+
+										<h:column>
+											<f:facet name="header">Description</f:facet>
+                        #{service.description}
+                    </h:column>
+										<h:column>
+											<f:facet name="header">Prix</f:facet>
+                        #{service.price}
+                    </h:column>
+                    
+                    <h:column>
+											<f:facet name="header">Type de service</f:facet>
+                        #{service.type}
+                    </h:column>
+									</h:dataTable>
+								</div>
 
 		</main>
 		<!-- End of MainAnalytics Content -->
@@ -436,7 +453,7 @@
 					<div class="sales">
 						<div class="status">
 							<div class="info logo">
-								<img id="profileImageDisplay" />
+								<img src="./media/images/pp_profil.jpg" />
 
 								<h1>
 									<b><h:outputText
@@ -553,37 +570,34 @@
 					<div id="ListTravelSection">
 
 						<div class="table-container">
-									<h:dataTable value="#{serviceControllerBean.allServices}"
-										var="service" styleClass="table">
-										<!-- Nom du restaurant -->
-
-										<h:column>
-											<f:facet name="header">Photo</f:facet>
-                        <img src="" alt="Photo de voyage"/>
-                    </h:column>
+									<h:dataTable value="#{journeyControllerBean.allJourneys}"
+										var="journey" styleClass="table">
                     
 										<h:column>
-											<f:facet name="header">Nom du service</f:facet>
-                        #{service.name}
+											<f:facet name="header">Nom du voyage</f:facet>
+                        #{journey.name}
                     </h:column>
 
 
 										<h:column>
-											<f:facet name="header">Description</f:facet>
-                        #{service.description}
+											<f:facet name="header">Pays</f:facet>
+                        #{journey.country}
                     </h:column>
-										<h:column>
+
+                    
+                    <h:column>
+											<f:facet name="header">Adresse du voyage</f:facet>
+                        #{journey.location}
+                    </h:column>
+                    
+                    <h:column>
+											<f:facet name="header">Nombres de voyageurs</f:facet>
+                        #{journey.numberOfTravellers}
+                    </h:column>
+                    
+                    										<h:column>
 											<f:facet name="header">Prix</f:facet>
-                        #{service.price}
-                    </h:column>
-                    
-                    <h:column>
-											<f:facet name="header">Type de service</f:facet>
-                        #{service.type}
-                    </h:column>
-                    <h:column>
-											<f:facet name="header">Ajouter</f:facet>
-                        <h:selectBooleanCheckbox />
+                        #{journey.price}
                     </h:column>
 									</h:dataTable>
 								</div>
@@ -591,9 +605,12 @@
 					</div>
 					<div id="createTravelSection" class="flexingManagedResa">
 						<h:form enctype="multipart/form-data">
-							<div class="user-listMessages"><h2>Proposez votre voyage</h2>
+							<div class="user-listMessages">
+
+								<h2>Proposez votre voyage</h2>
 								<div class="flexingInputManagedResa">
 									<div class="inputFormLabel">
+
 										<h:outputLabel value="Pays" styleClass="placeholder label" />
 										<h:inputText
 											value="#{journeyControllerBean.journeyVM.country}"
@@ -601,6 +618,7 @@
 									</div>
 									<div class="inputFormLabel">
 										<h:outputLabel value="Titre" styleClass="placeholder label" />
+
 										<h:inputText value="#{journeyControllerBean.journeyVM.name}"
 											required="true" class="inputForm" />
 									</div>
@@ -613,6 +631,7 @@
 											value="#{journeyControllerBean.journeyVM.location}"
 											required="true" class="inputForm" />
 									</div>
+
 									<div class="inputFormLabel">
 										<h:outputLabel value="Prix" styleClass="placeholder label" />
 										<h:inputText value="#{journeyControllerBean.journeyVM.price}"
@@ -621,6 +640,7 @@
 								</div>
 								<div class="flexingInputManagedResa">
 									<div class="inputFormLabel">
+
 										<h:outputLabel value="Nombres de voyageurs"
 											styleClass="placeholder label" />
 										<h:inputText
@@ -628,7 +648,7 @@
 											required="true" class="inputForm" />
 									</div>
 									<div class="inputFormLabel">
-										<h:outputLabel value="Sélectionner une image"
+										<h:outputLabel value="Sélectionner une image" 
 											styleClass="placeholder label" />
 										<h:inputFile class="inputForm"
 											value="#{journeyControllerBean.imageFile}" accept="image/*" />
@@ -636,6 +656,7 @@
 								</div>
 								<div class="flexingInputManagedResa">
 									<div class="inputFormLabel">
+
 										<h:outputLabel value="Date de Début du Voyage"
 											styleClass="placeholder label" />
 										<h:inputText id="startDate"
@@ -643,6 +664,7 @@
 											required="true" class="inputForm">
 											<f:convertDateTime pattern="dd/MM/yyyy" />
 										</h:inputText>
+
 									</div>
 									<div class="inputFormLabel">
 										<h:outputLabel value="Date de Fin du Voyage"
@@ -654,7 +676,6 @@
 										</h:inputText>
 									</div>
 								</div>
-
 
 								<div class="table-container">
 									<h:dataTable value="#{serviceControllerBean.allServices}"
@@ -687,6 +708,13 @@
 									</h:dataTable>
 								</div>
 
+
+								<div class="inputFormLabel">
+									<h:outputLabel value="Sélectionner une image" for="imageFile"
+										styleClass="placeholder label" />
+									<h:inputFile id="imageFile" class="inputForm"
+										value="#{journeyControllerBean.imageFile}" accept="image/*" />
+								</div>
 
 								<div class="radio-inputs">
 									<label class="radio"> <input type="radio" name="radio"
@@ -803,7 +831,6 @@
 									value="Créer un voyage" class="createAdmin" />
 							</div>
 							</div>
-							
 						</h:form>
 					
 					</div>
