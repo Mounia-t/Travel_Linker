@@ -18,7 +18,7 @@ public abstract class Service {
 	private Date endDate;
 	private String description;
 	@ManyToOne
-	@JoinColumn(name="journey_id")
+	@JoinColumn(name = "journey_id")
 	private Journey journey;
 
 	public float getPrice() {
@@ -91,6 +91,5 @@ public abstract class Service {
 				+ location + ", startDate=" + startDate + ", endDate=" + endDate + ", description=" + description
 				+ ", journey=" + journey + "]";
 	}
-	
 
 }
