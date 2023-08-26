@@ -31,10 +31,7 @@ public class Journey {
 	@JoinColumn(name = "account_id")
 	private Account account;
 
-//	@ElementCollection
-//	@CollectionTable(name = "journey_restaurants", joinColumns = @JoinColumn(name = "journey_id"))
-//	@Column(name = "restaurant_list")
-//	private List<Restaurant> selectedRestaurants = new ArrayList<>();
+
 
 	public Journey() {
 	}
