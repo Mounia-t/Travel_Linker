@@ -13,11 +13,6 @@ public class Accomodation extends Service {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@ManyToOne
-	@JoinColumn (name = "journey_id_fk")
-	private Journey journey;
-
 
 	@ManyToOne
 	@JoinColumn(name = "journey_id_fk")

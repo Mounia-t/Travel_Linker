@@ -13,25 +13,22 @@ public class Restaurant extends Service {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
+	private String typeOfRestaurant;
 
 	@ManyToOne
 	@JoinColumn(name = "journey_id_fk")
 	private Journey journey;
 
-	private String typeOfRestaurant;
-
-	@ManyToOne
-	@JoinColumn (name = "journey_id_fk")
-	private Journey journey;
-
 	@Override
 	public String toString() {
-		return super.toString()+"Restaurant [id=" + id + ", typeOfRestaurant=" + typeOfRestaurant + "]";
+		return super.toString() + "Restaurant [id=" + id + ", typeOfRestaurant=" + typeOfRestaurant + "]";
 	}
+
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -43,18 +40,11 @@ public class Restaurant extends Service {
 	public void setTypeOfRestaurant(String typeOfRestaurant) {
 		this.typeOfRestaurant = typeOfRestaurant;
 	}
-	
 
-/*	public boolean isSelected() {
-		return isSelected;
-	}
-
-	public void setSelected(boolean isSelected) {
-		this.isSelected = isSelected;
-	}
-*/
-
-
-	
+	/*
+	 * public boolean isSelected() { return isSelected; }
+	 * 
+	 * public void setSelected(boolean isSelected) { this.isSelected = isSelected; }
+	 */
 
 }
