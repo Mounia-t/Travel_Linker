@@ -75,7 +75,7 @@ public class JourneyDao {
 	}
 	
 
-	public Journey findByIdJourney(Long id) {
+	public Journey findJourneyById(Long id) {
 		return entityManager.find(Journey.class, id);
 	}
 	

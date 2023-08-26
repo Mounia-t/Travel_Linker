@@ -41,6 +41,9 @@ import travelLinker.viewModel.JourneyViewModel;
 		@Basic(fetch = FetchType.LAZY)
 		@Column(columnDefinition = "BLOB")
 		private Part imageFile;
+		
+		private Journey selectedJourney;
+		private Journey selectedJourneyForPay;
 
 		public List<Journey> journeys;
 		public void addJourney() {
@@ -102,13 +105,9 @@ import travelLinker.viewModel.JourneyViewModel;
 			this.journeyVM = journeyVM;
 		}
 
-
-
 		public Part getImageFile() {
 			return imageFile;
 		}
-
-
 
 		public void setImageFile(Part imageFile) {
 			this.imageFile = imageFile;
@@ -125,8 +124,40 @@ import travelLinker.viewModel.JourneyViewModel;
 			return journeyDao.getAllJourneys();
 
 		}
+		public List<Journey> displayTravelPlaJournyes(){
+			return journeyDao.getTravelPlannerJourneys();
+		}
+		
 
+		public Journey getSelectedJourney() {
+			return selectedJourney;
+		}
 
+		public void setSelectedJourney(Journey selectedJourney) {
+			this.selectedJourney = selectedJourney;
+		}
 
+		
+		public Journey getSelectedJourneyForPay() {
+			return selectedJourneyForPay;
+		}
+
+		public void setSelectedJourneyForPay(Journey selectedJourneyForPay) {
+			this.selectedJourneyForPay = selectedJourneyForPay;
+		}
+
+		public String reserveAndRedirect(Long journeyId) {
+	        // Utilisez journeyId pour charger le voyage sélectionné
+	        selectedJourney = journeyDao.findJourneyById(journeyId);
+	        System.out.println("ma journey "+ selectedJourney);
+	        return "produit.xhtml";
 
 	}
+		public String reserveAndPayment(Long journeyId) {
+		    // Utilisez journeyId pour charger le voyage sélectionné
+		    selectedJourney = journeyDao.findJourneyById(journeyId);
+		    System.out.println("ma journey selected " + selectedJourney);
+		    return "PaymentForm.xhtml";
+		}
+
+}

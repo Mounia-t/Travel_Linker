@@ -42,22 +42,22 @@
 
 	<main id="mainContainerSecond">
 		<div class="scrollContainer">
-			<ui:repeat value="#{journeyControllerBean.displayTravelPlaJournyes()}" var="journey">
+			
+			<ui:repeat value="#{journeyControllerBean.allJourneys}" var="journey">
 				<div class="tPCard">
-					<img src="#{journey.imagePath}" alt="Image du Voyage"
-											style="max-width: 100%;" />
+					<img src="#{journey.imagePath}"/>
 					<div class="infoTPCard">
 						<h2>#{journey.name}</h2>
 						<h3>#{journey.country}</h3>
+						
 					</div>
-					<div class="infoSupTPCard">
-						<h3>Voici du détail</h3>
-						<h4>Encore du détail</h4>
-						<h4>Encore du détail</h4>
-					</div>
-					<h:commandButton value="Réserver" class="resaBtn"></h:commandButton>
+				<h:form>
+					<h:commandButton value="Réserver" class="resaBtn" 
+					action="#{journeyControllerBean.reserveAndRedirect(journey.id)}"></h:commandButton>
+					</h:form>
 				</div>
 			</ui:repeat>
+		
 		</div>
 		<f:metadata>
 </f:metadata>

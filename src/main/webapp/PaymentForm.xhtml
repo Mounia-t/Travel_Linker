@@ -41,15 +41,17 @@
                         <h2>Informations client : </h2>
                         <h3>{User(rôle)}</h3>
                     </div>
-                    <div class="recapZone">
-                        <h2>Récapitulatif de réservation : </h2>
-                        <h3>{reservation}</h3>
-                    </div>
+                   <div class="recapZone">
+                <h2>Récapitulatif de réservation :</h2>
+                <h3>Nom du voyage : #{journeyControllerBean.selectedJourneyForPay.name}</h3>
+                <h3>Pays : #{journeyControllerBean.selectedJourneyForPay.country}</h3>
+               
+            </div>
                 </div>
                 <div class="totalZone">
-                    <h2>Montant total : </h2>
-                    <h3>{0€}</h3>
-                </div>
+            <h2>Montant total :</h2>
+            <h3>#{journeyControllerBean.selectedJourneyForPay.price}€</h3>
+        </div>
 		</div>
 
 			<div id="paiementForm">
