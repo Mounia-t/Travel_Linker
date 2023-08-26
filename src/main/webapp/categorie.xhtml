@@ -6,23 +6,20 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
-	
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Page Catégorie</title>
-    <link rel="stylesheet" href="./css/categorie.css" />
 
-    <!-- Lien vers la bibliothèque FONT AWESOME -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
-    />
-  </head>
-  <body>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Page Catégorie</title>
+<link rel="stylesheet" href="./css/categorie.css" />
+
+<!-- Lien vers la bibliothèque FONT AWESOME -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
+</head>
+<body>
 	<header>
 		<a href="index.xhtml" class="brand">Travel linker</a>
-
 		<div class="menu-btn"></div>
 		<!-- Bouton de menu (hamburger) -->
 		<div class="navigation">
@@ -31,8 +28,8 @@
 				<a href="index.xhtml">Accueil</a> <a href="categorie.xhtml">Nos
 					voyages</a> <a href="CategorieTP.xhtml">Nos travels planners</a> <a
 					href="#{loginControllerBean.changeRoleDashboard()}">Mon profil</a><a
-					href="#contact">Contact</a><a href="signIn.xhtml" id="connexionButton">Me connecter</a>
-				<a href="#{loginControllerBean.logout()}" rendered="#{loginControllerBean.loggedIn}">Deconnexion</a>
+					href="#contact">Contact</a><a href="signIn.xhtml"
+					id="connexionButton">Nous rejoindre</a>
 
 			</div>
 		</div>
@@ -85,13 +82,14 @@
 					<p>#{journey.description}</p>
 				</div>
 				<div class="button-wrapper">
-					<button class="btn outline">détails</button>
-					<button class="btn fill">
-						<i class="fas fa-shopping-cart"></i>réserver
-					</button>
+					<a href="produit.xhtml" class="btn fill"> <i
+						class="fas fa-shopping-cart"></i>Details
+					</a>
+					<button class="btn outline">Reserver</button>
 				</div>
 			</div>
 		</div>
+
 
 		<div class="container">
 			<div class="wrapper">
@@ -195,7 +193,7 @@
 				<div class="link-text">Contact</div>
 			</div>
 		</div>
-    
+
 		<div class="info-section">
 			<div class="info-section-title">Nos informations</div>
 			<div class="info-item">
@@ -224,117 +222,6 @@
 			</div>
 		</div>
 
-
-           <div class="container">
-            <div class="wrapper">
-              <div class="banner-image1"> </div>
-              <h1> FRANCE </h1>
-              <p>Un pays qui éblouit par sa diversité : châteaux,
-                art, culture et histoire. </p>
-             </div>
-             <div class="button-wrapper"> 
-             <button class="btn outline">détails</button>
-               <button class="btn fill">
-                <i class="fas fa-shopping-cart"></i>réserver</button>
-             </div>
-               </div>
-           <div class="container">
-            <div class="wrapper">
-              <div class="banner-image2"> </div>
-              <h1> ANGLETERRE </h1>
-              <p>Des métropoles effervescentes où coutumes envoûtantes se dévoilent.</p>
-             </div>
-             <div class="button-wrapper"> 
-             <button class="btn outline">détails</button>
-               <button class="btn fill">
-                <i class="fas fa-shopping-cart"></i>réserver</button>
-             </div>
-               </div>
-           <div class="container">
-            <div class="wrapper">
-              <div class="banner-image3"> </div>
-              <h1> GRèCE </h1>
-              <p>Ancienne sagesse, îles azur, mythes envoûtants, berceau de la civilisation.</p>
-             </div>
-             <div class="button-wrapper"> 
-             <button class="btn outline">détails</button>
-               <button class="btn fill">
-                <i class="fas fa-shopping-cart"></i>réserver</button>
-             </div>
-               </div>
-           <div class="container">
-            <div class="wrapper">
-              <div class="banner-image4"> </div>
-              <h1> TURQUIE </h1>
-              <p>Pont entre continents, mosquées splendides et un passé riche</p>
-             </div>
-             <div class="button-wrapper"> 
-             <button class="btn outline">détails</button>
-               <button class="btn fill">
-                <i class="fas fa-shopping-cart"></i>réserver</button>
-             </div>
-               </div>
-           <div class="container">
-            <div class="wrapper">
-              <div class="banner-image5"> </div>
-              <h1> Malte </h1>
-              <p> Îles ensoleillées, vestiges préhistoriques et ports pittoresques</p>
-             </div>
-             <div class="button-wrapper"> 
-             <button class="btn outline">détails</button>
-               <button class="btn fill">
-                <i class="fas fa-shopping-cart"></i>réserver</button>
-             </div>
-               </div>
-    </section>
-    
-    <div class="footer">
-        <div class="logo-footer">
-          <img src="./media/images/logoTravelLinker2.png" alt="Logo-footer"/>
-          <div class="social-icons-footer">
-            <div class="social-icon"><i class="fab fa-facebook-f"></i></div>
-          <div class="social-icon"><i class="fab fa-instagram"></i></div>
-          <div class="social-icon"><i class="fab fa-twitter"></i></div>
-          </div>
-        </div>
-        
-        <div class="quick-links">
-          <div class="quick-links-title">Liens</div>
-          <div class="quick-link">
-            <div class="link-text">Accueil</div>
-          </div>
-          <div class="quick-link">
-            <div class="link-text">A propos de nous</div>
-          </div>
-          <div class="quick-link">
-            <div class="link-text">Services</div>
-          </div>
-          <div class="quick-link">
-            <div class="link-text">Contact</div>
-          </div>
-        </div>
-      
-        <div class="info-section">
-          <div class="info-section-title">Nos informations</div>
-          <div class="info-item">
-          <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
-          <div>Paris, FRANCE</div>
-        </div>
-        <div class="info-item">
-          <div class="icon"><i class="fas fa-phone"></i></div>
-          <div>+331.65.74.83.02</div>
-        </div>
-        <div class="info-item">
-          <div class="icon"><i class="fas fa-envelope"></i></div>
-          <div>contact@travellinker.com</div>
-        </div>
-        <div class="info-item">
-          <div class="icon"><i class="fas fa-clock"></i></div>
-          <div>24h/24, 7j/7</div>
-        </div>
-      </div>
-      
-
 		<div class="newsletter">
 			<div class="newsletter-title">Newsletters</div>
 			<div class="newsletter-text">Inscrivez-vous pour recevoir notre
@@ -347,7 +234,10 @@
 		</div>
 	</div>
 
+
+
+
+	<script src="./js/categorie.js" defer="defer"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
-<script src="./js/categorie.js" defer="defer"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </html>

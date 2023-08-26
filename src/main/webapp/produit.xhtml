@@ -24,7 +24,7 @@ xmlns="http://www.w3.org/1999/xhtml"
   </head>
   <body>
 
-	<header>
+		<header>
 		<a href="index.xhtml" class="brand">Travel linker</a>
 		<div class="menu-btn"></div>
 		<!-- Bouton de menu (hamburger) -->
@@ -33,8 +33,7 @@ xmlns="http://www.w3.org/1999/xhtml"
 				<a href="index.xhtml">Accueil</a> <a href="categorie.xhtml">Nos
 					voyages</a> <a href="CategorieTP.xhtml">Nos travels planners</a> <a
 					href="#{loginControllerBean.changeRoleDashboard()}">Mon profil</a><a
-					href="#contact">Contact</a><a href="signIn.xhtml" id="connexionButton">Me connecter</a>
-				<a href="#{loginControllerBean.logout()}" rendered="#{loginControllerBean.loggedIn}">Deconnexion</a>
+					href="#contact">Contact</a><a href="signIn.xhtml" id="connexionButton">Nous rejoindre</a>
 
 			</div>
 		</div>
@@ -62,7 +61,7 @@ xmlns="http://www.w3.org/1999/xhtml"
 
     <section class="packages" id="packages">
       <div class="title-packages">
-        <h1>mes <span>packages</span></h1>
+        <h1>mes <span>voyages</span></h1>
       </div>
 
       <div class="box-container">
@@ -215,7 +214,7 @@ xmlns="http://www.w3.org/1999/xhtml"
           <div class="content-service">
             <div class="card-category-service">Restaurant</div>
             <h3 class="card-heading-service">Konoba Dubrava</h3>
-            <a href="#" class="btn-service">Réserver</a>
+            <a href="siteRestaurant.xhtml" class="btn-service">Réserver</a>
           </div>
         </div>
         <div class="card-service">
@@ -225,8 +224,8 @@ xmlns="http://www.w3.org/1999/xhtml"
           ></div>
           <div class="content-service">
             <div class="card-category-service">Location</div>
-            <h3 class="card-heading-service">Enterprise</h3>
-            <a href="#" class="btn-service">Réserver</a>
+            <h3 class="card-heading-service">Entreprise</h3>
+            <a href="siteVoiture.xhtml" class="btn-service">Réserver</a>
           </div>
         </div>
         <div class="card-service">

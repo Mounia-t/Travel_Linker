@@ -18,9 +18,7 @@
 
 </head>
 
-<h:body>
-	
-	
+<body>
 	<main id="mainContainer">
 		<div id="firstLeftContainer">
 			<h1>Bienvenue sur ma page ! Je suis {Travel planner}</h1>
@@ -55,7 +53,8 @@
 						<h4>Encore du détail</h4>
 						<h4>Encore du détail</h4>
 					</div>
-					<h:commandButton value="Réserver" class="resaBtn"></h:commandButton>
+					<h:form>
+					<h:commandButton value="Réserver" class="resaBtn"></h:commandButton></h:form>
 				</div>
 			</ui:repeat>
 		</div>
@@ -75,8 +74,6 @@
 			</h:form>
 	</main>
 
-
-
 	<script src="./js/homeTP.js"></script>
-</h:body>
+</body>
 </html>

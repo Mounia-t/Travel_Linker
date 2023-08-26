@@ -20,6 +20,9 @@
 
 <h:body>
 
+	<h:outputText value="loggedIn: #{loginControllerBean.loggedIn}" />
+	<h:outputText value="Role: #{sessionUtils.account.role}" />
+
 	<h:inputHidden id="defaultSection"
 		value="#{dashboardController.section}" />
 	<div class="container">
@@ -27,7 +30,7 @@
 		<aside>
 			<div class="toggle">
 				<div class="logo">
-					
+					<img src="./media/images/logoTravelLinker2.png" />
 
 					<h2></h2>
 				</div>
@@ -59,8 +62,8 @@
 				</a> <a href="#" id="messagesBtn"> <span
 					class="material-icons-sharp"> mail </span>
 					<h3>Messages</h3>
-					
-					</a> <a href="index.xhtml" id="backToHomeBtn"> <span
+
+				</a> <a href="index.xhtml" id="backToHomeBtn"> <span
 					class="material-icons-sharp"> home </span>
 					<h3>
 						<h:commandButton href="index.xhtml" value="Accueil"
@@ -75,7 +78,7 @@
 					</h3>
 				</a>
 				<h:form>
-					<a href="signIn.xhtml" class="logoutStyle"> <span
+					<a href="#" class="logoutStyle"> <span
 						class="material-icons-sharp"> logout </span>
 						<h3>
 							<h:commandButton href="signIn.xhtml" value="Deconnexion"
@@ -602,9 +605,12 @@
 					</div>
 					<div id="createTravelSection" class="flexingManagedResa">
 						<h:form enctype="multipart/form-data">
-							<div class="user-listMessages"><h2>Proposez votre voyage</h2>
+							<div class="user-listMessages">
+
+								<h2>Proposez votre voyage</h2>
 								<div class="flexingInputManagedResa">
 									<div class="inputFormLabel">
+
 										<h:outputLabel value="Pays" styleClass="placeholder label" />
 										<h:inputText
 											value="#{journeyControllerBean.journeyVM.country}"
@@ -612,6 +618,7 @@
 									</div>
 									<div class="inputFormLabel">
 										<h:outputLabel value="Titre" styleClass="placeholder label" />
+
 										<h:inputText value="#{journeyControllerBean.journeyVM.name}"
 											required="true" class="inputForm" />
 									</div>
@@ -624,6 +631,7 @@
 											value="#{journeyControllerBean.journeyVM.location}"
 											required="true" class="inputForm" />
 									</div>
+
 									<div class="inputFormLabel">
 										<h:outputLabel value="Prix" styleClass="placeholder label" />
 										<h:inputText value="#{journeyControllerBean.journeyVM.price}"
@@ -632,6 +640,7 @@
 								</div>
 								<div class="flexingInputManagedResa">
 									<div class="inputFormLabel">
+
 										<h:outputLabel value="Nombres de voyageurs"
 											styleClass="placeholder label" />
 										<h:inputText
@@ -639,7 +648,7 @@
 											required="true" class="inputForm" />
 									</div>
 									<div class="inputFormLabel">
-										<h:outputLabel value="Sélectionner une image"
+										<h:outputLabel value="Sélectionner une image" 
 											styleClass="placeholder label" />
 										<h:inputFile class="inputForm"
 											value="#{journeyControllerBean.imageFile}" accept="image/*" />
@@ -647,6 +656,7 @@
 								</div>
 								<div class="flexingInputManagedResa">
 									<div class="inputFormLabel">
+
 										<h:outputLabel value="Date de Début du Voyage"
 											styleClass="placeholder label" />
 										<h:inputText id="startDate"
@@ -654,6 +664,7 @@
 											required="true" class="inputForm">
 											<f:convertDateTime pattern="dd/MM/yyyy" />
 										</h:inputText>
+
 									</div>
 									<div class="inputFormLabel">
 										<h:outputLabel value="Date de Fin du Voyage"
@@ -665,7 +676,6 @@
 										</h:inputText>
 									</div>
 								</div>
-
 
 								<div class="table-container">
 									<h:dataTable value="#{serviceControllerBean.allServices}"
@@ -698,6 +708,13 @@
 									</h:dataTable>
 								</div>
 
+
+								<div class="inputFormLabel">
+									<h:outputLabel value="Sélectionner une image" for="imageFile"
+										styleClass="placeholder label" />
+									<h:inputFile id="imageFile" class="inputForm"
+										value="#{journeyControllerBean.imageFile}" accept="image/*" />
+								</div>
 
 								<div class="radio-inputs">
 									<label class="radio"> <input type="radio" name="radio"
@@ -814,7 +831,6 @@
 									value="Créer un voyage" class="createAdmin" />
 							</div>
 							</div>
-							
 						</h:form>
 					
 					</div>

@@ -91,6 +91,7 @@ header .navigation .navigation-items a:hover:before{
   background-size: cover;
   background-position: center;
   margin-bottom: 50px;
+  color: black;
 }
 
 .home-content {
