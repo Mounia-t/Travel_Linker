@@ -235,9 +235,10 @@
 					</div>
 				</div>
 				<div class="lTSBtnContainer">
+				<h:form>
 					<h:commandButton value="Supprimer"
 						action="#{journeyControllerBean.deleteJourney(journey.id)}" />
-
+						</h:form>
 				</div>
 			</div>
 		</ui:repeat>
@@ -458,11 +459,9 @@
 			</div>
 		</div>
 	</div>
-	<!-- Lien vers le script JavaScript -->
-
-
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="./js/index.js"></script>
 
-</body>
 
+</body>
 </html>

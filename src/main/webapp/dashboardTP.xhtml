@@ -606,7 +606,7 @@
 											required="true" class="inputForm" />
 									</div>
 									<div class="inputFormLabel">
-										<h:outputLabel value="Titre" styleClass="placeholder label" />
+										<h:outputLabel value="Nom du voyage" styleClass="placeholder label" />
 
 										<h:inputText value="#{journeyControllerBean.journeyVM.name}"
 											required="true" class="inputForm" />
@@ -637,10 +637,9 @@
 											required="true" class="inputForm" />
 									</div>
 									<div class="inputFormLabel">
-										<h:outputLabel value="Sélectionner une image" 
+										<h:outputLink value="Sélectionner une image" 
 											styleClass="placeholder label" />
-										<h:inputFile class="inputForm"
-											value="#{journeyControllerBean.imageFile}" accept="image/*" />
+										<h:graphicImage value="#{journeyControllerBean.journeyVM.imagePath}" />
 									</div>
 								</div>
 								<div class="flexingInputManagedResa">
@@ -697,13 +696,6 @@
 									</h:dataTable>
 								</div>
 
-
-								<div class="inputFormLabel">
-									<h:outputLabel value="Sélectionner une image" for="imageFile"
-										styleClass="placeholder label" />
-									<h:inputFile id="imageFile" class="inputForm"
-										value="#{journeyControllerBean.imageFile}" accept="image/*" />
-								</div>
 
 								<div class="radio-inputs">
 									<label class="radio"> <input type="radio" name="radio"
