@@ -42,10 +42,10 @@
 
 	<main id="mainContainerSecond">
 		<div class="scrollContainer">
-			<ui:repeat value="#{journeyControllerBean.allJourneys}" var="journey">
+			<ui:repeat value="#{journeyControllerBean.displayTravelPlaJournyes()}" var="journey">
 				<div class="tPCard">
-					<img src="./media/images/bosnia-2058087_1920.jpg" alt=""
-						class="imgTravelCard"/>
+					<img src="#{journey.imagePath}" alt="Image du Voyage"
+											style="max-width: 100%;" />
 					<div class="infoTPCard">
 						<h2>#{journey.name}</h2>
 						<h3>#{journey.country}</h3>

@@ -1,7 +1,7 @@
 package travelLinker.entity;
 
-import java.util.Date;
 
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,25 +23,18 @@ public class Journey {
 	private String location;
 	private Date startDate;
 	private Date endDate;
-
-	private String imagePath;
-
-	private Long accountId;
+	private byte[] imageFile;
 	@OneToOne
 	@JoinColumn(name = "account_id")
 	private Account account;
+	private String imagePath;
 
-//	@ElementCollection
-//	@CollectionTable(name = "journey_restaurants", joinColumns = @JoinColumn(name = "journey_id"))
-//	@Column(name = "restaurant_list")
-//	private List<Restaurant> selectedRestaurants = new ArrayList<>();
 
-	public Journey() {
-	}
+	public Journey (){
+			}
 
-	public Journey(String country, int numberOfTravellers, float price, String location, Date startDate, Date endDate,
-			byte[] imageFile) {
-
+	public Journey(String country, int numberOfTravellers, float price, String location, Date startDate,
+			Date endDate, byte[]imageFile) {
 		super();
 		this.country = country;
 		this.numberOfTravellers = numberOfTravellers;
@@ -49,63 +42,53 @@ public class Journey {
 		this.location = location;
 		this.startDate = startDate;
 		this.endDate = endDate;
-
-		this.description = description;
-		this.imagePath = imagePath;
-		this.account = account;
-		this.id = id;
+		this.imageFile= imageFile;
 	}
-
 	public Long getId() {
 		return id;
 	}
-
 	public String getCountry() {
 		return country;
 	}
-
 	public void setCountry(String country) {
 		this.country = country;
 	}
-
 	public int getNumberOfTravellers() {
 		return numberOfTravellers;
 	}
-
 	public void setNumberOfTravellers(int numberOfTravellers) {
 		this.numberOfTravellers = numberOfTravellers;
 	}
-
 	public float getPrice() {
 		return price;
 	}
-
 	public void setPrice(float price) {
 		this.price = price;
 	}
-
 	public String getLocation() {
 		return location;
 	}
-
 	public void setLocation(String location) {
 		this.location = location;
 	}
-
 	public Date getStartDate() {
 		return startDate;
 	}
-
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
-
 	public Date getEndDate() {
 		return endDate;
 	}
-
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
+	}
+	public byte[] getImage() {
+		return imageFile;
+	}
+
+	public void setImageFile(byte[] imageFile) {
+		this.imageFile = imageFile;
 	}
 
 	public String getName() {
@@ -124,6 +107,11 @@ public class Journey {
 		this.description = description;
 	}
 
+
+	public byte[] getImageFile() {
+		return imageFile;
+	}
+
 	public String getImagePath() {
 		return imagePath;
 	}
@@ -132,14 +120,6 @@ public class Journey {
 		this.imagePath = imagePath;
 	}
 
-//	public List<Restaurant> getSelectedRestaurants() {
-//		return selectedRestaurants;
-//	}
-//
-//	public void setSelectedRestaurants(List<Restaurant> selectedRestaurants) {
-//		this.selectedRestaurants = selectedRestaurants;
-//	}
-
 	public Account getAccount() {
 		return account;
 	}
@@ -147,4 +127,5 @@ public class Journey {
 	public void setAccount(Account account) {
 		this.account = account;
 	}
+
 }
