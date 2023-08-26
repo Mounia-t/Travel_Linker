@@ -21,14 +21,12 @@
 <body>
 	<main id="mainContainer">
 		<div id="firstLeftContainer">
-			<h1>Bienvenue sur ma page ! Je suis <h:outputText value="#{loginControllerBean.connectedAccount.firstName}" /></h1>
-			<h3>Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-				Consequatur reiciendis expedita esse fuga autem repellendus, quos
-				nesciunt unde eligendi</h3>
-			<div class="lilContainer" style="background-color: #{templateControllerBean.template.backgroundColor}"></div>
-			<div class="lilContainer1" style="background-color: #{templateControllerBean.template.backgroundColor}"></div>
-			<div class="lilContainer2" style="background-color: #{templateControllerBean.template.backgroundColor}" ></div>
-			<div class="lilContainer3" style="background-color: #{templateControllerBean.template.backgroundColor}"></div>
+			<h1>Je suis Michael Smith</h1>
+			<h3>Bienvenue sur mon espace !</h3>
+			<div class="lilContainer" ></div>
+			<div class="lilContainer1"></div>
+			<div class="lilContainer2" ></div>
+			<div class="lilContainer3" ></div>
 
 		</div>
 		<div id="firstRightContainer">
@@ -60,18 +58,7 @@
 		</div>
 		<f:metadata>
 </f:metadata>
-					<h:form>
-				<h:selectOneMenu value="#{templateControllerBean.selectedColor}">
-					<f:selectItems
-						value="#{templateControllerBean.predefinedColorItems}" var="color"
-						itemValue="#{color.value}" itemLabel="#{color.label}" />
-				</h:selectOneMenu>
 
-				<h:commandButton value="Appliquer la couleur"
-					action="#{templateControllerBean.updateBackgroundColor()}" />
-					
-					
-			</h:form>
 	</main>
 
 	<script src="./js/homeTP.js"></script>
