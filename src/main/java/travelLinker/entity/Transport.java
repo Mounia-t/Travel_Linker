@@ -14,11 +14,8 @@ public class Transport extends Service {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-
-	
 	@ManyToOne
-	@JoinColumn (name = "journey_id_fk")
-
+	@JoinColumn(name = "journey_id_fk")
 	private Journey journey;
 
 	private String modeOfTransport;
