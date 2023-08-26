@@ -45,11 +45,15 @@
 				</a> <a href="#" id="messagesBtn"> <span
 					class="material-icons-sharp"> mail </span>
 					<h3>Messages</h3>
-				</a> 	<h:form>
+				</a> 	<h:commandButton href="HomeTP.xhtml" value="Mon espace"
+							class="noBackgroundLogout" />
+					</h3>
+				</a>
+				<h:form>
 					<a href="#" class="logoutStyle"> <span
 						class="material-icons-sharp"> logout </span>
 						<h3>
-							<h:commandButton value="Déconnexion"
+							<h:commandButton href="signIn.xhtml" value="Deconnexion"
 								action="#{loginControllerBean.logout()}"
 								class="noBackgroundLogout" />
 						</h3>
@@ -1094,8 +1098,10 @@
 			</div>
 			<div class="msgZone">
 				<h2>Message :</h2>
+				<h:form>
 				<h:inputTextarea name="msgZoneTA" id="msgZoneTA" cols="100"
 					rows="13" placeholder="Écrire le corps du message..."></h:inputTextarea>
+					</h:form>
 			</div>
 			<button class="popup-close-btn" id="popupCloseAnswerButton">
 				<span class="material-icons-sharp"> highlight_off </span>
