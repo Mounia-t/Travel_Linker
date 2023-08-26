@@ -171,7 +171,7 @@ public class LoginControllerBean implements Serializable {
 	// Méthode pour se déconnecter, sans invalider la session entière
 	public String logout() {
 		loginDao.logout();
-		return "signIn"; // Rediriger vers la page de connexion
+		return "index.xhtml"; // Rediriger vers la page de connexion
 
 	}
 
