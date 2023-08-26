@@ -38,11 +38,6 @@ public class Journey {
 	@OneToOne
 	@JoinColumn(name = "account_id")
 	private Account account;
-	
-	
-	
-
-
 
 
 	@ElementCollection
