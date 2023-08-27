@@ -42,8 +42,6 @@ public class LoginControllerBean implements Serializable {
 
 	private boolean loggedIn = false;
 
-	@Inject
-	private TemplateControllerBean templateControllerBean;
 
 	public LoginControllerBean() {
 	}
