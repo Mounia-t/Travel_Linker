@@ -41,34 +41,49 @@ public class TemplateControllerBean implements Serializable {
 			new ColorItem("Vert", "#33FF57"), new ColorItem("Coral", "#ff7f50"), new ColorItem("Bleu", "#3357FF"),
 			new ColorItem("Rose", "#FF33F6"), new ColorItem("Orange", "#FF8C33"));
 
+
+	
 	public String updateBackgroundColor() {
-		System.out.println("Mise à jour de la couleur d'arrière-plan: " + selectedColor);
+	    System.out.println("Mise à jour de la couleur d'arrière-plan: " + selectedColor);
 
-		String userEmail = SessionUtils.getAccount().getEmail();
-		if (userEmail == null) {
-			System.err.println("Erreur : Aucun e-mail trouvé dans la session.");
-			return null;
-		}
-		TravelPlanner tp = loginDao.findTravelPlanner(userEmail);
+	    String userEmail = SessionUtils.getAccount().getEmail();
+	    
+	    // Vérifier si l'utilisateur est connecté en tant que travel planner
+	    if (userEmail != null) {
+	        TravelPlanner tp = loginDao.findTravelPlanner(userEmail);
 
-		if (tp == null) {
-			System.err.println("Erreur : Aucun TravelPlanner trouvé pour l'e-mail " + userEmail);
-			return null;
-		}
-		if (tp.getTemplate() == null) {
-			Template newTemplate = new Template();
-			newTemplate.setBackgroundColor(selectedColor);
-			tp.setTemplate(newTemplate);
-			templateDao.CreateTemplate(newTemplate);
-		} else {
-			tp.getTemplate().setBackgroundColor(selectedColor);
-			templateDao.update(tp.getTemplate());
-		}
-		accountDao.updateTravelPlanner(tp);
-		this.template = tp.getTemplate();
-		System.out.println("Fin de la méthode updateBackgroundColor");
-		return "HomeTP?faces-redirect=true";
+	        if (tp == null) {
+	            System.err.println("Erreur : Aucun TravelPlanner trouvé pour l'e-mail " + userEmail);
+	            return null;
+	        }
+
+	        if (tp.getTemplate() == null) {
+	            Template newTemplate = new Template();
+	            newTemplate.setBackgroundColor(selectedColor);
+	            tp.setTemplate(newTemplate);
+	            templateDao.CreateTemplate(newTemplate);
+	        } else {
+	            tp.getTemplate().setBackgroundColor(selectedColor);
+	            templateDao.update(tp.getTemplate());
+	        }
+
+	        accountDao.updateTravelPlanner(tp);
+	        this.template = tp.getTemplate();
+	        System.out.println("Fin de la méthode updateBackgroundColor");
+
+	        return "HomeTP?faces-redirect=true";
+	    }
+	    
+	    // Si l'utilisateur n'est pas connecté, exécuter la logique pour mettre à jour la personnalisation
+	    // pour les autres utilisateurs sans rediriger
+	    Template publicTemplate = new Template();
+	    publicTemplate.setBackgroundColor(selectedColor);
+	    this.template = publicTemplate;
+	    System.out.println("Mise à jour de la personnalisation pour les utilisateurs publics");
+	    
+	    return null;  // Pas de redirection
 	}
+
 
 	public List<ColorItem> getPredefinedColorItems() {
 		return predefinedColorItems;
