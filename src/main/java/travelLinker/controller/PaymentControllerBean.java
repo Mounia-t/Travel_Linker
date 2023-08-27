@@ -69,11 +69,13 @@ private JourneyDao journeyDao;
 			payment.setPaymentStatus(PaymentStatus.FAILED);
 		}
 
+
 		System.out.println("payment stat " + payment.getPaymentStatus());
 
 
 			paymentDao.createPayment(payment);
 		} catch (Exception e) {
+
 			System.out.println("Error");
 			e.printStackTrace();
 		}
