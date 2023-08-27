@@ -57,10 +57,11 @@
 			<div class="image-animation">
 				<img src="#{journeyControllerBean.selectedJourney.imagePath}" />
 				<h:form>
-					<h:commandButton class="btn-home"
-						action="#{journeyControllerBean.reserveAndPayment(selectedJourney.id) }"
-						value="Réserver">
-					</h:commandButton>
+				<h:commandButton class="btn-home"
+    action="#{journeyControllerBean.reserveAndPayment(journeyController.selectedJourney.id)}"
+    value="Réserver">
+</h:commandButton>
+
 				</h:form>
 			</div>
 		</div>
@@ -177,7 +178,7 @@
 				</div>
 			</div>
 
-<<<<<<< HEAD
+
 			<div class="box">
 				<img src="./media/images/Portugal.jpg" alt="" />
 				<div class="content">

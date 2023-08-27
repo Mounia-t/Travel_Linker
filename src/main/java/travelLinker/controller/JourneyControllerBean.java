@@ -13,6 +13,7 @@ import javax.faces.context.FacesContext;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -25,6 +26,7 @@ import travelLinker.entity.Journey;
 import travelLinker.viewModel.JourneyViewModel;
 
 	@ManagedBean
+	@SessionScoped
 	public class JourneyControllerBean  implements Serializable{
 
 		/**
@@ -36,12 +38,16 @@ import travelLinker.viewModel.JourneyViewModel;
 
 		@Inject
 		private JourneyDao journeyDao;
+		@Inject
+		private DashboardController dashController;
 
 		@Lob
 		@Basic(fetch = FetchType.LAZY)
 		@Column(columnDefinition = "BLOB")
 		private Part imageFile;
 		
+		@Inject
+		private PaymentControllerBean payementCB;
 		private Journey selectedJourney;
 		private Journey selectedJourneyForPay;
 
@@ -74,10 +80,11 @@ import travelLinker.viewModel.JourneyViewModel;
 		        }
 
 		   journeyDao.insert(journeyVM);
-
-		    } catch (IOException e) {
-		        e.printStackTrace(); // Gérez l'exception selon vos besoins
-		    }
+		   clear();
+	        dashController.updateLastMainSection("mainManagedResa");
+	    } catch (IOException e) {
+	        e.printStackTrace(); // Gérez l'exception selon vos besoins
+	    }
 		}
 
 		public void clear() {
@@ -153,11 +160,10 @@ import travelLinker.viewModel.JourneyViewModel;
 	        return "produit.xhtml";
 
 	}
-		public String reserveAndPayment(Long journeyId) {
-		    // Utilisez journeyId pour charger le voyage sélectionné
-		    selectedJourney = journeyDao.findJourneyById(journeyId);
-		    System.out.println("ma journey selected " + selectedJourney);
-		    return "PaymentForm.xhtml";
-		}
-
+		  public String reserveAndPayment(Long journeyId) {
+		        selectedJourneyForPay = selectedJourney;
+		        System.out.println("ma journey selected 2" + selectedJourneyForPay);
+		        // Stocker l'ID du voyage dans le contexte de navigation
+		        return "PaymentForm.xhtml";
+		    }
 }

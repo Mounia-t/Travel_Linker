@@ -17,10 +17,16 @@ public class JourneyDao {
 
 	@PersistenceContext
 	private EntityManager entityManager;
+	
 
 	public Long insert(JourneyViewModel journeyVM) {
+
 	    try {
 	        Journey journeybean = new Journey();
+			Account account = SessionUtils.getAccount();
+			Long accountId = account.getId();
+
+			journeybean.setAccount(account);
 	        journeybean.setNumberOfTravellers(journeyVM.getNumberOfTravellers());
 	        journeybean.setPrice(journeyVM.getPrice());
 	        journeybean.setLocation(journeyVM.getLocation());

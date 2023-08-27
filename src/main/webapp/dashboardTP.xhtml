@@ -27,7 +27,7 @@
 		<aside>
 			<div class="toggle">
 				<div class="logo">
-					
+
 
 					<h2></h2>
 				</div>
@@ -59,15 +59,14 @@
 				</a> <a href="#" id="messagesBtn"> <span
 					class="material-icons-sharp"> mail </span>
 					<h3>Messages</h3>
-					
-					</a> <a href="index.xhtml" id="backToHomeBtn"> <span
+
+				</a> <a href="index.xhtml" id="backToHomeBtn"> <span
 					class="material-icons-sharp"> home </span>
 					<h3>
 						<h:commandButton href="index.xhtml" value="Accueil"
 							class="noBackgroundLogout" />
 					</h3>
-				</a>
-				<a href="HomeTP.xhtml" id="backToHomeBtn"> <span
+				</a> <a href="HomeTP.xhtml" id="backToHomeBtn"> <span
 					class="material-icons-sharp"> business </span>
 					<h3>
 						<h:commandButton href="HomeTP.xhtml" value="Mon espace"
@@ -139,38 +138,38 @@
 
 
 
-			
-			
+
+
 
 		</main>
 		<!-- Main Content -->
 		<main id="mainAnalytics" style="display: none;">
 			<h1>Liste des services</h1>
 			<div class="table-container">
-									<h:dataTable value="#{serviceControllerBean.allServices}"
-										var="service" styleClass="table">
+				<h:dataTable value="#{serviceControllerBean.allServices}"
+					var="service" styleClass="table">
 
-										<h:column>
-											<f:facet name="header">Nom du service</f:facet>
+					<h:column>
+						<f:facet name="header">Nom du service</f:facet>
                         #{service.name}
                     </h:column>
 
 
-										<h:column>
-											<f:facet name="header">Description</f:facet>
+					<h:column>
+						<f:facet name="header">Description</f:facet>
                         #{service.description}
                     </h:column>
-										<h:column>
-											<f:facet name="header">Prix</f:facet>
+					<h:column>
+						<f:facet name="header">Prix</f:facet>
                         #{service.price}
                     </h:column>
-                    
-                    <h:column>
-											<f:facet name="header">Type de service</f:facet>
+
+					<h:column>
+						<f:facet name="header">Type de service</f:facet>
                         #{service.type}
                     </h:column>
-									</h:dataTable>
-								</div>
+				</h:dataTable>
+			</div>
 
 		</main>
 		<!-- End of MainAnalytics Content -->
@@ -567,42 +566,43 @@
 					<div id="ListTravelSection">
 
 						<div class="table-container">
-									<h:dataTable value="#{journeyControllerBean.allJourneys}"
-										var="journey" styleClass="table">
-                    
-										<h:column>
-											<f:facet name="header">Nom du voyage</f:facet>
+							<h:dataTable value="#{journeyControllerBean.allJourneys}"
+								var="journey" styleClass="table">
+
+								<h:column>
+									<f:facet name="header">Nom du voyage</f:facet>
                         #{journey.name}
                     </h:column>
 
 
-										<h:column>
-											<f:facet name="header">Pays</f:facet>
+								<h:column>
+									<f:facet name="header">Pays</f:facet>
                         #{journey.country}
                     </h:column>
 
-                    
-                    <h:column>
-											<f:facet name="header">Adresse du voyage</f:facet>
+
+								<h:column>
+									<f:facet name="header">Adresse du voyage</f:facet>
                         #{journey.location}
                     </h:column>
-                    
-                    <h:column>
-											<f:facet name="header">Nombres de voyageurs</f:facet>
+
+								<h:column>
+									<f:facet name="header">Nombres de voyageurs</f:facet>
                         #{journey.numberOfTravellers}
                     </h:column>
-                    
-                    										<h:column>
-											<f:facet name="header">Prix</f:facet>
+
+								<h:column>
+									<f:facet name="header">Prix</f:facet>
                         #{journey.price}
                     </h:column>
-									</h:dataTable>
-								</div>
+							</h:dataTable>
+						</div>
 
 					</div>
 					<div id="createTravelSection" class="flexingManagedResa">
 						<h:form enctype="multipart/form-data">
-							<div class="user-listMessages"><h2>Proposez votre voyage</h2>
+							<div class="user-listMessages">
+								<h2>Proposez votre voyage</h2>
 								<div class="flexingInputManagedResa">
 									<div class="inputFormLabel">
 										<h:outputLabel value="Pays" styleClass="placeholder label" />
@@ -616,7 +616,7 @@
 											required="true" class="inputForm" />
 									</div>
 								</div>
-								
+
 								<div class="flexingInputManagedResa">
 									<div class="inputFormLabel">
 										<h:outputLabel value="Adresse" styleClass="placeholder label" />
@@ -673,11 +673,14 @@
 										<!-- Nom du restaurant -->
 
 										<h:column>
-											<f:facet name="header">Nom du service</f:facet>
-                        #{service.name}
+											<f:facet name="header">Type du service</f:facet>
+                        #{service.type}
                     </h:column>
 
-
+		<h:column>
+											<f:facet name="header">Nom de service</f:facet>
+                        #{service.name}
+                    </h:column>
 										<h:column>
 											<f:facet name="header">Description</f:facet>
                         #{service.description}
@@ -686,141 +689,29 @@
 											<f:facet name="header">Prix</f:facet>
                         #{service.price}
                     </h:column>
-                    
-                    <h:column>
-											<f:facet name="header">Type de service</f:facet>
-                        #{service.type}
-                    </h:column>
-                    <h:column>
-											<f:facet name="header">Ajouter</f:facet>
-                        <h:selectBooleanCheckbox />
-                    </h:column>
+
+								
+										<h:column>
+											<f:facet name="header"></f:facet>
+											<h:commandButton action="Ajouter" value="#{journeyControllerBean.selectedService}" />
+										</h:column>
 									</h:dataTable>
 								</div>
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> e843cee94b70d68826b8e7cf679b1299bc864e41
-								<div class="radio-inputs">
-									<label class="radio"> <input type="radio" name="radio"
-										id="rbRestTable" /> <span class="name">Restaurant</span>
-									</label> <label class="radio"> <input type="radio" name="radio"
-										id="rbAccomoTable" /> <span class="name">Hébergement</span>
-									</label> <label class="radio"> <input type="radio" name="radio"
-										id="rbTransTable" /> <span class="name">Transport</span>
-									</label>
+								<div class="form-group">
+									<h:commandButton action="#{journeyControllerBean.clear()}"
+										value="Vider les champs" class="createAdmin" />
 								</div>
 
-								<h:form>
-									<div class="table-container" id="restTable">
-
-										<table class="createServicesTable">
-											<thead>
-												<tr>
-													<th>Nom du restaurant</th>
-													<th>Type de restaurant</th>
-													<th>Description</th>
-													<th>Prix</th>
-													<th>Action</th>
-												</tr>
-											</thead>
-											<tbody>
-												<ui:repeat value="#{serviceControllerBean.restaurants}"
-													var="restaurant">
-													<tr>
-														<td>#{restaurant.name}</td>
-														<td>#{restaurant.type}</td>
-														<td>#{restaurant.description}</td>
-														<td>#{restaurant.price}</td>
-														<td><h:inputHidden value="#{restaurant.id}" /></td>
-														<td><h:commandButton value="Add"
-																action="#{serviceControllerBean.prepareToAddService(restaurant.id)}">
-															</h:commandButton></td>
-
-													</tr>
-												</ui:repeat>
-
-											</tbody>
-										</table>
-
-									</div>
-								</h:form>
-								<div class="table-container" id="accomoTable">
-									<table class="createServicesTable">
-										<thead>
-											<tr>
-												<th>Nom de l'hébergement</th>
-												<th>Type d'hébergement</th>
-												<th>Description</th>
-												<th>Prix</th>
-												<th>Action</th>
-											</tr>
-										</thead>
-										<tbody>
-											<ui:repeat value="#{serviceControllerBean.accomodations}"
-												var="accomodation">
-												<tr>
-													<td>#{accomodation.name}</td>
-													<td>#{accomodation.type}</td>
-													<td>#{accomodation.description}</td>
-													<td>#{accomodation.price}</td>
-													<td><h:selectBooleanCheckbox
-															styleClass="material-icons-sharp edit">
-															<f:ajax event="change"
-																listener="#{serviceControllerBean.setRestaurantVm(restaurant)}"
-																render=":editFormRestaurant" />
-														</h:selectBooleanCheckbox></td>
-												</tr>
-											</ui:repeat>
-										</tbody>
-									</table>
+								<div>
+									<h:commandButton action="#{journeyControllerBean.addJourney()}"
+										value="Créer un voyage" class="createAdmin" />
 								</div>
-
-								<div class="table-container" id="transTable">
-									<table class="createServicesTable">
-										<thead>
-											<tr>
-												<th>Nom du transporteur</th>
-												<th>Type de transport</th>
-												<th>Description</th>
-												<th>Prix</th>
-												<th>Action</th>
-											</tr>
-										</thead>
-										<tbody>
-											<ui:repeat value="#{serviceControllerBean.transports}"
-												var="transport">
-												<tr>
-													<td>#{transport.name}</td>
-													<td>#{transport.type}</td>
-													<td>#{transport.description}</td>
-													<td>#{transport.price}</td>
-													<td><h:selectBooleanCheckbox
-															styleClass="material-icons-sharp ">
-														</h:selectBooleanCheckbox></td>
-												</tr>
-											</ui:repeat>
-										</tbody>
-									</table>
-								</div>
-
-
-
-							<div class="form-group">
-								<h:commandButton action="#{journeyControllerBean.clear()}"
-									value="Vider les champs" class="createAdmin" />
-									</div>
-
-<div>
-								<h:commandButton action="#{journeyControllerBean.addJourney()}"
-									value="Créer un voyage" class="createAdmin" />
 							</div>
-							</div>
-							
+
 						</h:form>
-					
+
 					</div>
 				</div>
 

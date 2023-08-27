@@ -8,12 +8,17 @@ import java.util.Date;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import travelLinker.dao.CartDao;
+import travelLinker.dao.JourneyDao;
 import travelLinker.dao.PaymentDao;
+import travelLinker.entity.Account;
+import travelLinker.entity.Journey;
 import travelLinker.entity.Payment;
 import travelLinker.entity.PaymentStatus;
+import travelLinker.utils.SessionUtils;
 
 @ManagedBean
 @SessionScoped
@@ -32,15 +37,19 @@ public class PaymentControllerBean implements Serializable {
 
 	@Inject
 	private SubscriptionController subscriptionController;
-
+	@Inject
+	private JourneyDao journeyDao;
 	@Inject
 	private Payment payment;
 
 	private Long cartId;
 
 	private String ownerName;
+	private Journey selectedJourneyForPay;
 
-	public void makePayment() {
+  
+	public void makePayment( ) {
+		
 		System.out.println("paymentDao: " + paymentDao);
 		System.out.println("payment: " + payment);
 		System.out.println("subscriptionController: " + subscriptionController);
@@ -48,7 +57,11 @@ public class PaymentControllerBean implements Serializable {
 		float totalAmount = 0.0f;
 		payment.setAmount(totalAmount);
 		payment.setPaymentDate(new Date());
-
+		Account account=SessionUtils.getAccount();
+		payment.setAccount(account); 
+		 Long selectedJourneyId = getSelectedJourneyForPay().getId();
+		    selectedJourneyForPay = journeyDao.findJourneyById(selectedJourneyId);
+		    payment.setJourney(selectedJourneyForPay);
 		System.out.println("ici les details " + payment.getAmount() + payment.getCardDate());
 
 		if (processPayment(payment.getCardNumber(), payment.getCardDate(), totalAmount)) {
@@ -128,5 +141,12 @@ public class PaymentControllerBean implements Serializable {
 	public void setOwnerName(String ownerName) {
 		this.ownerName = ownerName;
 	}
+	  public Journey getSelectedJourneyForPay() {
+	        return selectedJourneyForPay;
+	    }
+
+	    public void setSelectedJourneyForPay(Journey selectedJourneyForPay) {
+	        this.selectedJourneyForPay = selectedJourneyForPay;
+	    }
 
 }

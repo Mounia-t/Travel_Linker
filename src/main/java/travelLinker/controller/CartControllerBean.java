@@ -42,7 +42,7 @@ public class CartControllerBean implements Serializable {
 		item.setItemType(itemViewModel.getItemType());
 
 		if (itemViewModel.getJourneyId() != null) {
-			item.setJourney(journeyDao.findByIdJourney(itemViewModel.getJourneyId()));
+			item.setJourney(journeyDao.findJourneyById(itemViewModel.getJourneyId()));
 		}
 		if (itemViewModel.getAccomodationId() != null) {
 			item.setAccomodation(serviceDao.findByIdAccomodation(itemViewModel.getAccomodationId()));
