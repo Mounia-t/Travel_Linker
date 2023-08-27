@@ -2,6 +2,7 @@ package travelLinker.entity;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -11,7 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+
 import javax.persistence.OneToMany;
+
 
 @Entity
 public class Payment {
@@ -35,7 +38,7 @@ public class Payment {
 
 	@ManyToOne
 	@JoinColumn(name = "travelPlanner_id_fk")
-	private TravelPlanner travelPlannerId;
+	private TravelPlanner travelPlanner;
 
 	@ManyToOne
 	@JoinColumn(name = "cart_id_fk")
@@ -48,6 +51,18 @@ public class Payment {
 
 	@Enumerated(EnumType.STRING)
 	private PaymentStatus paymentStatus;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "subscription_id_fk")
+	private Subscription subscription;
+
+	public Subscription getSubscription() {
+		return subscription;
+	}
+
+	public void setSubscription(Subscription subscription) {
+		this.subscription = subscription;
+	}
 
 	private float amount;
 
@@ -107,12 +122,12 @@ public class Payment {
 		this.partnerId = partnerId;
 	}
 
-	public TravelPlanner getTravelPlannerId() {
-		return travelPlannerId;
+	public TravelPlanner getTravelPlanner() {
+		return travelPlanner;
 	}
 
-	public void setTravelPlannerId(TravelPlanner travelPlannerId) {
-		this.travelPlannerId = travelPlannerId;
+	public void setTravelPlanner(TravelPlanner travelPlanner) {
+		this.travelPlanner = travelPlanner;
 	}
 
 	public Cart getCart() {
@@ -174,7 +189,7 @@ public class Payment {
 		builder.append(", partnerId=");
 		builder.append(partnerId);
 		builder.append(", travelPlannerId=");
-		builder.append(travelPlannerId);
+		builder.append(travelPlanner);
 		builder.append(", cart=");
 		builder.append(cart);
 		builder.append(", paymentStatus=");

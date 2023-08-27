@@ -46,28 +46,35 @@ public class AccountControllerBean implements Serializable {
 		accountVM = new AccountViewModel();
 	}
 
-//	public String addTravelP() {
-//		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-//		TravelPlanner createdTravelPlanner = accountDao.createTravelPlanner(accountVM, externalContext);
-//		accountVM = new AccountViewModel(); // Clear the accountVM
-//		return null; // Return null to indicate that navigation is handled externally
-//	}
-
 	public String addTravelP() {
-		try {
-
-			TravelPlanner createdTravelPlanner = accountDao.createTravelPlanner(accountVM);
-
-			accountVM = new AccountViewModel(); // Clear the accountVM
-
-			ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-			externalContext.redirect("SubscriptionTP.xhtml");
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null; // Return null as the redirection is handled in the method
+		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+		TravelPlanner createdTravelPlanner = accountDao.createTravelPlanner(accountVM, externalContext);
+		accountVM = new AccountViewModel(); // Clear the accountVM
+		return null; // Return null to indicate that navigation is handled externally
 	}
+
+//	public String addTravelP() {
+//		try {
+//
+//			TravelPlanner createdTravelPlanner = accountDao.createTravelPlanner(accountVM);
+//
+//			if (createdTravelPlanner != null && createdTravelPlanner.getAccount() != null) {
+//				HttpSession session = SessionUtils.getSession();
+//				session.setAttribute("loggedInUser", createdTravelPlanner.getAccount());
+//				session.setAttribute("currentTravelPlanner", createdTravelPlanner);
+//
+//				loggedIn = true;
+//
+//				ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+//				externalContext.redirect("SubscriptionTP.xhtml");
+//			} else {
+//				System.out.println("Error: TravelPlanner  not be created.");
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return null;
+//	}
 
 //---------------------------------------------------	
 	public void deleteAccount() {

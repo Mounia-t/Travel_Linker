@@ -1,9 +1,7 @@
 package travelLinker.controller;
 
 import java.io.Serializable;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -15,8 +13,10 @@ import javax.inject.Inject;
 import travelLinker.dao.CartDao;
 import travelLinker.dao.JourneyDao;
 import travelLinker.dao.PaymentDao;
+
 import travelLinker.entity.Account;
 import travelLinker.entity.Journey;
+
 import travelLinker.entity.Payment;
 import travelLinker.entity.PaymentStatus;
 import travelLinker.utils.SessionUtils;
@@ -49,6 +49,7 @@ private JourneyDao journeyDao;
 	private String ownerName;
 	private Journey selectedJourney;
 
+
   
 	public void makePayment() {
 		Payment payment =new Payment();
@@ -70,10 +71,13 @@ private JourneyDao journeyDao;
 
 		System.out.println("payment stat " + payment.getPaymentStatus());
 
-		if (payment.getPaymentStatus() == PaymentStatus.PAID) {
-			subscriptionController.createSubscriptionForTravelPlanner();
+
 			paymentDao.createPayment(payment);
+		} catch (Exception e) {
+			System.out.println("Error");
+			e.printStackTrace();
 		}
+
 
 		System.out.println("apres persistence: " + payment);
 	
@@ -84,6 +88,7 @@ private JourneyDao journeyDao;
 		paymentDao.makeReservationPayment();
 		System.out.println("ma journey dans payment reserve " + selectedJourney);
 		return "index.xhtml";
+
 	}
 
 	
@@ -140,6 +145,7 @@ private JourneyDao journeyDao;
 	public void setOwnerName(String ownerName) {
 		this.ownerName = ownerName;
 	}
+
 	  public Journey getSelectedJourney() {
 	        return selectedJourney;
 	    }
@@ -187,3 +193,15 @@ private JourneyDao journeyDao;
 		
 	}
 	
+
+
+	public Journey getSelectedJourneyForPay() {
+		return selectedJourneyForPay;
+	}
+
+	public void setSelectedJourneyForPay(Journey selectedJourneyForPay) {
+		this.selectedJourneyForPay = selectedJourneyForPay;
+	}
+
+}
+

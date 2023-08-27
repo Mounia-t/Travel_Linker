@@ -244,7 +244,7 @@ header .navigation .navigation-items a:hover:before{
 
 /* Stylisation de l'image dans la section home */
 .content-image-home {
-  width: 50%;
+  width: 80%;
   text-align: right;
   padding-right: 50px; /* Espacement de l'image par rapport au contenu textuel */
 }

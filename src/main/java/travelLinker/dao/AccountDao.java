@@ -67,7 +67,7 @@ public class AccountDao {
 		return customer;
 	}
 
-	public TravelPlanner createTravelPlanner(AccountViewModel accountVM) {
+	public TravelPlanner createTravelPlanner(AccountViewModel accountVM, ExternalContext externalContext) {
 
 		TravelPlanner travelPlanner = new TravelPlanner();
 		travelPlanner.setEmail(accountVM.getEmail());
@@ -77,7 +77,6 @@ public class AccountDao {
 		travelPlanner.setSiret(accountVM.getSiret());
 		travelPlanner.setAddress(accountVM.getAddress());
 		travelPlanner.setCompanyName(accountVM.getCompanyName());
-		travelPlanner.setRegistrationDate(new Date());
 
 		Account accountbean = createAccount(accountVM);
 		accountbean.setRole(RoleUser.TravelPlanner);
@@ -86,12 +85,20 @@ public class AccountDao {
 		entityManager.persist(travelPlanner); // Persist the entity
 		entityManager.flush();
 
+		try {
+			// Redirect to subscriptionTP.xhtml
+			externalContext.redirect("index.xhtml");
+		} catch (IOException e) {
+			// Handle the exception if redirection fails
+			e.printStackTrace();
+		}
+
 		return travelPlanner;
 
 	}
 
-	public void updateTravelPlanner(TravelPlanner travelPlanner) {
-		entityManager.merge(travelPlanner);
+	public void updateTravelPlanner(TravelPlanner tp) {
+		entityManager.merge(tp);
 	}
 
 	public Partner createPartner(AccountViewModel accountVM, ExternalContext externalContext) {

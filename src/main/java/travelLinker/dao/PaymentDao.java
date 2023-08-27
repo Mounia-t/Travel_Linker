@@ -11,12 +11,16 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+
 import travelLinker.entity.Account;
 import travelLinker.entity.Journey;
 import travelLinker.entity.Payment;
 import travelLinker.entity.PaymentStatus;
 import travelLinker.utils.SessionUtils;
 import travelLinker.viewModel.PaymentViewModel;
+
+
+
 
 @Stateless
 public class PaymentDao {
@@ -28,6 +32,7 @@ public class PaymentDao {
 	private Journey selectedJourney;
 	private PaymentViewModel PVM = new PaymentViewModel();
 
+
 	public Long createPayment(Payment payment) {
 		try {
 			entityManager.persist(payment);
@@ -37,6 +42,7 @@ public class PaymentDao {
 			e.printStackTrace(); // Affiche l'erreur pour un diagnostic
 			throw e; // Relance l'erreur pour informer l'appelant qu'une erreur s'est produite
 		}
+
 	}
 
 	public void makeReservationPayment() {
@@ -74,6 +80,7 @@ public class PaymentDao {
 	public void updatePayment(Payment payment) {
 		entityManager.merge(payment);
 	}
+
 	
 	
 	public List<Payment> getReservations() {
@@ -100,3 +107,4 @@ public class PaymentDao {
 
 
 }
+
