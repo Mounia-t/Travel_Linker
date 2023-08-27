@@ -30,7 +30,8 @@ import travelLinker.viewModel.AccountViewModel;
 @ManagedBean
 @SessionScoped
 
-
+//Serializable : les instances de cette classe peuvent être sérialisées 
+//(converties en un flux d'octets) pour être stockées dans un flux, tel qu'une session HTTP.
 public class LoginControllerBean implements Serializable {
 
 	// Attributs
@@ -42,6 +43,8 @@ public class LoginControllerBean implements Serializable {
 
 	private boolean loggedIn = false;
 
+	@Inject
+	private TemplateControllerBean templateControllerBean;
 
 	public LoginControllerBean() {
 	}
@@ -148,7 +151,7 @@ public class LoginControllerBean implements Serializable {
 
 		if (account == null) {
 			// Aucun compte trouvé, rediriger vers une page appropriée
-			return "signIn.xhtml"; 
+			return "signIn.xhtml"; // Remplacez "noAccountPage.xhtml" par la page de votre choix
 		}
 
 		RoleUser role = account.getRole();
@@ -163,13 +166,13 @@ public class LoginControllerBean implements Serializable {
 		}
 
 		// Si aucun rôle valide n'est trouvé, rediriger vers une page appropriée
-		return "signIn.xhtml"; 
+		return "signIn.xhtml"; // Remplacez "defaultPage.xhtml" par la page de votre choix
 	}
 
 	// Méthode pour se déconnecter, sans invalider la session entière
 	public String logout() {
 		loginDao.logout();
-		return "index.xhtml"; // Rediriger vers la page de connexion
+		return "signIn"; // Rediriger vers la page de connexion
 
 	}
 
