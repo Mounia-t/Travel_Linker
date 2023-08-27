@@ -40,23 +40,30 @@
 
 	<main id="mainContainerSecond">
 		<div class="scrollContainer">
+			
 			<ui:repeat value="#{journeyControllerBean.allJourneys}" var="journey">
 				<div class="tPCard">
-					<img src="./media/images/bosnia-2058087_1920.jpg" alt=""
-						class="imgTravelCard"/>
+					<img src="#{journey.imagePath}"/>
 					<div class="infoTPCard">
 						<h2>#{journey.name}</h2>
 						<h3>#{journey.country}</h3>
+						<h:inputHidden value="#{journeyControllerBean.selectedJourney.id}" />
+						
 					</div>
+
+				<h:form>
+					<h:commandButton value="Réserver" class="resaBtn" 
+					action="#{journeyControllerBean.reserveAndRedirect(journey.id)}"></h:commandButton>
+					</h:form>
+
 					<div class="infoSupTPCard">
-						<h3>Voici du détail</h3>
-						<h4>Encore du détail</h4>
+						
 						<h4>Encore du détail</h4>
 					</div>
-					<h:form>
-					<h:commandButton value="Réserver" class="resaBtn"></h:commandButton></h:form>
+			
 				</div>
 			</ui:repeat>
+		
 		</div>
 		<f:metadata>
 </f:metadata>

@@ -5,7 +5,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
+import travelLinker.entity.Account;
 import travelLinker.entity.Payment;
+import travelLinker.utils.SessionUtils;
 
 @Stateless
 public class PaymentDao {
@@ -15,6 +17,7 @@ public class PaymentDao {
 
 	public Long createPayment(Payment payment) {
 		try {
+			
 			entityManager.persist(payment);
 			entityManager.flush(); // Ceci force la synchronisation avec la base de données
 			return payment.getId();

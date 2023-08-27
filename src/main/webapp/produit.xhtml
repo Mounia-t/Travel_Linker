@@ -1,35 +1,32 @@
 <!DOCTYPE html>
-<html lang="fr"
-xmlns="http://www.w3.org/1999/xhtml"
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:c="http://java.sun.com/jsp/jstl/core">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Lien vers la feuille de style -->
+<!-- Lien vers la feuille de style -->
 
-    <link rel="stylesheet" href="./css/produit.css" />
+<link rel="stylesheet" href="./css/produit.css" />
 
-    <!-- Lien vers la bibliothèque FONT AWESOME -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
-    />
-    <title>Page Produit</title>
-  </head>
-  <body>
+<!-- Lien vers la bibliothèque FONT AWESOME -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
+<title>Page Produit</title>
+</head>
+<body>
 
-		<header>
+<header>
 		<a href="index.xhtml" class="brand">Travel linker</a>
 		<div class="menu-btn"></div>
 		<!-- Bouton de menu (hamburger) -->
 		<div class="navigation">
 			<div class="navigation-items">
+
 				<a href="index.xhtml">Accueil</a> <a href="categorie.xhtml">Nos
 					voyages</a> <a href="CategorieTP.xhtml">Nos travels planners</a> <a
 					href="#{loginControllerBean.changeRoleDashboard()}">Mon profil</a><a
@@ -40,157 +37,168 @@ xmlns="http://www.w3.org/1999/xhtml"
 	</header>
 
 
-    <!-- Début home  -->
+	<!-- Début home  -->
 
-    <section class="home-section">
-      <div class="home-content">
-        <div class="text-animation">
-          <h1>Venez Découvrir la CROATIE !</h1>
-          <p>
-Découvrez la Croatie, un joyau de l'Europe méridionale, avec ses côtes magnifiques le long de la mer Adriatique, ses villes historiques, ses parcs naturels préservés et son mélange unique de culture méditerranéenne. 
-Explorez ses îles pittoresques, ses plages ensoleillées et son riche patrimoine historique pour une expérience de voyage inoubliable.</p>
-          <span>à partir de €250</span>
-        </div>
-        <div class="image-animation">
-          <img src="./media/images/Croatie.jpg" alt="Voyage" />
-          <button class="btn-home">Réserver</button>
-        </div>
-      </div>
-    </section>
+	<section class="home-section">
+		<div class="home-content">
+			<div class="text-animation">
+				<h1>#{journeyControllerBean.selectedJourney.name}</h1>
+				<h1>#{journeyControllerBean.selectedJourney.country}</h1>
+				<h1>
+					<STRONG>Date:</STRONG>
+				</h1>
+				<h2>De: #{journeyControllerBean.selectedJourney.startDate}</h2>
+				<h2>A: #{journeyControllerBean.selectedJourney.startDate}</h2>
 
-    <!-- Fin home  -->
-    <!-- Début package  -->
 
-    <section class="packages" id="packages">
-      <div class="title-packages">
-        <h1>mes <span>voyages</span></h1>
-      </div>
+				<p>#{journeyControllerBean.selectedJourney.description}</p>
+				<span>à partir de
+					#{journeyControllerBean.selectedJourney.price}</span>
+			</div>
+			<div class="image-animation">
+				<img src="#{journeyControllerBean.selectedJourney.imagePath}" />
+				<h:form>
+				<h:commandButton class="btn-home"
+    action="#{journeyControllerBean.reserveAndPayment(journeyController.selectedJourney.id)}"
+    value="Réserver">
+</h:commandButton>
 
-      <div class="box-container">
-        <div class="box">
-          <img src="./media/images/Turquie.jpg" alt="" />
-          <div class="content">
-            <h3><i class="fas fa-map-marker-alt"></i> Turquie</h3>
-            <p>
-              "Découvrez la Turquie envoûtante : mélange unique de cultures,
-              histoire riche, paysages variés et hospitalité chaleureuse."
-            </p>
-            <div class="stars">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-            </div>
-            <div class="price">€90.00 <span>€120.00</span></div>
-            <a href="#" class="btn-package">Réserver</a>
-          </div>
-        </div>
+				</h:form>
+			</div>
+		</div>
+	</section>
 
-        <div class="box">
-          <img src="./media/images/Angleterre.jpg" alt="" />
-          <div class="content">
-            <h3><i class="fas fa-map-marker-alt"></i> Angleterre</h3>
-            <p>
-              "Explorez l'Angleterre fascinante : entre tradition royale, charme
-              urbain, campagne pittoresque et culture captivante."
-            </p>
-            <div class="stars">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="far fa-star"></i>
-            </div>
-            <div class="price">€140.00 <span>€180.00</span></div>
-            <a href="#" class="btn-package">Réserver</a>
-          </div>
-        </div>
+	<!-- Fin home  -->
+	<!-- Début package  -->
 
-        <div class="box">
-          <img src="./media/images/Espagne.jpg" alt="" />
-          <div class="content">
-            <h3><i class="fas fa-map-marker-alt"></i> Espagne</h3>
-            <p>
-              "Vivez l'Espagne passionnante : plages ensoleillées, gastronomie
-              exquise, patrimoine historique et ambiance festive inoubliable."
-            </p>
-            <div class="stars">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="far fa-star"></i>
-            </div>
-            <div class="price">€100.00 <span>€130.00</span></div>
-            <a href="#" class="btn-package">Réserver</a>
-          </div>
-        </div>
+	<section class="packages" id="packages">
+		<div class="title-packages">
+			<h1>
+				mes <span>packages</span>
+			</h1>
+		</div>
 
-        <div class="box">
-          <img src="./media/images/Luxembourg.jpg" alt="" />
-          <div class="content">
-            <h3><i class="fas fa-map-marker-alt"></i> Luxembourg</h3>
-            <p>
-              "Découvrez le Luxembourg : mélange cosmopolite, histoire
-              médiévale, modernité financière et charme pittoresque enchanteur."
-            </p>
-            <div class="stars">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-            </div>
-            <div class="price">€95.00</div>
-            <a href="#" class="btn-package">Réserver</a>
-          </div>
-        </div>
+		<div class="box-container">
+			<div class="box">
+				<img src="./media/images/Turquie.jpg" alt="" />
+				<div class="content">
+					<h3>
+						<i class="fas fa-map-marker-alt"></i> Turquie
+					</h3>
+					<p>"Découvrez la Turquie envoûtante : mélange unique de
+						cultures, histoire riche, paysages variés et hospitalité
+						chaleureuse."</p>
+					<div class="stars">
+						<i class="fas fa-star"></i> <i class="fas fa-star"></i> <i
+							class="fas fa-star"></i> <i class="fas fa-star"></i> <i
+							class="fas fa-star"></i>
+					</div>
+					<div class="price">
+						€90.00 <span>€120.00</span>
+					</div>
+					<a href="#" class="btn-package">Réserver</a>
+				</div>
+			</div>
 
-        <div class="box">
-          <img src="./media/images/Norvege.jpg" alt="" />
-          <div class="content">
-            <h3><i class="fas fa-map-marker-alt"></i> Norvège</h3>
-            <p>
-              "Plongez dans la Norvège spectaculaire : fjords majestueux,
-              aurores boréales, nature sauvage et culture nordique captivante."
-            </p>
-            <div class="stars">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-            </div>
-            <div class="price">€200.00</div>
-            <a href="#" class="btn-package">Réserver</a>
-          </div>
-        </div>
+			<div class="box">
+				<img src="./media/images/Angleterre.jpg" alt="" />
+				<div class="content">
+					<h3>
+						<i class="fas fa-map-marker-alt"></i> Angleterre
+					</h3>
+					<p>"Explorez l'Angleterre fascinante : entre tradition royale,
+						charme urbain, campagne pittoresque et culture captivante."</p>
+					<div class="stars">
+						<i class="fas fa-star"></i> <i class="fas fa-star"></i> <i
+							class="fas fa-star"></i> <i class="fas fa-star"></i> <i
+							class="far fa-star"></i>
+					</div>
+					<div class="price">
+						€140.00 <span>€180.00</span>
+					</div>
+					<a href="#" class="btn-package">Réserver</a>
+				</div>
+			</div>
 
-        <div class="box">
-          <img src="./media/images/Portugal.jpg" alt="" />
-          <div class="content">
-            <h3><i class="fas fa-map-marker-alt"></i> Portugal</h3>
-            <p>
-              "Explorez le Portugal authentique : côtes ensoleillées, cuisine
-              savoureuse et atmosphère chaleureuse accueillante."
-            </p>
-            <div class="stars">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-            </div>
-            <div class="price">€100.00</div>
-            <a href="#" class="btn-package">Réserver</a>
-          </div>
-        </div>
-      </div>
-    </section>
+			<div class="box">
+				<img src="./media/images/Espagne.jpg" alt="" />
+				<div class="content">
+					<h3>
+						<i class="fas fa-map-marker-alt"></i> Espagne
+					</h3>
+					<p>"Vivez l'Espagne passionnante : plages ensoleillées,
+						gastronomie exquise, patrimoine historique et ambiance festive
+						inoubliable."</p>
+					<div class="stars">
+						<i class="fas fa-star"></i> <i class="fas fa-star"></i> <i
+							class="fas fa-star"></i> <i class="fas fa-star"></i> <i
+							class="far fa-star"></i>
+					</div>
+					<div class="price">
+						€100.00 <span>€130.00</span>
+					</div>
+					<a href="#" class="btn-package">Réserver</a>
+				</div>
+			</div>
 
-    <!-- Fin Package  -->
-    <!-- Début Service -->
+			<div class="box">
+				<img src="./media/images/Luxembourg.jpg" alt="" />
+				<div class="content">
+					<h3>
+						<i class="fas fa-map-marker-alt"></i> Luxembourg
+					</h3>
+					<p>"Découvrez le Luxembourg : mélange cosmopolite, histoire
+						médiévale, modernité financière et charme pittoresque enchanteur."
+					</p>
+					<div class="stars">
+						<i class="fas fa-star"></i> <i class="fas fa-star"></i> <i
+							class="fas fa-star"></i> <i class="fas fa-star"></i> <i
+							class="fas fa-star"></i>
+					</div>
+					<div class="price">€95.00</div>
+					<a href="#" class="btn-package">Réserver</a>
+				</div>
+			</div>
+
+			<div class="box">
+				<img src="./media/images/Norvege.jpg" alt="" />
+				<div class="content">
+					<h3>
+						<i class="fas fa-map-marker-alt"></i> Norvège
+					</h3>
+					<p>"Plongez dans la Norvège spectaculaire : fjords majestueux,
+						aurores boréales, nature sauvage et culture nordique captivante."
+					</p>
+					<div class="stars">
+						<i class="fas fa-star"></i> <i class="fas fa-star"></i> <i
+							class="fas fa-star"></i> <i class="fas fa-star"></i> <i
+							class="fas fa-star"></i>
+					</div>
+					<div class="price">€200.00</div>
+					<a href="#" class="btn-package">Réserver</a>
+				</div>
+			</div>
+
+
+			<div class="box">
+				<img src="./media/images/Portugal.jpg" alt="" />
+				<div class="content">
+					<h3>
+						<i class="fas fa-map-marker-alt"></i> Portugal
+					</h3>
+					<p>"Explorez le Portugal authentique : côtes ensoleillées,
+						cuisine savoureuse et atmosphère chaleureuse accueillante."</p>
+					<div class="stars">
+						<i class="fas fa-star"></i> <i class="fas fa-star"></i> <i
+							class="fas fa-star"></i> <i class="fas fa-star"></i> <i
+							class="fas fa-star"></i>
+					</div>
+					<div class="price">€100.00</div>
+					<a href="#" class="btn-package">Réserver</a>
+				</div>
+			</div>
+		</div>
+	</section>
 
     <section class="service">
       <div class="title-service">
@@ -244,114 +252,167 @@ Explorez ses îles pittoresques, ses plages ensoleillées et son riche patrimoin
       </div>
     </section>
 
-    <!-- Fin Service -->
-    <!-- Début contact  -->
 
-    <section class="contact" id="contact">
-      <div class="title-contact">
-        <h1>mon <span>contact</span></h1>
-      </div>
+	<!-- Fin Package  -->
+	<!-- Début Service -->
 
-      <div class="row">
-        <div class="image">
-          <img src="./media/images/planner2.jpg" alt="" />
-          <a href="#" class="btn-contact-image">www.samtravel.com</a>
-        </div>
+	<section class="service">
+		<div class="title-service">
+			<h1>
+				Services <span>annexes</span>
+			</h1>
+		</div>
+		<div class="card-container-service">
+			<div class="card-service">
+				<div class="card-background-service"
+					style="background-image: url(./media/images/hotel.jpg)"></div>
+				<div class="content-service">
+					<div class="card-category-service">Hôtel</div>
+					<h3 class="card-heading-service">Villa Kate Dadic</h3>
+					<a href="#" class="btn-service">Réserver</a>
+				</div>
+			</div>
+			<div class="card-service">
+				<div class="card-background-service"
+					style="background-image: url(./media/images/restaurant.jpg)"></div>
+				<div class="content-service">
+					<div class="card-category-service">Restaurant</div>
+					<h3 class="card-heading-service">Konoba Dubrava</h3>
+					<a href="#" class="btn-service">Réserver</a>
+				</div>
+			</div>
+			<div class="card-service">
+				<div class="card-background-service"
+					style="background-image: url(./media/images/location.jpg)"></div>
+				<div class="content-service">
+					<div class="card-category-service">Location</div>
+					<h3 class="card-heading-service">Enterprise</h3>
+					<a href="#" class="btn-service">Réserver</a>
+				</div>
+			</div>
+			<div class="card-service">
+				<div class="card-background-service"
+					style="background-image: url(./media/images/canoe.jpg)"></div>
+				<div class="content-service">
+					<div class="card-category-service">Activité</div>
+					<h3 class="card-heading-service">Fun and Sea</h3>
+					<a href="#" class="btn-service">Réserver</a>
+				</div>
+			</div>
+		</div>
+	</section>
 
-        <form action="">
-          <div class="inputBox">
-            <input type="text" placeholder="Nom" />
-            <input type="email" placeholder="Email" />
-          </div>
-          <div class="inputBox">
-            <input type="text" placeholder="Numéro de téléphone" />
-            <input type="text" placeholder="Sujet" />
-          </div>
-          <textarea
-            placeholder="message"
-            name=""
-            id=""
-            cols="30"
-            rows="10"
-          ></textarea>
-          <input
-            type="submit"
-            class="btn-contact"
-            value=" Envoyer le message  "
-          />
-        </form>
-      </div>
-    </section>
+	<!-- Fin Service -->
+	<!-- Début contact  -->
 
-    <!-- Fin contact -->
+	<section class="contact" id="contact">
+		<div class="title-contact">
+			<h1>
+				mon <span>contact</span>
+			</h1>
+		</div>
 
-    <!--Début du footer-->
+		<div class="row">
+			<div class="image">
+				<img src="./media/images/planner2.jpg" alt="" /> <a href="#"
+					class="btn-contact-image">www.samtravel.com</a>
+			</div>
 
-    <div class="footer">
-      <div class="logo-footer">
-        <img src="./media/images/logoTravelLinker2.png" alt="Logo-footer" />
-        <div class="social-icons-footer">
-          <div class="social-icon"><i class="fab fa-facebook-f"></i></div>
-          <div class="social-icon"><i class="fab fa-instagram"></i></div>
-          <div class="social-icon"><i class="fab fa-twitter"></i></div>
-        </div>
-      </div>
+			<form action="">
+				<div class="inputBox">
+					<input type="text" placeholder="Nom" /> <input type="email"
+						placeholder="Email" />
+				</div>
+				<div class="inputBox">
+					<input type="text" placeholder="Numéro de téléphone" /> <input
+						type="text" placeholder="Sujet" />
+				</div>
+				<textarea placeholder="message" name="" id="" cols="30" rows="10"></textarea>
+				<input type="submit" class="btn-contact"
+					value=" Envoyer le message  " />
+			</form>
+		</div>
+	</section>
 
-      <div class="quick-links">
-        <div class="quick-links-title">Liens</div>
-        <div class="quick-link">
-          <div class="link-text">Accueil</div>
-        </div>
-        <div class="quick-link">
-          <div class="link-text">A propos de nous</div>
-        </div>
-        <div class="quick-link">
-          <div class="link-text">Services</div>
-        </div>
-        <div class="quick-link">
-          <div class="link-text">Contact</div>
-        </div>
-      </div>
+	<!-- Fin contact -->
 
-      <div class="info-section">
-        <div class="info-section-title">Nos informations</div>
-        <div class="info-item">
-          <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
-          <div>Paris, FRANCE</div>
-        </div>
-        <div class="info-item">
-          <div class="icon"><i class="fas fa-phone"></i></div>
-          <div>+331.65.74.83.02</div>
-        </div>
-        <div class="info-item">
-          <div class="icon"><i class="fas fa-envelope"></i></div>
-          <div>contact@travellinker.com</div>
-        </div>
-        <div class="info-item">
-          <div class="icon"><i class="fas fa-clock"></i></div>
-          <div>24h/24, 7j/7</div>
-        </div>
-      </div>
+	<!--Début du footer-->
 
-      <div class="newsletter">
-        <div class="newsletter-title">Newsletters</div>
-        <div class="newsletter-text">
-          Inscrivez-vous pour recevoir notre newsletters
-        </div>
-        <div class="subscribe-form">
-          <input
-            type="email"
-            class="subscribe-input"
-            placeholder="Adresse e-mail"
-          />
-          <button class="subscribe-button">Souscrire</button>
-        </div>
-      </div>
-    </div>
-  </body>
+	<div class="footer">
+		<div class="logo-footer">
+			<img src="./media/images/logoTravelLinker2.png" alt="Logo-footer" />
+			<div class="social-icons-footer">
+				<div class="social-icon">
+					<i class="fab fa-facebook-f"></i>
+				</div>
+				<div class="social-icon">
+					<i class="fab fa-instagram"></i>
+				</div>
+				<div class="social-icon">
+					<i class="fab fa-twitter"></i>
+				</div>
+			</div>
+		</div>
 
-  <!-- Lien vers le script JavaScript -->
+		<div class="quick-links">
+			<div class="quick-links-title">Liens</div>
+			<div class="quick-link">
+				<div class="link-text">Accueil</div>
+			</div>
+			<div class="quick-link">
+				<div class="link-text">A propos de nous</div>
+			</div>
+			<div class="quick-link">
+				<div class="link-text">Services</div>
+			</div>
+			<div class="quick-link">
+				<div class="link-text">Contact</div>
+			</div>
+		</div>
 
-  <script src="./js/produit.js" defer="defer"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<div class="info-section">
+			<div class="info-section-title">Nos informations</div>
+			<div class="info-item">
+				<div class="icon">
+					<i class="fas fa-map-marker-alt"></i>
+				</div>
+				<div>Paris, FRANCE</div>
+			</div>
+			<div class="info-item">
+				<div class="icon">
+					<i class="fas fa-phone"></i>
+				</div>
+				<div>+331.65.74.83.02</div>
+			</div>
+			<div class="info-item">
+				<div class="icon">
+					<i class="fas fa-envelope"></i>
+				</div>
+				<div>contact@travellinker.com</div>
+			</div>
+			<div class="info-item">
+				<div class="icon">
+					<i class="fas fa-clock"></i>
+				</div>
+				<div>24h/24, 7j/7</div>
+			</div>
+		</div>
+
+		<div class="newsletter">
+			<div class="newsletter-title">Newsletters</div>
+			<div class="newsletter-text">Inscrivez-vous pour recevoir notre
+				newsletters</div>
+			<div class="subscribe-form">
+				<input type="email" class="subscribe-input"
+					placeholder="Adresse e-mail" />
+				<button class="subscribe-button">Souscrire</button>
+			</div>
+		</div>
+	</div>
+</body>
+
+<!-- Lien vers le script JavaScript -->
+
+<script src="./js/produit.js" defer="defer"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </html>
