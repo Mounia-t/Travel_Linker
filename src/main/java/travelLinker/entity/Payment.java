@@ -10,8 +10,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+
+import javax.persistence.OneToMany;
+
 
 @Entity
 public class Payment {
@@ -45,6 +48,7 @@ public class Payment {
 	@JoinColumn(name = "journey_id_fk")
 	private Journey journey;
 
+
 	@Enumerated(EnumType.STRING)
 	private PaymentStatus paymentStatus;
 
@@ -54,18 +58,6 @@ public class Payment {
 
 	public Subscription getSubscription() {
 		return subscription;
-	}
-
-	@ManyToOne
-	@JoinColumn(name = "account_id_fk")
-	private Account account;
-
-	public Account getAccount() {
-		return account;
-	}
-
-	public void setAccount(Account account) {
-		this.account = account;
 	}
 
 	public void setSubscription(Subscription subscription) {

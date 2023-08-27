@@ -19,7 +19,7 @@
 </head>
 <body>
 	<header>
-		<a href="index.xhtml" class="brand">Travel linker</a>
+		<img src="media/images/Travel_LinkerSL.png"/>
 		<div class="menu-btn"></div>
 		<!-- Bouton de menu (hamburger) -->
 		<div class="navigation">
@@ -71,91 +71,32 @@
         <h1>nos <span>voyages</span></h1>
       </div>
     <section class="categorie">
-          <div class="card-container">
-        <div class="container">
-            <div class="wrapper">
-              <div class="banner-image"> </div>
-              <h1> CROATIE </h1>
-              <p>Des plages de rêves et une cuisine <br/>
-                traditionnelle à couper le souffle.</p>
-             </div>
-             <div class="button-wrapper">
-    <a href="produit.xhtml" class="btn outline">Détails</a>
-               <button class="btn fill">
-                <i class="fas fa-shopping-cart"></i>réserver</button>
-             </div>
-               </div>
-           </div>
+          <div class="scrollContainer">
+			
+			<ui:repeat value="#{journeyControllerBean.allJourneys}" var="journey">
+				<div class="tPCard">
+					<img src="#{journey.imagePath}"/>
+					<div class="infoTPCard">
+						<h2>#{journey.name}</h2>
+						<h3>#{journey.country}</h3>
+						<h:inputHidden value="#{journeyControllerBean.selectedJourney.id}" />
+						
+					</div>
 
-           <div class="container">
-            <div class="wrapper">
-              <div class="banner-image1"> </div>
-              <h1> FRANCE </h1>
-              <p>Un pays qui éblouit par sa diversité : châteaux,
-                art, culture et histoire. </p>
-             </div>
-             <div class="button-wrapper"> 
-             <button class="btn outline">détails</button>
-               <button class="btn fill">
-                <i class="fas fa-shopping-cart"></i>réserver</button>
-             </div>
-               </div>
+				<h:form>
+					<h:commandButton value="Réserver" class="resaBtn" 
+					action="#{journeyControllerBean.reserveAndRedirect(journey.id)}"></h:commandButton>
+					</h:form>
 
-
-           <div class="container">
-            <div class="wrapper">
-              <div class="banner-image2"> </div>
-              <h1> ANGLETERRE </h1>
-              <p>Des métropoles effervescentes où coutumes envoûtantes se dévoilent.</p>
-             </div>
-             <div class="button-wrapper"> 
-             <button class="btn outline">détails</button>
-               <button class="btn fill">
-                <i class="fas fa-shopping-cart"></i>réserver</button>
-             </div>
-               </div>
-
-
-           <div class="container">
-            <div class="wrapper">
-              <div class="banner-image3"> </div>
-              <h1> GRèCE </h1>
-              <p>Ancienne sagesse, îles azur, mythes envoûtants, berceau de la civilisation.</p>
-             </div>
-             <div class="button-wrapper"> 
-             <button class="btn outline">détails</button>
-               <button class="btn fill">
-                <i class="fas fa-shopping-cart"></i>réserver</button>
-             </div>
-               </div>
-
-
-           <div class="container">
-            <div class="wrapper">
-              <div class="banner-image4"> </div>
-              <h1> TURQUIE </h1>
-              <p>Pont entre continents, mosquées splendides et un passé riche</p>
-             </div>
-             <div class="button-wrapper"> 
-             <button class="btn outline">détails</button>
-               <button class="btn fill">
-                <i class="fas fa-shopping-cart"></i>réserver</button>
-             </div>
-               </div>
-
-
-           <div class="container">
-            <div class="wrapper">
-              <div class="banner-image5"> </div>
-              <h1> Malte </h1>
-              <p> Îles ensoleillées, vestiges préhistoriques et ports pittoresques</p>
-             </div>
-             <div class="button-wrapper"> 
-             <button class="btn outline">détails</button>
-               <button class="btn fill">
-                <i class="fas fa-shopping-cart"></i>réserver</button>
-             </div>
-               </div>
+					<div class="infoSupTPCard">
+						
+						<h4>Encore du détail</h4>
+					</div>
+			
+				</div>
+			</ui:repeat>
+				
+		</div>
 
     </section>
 
