@@ -52,30 +52,30 @@ public class PaymentControllerBean implements Serializable {
 		System.out.println("paymentDao: " + paymentDao);
 		System.out.println("payment: " + payment);
 		System.out.println("subscriptionController: " + subscriptionController);
+		try {
 
-		float totalAmount = 0.0f;
-		payment.setAmount(totalAmount);
-		payment.setPaymentDate(new Date());
-		Account account = SessionUtils.getAccount();
-		payment.setAccount(account);
-		Long selectedJourneyId = getSelectedJourneyForPay().getId();
-		selectedJourneyForPay = journeyDao.findJourneyById(selectedJourneyId);
-		payment.setJourney(selectedJourneyForPay);
-		System.out.println("ici les details " + payment.getAmount() + payment.getCardDate());
+			float totalAmount = 0.0f;
+			payment.setAmount(totalAmount);
+			payment.setPaymentDate(new Date());
+			Account account = SessionUtils.getAccount();
+			payment.setAccount(account);
+			Long selectedJourneyId = getSelectedJourneyForPay().getId();
+			selectedJourneyForPay = journeyDao.findJourneyById(selectedJourneyId);
+			payment.setJourney(selectedJourneyForPay);
+			System.out.println("ici les details " + payment.getAmount() + payment.getCardDate());
 
-		Payment payment = new Payment();
-		payment.setAmount(totalAmount);
-		payment.setPaymentDate(new Date());
+			Payment payment = new Payment();
+			payment.setAmount(totalAmount);
+			payment.setPaymentDate(new Date());
 
-		if (processPayment(payment.getCardNumber(), payment.getCardDate(), totalAmount)) {
-			payment.setPaymentStatus(PaymentStatus.PAID);
-		} else {
-			payment.setPaymentStatus(PaymentStatus.FAILED);
-		}
+			if (processPayment(payment.getCardNumber(), payment.getCardDate(), totalAmount)) {
+				payment.setPaymentStatus(PaymentStatus.PAID);
+			} else {
+				payment.setPaymentStatus(PaymentStatus.FAILED);
+			}
 
-		paymentDao.createPayment(payment);
-	}}catch(Exception e)
-	{
+			paymentDao.createPayment(payment);
+		} catch (Exception e) {
 			System.out.println("Error");
 			e.printStackTrace();
 		}
