@@ -19,6 +19,11 @@ header{
   transition: 0.5s ease;
 }
 
+header img {
+	position: absolute;
+	width: 200px;
+}
+
 /* CODE POUR LE SCROLL DE LA BARRE DE NAVIGATION */
 
 header.scroll {
@@ -58,6 +63,7 @@ header .navigation .navigation-items a{
   font-weight: 500;
   text-decoration: none;
   margin-left: 30px;
+  padding-bottom: 3px;
   transition: 0.3s ease;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
@@ -202,8 +208,6 @@ header .navigation .navigation-items a:hover:before{
 .text-home p{
         max-width: 500px;
         border: 2px solid white;
-        backdrop-filter: blur(20px);
-        background: rgba(255, 255, 255, 0.2);
         text-shadow: 0 5px 25px rgba(0, 0, 0, 0.6);
         padding: 20px;
         border-radius: 25px;
@@ -250,7 +254,7 @@ header .navigation .navigation-items a:hover:before{
     display: flex;
     align-items: center;
     border: 3px solid white;
-    border-radius: 25px;
+    border-radius: 30px;
     padding: 10px;
     backdrop-filter: blur(20px);
     background: rgba(255, 255, 255, 0.2);
@@ -261,7 +265,7 @@ header .navigation .navigation-items a:hover:before{
     display: flex;
     align-items: center;
     margin-right: 15px;
-    border: 3px solid black;
+    border: 3px solid #fff;
     border-radius: 25px;
   }
 
@@ -280,6 +284,7 @@ header .navigation .navigation-items a:hover:before{
     border: none;
     background: transparent;
     color: white;
+    outline: none;
     font-weight: bold;
     font-size: 14px;
     padding: 5px;
@@ -371,6 +376,7 @@ header .navigation .navigation-items a:hover:before{
     gap: 10px; /* Space between cards */
     align-items: center;
     justify-content: center;
+    overflow-x: auto;
 }
 
 .title-categorie{
@@ -383,6 +389,7 @@ header .navigation .navigation-items a:hover:before{
     text-transform: uppercase;
     
   }
+  
   .title-categorie h1 span{
     background: linear-gradient(45deg, #84fab0, #8fd3f4);
     -webkit-background-clip: text;
@@ -862,3 +869,115 @@ p {
     transform: scale(1.3);
   }
   /*FIN DU FOOTER */
+
+  
+  
+  
+  .scrollContainer {
+    flex: 2;
+    display: flex;
+    gap: 1.8rem;
+    white-space: nowrap;
+}
+
+.tPCard {
+    display: flex;
+    border-radius: 25px;
+    background-color: rgba(255, 255, 255, 0.074);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(20px);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    height: 400px;
+    width: 300px;
+    margin: 20px 20px;
+    opacity: 0;
+    animation-name: fadeInFromBottom;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in;
+    cursor: pointer;
+    overflow: hidden;
+}
+.resaBtn {
+    position: absolute;
+    font-size: 16px;
+    padding: 5px 10px;
+    border: 1px solid white;
+    color: #fff;
+    background-color: transparent;
+    border-radius: 25px;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.resaBtn:hover {
+    background-color: white;
+    padding: 5px 14px;
+    color: black;
+}
+.tPCard h2,
+.tPCard h3,
+.tPCard h4 {
+    margin-left: 10px;
+    color: white;
+    filter: drop-shadow(10px 10px 13px #284246);
+}
+
+.tPCard .infoSupTPCard {
+    position: absolute;
+    bottom: -120px;
+    transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
+    opacity: 0;
+}
+
+.tPCard:hover .infoTPCard {
+    bottom: 120px;
+}
+
+.tPCard .infoTPCard {
+    position: absolute;
+    bottom: 0px;
+    transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.tPCard:hover .infoSupTPCard {
+    bottom: -5px;
+    opacity: 1;
+}
+
+.tPCard:hover .imgTravelCard {
+    filter: blur(4px);
+}
+
+@keyframes fadeInFromBottom {
+    from {
+        opacity: 0;
+        transform: translateY(70px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-70px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.imgTravelCard {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}

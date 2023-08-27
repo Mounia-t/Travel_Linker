@@ -56,18 +56,6 @@ public class Payment {
 		return subscription;
 	}
 
-	@ManyToOne
-	@JoinColumn(name = "account_id_fk")
-	private Account account;
-
-	public Account getAccount() {
-		return account;
-	}
-
-	public void setAccount(Account account) {
-		this.account = account;
-	}
-
 	public void setSubscription(Subscription subscription) {
 		this.subscription = subscription;
 	}

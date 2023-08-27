@@ -1,3 +1,7 @@
+body {
+	margin: 0;	
+}
+
 main {
     display: flex;
     justify-content: center;
@@ -417,3 +421,86 @@ main {
     border: 1px solid lightgrey;
     border-radius: 25px;
 }
+
+
+
+
+header{
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 50px;
+  border-radius: 0 0 25px 25px;
+  transition: 0.5s ease;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  transition-property: heigh, background;
+}
+
+/* CODE POUR LE SCROLL DE LA BARRE DE NAVIGATION */
+
+header.scroll {
+  position: fixed;
+  height: calc(2.5rem + 1rem);
+  backdrop-filter: blur(20px); /* Ajustez la valeur du flou selon vos préférences */
+  background-color: rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 10px 50px; /* Ajoutez du padding pour espacer le contenu */
+  transition: background-color 0.3s ease;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+/* Texte TRAVEL LINKER  */
+
+header .brand{
+  color:#fff;
+  font-size: 1.5em;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-shadow: 1px 1px 3px rgb(0, 0, 0);
+ }
+
+/* Position de la barre de navigation */
+
+header .navigation{
+  position: relative;
+}
+
+/* Code pour les différents élements de la barre de navigation */
+
+header .navigation .navigation-items a{
+  position: relative;
+  color: #fff;
+  font-size: 1em;
+  font-weight: 500;
+  text-decoration: none;
+  margin-left: 30px;
+  transition: 0.3s ease;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+header img{
+  position: absolute;
+  width: 200px;
+  transition: 0.3s ease;
+}
+
+header .navigation .navigation-items a:before{
+  content: '';
+  position: absolute;
+  background: #fff;
+  width: 0;
+  height: 3px;
+  bottom: -3px;
+  left: 0;
+  transition: 0.3s ease;
+}
+
+header .navigation .navigation-items a:hover:before{
+  width: 100%;
+}
+
+/* Fin du code pour la barre de navigation */
