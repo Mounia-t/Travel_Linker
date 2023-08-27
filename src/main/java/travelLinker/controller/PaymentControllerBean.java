@@ -74,7 +74,7 @@ public class PaymentControllerBean implements Serializable {
 		}
 
 		paymentDao.createPayment(payment);
-	}}catch(Exception e)
+	}catch(Exception e)
 	{
 			System.out.println("Error");
 			e.printStackTrace();

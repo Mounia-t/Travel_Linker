@@ -595,6 +595,8 @@
 									<f:facet name="header">Prix</f:facet>
                         #{journey.price}
                     </h:column>
+                    
+                    
 							</h:dataTable>
 						</div>
 
@@ -663,6 +665,14 @@
 											required="true" label="date de fin">
 											<f:convertDateTime pattern="dd/MM/yyyy" />
 										</h:inputText>
+									</div>
+									<div class="inputFormLabel">
+										<h:outputLabel value="Description de votre prestation"
+											styleClass="placeholder label" />
+										<h:inputText id="description" class="inputForm"
+											value="#{journeyControllerBean.journeyVM.description}"
+											required="true">
+											</h:inputText>
 									</div>
 								</div>
 
