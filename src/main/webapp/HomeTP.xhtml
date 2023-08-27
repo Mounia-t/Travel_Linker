@@ -18,15 +18,11 @@
 
 </head>
 
-<h:body>
-	
-	
+<body>
 	<main id="mainContainer">
 		<div id="firstLeftContainer">
-			<h1>Bienvenue sur ma page ! Je suis {Travel planner}</h1>
-			<h3>Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-				Consequatur reiciendis expedita esse fuga autem repellendus, quos
-				nesciunt unde eligendi</h3>
+			<h1>Bienvenue sur ma page ! </h1>
+			<h3></h3>
 			<div class="lilContainer" style="background-color: #{templateControllerBean.template.backgroundColor}"></div>
 			<div class="lilContainer1" style="background-color: #{templateControllerBean.template.backgroundColor}"></div>
 			<div class="lilContainer2" style="background-color: #{templateControllerBean.template.backgroundColor}" ></div>
@@ -35,29 +31,37 @@
 		</div>
 		<div id="firstRightContainer">
 			<div class="imageProfileTP">
-				<img src="./media/images/IMG_0434.jpg" alt="Photo de profil" />
+				<img src="./media/images/influenceur1.jpg" alt="Photo de profil" />
 			</div>
 		</div>
 	</main>
 
 	<main id="mainContainerSecond">
 		<div class="scrollContainer">
+			
 			<ui:repeat value="#{journeyControllerBean.allJourneys}" var="journey">
 				<div class="tPCard">
-					<img src="./media/images/bosnia-2058087_1920.jpg" alt=""
-						class="imgTravelCard"/>
+					<img src="#{journey.imagePath}"/>
 					<div class="infoTPCard">
 						<h2>#{journey.name}</h2>
 						<h3>#{journey.country}</h3>
+						<h:inputHidden value="#{journeyControllerBean.selectedJourney.id}" />
+						
 					</div>
+
+				<h:form>
+					<h:commandButton value="Réserver" class="resaBtn" 
+					action="#{journeyControllerBean.reserveAndRedirect(journey.id)}"></h:commandButton>
+					</h:form>
+
 					<div class="infoSupTPCard">
-						<h3>Voici du détail</h3>
-						<h4>Encore du détail</h4>
+						
 						<h4>Encore du détail</h4>
 					</div>
-					<h:commandButton value="Réserver" class="resaBtn"></h:commandButton>
+			
 				</div>
 			</ui:repeat>
+		
 		</div>
 		<f:metadata>
 </f:metadata>
@@ -75,8 +79,6 @@
 			</h:form>
 	</main>
 
-
-
 	<script src="./js/homeTP.js"></script>
-</h:body>
+</body>
 </html>

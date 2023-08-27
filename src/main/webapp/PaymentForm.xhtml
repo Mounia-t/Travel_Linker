@@ -11,7 +11,6 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="./css/PaymentForm.css" />
-<link rel="stylesheet" href="./css/index.css" />
 <title>Paiement</title>
 </head>
 
@@ -26,8 +25,7 @@
 				<a href="index.xhtml">Accueil</a> <a href="categorie.xhtml">Nos
 					voyages</a> <a href="CategorieTP.xhtml">Nos travels planners</a> <a
 					href="#{loginControllerBean.changeRoleDashboard()}">Mon profil</a><a
-					href="#contact">Contact</a><a href="signIn.xhtml" id="connexionButton">Me connecter</a>
-				<a href="#{loginControllerBean.logout()}" rendered="#{loginControllerBean.loggedIn}">Deconnexion</a>
+					href="#contact">Contact</a><a href="signIn.xhtml" id="connexionButton">Nous rejoindre</a>
 
 			</div>
 		</div>
@@ -39,17 +37,21 @@
 			<div class="recapCardZone">
                     <div class="infosZone">
                         <h2>Informations client : </h2>
-                        <h3>{User(rôle)}</h3>
+                        <h3><h:outputText value="#{loginControllerBean.connectedAccount.firstName}" /></h3>
+                       <h3><h:outputText value="#{loginControllerBean.connectedAccount.lastName}" /></h3>
                     </div>
-                    <div class="recapZone">
-                        <h2>Récapitulatif de réservation : </h2>
-                        <h3>{reservation}</h3>
-                    </div>
+                   <div class="recapZone">
+                <h2>Récapitulatif de réservation :</h2>
+                <h3>Nom du voyage : #{journeyControllerBean.selectedJourneyForPay.name}</h3>
+                <h3>Pays : #{journeyControllerBean.selectedJourney.country}</h3>
+               <h:inputHidden id="selectedJourneyId" value="#{paymentControllerBean.selectedJourneyForPay.id}" />
+               
+            </div>
                 </div>
                 <div class="totalZone">
-                    <h2>Montant total : </h2>
-                    <h3>{0€}</h3>
-                </div>
+            <h2>Montant total :</h2>
+            <h3>#{journeyControllerBean.selectedJourneyForPay.price}€</h3>
+        </div>
 		</div>
 
 			<div id="paiementForm">
@@ -101,7 +103,7 @@
 
 
 					<h:commandButton type="submit" value="Payer" class="paymentBtn"
-						action="#{paymentControllerBean.makePayment()}"></h:commandButton>
+						action="#{paymentControllerBean.makePayment(selectedJourneyForPay)}"></h:commandButton>
 				</h:form>
 			</div>
 			

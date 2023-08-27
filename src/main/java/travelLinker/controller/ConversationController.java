@@ -31,7 +31,7 @@ public class ConversationController implements Serializable {
 	public List<Message> getReceivedMessages() {
 		HttpSession session = SessionUtils.getSession();
 		String recipientEmail = (String) session.getAttribute("email");
-		dashController.updateLastMainSection("mainMessages");
+	//	dashController.updateLastMainSection("mainMessages");
 		return conversationDao.getReceivedMessages(recipientEmail);
 	}
 
@@ -39,7 +39,7 @@ public class ConversationController implements Serializable {
 
 		HttpSession session = SessionUtils.getSession();
 		String senderEmail = (String) session.getAttribute("email");
-		dashController.updateLastMainSection("mainMessages");
+		//dashController.updateLastMainSection("mainMessages");
 		//System.out.println(senderEmail);
 		return conversationDao.getSentMessages(senderEmail);
 	}
@@ -48,7 +48,7 @@ public class ConversationController implements Serializable {
 		HttpSession session = SessionUtils.getSession();
 		String senderEmail = (String) session.getAttribute("email");
 		String recipientEmail = (String) session.getAttribute("recipientEmail");
-		dashController.updateLastMainSection("mainMessages");
+		//dashController.updateLastMainSection("mainMessages");
 		return conversationDao.getAllMessages(senderEmail, recipientEmail);
 	}
 
@@ -60,7 +60,7 @@ public class ConversationController implements Serializable {
 	public void deleteMessage(Long id) {
 
 		conversationDao.deleteMessage(id);
-		dashController.updateLastMainSection("mainMessages");
+		//dashController.updateLastMainSection("mainMessages");
 		System.out.println("Message deleted with id : " + id);
 	}
 
@@ -102,7 +102,7 @@ public class ConversationController implements Serializable {
 		String content=selectedMessage.getContent();
 		System.out.println(content);
 		System.out.println(selectedMessage);
-		dashController.updateLastMainSection("mainMessages");
+		//dashController.updateLastMainSection("mainMessages");
 		return selectedMessage;
 	}
 

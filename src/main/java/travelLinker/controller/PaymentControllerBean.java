@@ -6,14 +6,19 @@ import java.util.Date;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import travelLinker.dao.CartDao;
+import travelLinker.dao.JourneyDao;
 import travelLinker.dao.PaymentDao;
-import travelLinker.entity.Cart;
-import travelLinker.entity.Item;
+
+import travelLinker.entity.Account;
+import travelLinker.entity.Journey;
+
 import travelLinker.entity.Payment;
 import travelLinker.entity.PaymentStatus;
+import travelLinker.utils.SessionUtils;
 
 @ManagedBean
 @SessionScoped
@@ -30,42 +35,47 @@ public class PaymentControllerBean implements Serializable {
 	@Inject
 	private CartDao cartDao;
 
-	private Payment payment = new Payment();
+	@Inject
+	private SubscriptionController subscriptionController;
+	@Inject
+	private JourneyDao journeyDao;
+	@Inject
+	private Payment payment;
 
 	private Long cartId;
 
 	private String ownerName;
+	private Journey selectedJourneyForPay;
 
 	public void makePayment() {
-		System.out.println("make payment " + payment);
-		try {
-			if (!validateCardDetails(payment.getCardNumber(), payment.getCardDate(), payment.getNumberCvv())) {
-				return;
-			}
-			System.out.println("make Payment " + payment.getCardNumber() + payment.getCardDate());
 
-			Cart cart = cartDao.findByCartId(cartId);
-			if (cart != null) {
-				float totalAmount = 0.0f;
+		System.out.println("paymentDao: " + paymentDao);
+		System.out.println("payment: " + payment);
+		System.out.println("subscriptionController: " + subscriptionController);
 
-				for (Item item : cart.getItems()) {
-					totalAmount += item.getPrice() * item.getQuantity();
-				}
+		float totalAmount = 0.0f;
+		payment.setAmount(totalAmount);
+		payment.setPaymentDate(new Date());
+		Account account = SessionUtils.getAccount();
+		payment.setAccount(account);
+		Long selectedJourneyId = getSelectedJourneyForPay().getId();
+		selectedJourneyForPay = journeyDao.findJourneyById(selectedJourneyId);
+		payment.setJourney(selectedJourneyForPay);
+		System.out.println("ici les details " + payment.getAmount() + payment.getCardDate());
 
-				Payment payment = new Payment();
-				payment.setCart(cart);
-				payment.setAmount(totalAmount);
-				payment.setPaymentDate(new Date());
+		Payment payment = new Payment();
+		payment.setAmount(totalAmount);
+		payment.setPaymentDate(new Date());
 
-				if (processPayment(payment.getCardNumber(), payment.getCardDate(), totalAmount)) {
-					payment.setPaymentStatus(PaymentStatus.PAID);
-				} else {
-					payment.setPaymentStatus(PaymentStatus.FAILED);
-				}
+		if (processPayment(payment.getCardNumber(), payment.getCardDate(), totalAmount)) {
+			payment.setPaymentStatus(PaymentStatus.PAID);
+		} else {
+			payment.setPaymentStatus(PaymentStatus.FAILED);
+		}
 
-				paymentDao.createPayment(payment);
-			}
-		} catch (Exception e) {
+		paymentDao.createPayment(payment);
+	}}catch(Exception e)
+	{
 			System.out.println("Error");
 			e.printStackTrace();
 		}
@@ -131,6 +141,14 @@ public class PaymentControllerBean implements Serializable {
 
 	public void setOwnerName(String ownerName) {
 		this.ownerName = ownerName;
+	}
+
+	public Journey getSelectedJourneyForPay() {
+		return selectedJourneyForPay;
+	}
+
+	public void setSelectedJourneyForPay(Journey selectedJourneyForPay) {
+		this.selectedJourneyForPay = selectedJourneyForPay;
 	}
 
 }

@@ -17,7 +17,7 @@
 <title>Dashboard</title>
 </head>
 
-<body>
+<h:body>
 
 	<div class="container">
 		<!-- Sidebar Section -->
@@ -47,18 +47,23 @@
 				</a> <a href="#" id="messagesBtn"> <span
 					class="material-icons-sharp"> mail </span>
 					<h3>Messages</h3>
+				
+					</a> <a href="index.xhtml" id="backToHomeBtn"> <span
+					class="material-icons-sharp"> home </span>
+					<h3>
+						<h:commandButton href="index.xhtml" value="Accueil"
+							class="noBackgroundLogout" />
+					</h3>
 				</a>
-				<h:form>
-					<a href="#" class="logoutStyle"> <span
+					<a href="signIn.xhtml" class="logoutStyle"> <span
+
 						class="material-icons-sharp"> logout </span>
 						<h3>
-							<h:commandButton value="Déconnexion"
+							<h:commandButton href="signIn.xhtml" value="Deconnexion"
 								action="#{loginControllerBean.logout()}"
 								class="noBackgroundLogout" />
 						</h3>
-
 					</a>
-				</h:form>
 			</div>
 		</aside>
 		<!-- End of Sidebar Section -->
@@ -515,8 +520,11 @@
 					<div class="sales">
 						<div class="status">
 							<div class="info logo">
-								<img src="images/IMG_0434.jpg" />
-								<h1>Frédéric Dupin</h1>
+								<img src="./media/images/influenceur3.jpg" />
+								<h1>
+								<b><h:outputText
+											value="#{loginControllerBean.connectedAccount.firstName}" /></b>
+								</h1>
 							</div>
 						</div>
 						<span class="material-icons-sharp"> upload </span>
@@ -1082,5 +1090,5 @@
 	</div>
 	<script src="./js/dashboardPartner.js"></script>
 
-</body>
+</h:body>
 </html>

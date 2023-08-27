@@ -9,13 +9,9 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-
 <!-- Lien vers la feuille de style -->
 
-
 <link rel="stylesheet" href="./css/index.css" />
-
-
 
 <!-- Lien vers la bibliothèque FONT AWESOME -->
 <link rel="stylesheet"
@@ -36,12 +32,10 @@
 		<!-- Bouton de menu (hamburger) -->
 		<div class="navigation">
 			<div class="navigation-items">
-
 				<a href="index.xhtml">Accueil</a> <a href="categorie.xhtml">Nos
 					voyages</a> <a href="CategorieTP.xhtml">Nos travels planners</a> <a
 					href="#{loginControllerBean.changeRoleDashboard()}">Mon profil</a><a
-					href="#contact">Contact</a><a href="signIn.xhtml" id="connexionButton">Me connecter</a>
-				<a href="#{loginControllerBean.logout()}" rendered="#{loginControllerBean.loggedIn}">Deconnexion</a>
+					href="#contact">Contact</a><a href="signIn.xhtml" id="connexionButton">Nous rejoindre</a>
 
 			</div>
 		</div>
@@ -79,7 +73,7 @@
 		</div>
 		<div class="content">
 			<h1>
-				Vous êtes<br /> <span>une agence?</span>
+				Vous êtes<br /> <span>un travel planner?</span>
 			</h1>
 			<p>Découvrez la révolution dans la gestion de voyages pour les
 				futures agences innovantes. Notre plateforme de connectivité
@@ -119,7 +113,7 @@
 				qu'offrent notre site. Vous avez longtemps cherché un moyen rapide
 				et efficace de trouver les meilleurs plans voyages? Nous l'avons
 				fait !</p>
-			<a href="signIn.xhtml">Lire Plus</a>
+			<a href="#package">Découvrir notre activité</a>
 		</div>
 
 		<!-- Icônes de médias sociaux -->
@@ -141,7 +135,7 @@
 		</div>
 	</section>
 	<!-- Section 2 -->
-	<section class="package">
+	<section id="package" class="package">
 		<div class="title-package">
 			<h1>
 				nos <span>voyages</span>
@@ -162,7 +156,7 @@
 				<div class="item-package"
 					style="background-image: url(media/images/Ireland.jpg)">
 					<div class="content-package">
-						<div class="name-package">Ireland</div>
+						<div class="name-package">Irelande</div>
 						<div class="description-package">Explorez des paysages d'une
 							verdeur exceptionnelle, des falaises dramatiques aux prairies
 							vallonnées en passant par des lacs miroitants.</div>
@@ -220,27 +214,7 @@
 				</button>
 			</div>
 		</div>
-		<ui:repeat value="#{journeyControllerBean.allJourneys}" var="journey">
-			<div class="lTSContainer">
-				<div class="tPCard">
-					<img src="#{journey.imagePath}" alt="Image du Voyage"
-						style="max-width: 100%;" />
-					<div class="infoTPCard">
-						<h2>#{journey.name}</h2>
-						<h3>#{journey.country}</h3>
-					</div>
-					<div class="infoSupTPCard">
-						<h3>Description: #{journey.description}</h3>
-						<!-- Autres détails à afficher -->
-					</div>
-				</div>
-				<div class="lTSBtnContainer">
-					<h:commandButton value="Supprimer"
-						action="#{journeyControllerBean.deleteJourney(journey.id)}" />
 
-				</div>
-			</div>
-		</ui:repeat>
 	</section>
 	<!-- FIN DES PACKAGES -->
 	<!-- DEBUT DES AVIS CLIENTS-->
@@ -458,11 +432,9 @@
 			</div>
 		</div>
 	</div>
-	<!-- Lien vers le script JavaScript -->
-
-
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="./js/index.js"></script>
 
-</body>
 
+</body>
 </html>

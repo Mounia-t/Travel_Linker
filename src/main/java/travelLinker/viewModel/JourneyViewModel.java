@@ -11,17 +11,10 @@ public class JourneyViewModel {
 	private String location;
 	private Date startDate;
 	private Date endDate;
-	private String Description;
-	private String imagePath;
 	private String name;
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
+	private String description;
+	private byte[] imageFile;
+	private String imagePath;
 
 	@Override
 	public String toString() {
@@ -41,27 +34,6 @@ public class JourneyViewModel {
 		builder.append("]");
 		return builder.toString();
 	}
-	
-	public String getImagePath() {
-		return imagePath;
-	}
-
-	public void setImagePath(String imagePath) {
-		this.imagePath = imagePath;
-	}
-
-	
-	public String getDescription() {
-		return Description;
-	}
-
-
-
-	public void setDescription(String description) {
-		Description = description;
-	}
-
-
 
 	public String getCountry() {
 		return country;
@@ -111,6 +83,29 @@ public class JourneyViewModel {
 		this.endDate = endDate;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public byte[] getImage() {
+		return imageFile;
+	}
+
+	public void setImage(byte[] imageFile) {
+		this.imageFile = imageFile;
+	}
 
 	public Long getId() {
 		return id;
@@ -120,5 +115,12 @@ public class JourneyViewModel {
 		this.id = id;
 	}
 
+	public String getImagePath() {
+		return imagePath;
+	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
 
 }

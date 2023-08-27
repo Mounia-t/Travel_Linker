@@ -103,7 +103,7 @@ header .navigation .navigation-items a:hover:before{
 }
 
 .text-animation {
-  color: white ;
+  color: #171717;
   opacity: 0;
   transform: translateY(50px);
   transition: opacity 1s, transform 1s;
@@ -116,6 +116,7 @@ header .navigation .navigation-items a:hover:before{
 }
 
 .text-animation.active {
+	color: #171717;
   opacity: 1;
   transform: translateY(0);
 }
@@ -432,7 +433,7 @@ cursor: pointer;
 }
 
 .contact .row .image img{
-  width:100%;
+  width:90%;
   border-radius: 25px;
   margin-left: 1rem;
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.52);

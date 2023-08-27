@@ -9,31 +9,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bienvenue chez les planners</title>
+
+
     <link rel="stylesheet" href="./css/CategorieTP.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
   </head>
+  
   <body>
-    <header>
-      <a href="#" class="brand">La maison des planners</a>
-      <div class="menu-btn"></div>
-      <!-- Bouton de menu (hamburger) -->
-      <div class="navigation">
-        <div class="navigation-items">
-          <a href="#">Accueil</a>
-          <a href="#">A Propos de nous</a>
-          <a href="#">Services</a>
-          <a href="#contact">Contact</a>
-          <a href="#">Connexion</a>
-        </div>
-      </div>
-    </header>
+	<header>
+		<a href="index.xhtml" class="brand">Travel linker</a>
+		<div class="menu-btn"></div>
+		<!-- Bouton de menu (hamburger) -->
+		<div class="navigation">
+			<div class="navigation-items">
+				<a href="index.xhtml">Accueil</a> <a href="categorie.xhtml">Nos
+					voyages</a> <a href="CategorieTP.xhtml">Nos travels planners</a> <a
+					href="#{loginControllerBean.changeRoleDashboard()}">Mon profil</a><a
+					href="#contact">Contact</a><a href="signIn.xhtml" id="connexionButton">Nous rejoindre</a>
+			</div>
+		</div>
+	</header>
+	
+	
     <section class="home">
       <div class="content-text-home">
-        <h1>BIENVENUE CHEZ LES <span>PLANNERS</span></h1>
+        <h1>BIENVENUE CHEZ NOS <span>TRAVEL PLANNERS</span></h1>
         <p>
           Une plateforme de connectivité qui relie les organisateurs de
           voyage locaux, les partenaires et les clients. C’est l'outil
@@ -45,7 +45,7 @@
         </div>
 
         <div class="content-image-home">
-          <img src="./media/images/profile.png"/>
+          <img src="./media/images/travelPlannerTP1.jpg"/>
           </div>
 </section>
     <div class="title-offre">
@@ -99,31 +99,6 @@
             </div>
           </div>
         </div>
-
-
-      <div class="search-bar-container">
-        <div class="search-bar">
-          <div class="search-item">
-            <i class="fas fa-globe"></i>
-            <input type="text" placeholder="Pays" />
-          </div>
-          <div class="search-item">
-            <i class="fas fa-city"></i>
-            <input type="text" placeholder="Ville" />
-          </div>
-          <div class="search-item">
-            <i class="far fa-calendar-alt"></i>
-            <input type="date" />
-          </div>
-          <div class="search-item">
-            <i class="fas fa-euro-sign"></i>
-            <input type="text" placeholder="Prix" />
-          </div>
-          <button class="search-button">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
-      </div>
 
       <div class="container right-container">
         <!-- Contenu du container droit -->
@@ -182,14 +157,14 @@
         </div>
         <div class="content-planner">
           <div class="details-planner">
-            <h2>Michael Smith <br /><span>Responsable FlyShip</span></h2>
+            <h2>Michael Smith <br /><span>Découvrez le Canada avec moi !</span></h2>
             <div class="data-planner">
               <h3>90<br /><span>Posts</span></h3>
               <h3>14k<br /><span>Followers</span></h3>
               <h3>97<br /><span>Following</span></h3>
             </div>
             <div class="action-btn-planner">
-              <button>Accueil</button>
+              <button onclick="window.location.href='HomeTP.xhtml'"></button>
               <button>Message</button>
             </div>
           </div>
@@ -202,7 +177,7 @@
         </div>
         <div class="content-planner">
           <div class="details-planner">
-            <h2>Alessandro Masci <br /><span>Mannequin</span></h2>
+            <h2>Alessandro Masci <br /><span>L'Italie dans toute sa splendeur !</span></h2>
             <div class="data-planner">
               <h3>345<br /><span>Posts</span></h3>
               <h3>124k<br /><span>Followers</span></h3>
@@ -222,7 +197,7 @@
         </div>
         <div class="content-planner">
           <div class="details-planner">
-            <h2>Sounil Laktalhi <br /><span>Créateur de contenus</span></h2>
+            <h2>Sounil Laktalhi <br /><span>Explorez l'Inde en ma compagnie !</span></h2>
             <div class="data-planner">
               <h3>212<br /><span>Posts</span></h3>
               <h3>54k<br /><span>Followers</span></h3>
@@ -242,7 +217,7 @@
         </div>
         <div class="content-planner">
           <div class="details-planner">
-            <h2>Angie Hammer <br /><span>Modèle Instagram</span></h2>
+            <h2>Angie Hammer <br /><span>Nagez dans le fond des lagons !</span></h2>
             <div class="data-planner">
               <h3>345<br /><span>Posts</span></h3>
               <h3>124k<br /><span>Followers</span></h3>
@@ -282,7 +257,7 @@
         </div>
         <div class="content-planner">
           <div class="details-planner">
-            <h2>Elena Wan <br /><span>TikTokeuse</span></h2>
+            <h2>Elena Wan <br /><span>Survolez la chine et ses secrets </span></h2>
             <div class="data-planner">
               <h3>890<br /><span>Posts</span></h3>
               <h3>450k<br /><span>Followers</span></h3>

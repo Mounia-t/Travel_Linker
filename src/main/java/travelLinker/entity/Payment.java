@@ -25,6 +25,11 @@ public class Payment {
 	private Customer customerId;
 
 	@ManyToOne
+	@JoinColumn(name = "account_id_fk")
+	private Account account;
+	
+	
+	@ManyToOne
 	@JoinColumn(name = "partner_id_fk")
 	private Partner partnerId;
 
@@ -35,6 +40,10 @@ public class Payment {
 	@ManyToOne
 	@JoinColumn(name = "cart_id_fk")
 	private Cart cart;
+	
+	@ManyToOne
+	@JoinColumn(name = "journey_id_fk")
+	private Journey journey;
 
 	@Enumerated(EnumType.STRING)
 	private PaymentStatus paymentStatus;
@@ -159,6 +168,23 @@ public class Payment {
 
 	public void setPaymentDate(Date paymentDate) {
 		this.paymentDate = paymentDate;
+	}
+	
+
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
+	}
+
+	public Journey getJourney() {
+		return journey;
+	}
+
+	public void setJourney(Journey journey) {
+		this.journey = journey;
 	}
 
 	@Override
