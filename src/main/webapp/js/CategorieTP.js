@@ -63,4 +63,6 @@ $(document).ready(function () {
   leftImages.forEach(function (image) {
     image.addEventListener("click", updateLeftImage);
   });
+
+
 });

@@ -91,7 +91,6 @@ header .navigation .navigation-items a:hover:before{
   background-size: cover;
   background-position: center;
   margin-bottom: 50px;
-  color: black;
 }
 
 .home-content {
@@ -117,7 +116,7 @@ header .navigation .navigation-items a:hover:before{
 }
 
 .text-animation.active {
-	background-color: #171717;
+	color: #171717;
   opacity: 1;
   transform: translateY(0);
 }
@@ -434,7 +433,7 @@ cursor: pointer;
 }
 
 .contact .row .image img{
-  width:100%;
+  width:90%;
   border-radius: 25px;
   margin-left: 1rem;
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.52);
