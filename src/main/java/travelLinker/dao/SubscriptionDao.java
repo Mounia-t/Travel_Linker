@@ -7,7 +7,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import travelLinker.entity.Account;
 import travelLinker.entity.Subscription;
 import travelLinker.entity.SubscriptionPack;
 
@@ -15,8 +14,6 @@ import travelLinker.entity.SubscriptionPack;
 public class SubscriptionDao {
 	@PersistenceContext
 	private EntityManager entityManager;
-
-	Account account;
 
 	public void save(Subscription subscription) {
 		entityManager.persist(subscription);
@@ -59,6 +56,10 @@ public class SubscriptionDao {
 		addSubscriptionPacks();
 		TypedQuery<Subscription> query = entityManager.createQuery("SELECT s FROM Subscription s", Subscription.class);
 		return query.getResultList();
+	}
+
+	public Subscription getSubscriptionById(Long id) {
+		return entityManager.find(Subscription.class, id);
 	}
 
 }

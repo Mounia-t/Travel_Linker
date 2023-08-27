@@ -1,9 +1,7 @@
 package travelLinker.controller;
 
 import java.io.Serializable;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 import javax.faces.bean.ManagedBean;
@@ -14,8 +12,10 @@ import javax.inject.Inject;
 import travelLinker.dao.CartDao;
 import travelLinker.dao.JourneyDao;
 import travelLinker.dao.PaymentDao;
+
 import travelLinker.entity.Account;
 import travelLinker.entity.Journey;
+
 import travelLinker.entity.Payment;
 import travelLinker.entity.PaymentStatus;
 import travelLinker.utils.SessionUtils;
@@ -47,9 +47,8 @@ public class PaymentControllerBean implements Serializable {
 	private String ownerName;
 	private Journey selectedJourneyForPay;
 
-  
-	public void makePayment( ) {
-		
+	public void makePayment() {
+
 		System.out.println("paymentDao: " + paymentDao);
 		System.out.println("payment: " + payment);
 		System.out.println("subscriptionController: " + subscriptionController);
@@ -57,12 +56,16 @@ public class PaymentControllerBean implements Serializable {
 		float totalAmount = 0.0f;
 		payment.setAmount(totalAmount);
 		payment.setPaymentDate(new Date());
-		Account account=SessionUtils.getAccount();
-		payment.setAccount(account); 
-		 Long selectedJourneyId = getSelectedJourneyForPay().getId();
-		    selectedJourneyForPay = journeyDao.findJourneyById(selectedJourneyId);
-		    payment.setJourney(selectedJourneyForPay);
+		Account account = SessionUtils.getAccount();
+		payment.setAccount(account);
+		Long selectedJourneyId = getSelectedJourneyForPay().getId();
+		selectedJourneyForPay = journeyDao.findJourneyById(selectedJourneyId);
+		payment.setJourney(selectedJourneyForPay);
 		System.out.println("ici les details " + payment.getAmount() + payment.getCardDate());
+
+		Payment payment = new Payment();
+		payment.setAmount(totalAmount);
+		payment.setPaymentDate(new Date());
 
 		if (processPayment(payment.getCardNumber(), payment.getCardDate(), totalAmount)) {
 			payment.setPaymentStatus(PaymentStatus.PAID);
@@ -70,14 +73,12 @@ public class PaymentControllerBean implements Serializable {
 			payment.setPaymentStatus(PaymentStatus.FAILED);
 		}
 
-		System.out.println("payment stat " + payment.getPaymentStatus());
-
-		if (payment.getPaymentStatus() == PaymentStatus.PAID) {
-			subscriptionController.createSubscriptionForTravelPlanner();
-			paymentDao.createPayment(payment);
+		paymentDao.createPayment(payment);
+	}}catch(Exception e)
+	{
+			System.out.println("Error");
+			e.printStackTrace();
 		}
-
-		System.out.println("apres persistence: " + payment);
 	}
 
 	private boolean validateCardDetails(long cardNumber, String cardDate, int numberCvv) {
@@ -141,12 +142,13 @@ public class PaymentControllerBean implements Serializable {
 	public void setOwnerName(String ownerName) {
 		this.ownerName = ownerName;
 	}
-	  public Journey getSelectedJourneyForPay() {
-	        return selectedJourneyForPay;
-	    }
 
-	    public void setSelectedJourneyForPay(Journey selectedJourneyForPay) {
-	        this.selectedJourneyForPay = selectedJourneyForPay;
-	    }
+	public Journey getSelectedJourneyForPay() {
+		return selectedJourneyForPay;
+	}
+
+	public void setSelectedJourneyForPay(Journey selectedJourneyForPay) {
+		this.selectedJourneyForPay = selectedJourneyForPay;
+	}
 
 }

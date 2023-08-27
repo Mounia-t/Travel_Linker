@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Subscription {
@@ -26,6 +27,17 @@ public class Subscription {
 	private Date startDate;
 	private Date endDate;
 	private int duration;
+
+	@OneToOne(mappedBy = "subscription")
+	private TravelPlanner travelPlanner;
+
+	public TravelPlanner getTravelPlanner() {
+		return travelPlanner;
+	}
+
+	public void setTravelPlanner(TravelPlanner travelPlanner) {
+		this.travelPlanner = travelPlanner;
+	}
 
 	public int getDuration() {
 		return duration;
