@@ -515,8 +515,8 @@
 				<div class="sales">
 					<div class="status">
 						<div class="info">
-							<h3>Nombre de réservation total</h3>
-							<h1>608</h1>
+							<h3>Mes réservations</h3>
+							<h1><h:outputText value="#{paymentControllerBean.countTotalReservations()}" /></h1>
 						</div>
 					</div>
 				</div>
@@ -528,43 +528,27 @@
 						<table>
 							<thead>
 								<tr>
-									<th>Photo</th>
 									<th>Nom</th>
 									<th>Prénom</th>
-									<th>Email</th>
-									<th>Téléphone</th>
-									<th>Société</th>
+									<th>Destination</th>
+									<th>Début</th>
+									<th>Fin</th>
+									<th>Prix</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td><img src="./images/IMG_0434.jpg" alt="Photo de profil"
-										class="imgCustomerSection"/></td>
-									<td>Dupin</td>
-									<td>Frédéric</td>
-									<td>fredericdupin@gmail.com</td>
-									<td>0601020304</td>
-									<td>AKA corp.</td>
-								</tr>
-								<tr>
-									<td><img src="./images/IMG_0434.jpg" alt="Photo de profil"
-										class="imgCustomerSection"/></td>
-									<td>Dupin</td>
-									<td>Frédéric</td>
-									<td>fredericdupin@gmail.com</td>
-									<td>0601020304</td>
-									<td>Mouniatomique</td>
-								</tr>
-								<tr>
-									<td><img src="./images/IMG_0434.jpg" alt="Photo de profil"
-										class="imgCustomerSection"/></td>
-									<td>Dupin</td>
-									<td>Frédéric</td>
-									<td>fredericdupin@gmail.com</td>
-									<td>0601020304</td>
-									<td>Kebab-nation</td>
-								</tr>
-							</tbody>
+    <ui:repeat value="#{paymentControllerBean.displayReservations()}" var="customer">
+        <tr>
+            <td>#{customer.account.lastName}</td>
+            <td>#{customer.account.firstName}</td>
+            <td>#{customer.journey.country}</td>
+            <td>#{customer.journey.startDate}</td>
+            <td>#{customer.journey.endDate}</td>
+               <td>#{customer.journey.price}</td>
+              
+        </tr>
+    </ui:repeat>
+</tbody>
 						</table>
 					</div>
 				</div>
