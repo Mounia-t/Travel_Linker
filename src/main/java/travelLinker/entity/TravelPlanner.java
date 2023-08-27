@@ -2,6 +2,7 @@ package travelLinker.entity;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -43,9 +44,9 @@ public class TravelPlanner {
 		this.template = template;
 	}
 
-	@OneToOne
-	@JoinColumn(name = "subscription_id")
-	private Subscription subcription;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "subscription_id_fk")
+	private Subscription subscription;
 
 	public Long getId() {
 		return id;
@@ -115,12 +116,12 @@ public class TravelPlanner {
 		this.account = account;
 	}
 
-	public Subscription getSubcription() {
-		return subcription;
+	public Subscription getSubscription() {
+		return subscription;
 	}
 
-	public void setSubcription(Subscription subcription) {
-		this.subcription = subcription;
+	public void setSubscription(Subscription subscription) {
+		this.subscription = subscription;
 	}
 
 	@Override
@@ -147,7 +148,7 @@ public class TravelPlanner {
 		builder.append(", template=");
 		builder.append(template);
 		builder.append(", subcription=");
-		builder.append(subcription);
+		builder.append(subscription);
 		builder.append("]");
 		return builder.toString();
 	}

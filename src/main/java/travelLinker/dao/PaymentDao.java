@@ -13,15 +13,9 @@ public class PaymentDao {
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	public Long createPayment(Payment payment) {
-		try {
-			entityManager.persist(payment);
-			entityManager.flush(); // Ceci force la synchronisation avec la base de données
-			return payment.getId();
-		} catch (Exception e) {
-			e.printStackTrace(); // Affiche l'erreur pour un diagnostic
-			throw e; // Relance l'erreur pour informer l'appelant qu'une erreur s'est produite
-		}
+	public Payment createPayment(Payment payment) {
+		entityManager.persist(payment);
+		return payment;
 	}
 
 	public Payment findPaymentById(Long paymentId) {
